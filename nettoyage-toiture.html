@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5VBQJ4RZ');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nettoyage de Toiture — Tonio Rénov'</title>
@@ -435,6 +442,10 @@ footer a:hover{color:var(--pierre-50)}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VBQJ4RZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- Barre d'appel sticky -->
 <div class="callbar">
@@ -810,6 +821,32 @@ footer a:hover{color:var(--pierre-50)}
 
 <script>
 /* =====================================================================
+   SUIVI GTM — tracking des deux conversions Google Ads : clic pour
+   appeler et formulaire de devis complété. Pousse des events dans le
+   dataLayer ; les déclencheurs et tags de conversion se créent côté
+   Google Tag Manager (conteneur GTM-5VBQJ4RZ) en se branchant sur ces
+   noms d'event.
+   ===================================================================== */
+window.dataLayer = window.dataLayer || [];
+
+/* Clic sur un numéro d'appel — repère l'emplacement du bouton cliqué */
+document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+  link.addEventListener('click', () => {
+    const zone = link.closest('.callbar') ? 'barre_sticky'
+      : link.closest('.hero') ? 'hero'
+      : link.closest('.cta-final') ? 'cta_final'
+      : link.closest('.devis-success') ? 'devis_succes'
+      : link.closest('footer') ? 'footer'
+      : 'autre';
+    window.dataLayer.push({
+      event: 'call_click',
+      call_zone: zone,
+      call_number: link.getAttribute('href').replace('tel:', '')
+    });
+  });
+});
+
+/* =====================================================================
    CONFIG — à modifier à chaque nouveau métier / nouveau client.
    Le HTML/CSS au-dessus reste identique ; seuls les avis et la FAQ
    ci-dessous changent de contenu (les textes fixes du hero, des étapes
@@ -966,6 +1003,13 @@ CONFIG.faq.forEach((item, i) => {
       showStep(current);
       // -> Ici, brancher l'envoi réel (fetch vers un endpoint / CRM) avec `answers`.
       console.log('Demande de devis', answers);
+      window.dataLayer.push({
+        event: 'generate_lead',
+        lead_probleme: answers.probleme,
+        lead_toiture: answers.toiture,
+        lead_surface: answers.surface,
+        lead_ville: answers.ville
+      });
     } else if (current < totalQuestionSteps) {
       current++;
       showStep(current);
