@@ -823,9 +823,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 /* =====================================================================
    SUIVI GTM — tracking des deux conversions Google Ads : clic pour
    appeler et formulaire de devis complété. Pousse des events dans le
-   dataLayer ; les déclencheurs et tags de conversion se créent côté
-   Google Tag Manager (conteneur GTM-5VBQJ4RZ) en se branchant sur ces
-   noms d'event.
+   dataLayer avec les noms d'event 'click_call' / 'lead_enter' — ceux
+   déjà configurés côté Google Tag Manager (conteneur GTM-5VBQJ4RZ).
    ===================================================================== */
 window.dataLayer = window.dataLayer || [];
 
@@ -839,7 +838,7 @@ document.querySelectorAll('a[href^="tel:"]').forEach(link => {
       : link.closest('footer') ? 'footer'
       : 'autre';
     window.dataLayer.push({
-      event: 'call_click',
+      event: 'click_call',
       call_zone: zone,
       call_number: link.getAttribute('href').replace('tel:', '')
     });
@@ -1004,7 +1003,7 @@ CONFIG.faq.forEach((item, i) => {
       // -> Ici, brancher l'envoi réel (fetch vers un endpoint / CRM) avec `answers`.
       console.log('Demande de devis', answers);
       window.dataLayer.push({
-        event: 'generate_lead',
+        event: 'lead_enter',
         lead_probleme: answers.probleme,
         lead_toiture: answers.toiture,
         lead_surface: answers.surface,
