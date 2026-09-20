@@ -14,7 +14,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="description" content="Fuite ou infiltration sur votre toiture ? Intervention rapide à Bayonne, Côte Basque et Sud-Landes. Artisan disponible, garantie décennale.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 
 /* =====================================================================
@@ -51,9 +51,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --pierre-100:#f3ede1;
   --pierre-200:#e7ddc9;
 
-  --font-display:'Fraunces', ui-serif, Georgia, serif;
-  --font-body:'Public Sans', system-ui, -apple-system, sans-serif;
-  --font-mono:'IBM Plex Mono', ui-monospace, monospace;
+  --font-display:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body:'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:'Inter', system-ui, -apple-system, sans-serif;
 
   color-scheme: light;
 }
@@ -73,6 +73,7 @@ img{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;color:inherit}
 p{margin:0}
 a{color:inherit}
+strong{color:var(--tuile-600);font-weight:700}
 .wrap{max-width:1120px;margin-inline:auto;padding-inline:20px}
 section{padding-block:clamp(48px,7vw,88px)}
 
@@ -117,13 +118,13 @@ header.topbar{
 .btn-devis-top{
   background:var(--tuile-500);color:#fff;border:none;
   font-family:var(--font-body);font-weight:700;font-size:14px;
-  padding:11px 20px;border-radius:8px;cursor:pointer;
+  padding:12px 22px;border-radius:999px;cursor:pointer;
   text-decoration:none;white-space:nowrap;
-  box-shadow:0 6px 14px -6px rgba(193,89,47,.55);
+  box-shadow:0 8px 18px -8px rgba(193,89,47,.6);
   transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
 }
-.btn-devis-top:hover{background:var(--tuile-600);transform:translateY(-1px)}
-.btn-devis-top:active{transform:translateY(0)}
+.btn-devis-top:hover{background:var(--tuile-600);transform:translateY(-2px) scale(1.02)}
+.btn-devis-top:active{transform:translateY(0) scale(1)}
 .btn-devis-top:focus-visible{outline:2px solid var(--tuile-400);outline-offset:2px}
 
 /* ---------- Hero ---------- */
@@ -171,28 +172,29 @@ header.topbar{
 .btn-primary{
   background:var(--tuile-500);color:#fff;
   font-weight:700;font-size:15.5px;
-  padding:15px 26px;border-radius:10px;border:none;
+  padding:16px 30px;border-radius:999px;border:none;
   display:inline-flex;align-items:center;gap:10px;
   text-decoration:none;cursor:pointer;
-  box-shadow:0 1px 2px rgba(16,29,41,.06), 0 8px 20px -8px rgba(193,89,47,.55);
+  box-shadow:0 10px 24px -10px rgba(193,89,47,.7);
   transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
 }
-.btn-primary:hover{background:var(--tuile-600);transform:translateY(-1px);box-shadow:0 1px 2px rgba(16,29,41,.06), 0 12px 24px -8px rgba(193,89,47,.65)}
-.btn-primary:active{transform:translateY(0);box-shadow:0 1px 2px rgba(16,29,41,.06), 0 4px 10px -4px rgba(193,89,47,.5)}
-.btn-primary:focus-visible{outline:2px solid var(--tuile-400);outline-offset:2px}
+.btn-primary:hover{background:var(--tuile-600);transform:translateY(-2px) scale(1.015);box-shadow:0 14px 28px -10px rgba(193,89,47,.8)}
+.btn-primary:active{transform:translateY(0) scale(1);box-shadow:0 6px 14px -8px rgba(193,89,47,.6)}
+.btn-primary:focus-visible{outline:2px solid var(--tuile-400);outline-offset:3px}
 .btn-primary svg{width:17px;height:17px;flex:none}
 .btn-ghost{
-  background:rgba(255,255,255,.04);color:var(--pierre-50);
-  border:1.5px solid rgba(255,255,255,.28);
+  background:rgba(255,255,255,.06);color:var(--pierre-50);
+  border:1.5px solid rgba(255,255,255,.3);
   font-weight:600;font-size:15.5px;
-  padding:14px 24px;border-radius:10px;
+  padding:15px 28px;border-radius:999px;
   display:inline-flex;align-items:center;gap:10px;
   text-decoration:none;cursor:pointer;
+  backdrop-filter:blur(4px);
   transition:transform .16s ease, border-color .16s ease, background .16s ease;
 }
-.btn-ghost:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.08);transform:translateY(-1px)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.12);transform:translateY(-2px)}
 .btn-ghost:active{transform:translateY(0)}
-.btn-ghost:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:2px}
+.btn-ghost:focus-visible{outline:2px solid rgba(255,255,255,.6);outline-offset:3px}
 .hero-badges{
   display:flex;flex-wrap:wrap;gap:18px;margin-top:36px;
   font-family:var(--font-mono);font-size:12px;color:var(--ardoise-300);
@@ -364,14 +366,14 @@ header.topbar{
 .btn-back:disabled{opacity:0;pointer-events:none}
 .btn-next{
   background:var(--tuile-500);color:#fff;border:none;font-weight:700;font-size:15px;
-  padding:13px 24px;border-radius:9px;cursor:pointer;font-family:var(--font-body);
+  padding:14px 28px;border-radius:999px;cursor:pointer;font-family:var(--font-body);
   transition:transform .16s ease, box-shadow .16s ease, background .16s ease;
-  box-shadow:0 6px 14px -6px rgba(193,89,47,.5);
+  box-shadow:0 8px 18px -8px rgba(193,89,47,.55);
 }
-.btn-next:hover:not(:disabled){background:var(--tuile-600);transform:translateY(-1px)}
-.btn-next:active:not(:disabled){transform:translateY(0)}
+.btn-next:hover:not(:disabled){background:var(--tuile-600);transform:translateY(-2px) scale(1.02)}
+.btn-next:active:not(:disabled){transform:translateY(0) scale(1)}
 .btn-next:focus-visible{outline:2px solid var(--tuile-400);outline-offset:2px}
-.btn-next:disabled{background:var(--ardoise-700);color:var(--ardoise-300);cursor:not-allowed;box-shadow:none}
+.btn-next:disabled{background:var(--ardoise-700);color:var(--ardoise-300);cursor:not-allowed;box-shadow:none;transform:none}
 
 .devis-success{text-align:center;padding:20px 0}
 .devis-success svg{width:48px;height:48px;color:var(--mousse-500);margin-bottom:16px}
@@ -499,7 +501,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Artisan basé à Boucau — intervention Côte Basque &amp; Sud-Landes
       </span>
       <h1>Une fuite sur le toit ?<br><em>On intervient vite, avant que ça s'aggrave.</em></h1>
-      <p class="hero-sub">Fuite, infiltration, tuile cassée : artisan local disponible rapidement pour diagnostiquer et réparer. Devis gratuit, chantier sous garantie décennale.</p>
+      <p class="hero-sub"><strong>Fuite, infiltration, tuile cassée</strong> : artisan local disponible <strong>rapidement</strong> pour diagnostiquer et réparer. Devis gratuit, chantier sous garantie décennale.</p>
       <div class="hero-cta">
         <a class="btn-primary" href="tel:+33634122331">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -541,7 +543,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-head">
       <span class="eyebrow">En attendant l'artisan</span>
       <h2>Une fuite ne s'aggrave pas si vous agissez vite</h2>
-      <p>Chaque heure compte : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.</p>
+      <p><strong>Chaque heure compte</strong> : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.</p>
     </div>
     <div class="signes-grid">
       <div class="signe-card">
@@ -653,7 +655,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="devis-shell">
       <div class="devis-head">
         <h2>Décrivez votre urgence en 4 questions</h2>
-        <p>30 secondes — on vous rappelle en priorité</p>
+        <p><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p>
       </div>
 
       <div class="progress" id="progress"></div>
@@ -753,7 +755,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <span class="eyebrow">Zone d'intervention</span>
       <h2>Basés à Boucau, on se déplace sur toute la Côte Basque</h2>
-      <p style="margin-top:14px;color:var(--ardoise-700);font-size:15px;line-height:1.6">Artisan local — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures du secteur, exposées vent et embruns.</p>
+      <p style="margin-top:14px;color:var(--ardoise-700);font-size:15px;line-height:1.6"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures du secteur, exposées vent et embruns.</p>
     </div>
     <div>
       <span class="zone-base">Secteurs couverts</span>
@@ -794,7 +796,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="cta-final">
   <div class="wrap">
     <h2>Chaque minute compte face à une fuite</h2>
-    <p>Appelez-nous, on évalue la situation tout de suite.</p>
+    <p>Appelez-nous, on évalue la situation <strong>tout de suite</strong>.</p>
     <div class="hero-cta">
       <a class="btn-primary" href="tel:+33634122331">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
