@@ -273,7 +273,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="skip" href="#devis">Aller au formulaire de devis</a>
 
-<header class="bar" inert aria-hidden="true">
+<header class="bar">
   <div class="bar-in">
     <a class="brand" href="#top" aria-label="{s['name']} — haut de page">{mark()}<span><b>{s['name']}</b><small>Toiture &amp; façade · Boucau</small></span></a>
     <div class="bar-actions">
@@ -384,6 +384,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <div class="wrap foot-bottom"><span>© 2026 {s['name']} — Tous droits réservés</span><a href="https://toniorenov.fr">toniorenov.fr</a></div>
 </footer>
+
+<a class="fab" href="{tel}" aria-label="Appeler {s['name']} au {s['phone']}"><span class="fab-pulse" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true">{ICONS["phone"]}</svg><span>Appeler</span></a>
 
 <script>
 {JS}

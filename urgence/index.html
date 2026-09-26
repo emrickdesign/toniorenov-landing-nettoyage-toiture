@@ -38,6 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --tuile:#c9402b;
   --tuile-fonce:#a53220;
   --tuile-clair:#ff9070;
+  --jaune:#ffd23f;
   --ciel:#f1f4f8;
   --ciel-2:#e0e7ef;
   --texte:#0f1e2e;
@@ -122,9 +123,9 @@ h2+.lead,h2+p{margin-top:20px}
 .btn-outline-light:hover{color:var(--tuile-fonce);transform:translateY(-3px)}
 .btn-outline-light:hover::before{transform:none}
 
-/* ---------- Barre fixe : n'apparaît qu'au scroll ---------- */
-.bar{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(11,24,39,.9);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid rgba(255,255,255,.09);transform:translateY(-105%);visibility:hidden;transition:transform .5s var(--ease),visibility 0s .5s}
-body.bar-on .bar{transform:none;visibility:visible;transition:transform .5s var(--ease),visibility 0s}
+/* ---------- Barre du haut : visible dès l'arrivée, reste collée en scrollant ---------- */
+.bar{position:sticky;top:0;z-index:60;background:rgba(11,24,39,.96);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-bottom:1px solid rgba(255,255,255,.09);transition:box-shadow .3s}
+body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .bar-in{max-width:var(--max);margin-inline:auto;height:64px;padding-inline:var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:flex;align-items:center;gap:11px;color:#fff;text-decoration:none;min-width:0}
 .brand svg{width:40px;height:auto;flex:none}
@@ -137,16 +138,16 @@ body.bar-on .bar{transform:none;visibility:visible;transition:transform .5s var(
 @media(max-width:430px){.brand b,.brand small{display:none}}
 
 /* ---------- Hero : la photo EST le fond ---------- */
-.hero{position:relative;isolation:isolate;min-height:min(100svh,940px);display:flex;align-items:flex-end;color:#fff;background:var(--nuit);overflow:hidden}
+.hero{position:relative;isolation:isolate;min-height:clamp(520px,calc(100svh - 64px - 104px),900px);display:flex;align-items:flex-end;color:#fff;background:var(--nuit);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%);animation:kb 20s var(--ease) both}
 @keyframes kb{from{transform:scale(1.14)}to{transform:scale(1.02)}}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
-.hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(120px,22vh,220px) var(--gutter) clamp(34px,7vh,76px)}
+.hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(56px,10vh,140px) var(--gutter) clamp(30px,6vh,64px)}
 .hero h1{font-size:clamp(2.45rem,1.15rem + 5.6vw,5rem);line-height:1;letter-spacing:-.038em;max-width:13.8em}
 .hero h1 .w{animation:blurUp .85s var(--ease) both;animation-delay:calc(.12s + var(--i)*48ms)}
-.hero mark{background:linear-gradient(var(--tuile),var(--tuile)) no-repeat 0 94%/0% .13em;color:var(--tuile-clair);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em;animation:sweep 1s var(--ease) 1.15s forwards}
-@keyframes sweep{to{background-size:100% .13em}}
+.hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/0% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em;animation:sweep 1s var(--ease) 1.15s forwards}
+@keyframes sweep{to{background-size:100% .1em}}
 .hero-sub{margin-top:clamp(18px,3vh,28px);max-width:44ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
 .hero-sub strong{color:#fff;font-weight:700;background:linear-gradient(rgba(201,64,43,.55),rgba(201,64,43,.55)) no-repeat 0 100%/100% .38em;padding:0 .06em}
 .hero-cta{margin-top:clamp(24px,4vh,36px);display:flex;flex-wrap:wrap;gap:12px}
@@ -155,7 +156,15 @@ body.bar-on .bar{transform:none;visibility:visible;transition:transform .5s var(
 .stars .ic{width:16px;height:16px}
 .hero-proof span{display:inline-flex;align-items:center;gap:.55em}
 .hero .fade{animation:fadeUp .9s var(--ease) both;animation-delay:calc(.95s + var(--d,0)*110ms)}
-@media(max-width:560px){.hero-cta .btn{width:100%}.hero-in{padding-top:120px}}
+@media(max-width:560px){
+  .hero-cta .btn{width:100%}
+  .hero-in{padding:30px var(--gutter) 24px}
+  .hero-sub{margin-top:16px}
+  .hero-cta{margin-top:22px;gap:10px}
+  .hero-cta .btn{--h:54px}
+  .hero-proof{margin-top:16px}
+  .hero-proof span:nth-child(2){display:none}
+}
 
 /* ---------- Bandeau de preuves ---------- */
 .band{background:var(--marine);color:#fff}
@@ -167,7 +176,7 @@ body.bar-on .bar{transform:none;visibility:visible;transition:transform .5s var(
 .band b{display:block;font-size:1rem;letter-spacing:-.01em;line-height:1.2}
 .band small{display:block;font-size:.875rem;color:rgba(255,255,255,.68);line-height:1.3;margin-top:2px}
 @media(min-width:1040px){.band ul{grid-template-columns:repeat(5,1fr)}.band li{border-top:0;border-left:1px solid rgba(255,255,255,.1)}.band li:nth-child(odd){border-left:1px solid rgba(255,255,255,.1)}.band li:first-child{border-left:0}}
-@media(max-width:1039px){.band li:last-child{grid-column:1/-1;border-left:0}}
+@media(max-width:1039px){.band li:last-child{grid-column:1/-1;border-left:0;justify-content:center}}
 
 /* ---------- Sections ---------- */
 .sec{padding-block:clamp(64px,9vw,120px)}
@@ -326,10 +335,20 @@ footer .brand{margin-bottom:16px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-block:20px;font-size:.875rem;color:rgba(255,255,255,.5);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
 .tel-foot{font-variant-numeric:tabular-nums}
 
+/* bouton d'appel flottant, présent tout le long de la page */
+.fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:55;display:inline-flex;align-items:center;gap:.6em;min-height:58px;padding:0 1.5rem 0 1.25rem;border-radius:999px;background:var(--tuile);color:#fff;font:700 1.0625rem/1 var(--font);text-decoration:none;box-shadow:0 18px 34px -12px rgba(11,24,39,.7),0 0 0 3px rgba(255,255,255,.9);transition:transform .4s var(--ease),opacity .3s,visibility 0s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.fab:hover{transform:translateY(-3px);background:var(--tuile-fonce)}
+.fab:active{transform:scale(.97)}
+.fab-pulse{position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(201,64,43,.6);animation:fabPulse 2.4s var(--ease) infinite;pointer-events:none}
+@keyframes fabPulse{0%{box-shadow:0 0 0 0 rgba(201,64,43,.55)}70%,100%{box-shadow:0 0 0 22px rgba(201,64,43,0)}}
+body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transition:transform .4s var(--ease),opacity .3s,visibility 0s .3s}
+@media(max-width:820px){body{padding-bottom:86px}}
+
 @media(prefers-reduced-motion:reduce){
+  .fab-pulse{animation:none}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
   .js .reveal:not(.in),.js .split:not(.in) .w{opacity:1!important;transform:none!important}
-  .hero mark{background-size:100% .13em}
+  .hero mark{background-size:100% .1em}
   .ring{animation:none}
 }
 
@@ -342,7 +361,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="skip" href="#devis">Aller au formulaire de devis</a>
 
-<header class="bar" inert aria-hidden="true">
+<header class="bar">
   <div class="bar-in">
     <a class="brand" href="#top" aria-label="Tonio Rénov' — haut de page"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Toiture &amp; façade · Boucau</small></span></a>
     <div class="bar-actions">
@@ -454,6 +473,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap foot-bottom"><span>© 2026 Tonio Rénov' — Tous droits réservés</span><a href="https://toniorenov.fr">toniorenov.fr</a></div>
 </footer>
 
+<a class="fab" href="tel:+33634122331" aria-label="Appeler Tonio Rénov' au 06 34 12 23 31"><span class="fab-pulse" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Appeler</span></a>
+
 <script>
 /* Comportement des landings : barre fixe au scroll, révélations, suivi GTM, formulaire à choix.
    Événements GTM conservés à l'identique : click_call et leads_entrer. */
@@ -461,22 +482,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var doc = document;
   window.dataLayer = window.dataLayer || [];
 
-  /* Barre du haut : invisible au départ, apparaît dès qu'on scrolle */
-  var bar = doc.querySelector('.bar');
+  /* Barre du haut : visible dès l'arrivée ; on ajoute juste une ombre quand on a scrollé */
   var ticking = false;
-  function paintBar() {
-    var on = (window.scrollY || window.pageYOffset) > 90;
-    doc.body.classList.toggle('bar-on', on);
-    if (bar) {
-      if (on) { bar.removeAttribute('inert'); bar.removeAttribute('aria-hidden'); }
-      else { bar.setAttribute('inert', ''); bar.setAttribute('aria-hidden', 'true'); }
-    }
-    ticking = false;
-  }
   window.addEventListener('scroll', function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(paintBar); }
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () {
+        doc.body.classList.toggle('scrolled', (window.scrollY || window.pageYOffset) > 8);
+        ticking = false;
+      });
+    }
   }, { passive: true });
-  paintBar();
+
+  /* Bouton d'appel flottant : présent partout, sauf quand le formulaire, l'appel final ou le pied de page sont à l'écran */
+  var hideZones = [].slice.call(doc.querySelectorAll('.devis-shell, .cta, footer'));
+  if ('IntersectionObserver' in window && hideZones.length) {
+    var seen = {};
+    var fio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[hideZones.indexOf(e.target)] = e.isIntersecting; });
+      var any = Object.keys(seen).some(function (k) { return seen[k]; });
+      doc.body.classList.toggle('fab-off', any);
+    }, { threshold: 0.15 });
+    hideZones.forEach(function (z) { fio.observe(z); });
+  }
 
   /* Révélations au scroll (IntersectionObserver) — le contenu reste visible sans JS */
   var targets = [].slice.call(doc.querySelectorAll('.reveal, .split, .steps'));
@@ -494,7 +522,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* Suivi GTM : clic sur un numéro d'appel */
   [].slice.call(doc.querySelectorAll('a[href^="tel:"]')).forEach(function (a) {
     a.addEventListener('click', function () {
-      var zone = a.closest('.bar') ? 'barre_sticky'
+      var zone = a.closest('.fab') ? 'bouton_flottant'
+        : a.closest('.bar') ? 'barre_sticky'
         : a.closest('.hero') ? 'hero'
         : a.closest('.cta') ? 'cta_final'
         : a.closest('.done') ? 'devis_succes'

@@ -4,22 +4,29 @@
   var doc = document;
   window.dataLayer = window.dataLayer || [];
 
-  /* Barre du haut : invisible au départ, apparaît dès qu'on scrolle */
-  var bar = doc.querySelector('.bar');
+  /* Barre du haut : visible dès l'arrivée ; on ajoute juste une ombre quand on a scrollé */
   var ticking = false;
-  function paintBar() {
-    var on = (window.scrollY || window.pageYOffset) > 90;
-    doc.body.classList.toggle('bar-on', on);
-    if (bar) {
-      if (on) { bar.removeAttribute('inert'); bar.removeAttribute('aria-hidden'); }
-      else { bar.setAttribute('inert', ''); bar.setAttribute('aria-hidden', 'true'); }
-    }
-    ticking = false;
-  }
   window.addEventListener('scroll', function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(paintBar); }
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () {
+        doc.body.classList.toggle('scrolled', (window.scrollY || window.pageYOffset) > 8);
+        ticking = false;
+      });
+    }
   }, { passive: true });
-  paintBar();
+
+  /* Bouton d'appel flottant : présent partout, sauf quand le formulaire, l'appel final ou le pied de page sont à l'écran */
+  var hideZones = [].slice.call(doc.querySelectorAll('.devis-shell, .cta, footer'));
+  if ('IntersectionObserver' in window && hideZones.length) {
+    var seen = {};
+    var fio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[hideZones.indexOf(e.target)] = e.isIntersecting; });
+      var any = Object.keys(seen).some(function (k) { return seen[k]; });
+      doc.body.classList.toggle('fab-off', any);
+    }, { threshold: 0.15 });
+    hideZones.forEach(function (z) { fio.observe(z); });
+  }
 
   /* Révélations au scroll (IntersectionObserver) — le contenu reste visible sans JS */
   var targets = [].slice.call(doc.querySelectorAll('.reveal, .split, .steps'));
@@ -37,7 +44,8 @@
   /* Suivi GTM : clic sur un numéro d'appel */
   [].slice.call(doc.querySelectorAll('a[href^="tel:"]')).forEach(function (a) {
     a.addEventListener('click', function () {
-      var zone = a.closest('.bar') ? 'barre_sticky'
+      var zone = a.closest('.fab') ? 'bouton_flottant'
+        : a.closest('.bar') ? 'barre_sticky'
         : a.closest('.hero') ? 'hero'
         : a.closest('.cta') ? 'cta_final'
         : a.closest('.done') ? 'devis_succes'
