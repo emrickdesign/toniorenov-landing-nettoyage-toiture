@@ -9,7 +9,9 @@ CSS = open(os.path.join(ROOT, '_src', 'style.css'), encoding='utf-8').read()
 JS = open(os.path.join(ROOT, '_src', 'app.js'), encoding='utf-8').read()
 
 SITE = dict(
-    name="Tonio Rénov'", phone="06 34 12 23 31", tel="+33634122331",
+    # Numéro de suivi Twilio (pas le 06 direct) : les appels sont transférés à Tonio
+    # et tracés dans l'espace client Potentieel. Changer ici = changer les 4 pages.
+    name="Tonio Rénov'", phone="04 15 87 02 42", tel="+33415870242",
     email="contact@toniorenov.fr", gtm="GTM-5VBQJ4RZ",
     base="https://nettoyage-toiture.toniorenov.fr",
 )

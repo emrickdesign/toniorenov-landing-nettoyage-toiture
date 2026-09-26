@@ -137,13 +137,61 @@
   });
   ['f-nom', 'f-tel', 'f-ville'].forEach(function (id) { doc.getElementById(id).addEventListener('input', validate); });
 
+  /* Envoi de la demande dans l'espace client Potentieel (table form_submissions).
+     Le lead apparaît dans la fiche du client, à côté des appels Twilio. */
+  var LEAD = {
+    url: 'https://alpzagoprkpzirgtrdup.supabase.co/rest/v1/form_submissions',
+    key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHphZ29wcmtwemlyZ3RyZHVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3OTg2MDEsImV4cCI6MjA5MjM3NDYwMX0.R7R6esDFce1W4k_wK-aBtAG20oUtK2SmSNCVKENS91g',
+    client: 'db6e370a-71b8-454b-bf42-54e8fdc0de43' /* Tonio Rénov' */
+  };
+
+  function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
+
+  function envoyer() {
+    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page d'origine. */
+    var details = [answers.toiture, answers.surface].filter(Boolean).join(' · ') || null;
+    var corps = {
+      client_id: LEAD.client,
+      prenom: answers.nom || null,
+      telephone: answers.tel || null,
+      ville: answers.ville || null,
+      domaine: answers.probleme || null,
+      details: details,
+      source: 'landing-ads' + (location.pathname === '/' ? '' : location.pathname),
+      campagne: param('utm_campaign'),
+      publicite: param('utm_term') || param('utm_content'),
+      gclid: param('gclid'),
+      fields_filled: Object.keys(answers).length
+    };
+    return fetch(LEAD.url, {
+      method: 'POST',
+      headers: { 'apikey': LEAD.key, 'Authorization': 'Bearer ' + LEAD.key, 'Content-Type': 'application/json' },
+      body: JSON.stringify(corps)
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+    });
+  }
+
   function submit() {
     answers.nom = val('f-nom');
     answers.tel = val('f-tel');
     answers.ville = val('f-ville');
     show(5);
-    /* -> brancher ici l'envoi réel (fetch vers un endpoint / CRM) avec `answers` */
-    console.log('Demande de devis', answers);
+    /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
+    envoyer().catch(function () {
+      return new Promise(function (ok) { setTimeout(ok, 1500); }).then(envoyer);
+    }).catch(function (e) {
+      console.error('Envoi de la demande impossible', e);
+      var d = doc.querySelector('.done');
+      var lien = doc.querySelector('a[href^="tel:"]'); /* le numéro affiché sur la page */
+      if (d && lien) {
+        var p = doc.createElement('p');
+        p.className = 'done-fallback';
+        p.innerHTML = "Votre demande n'a pas pu être transmise. Appelez-nous directement au "
+          + '<a href="' + lien.getAttribute('href') + '">' + lien.textContent.trim() + '</a>.';
+        d.appendChild(p);
+      }
+    });
     window.dataLayer.push({
       event: 'leads_entrer',
       lead_probleme: answers.probleme,
