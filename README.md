@@ -23,3 +23,6 @@ python3 _src/build.py   # régénère les 4 pages
 ## Nouveau métier
 Ajouter un bloc dans `PAGES` (`build.py`), relancer la commande, pousser.
 Tracking GTM `GTM-5VBQJ4RZ` : événements `click_call` (clic téléphone) et `leads_entrer` (formulaire terminé).
+
+## Photos
+Photos d'illustration libres de droits (Unsplash) dans `/img` — voir `_src/CREDITS.md`. À remplacer par de vraies photos avant/après du client dès qu'elles existent (même nom de fichier).

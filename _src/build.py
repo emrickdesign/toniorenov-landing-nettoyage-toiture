@@ -39,6 +39,8 @@ ICONS = {
  'help': '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/>',
  'crack': '<path d="M13 2v6l-4 3 5 3-3 3v5"/>',
  'roller': '<rect width="16" height="6" x="2" y="2" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect width="4" height="6" x="8" y="16" rx="1"/>',
+ 'image': '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
+ 'lr': '<path d="m9 7-5 5 5 5"/><path d="m15 7 5 5-5 5"/>',
  'tools': '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
 }
 
@@ -200,6 +202,45 @@ PAGES = [
  ),
 ]
 
+# ----------------------------- Médias : photos d'illustration libres de droits (Unsplash) -----------------------------
+MEDIA = {
+ 'index.html': dict(mode='slider', b='demoussage-avant', a='demoussage-apres', tb='Avant', ta='Après',
+                    ab="Tuiles couvertes de mousse et de lichen (photo d'illustration)", aa="Tuiles propres après un démoussage (photo d'illustration)",
+                    bgm='demoussage-bg-methode', bgc='demoussage-bg-cta'),
+ 'entretien/index.html': dict(mode='slider', b='entretien-avant', a='entretien-apres', tb='Avant', ta='Après',
+                    ab="Gouttière encrassée et bord de toit sale (photo d'illustration)", aa="Gouttière propre et bien entretenue (photo d'illustration)",
+                    bgm='entretien-bg-methode', bgc='entretien-bg-cta'),
+ 'urgence/index.html': dict(mode='split', b='urgence-avant', a='urgence-apres', tb='Le problème', ta="L'intervention",
+                    ab="Plafond abîmé par une infiltration d'eau (photo d'illustration)", aa="Couvreur au travail sur une toiture en tuiles (photo d'illustration)",
+                    bgm='urgence-bg-methode', bgc='urgence-bg-cta'),
+ 'ravalement/index.html': dict(mode='slider', b='ravalement-avant', a='ravalement-apres', tb='Avant', ta='Après',
+                    ab="Mur dont la peinture s'écaille (photo d'illustration)", aa="Mur blanc fraîchement repeint (photo d'illustration)",
+                    bgm='ravalement-bg-methode', bgc='ravalement-bg-cta'),
+}
+
+def dims(name):
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(ROOT, 'img', name + '.jpg')) as im:
+            return f'width="{im.width}" height="{im.height}"'
+    except Exception:
+        return ''
+
+def compare(m):
+    note = f'<p class="ba-note">{ic("image")}Photos d\'illustration · Unsplash</p>'
+    if m['mode'] == 'split':
+        return (f'<div class="ba-split reveal"><figure><img src="/img/{m["b"]}.jpg" alt="{m["ab"]}" loading="lazy" decoding="async" {dims(m["b"])}><figcaption class="ba-tag ba-tag-b">{m["tb"]}</figcaption></figure>'
+                f'<figure><img src="/img/{m["a"]}.jpg" alt="{m["aa"]}" loading="lazy" decoding="async" {dims(m["a"])}><figcaption class="ba-tag ba-tag-a">{m["ta"]}</figcaption></figure></div>{note}')
+    return (f'<figure class="ba reveal" data-mode="slider" style="--pos:50%"><div class="ba-stage">'
+            f'<img class="ba-img ba-after" src="/img/{m["a"]}.jpg" alt="{m["aa"]}" loading="lazy" decoding="async" {dims(m["a"])}>'
+            f'<img class="ba-img ba-before" src="/img/{m["b"]}.jpg" alt="{m["ab"]}" loading="lazy" decoding="async" {dims(m["b"])}>'
+            f'<span class="ba-tag ba-tag-b">{m["tb"]}</span><span class="ba-tag ba-tag-a">{m["ta"]}</span>'
+            f'<input class="ba-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Faire glisser pour comparer avant et après">'
+            f'<span class="ba-line" aria-hidden="true"><span class="ba-knob">{ic("lr")}</span></span></div>{note}</figure>')
+
+def bgimg(name):
+    return f'<img class="sec-bg" src="/img/{name}.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" {dims(name)}>'
+
 def opts(name, options, first_focus=False):
     out = []
     for value, label, icon in options:
@@ -208,6 +249,7 @@ def opts(name, options, first_focus=False):
 
 def render(p):
     s = SITE
+    M = MEDIA[p['out']]
     h1_inner, _ = split_words(p['h1'])
     h1 = f'<h1 aria-label="{plain(p["h1"])}">{h1_inner}</h1>'
     trust = [("award", "Plus de 500 chantiers", "sur la Côte Basque"), ("shield-check", "Garantie décennale", "sur tous nos travaux"),
@@ -279,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="bar-actions">
       <a class="bar-tel" href="{tel}">{s['phone']}</a>
       <a class="btn btn-call btn-sm" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Appeler</span></a>
-      <a class="btn btn-ghost btn-sm" href="#devis"><span>Devis gratuit</span></a>
+      <a class="btn btn-ghost btn-sm" href="#devis"><span class="lbl-long">Devis gratuit</span><span class="lbl-short">Devis</span></a>
     </div>
   </div>
 </header>
@@ -307,7 +349,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="sec sec-dark">
+<section class="sec sec-dark has-bg">
+  {bgimg(M["bgm"])}
   <div class="wrap">
     <div class="sec-head center">{method_h2}<p class="lead reveal on-dark" style="--d:1">Un diagnostic sur place, un <strong>devis détaillé</strong>, une intervention propre et planifiée.</p></div>
     <ol class="steps">{steps}</ol>
@@ -316,8 +359,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec sec-light">
   <div class="wrap real-grid">
-    <div class="real-photo reveal"><img src="{p['img']}" alt="" loading="lazy" decoding="async" style="--crop:{p['crop']}"></div>
-    <div>{real_h2}<ul class="real-list reveal" style="--d:1">{real}</ul></div>
+    <div class="real-head">{real_h2}</div>
+    <div class="ba-col">{compare(M)}</div>
+    <ul class="real-list reveal" style="--d:1">{real}</ul>
   </div>
 </section>
 
@@ -364,7 +408,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="sec cta">
+<section class="sec cta has-bg">
+  {bgimg(M["bgc"])}
   <div class="wrap">
     {cta_h2}
     <p class="reveal" style="--d:1">{p['cta']['p']}</p>

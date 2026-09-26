@@ -3,6 +3,7 @@
 (function () {
   var doc = document;
   window.dataLayer = window.dataLayer || [];
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Barre du haut : visible dès l'arrivée ; on ajoute juste une ombre quand on a scrollé */
   var ticking = false;
@@ -16,8 +17,8 @@
     }
   }, { passive: true });
 
-  /* Bouton d'appel flottant : présent partout, sauf quand le formulaire, l'appel final ou le pied de page sont à l'écran */
-  var hideZones = [].slice.call(doc.querySelectorAll('.devis-shell, .cta, footer'));
+  /* Bouton d'appel flottant : présent tout le long, sauf quand les boutons du hero, le formulaire, l'appel final ou le pied de page sont déjà à l'écran (il ne doit jamais les recouvrir) */
+  var hideZones = [].slice.call(doc.querySelectorAll('.hero-cta, .devis-shell, .cta, footer'));
   if ('IntersectionObserver' in window && hideZones.length) {
     var seen = {};
     var fio = new IntersectionObserver(function (entries) {
@@ -58,6 +59,31 @@
         call_number: a.getAttribute('href').replace('tel:', '')
       });
     });
+  });
+
+  /* Comparaison avant / après (curseur accessible : c'est un vrai <input type=range>) */
+  [].slice.call(doc.querySelectorAll('.ba[data-mode="slider"]')).forEach(function (ba) {
+    var r = ba.querySelector('.ba-range');
+    var touched = false;
+    function set(v) { ba.style.setProperty('--pos', v + '%'); }
+    r.addEventListener('input', function () { touched = true; set(r.value); });
+    function hint() {
+      var t0 = null, from = 96, to = 50, dur = 1200;
+      function step(ts) {
+        if (touched) return;
+        if (!t0) t0 = ts;
+        var p = Math.min(1, (ts - t0) / dur), e = 1 - Math.pow(1 - p, 3), v = from + (to - from) * e;
+        r.value = v; set(v);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!reduce && 'IntersectionObserver' in window) {
+      var o = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { o.disconnect(); hint(); } });
+      }, { threshold: 0.6 });
+      o.observe(ba);
+    }
   });
 
   /* Formulaire multi-étapes à choix */
