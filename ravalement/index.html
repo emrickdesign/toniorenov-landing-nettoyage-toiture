@@ -87,9 +87,9 @@ h2+.lead,h2+p{margin-top:20px}
 @keyframes blurUp{from{opacity:0;filter:blur(8px);transform:translateY(.32em)}to{opacity:1;filter:blur(0);transform:none}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 .js .split:not(.in) .w{opacity:0}
-.split.in .w{animation:blurUp .75s var(--ease) both;animation-delay:calc(var(--i)*42ms)}
+.split.in .w{animation:blurUp .4s var(--ease) both;animation-delay:calc(var(--i)*18ms)}
 .js .reveal:not(.in){opacity:0;transform:translateY(22px)}
-.reveal{transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--d,0)*80ms)}
+.reveal{transition:opacity .45s var(--ease),transform .45s var(--ease);transition-delay:calc(var(--d,0)*45ms)}
 
 /* ---------- Boutons (21st.dev « Shimmer Button » : lumière qui longe le contour) ---------- */
 .btn{--h:58px;position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.65em;min-height:var(--h);padding:0 1.8rem;border:0;border-radius:999px;font:700 1.0625rem/1 var(--font);letter-spacing:-.005em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s var(--ease),color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -140,14 +140,11 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 /* ---------- Hero : la photo EST le fond ---------- */
 .hero{position:relative;isolation:isolate;min-height:clamp(520px,calc(100svh - 64px - 104px),900px);display:flex;align-items:flex-end;color:#fff;background:var(--nuit);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%);animation:kb 20s var(--ease) both}
-@keyframes kb{from{transform:scale(1.14)}to{transform:scale(1.02)}}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%)}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
 .hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(56px,10vh,140px) var(--gutter) clamp(30px,6vh,64px)}
 .hero h1{font-size:clamp(2.45rem,1.15rem + 5.6vw,5rem);line-height:1;letter-spacing:-.038em;max-width:13.8em}
-.hero h1 .w{animation:blurUp .85s var(--ease) both;animation-delay:calc(.12s + var(--i)*48ms)}
-.hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/0% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em;animation:sweep 1s var(--ease) 1.15s forwards}
-@keyframes sweep{to{background-size:100% .1em}}
+.hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/100% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em}
 .hero-sub{margin-top:clamp(18px,3vh,28px);max-width:44ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
 .hero-sub strong{color:#fff;font-weight:700;background:linear-gradient(rgba(201,64,43,.55),rgba(201,64,43,.55)) no-repeat 0 100%/100% .38em;padding:0 .06em}
 .hero-cta{margin-top:clamp(24px,4vh,36px);display:flex;flex-wrap:wrap;gap:12px}
@@ -155,7 +152,6 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .stars{display:inline-flex;gap:2px;color:#ffbf47}
 .stars .ic{width:16px;height:16px}
 .hero-proof span{display:inline-flex;align-items:center;gap:.55em}
-.hero .fade{animation:fadeUp .9s var(--ease) both;animation-delay:calc(.95s + var(--d,0)*110ms)}
 @media(max-width:560px){
   .hero-cta .btn{width:100%}
   .hero-in{padding:30px var(--gutter) 24px}
@@ -213,7 +209,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 /* méthode : vraie séquence → numérotée */
 .steps{position:relative;display:grid;gap:34px;margin-top:clamp(40px,6vw,72px)}
 .steps::before,.steps::after{content:"";position:absolute;left:25px;top:26px;bottom:26px;width:2px;background:rgba(255,255,255,.14)}
-.steps::after{background:var(--tuile);transform:scaleY(0);transform-origin:top;transition:transform 1.6s var(--ease) .2s}
+.steps::after{background:var(--tuile);transform:scaleY(0);transform-origin:top;transition:transform .9s var(--ease) .1s}
 .steps.in::after{transform:scaleY(1)}
 .step{position:relative;z-index:1;padding-left:76px}
 .step-n{position:absolute;left:0;top:0;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--nuit);box-shadow:inset 0 0 0 2px rgba(255,255,255,.22);font-weight:800;font-size:1.125rem;color:var(--tuile-clair);font-variant-numeric:tabular-nums}
@@ -389,7 +385,6 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
   .fab-pulse{animation:none}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
   .js .reveal:not(.in),.js .split:not(.in) .w{opacity:1!important;transform:none!important}
-  .hero mark{background-size:100% .1em}
   .ring{animation:none}
 }
 
