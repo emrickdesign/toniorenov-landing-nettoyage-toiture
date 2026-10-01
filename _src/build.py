@@ -108,7 +108,7 @@ PAGES = [
   real=dict(t="Démoussage complet avec traitement hydrofuge", items=["Démoussage basse pression, sans abîmer les tuiles", "Traitement hydrofuge biocide sans chlore", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['marie', 'pierre', 'fatima'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    q1="Qu'observez-vous sur votre toiture ?",
+    t2="Recevez votre devis démoussage", q1="Qu'observez-vous sur votre toiture ?",
     o1=[("Mousse / lichen visible", "Mousse / lichen visible", "sprout"), ("Tuiles cassées ou déplacées", "Tuiles cassées / déplacées", "layers"), ("Fuite ou infiltration", "Fuite / infiltration", "drop"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Quels sont vos tarifs pour un démoussage ?", "Le prix dépend de la surface, de la pente et de l'état de la toiture. On se déplace gratuitement pour établir un devis précis sous 24h — pas de mauvaise surprise à la fin du chantier."),
@@ -136,7 +136,7 @@ PAGES = [
   real=dict(t="Entretien annuel avec traitement hydrofuge DALEP 2100", items=["Contrôle complet de la couverture, tuile par tuile", "Traitement hydrofuge biocide sans chlore, produit pro", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['fatima', 'marie', 'pierre'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    q1="Quel entretien recherchez-vous ?",
+    t2="Recevez votre devis d'entretien", q1="Quel entretien recherchez-vous ?",
     o1=[("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Contrôle général de toiture", "Contrôle général", "search"), ("Nettoyage de gouttières", "Nettoyage gouttières", "waves"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Tous les combien de temps faut-il entretenir sa toiture ?", "En moyenne tous les 2 à 3 ans sur la Côte Basque, selon l'exposition (vent, embruns, arbres à proximité). Nos traitements DALEP 2100 tiennent dans la durée, ce qui espace les passages."),
@@ -163,7 +163,7 @@ PAGES = [
   real=dict(t="Fuite réparée en une journée", items=["Diagnostic sur place pour localiser précisément l'infiltration", "Réparation le jour même quand c'est possible", "Prix annoncé avant intervention, pas de surprise", "Réparation couverte par la garantie décennale"]),
   reviews=['pierre', 'marie', 'fatima'],
   form=dict(t="Décrivez votre urgence en 4 questions", sub="<strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong>",
-    q1="Quelle est votre urgence ?",
+    t2="Décrivez votre urgence, on vous rappelle", q1="Quelle est votre urgence ?",
     o1=[("Fuite active", "Fuite active", "drop"), ("Infiltration / tache d'humidité", "Infiltration / tache", "waves"), ("Tuiles endommagées", "Tuiles endommagées", "layers"), ("Autre urgence toiture", "Autre urgence", "alert")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("En combien de temps intervenez-vous en cas de fuite ?", "On priorise systématiquement les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
@@ -191,7 +191,7 @@ PAGES = [
   real=dict(t="Ravalement complet avec peinture Tollens", items=["Décrassage complet de la façade, sans abîmer l'enduit", "Réparation des fissures avant remise en peinture", "Peintures professionnelles Tollens, finitions soignées", "Chantier couvert par la garantie décennale"]),
   reviews=['amadou', 'sofia', 'marie'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    q1="Qu'observez-vous sur votre façade ?",
+    t2="Recevez votre devis ravalement", q1="Qu'observez-vous sur votre façade ?",
     o1=[("Façade encrassée / noircie", "Façade encrassée", "sprout"), ("Fissures apparentes", "Fissures apparentes", "crack"), ("Peinture à refaire", "Peinture à refaire", "roller"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de revêtement avez-vous ?", o2=[("Enduit", "Enduit", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Crépi", "Crépi", "home"), ("Je ne sais pas", "Je ne sais pas", "help")],
     q3="Surface approximative de la façade ?", o3=OPT_SURF),
@@ -279,7 +279,39 @@ def render(p):
     faq_h2 = h2("Vos questions avant de nous appeler")
     cta_h2 = h2(p['cta']['t'])
     call_btn = lambda label, extra='': f'''<a class="btn btn-call {extra}" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true">{ICONS["phone"]}</svg><span>{label}</span></a>'''
-    next_btn = f'''<button type="button" class="btn btn-next" id="btnNext" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span>{ic("arrow","arr")}</button>'''
+    next_btn = f'''<button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span>{ic("arrow","arr")}</button>'''
+
+    def devis_bloc(pos, titre, ident):
+        """Un formulaire complet. `pos` rend les identifiants uniques : il y en a deux par page."""
+        champs = (
+            f'<div class="field"><label for="f-nom-{pos}">Nom</label>'
+            f'<input id="f-nom-{pos}" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div>'
+            f'<div class="field"><label for="f-tel-{pos}">Téléphone</label>'
+            f'<input id="f-tel-{pos}" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>'
+            f'<div class="field"><label for="f-ville-{pos}">Ville</label>'
+            f'<input id="f-ville-{pos}" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>'
+        )
+        return f'''<section class="sec sec-light devis" id="{ident}">
+  <div class="wrap">
+    <div class="sec-head center">{titre}<p class="lead reveal" style="--d:1">{f['sub']}</p></div>
+    <div class="devis-shell reveal" style="--d:2">
+      <div class="progress" aria-hidden="true">{prog}</div>
+      <form class="devis-form" data-pos="{pos}" novalidate>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p>{opts('probleme', f['o1'])}</div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p>{opts('toiture', f['o2'])}</div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p>{opts('surface', f['o3'])}</div>
+        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>{champs}</div>
+        <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
+        <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
+      </form>
+    </div>
+    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="{tel}">{s['phone']}</a></p>
+  </div>
+</section>'''
+
+    devis_haut = devis_bloc('haut', devis_h2, 'devis')
+    devis_bas = devis_bloc('bas', h2(f['t2']), 'devis-bas')
+
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -344,6 +376,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="band" aria-label="Nos garanties"><div class="wrap"><ul>{band}</ul></div></section>
 
+{devis_haut}
+
 <section class="sec sec-light">
   <div class="wrap signs-grid">
     <div class="signs-head">{sig_h2}<p class="lead reveal" style="--d:1">{p['signs']['p']}</p></div>
@@ -374,28 +408,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="sec sec-light devis" id="devis" style="padding-top:clamp(20px,4vw,48px)">
-  <div class="wrap">
-    <div class="sec-head center">{devis_h2}<p class="lead reveal" style="--d:1">{f['sub']}</p></div>
-    <div class="devis-shell reveal" style="--d:2">
-      <div class="progress" id="progress" aria-hidden="true">{prog}</div>
-      <form id="devisForm" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p>{opts('probleme', f['o1'])}</div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p>{opts('toiture', f['o2'])}</div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p>{opts('surface', f['o3'])}</div>
-        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>
-          <div class="field"><label for="f-nom">Nom</label><input id="f-nom" type="text" placeholder="Votre nom" autocomplete="name"></div>
-          <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
-          <div class="field"><label for="f-ville">Ville</label><input id="f-ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>
-        </div>
-        <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
-        <div class="factions" id="fActions"><button type="button" class="fback" id="btnBack" disabled>{ic("back")}Précédent</button>{next_btn}</div>
-      </form>
-    </div>
-    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="{tel}">{s['phone']}</a></p>
-  </div>
-</section>
-
 <section class="sec sec-light" style="padding-top:0">
   <div class="wrap zone-grid">
     <div>{zone_h2}<p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
@@ -417,10 +429,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="reveal" style="--d:1">{p['cta']['p']}</p>
     <div class="btns reveal" style="--d:2">
       <a class="btn btn-light" href="{tel}">{ic("phone")}<span>{s['phone']}</span></a>
-      <a class="btn btn-outline-light" href="#devis"><span>Demander un devis</span>{ic("arrow","arr")}</a>
+      <a class="btn btn-outline-light" href="#devis-bas"><span>Demander un devis</span>{ic("arrow","arr")}</a>
     </div>
   </div>
 </section>
+{devis_bas}
 </main>
 
 <footer>

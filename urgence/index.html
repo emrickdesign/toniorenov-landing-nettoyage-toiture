@@ -84,12 +84,11 @@ h2+.lead,h2+p{margin-top:20px}
 
 /* Animation de titres (21st.dev « Blur Out Up ») : chaque mot sort du flou */
 .w{display:inline-block}
-@keyframes blurUp{from{opacity:0;filter:blur(8px);transform:translateY(.32em)}to{opacity:1;filter:blur(0);transform:none}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.js .split:not(.in) .w{opacity:0}
-.split.in .w{animation:blurUp .4s var(--ease) both;animation-delay:calc(var(--i)*18ms)}
-.js .reveal:not(.in){opacity:0;transform:translateY(22px)}
-.reveal{transition:opacity .45s var(--ease),transform .45s var(--ease);transition-delay:calc(var(--d,0)*45ms)}
+/* Rien ici ne masque le contenu : les classes .reveal / .split restent dans le HTML
+   mais n'ont plus d'effet. Une animation d'apparition qui n'avance pas (onglet en
+   arrière-plan, appareil lent, navigateur bridé) laissait le texte à opacité 0 —
+   inacceptable sur une page qui reçoit du trafic payant. */
 
 /* ---------- Boutons (21st.dev « Shimmer Button » : lumière qui longe le contour) ---------- */
 .btn{--h:58px;position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.65em;min-height:var(--h);padding:0 1.8rem;border:0;border-radius:999px;font:700 1.0625rem/1 var(--font);letter-spacing:-.005em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .3s var(--ease),box-shadow .3s var(--ease),color .3s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -350,7 +349,7 @@ summary{display:flex;justify-content:space-between;align-items:center;gap:18px;p
 summary::-webkit-details-marker{display:none}
 summary .ic{width:22px;height:22px;color:var(--tuile);transition:transform .4s var(--ease)}
 details[open] summary .ic{transform:rotate(45deg)}
-details p{padding:0 0 24px;color:var(--texte-2);max-width:60ch;animation:fadeUp .5s var(--ease) both}
+details p{padding:0 0 24px;color:var(--texte-2);max-width:60ch}
 
 /* appel final : section « drenched » tuile */
 .cta{position:relative;isolation:isolate;overflow:hidden;background:var(--tuile) var(--ecailles-blanc);color:#fff;text-align:center}
@@ -384,7 +383,6 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 @media(prefers-reduced-motion:reduce){
   .fab-pulse{animation:none}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
-  .js .reveal:not(.in),.js .split:not(.in) .w{opacity:1!important;transform:none!important}
   .ring{animation:none}
 }
 
@@ -424,6 +422,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="band" aria-label="Nos garanties"><div class="wrap"><ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><div><b>Plus de 500 chantiers</b><small>sur la Côte Basque</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Garantie décennale</b><small>sur tous nos travaux</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div><b>Assurance RC Pro</b><small>artisan assuré</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><div><b>Certifié RGE</b><small>qualification reconnue</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Intervention sous 48h</b><small>priorité aux urgences</small></div></li></ul></div></section>
 
+<section class="sec sec-light devis" id="devis">
+  <div class="wrap">
+    <div class="sec-head center"><h2 class="split " aria-label="Décrivez votre urgence en 4 questions"><span class="w" style="--i:0" aria-hidden="true">Décrivez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">urgence</span> <span class="w" style="--i:3" aria-hidden="true">en</span> <span class="w" style="--i:4" aria-hidden="true">4</span> <span class="w" style="--i:5" aria-hidden="true">questions</span></h2><p class="lead reveal" style="--d:1"><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p></div>
+    <div class="devis-shell reveal" style="--d:2">
+      <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <form class="devis-form" data-pos="haut" novalidate>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>Quelle est votre urgence ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Fuite active" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite active</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Infiltration / tache d'humidité" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg><span>Infiltration / tache</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles endommagées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles endommagées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Autre urgence toiture" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span>Autre urgence</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p><div class="field"><label for="f-nom-haut">Nom</label><input id="f-nom-haut" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div><div class="field"><label for="f-tel-haut">Téléphone</label><input id="f-tel-haut" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div><div class="field"><label for="f-ville-haut">Ville</label><input id="f-ville-haut" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div></div>
+        <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33415870242"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 04 15 87 02 42</span></a></div></div>
+        <div class="factions"><button type="button" class="fback" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
+      </form>
+    </div>
+    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="tel:+33415870242">04 15 87 02 42</a></p>
+  </div>
+</section>
+
 <section class="sec sec-light">
   <div class="wrap signs-grid">
     <div class="signs-head"><h2 class="split " aria-label="Une fuite ne s'aggrave pas si vous agissez vite"><span class="w" style="--i:0" aria-hidden="true">Une</span> <span class="w" style="--i:1" aria-hidden="true">fuite</span> <span class="w" style="--i:2" aria-hidden="true">ne</span> <span class="w" style="--i:3" aria-hidden="true">s'aggrave</span> <span class="w" style="--i:4" aria-hidden="true">pas</span> <span class="w" style="--i:5" aria-hidden="true">si</span> <span class="w" style="--i:6" aria-hidden="true">vous</span> <span class="w" style="--i:7" aria-hidden="true">agissez</span> <span class="w" style="--i:8" aria-hidden="true">vite</span></h2><p class="lead reveal" style="--d:1"><strong>Chaque heure compte</strong> : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.</p></div>
@@ -454,28 +470,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="sec sec-light devis" id="devis" style="padding-top:clamp(20px,4vw,48px)">
-  <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Décrivez votre urgence en 4 questions"><span class="w" style="--i:0" aria-hidden="true">Décrivez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">urgence</span> <span class="w" style="--i:3" aria-hidden="true">en</span> <span class="w" style="--i:4" aria-hidden="true">4</span> <span class="w" style="--i:5" aria-hidden="true">questions</span></h2><p class="lead reveal" style="--d:1"><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p></div>
-    <div class="devis-shell reveal" style="--d:2">
-      <div class="progress" id="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-      <form id="devisForm" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>Quelle est votre urgence ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Fuite active" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite active</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Infiltration / tache d'humidité" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg><span>Infiltration / tache</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles endommagées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles endommagées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Autre urgence toiture" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span>Autre urgence</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>
-          <div class="field"><label for="f-nom">Nom</label><input id="f-nom" type="text" placeholder="Votre nom" autocomplete="name"></div>
-          <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>
-          <div class="field"><label for="f-ville">Ville</label><input id="f-ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>
-        </div>
-        <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33415870242"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 04 15 87 02 42</span></a></div></div>
-        <div class="factions" id="fActions"><button type="button" class="fback" id="btnBack" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" id="btnNext" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
-      </form>
-    </div>
-    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="tel:+33415870242">04 15 87 02 42</a></p>
-  </div>
-</section>
-
 <section class="sec sec-light" style="padding-top:0">
   <div class="wrap zone-grid">
     <div><h2 class="split " aria-label="Basés à Boucau, on se déplace sur toute la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Basés</span> <span class="w" style="--i:1" aria-hidden="true">à</span> <span class="w" style="--i:2" aria-hidden="true">Boucau,</span> <span class="w" style="--i:3" aria-hidden="true">on</span> <span class="w" style="--i:4" aria-hidden="true">se</span> <span class="w" style="--i:5" aria-hidden="true">déplace</span> <span class="w" style="--i:6" aria-hidden="true">sur</span> <span class="w" style="--i:7" aria-hidden="true">toute</span> <span class="w" style="--i:8" aria-hidden="true">la</span> <span class="w" style="--i:9" aria-hidden="true">Côte</span> <span class="w" style="--i:10" aria-hidden="true">Basque</span></h2><p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
@@ -497,8 +491,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="reveal" style="--d:1">Appelez-nous, on évalue la situation <strong>tout de suite</strong>.</p>
     <div class="btns reveal" style="--d:2">
       <a class="btn btn-light" href="tel:+33415870242"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>04 15 87 02 42</span></a>
-      <a class="btn btn-outline-light" href="#devis"><span>Demander un devis</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="btn btn-outline-light" href="#devis-bas"><span>Demander un devis</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
+  </div>
+</section>
+<section class="sec sec-light devis" id="devis-bas">
+  <div class="wrap">
+    <div class="sec-head center"><h2 class="split " aria-label="Décrivez votre urgence, on vous rappelle"><span class="w" style="--i:0" aria-hidden="true">Décrivez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">urgence,</span> <span class="w" style="--i:3" aria-hidden="true">on</span> <span class="w" style="--i:4" aria-hidden="true">vous</span> <span class="w" style="--i:5" aria-hidden="true">rappelle</span></h2><p class="lead reveal" style="--d:1"><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p></div>
+    <div class="devis-shell reveal" style="--d:2">
+      <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <form class="devis-form" data-pos="bas" novalidate>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>Quelle est votre urgence ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Fuite active" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite active</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Infiltration / tache d'humidité" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg><span>Infiltration / tache</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles endommagées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles endommagées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Autre urgence toiture" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span>Autre urgence</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p><div class="field"><label for="f-nom-bas">Nom</label><input id="f-nom-bas" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div><div class="field"><label for="f-tel-bas">Téléphone</label><input id="f-tel-bas" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div><div class="field"><label for="f-ville-bas">Ville</label><input id="f-ville-bas" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div></div>
+        <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33415870242"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 04 15 87 02 42</span></a></div></div>
+        <div class="factions"><button type="button" class="fback" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
+      </form>
+    </div>
+    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="tel:+33415870242">04 15 87 02 42</a></p>
   </div>
 </section>
 </main>
@@ -529,6 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       ticking = true;
       requestAnimationFrame(function () {
         doc.body.classList.toggle('scrolled', (window.scrollY || window.pageYOffset) > 8);
+        tracerEtapes();
         ticking = false;
       });
     }
@@ -546,18 +558,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     hideZones.forEach(function (z) { fio.observe(z); });
   }
 
-  /* Révélations au scroll (IntersectionObserver) — le contenu reste visible sans JS */
-  var targets = [].slice.call(doc.querySelectorAll('.reveal, .split, .steps'));
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    targets.forEach(function (t) { io.observe(t); });
-  } else {
-    targets.forEach(function (t) { t.classList.add('in'); });
+  /* Trait de progression de la section « Comment ça marche » : purement décoratif.
+     Aucun contenu n'est masqué en attente — voir le commentaire dans style.css. */
+  var etapes = [].slice.call(doc.querySelectorAll('.steps'));
+  function tracerEtapes() {
+    etapes = etapes.filter(function (el) {
+      if (el.getBoundingClientRect().top < (window.innerHeight || 800) * 0.92) { el.classList.add('in'); return false; }
+      return true;
+    });
   }
+  window.addEventListener('resize', tracerEtapes, { passive: true });
+  window.addEventListener('load', tracerEtapes);
+  tracerEtapes();
 
   /* Suivi GTM : clic sur un numéro d'appel */
   [].slice.call(doc.querySelectorAll('a[href^="tel:"]')).forEach(function (a) {
@@ -603,58 +615,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   });
 
-  /* Formulaire multi-étapes à choix */
-  var form = doc.getElementById('devisForm');
-  if (!form) return;
-  var steps = [].slice.call(form.querySelectorAll('.fstep'));
-  var bars = [].slice.call(doc.querySelectorAll('#progress i'));
-  var next = doc.getElementById('btnNext');
-  var back = doc.getElementById('btnBack');
-  var actions = doc.getElementById('fActions');
-  var lbl = next.querySelector('.lbl');
-  var TOTAL = 4;
-  var cur = 1;
-  var answers = {};
+  /* ---------------------------------------------------------------
+     Formulaires de devis — il y en a deux par page (haut et bas).
+     Chacun vit sa vie : ses réponses, son étape, son envoi.
+     --------------------------------------------------------------- */
 
-  function val(id) { return (doc.getElementById(id).value || '').trim(); }
-  function fieldOf(n) {
-    var g = form.querySelector('.fstep[data-step="' + n + '"] [data-field]');
-    return g ? g.getAttribute('data-field') : null;
-  }
-  function validate() {
-    if (cur === TOTAL) {
-      next.disabled = !(val('f-nom').length > 1 && val('f-tel').replace(/\D/g, '').length >= 9);
-      lbl.textContent = 'Envoyer ma demande';
-    } else if (cur < TOTAL) {
-      next.disabled = !answers[fieldOf(cur)];
-      lbl.textContent = 'Continuer';
-    }
-  }
-  function show(n) {
-    cur = n;
-    steps.forEach(function (s) { s.classList.toggle('active', Number(s.getAttribute('data-step')) === n); });
-    bars.forEach(function (b, i) { b.classList.toggle('on', i < Math.min(n, TOTAL)); });
-    back.disabled = n === 1;
-    actions.style.display = n === 5 ? 'none' : 'flex';
-    validate();
-    var h = form.querySelector('.fstep.active [data-focus]');
-    if (h && n > 1) { try { h.focus({ preventScroll: true }); } catch (e) {} }
-  }
-
-  [].slice.call(form.querySelectorAll('.opt')).forEach(function (opt) {
-    opt.addEventListener('click', function () {
-      var group = opt.closest('[data-field]');
-      [].slice.call(group.querySelectorAll('.opt')).forEach(function (o) { o.classList.remove('on'); o.setAttribute('aria-pressed', 'false'); });
-      opt.classList.add('on');
-      opt.setAttribute('aria-pressed', 'true');
-      answers[group.getAttribute('data-field')] = opt.getAttribute('data-value');
-      validate();
-      setTimeout(function () { if (cur < TOTAL) show(cur + 1); }, 320);
-    });
-  });
-  ['f-nom', 'f-tel', 'f-ville'].forEach(function (id) { doc.getElementById(id).addEventListener('input', validate); });
-
-  /* Envoi de la demande dans l'espace client Potentieel (table form_submissions).
+  /* Destination des demandes : espace client Potentieel (table form_submissions).
      Le lead apparaît dans la fiche du client, à côté des appels Twilio. */
   var LEAD = {
     url: 'https://alpzagoprkpzirgtrdup.supabase.co/rest/v1/form_submissions',
@@ -664,66 +630,129 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
 
-  function envoyer() {
-    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page d'origine. */
-    var details = [answers.toiture, answers.surface].filter(Boolean).join(' · ') || null;
+  function envoyer(reponses, pos) {
+    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page et formulaire d'origine. */
+    var details = [reponses.toiture, reponses.surface].filter(Boolean).join(' · ') || null;
+    var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
     var corps = {
       client_id: LEAD.client,
-      prenom: answers.nom || null,
-      telephone: answers.tel || null,
-      ville: answers.ville || null,
-      domaine: answers.probleme || null,
+      prenom: reponses.nom || null,
+      telephone: reponses.tel || null,
+      ville: reponses.ville || null,
+      domaine: reponses.probleme || null,
       details: details,
-      source: 'landing-ads' + (location.pathname === '/' ? '' : location.pathname),
+      source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
       publicite: param('utm_term') || param('utm_content'),
       gclid: param('gclid'),
-      fields_filled: Object.keys(answers).length
+      fields_filled: Object.keys(reponses).length
     };
     return fetch(LEAD.url, {
       method: 'POST',
       headers: { 'apikey': LEAD.key, 'Authorization': 'Bearer ' + LEAD.key, 'Content-Type': 'application/json' },
       body: JSON.stringify(corps)
-    }).then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-    });
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
   }
 
-  function submit() {
-    answers.nom = val('f-nom');
-    answers.tel = val('f-tel');
-    answers.ville = val('f-ville');
-    show(5);
-    /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
-    envoyer().catch(function () {
-      return new Promise(function (ok) { setTimeout(ok, 1500); }).then(envoyer);
-    }).catch(function (e) {
-      console.error('Envoi de la demande impossible', e);
-      var d = doc.querySelector('.done');
-      var lien = doc.querySelector('a[href^="tel:"]'); /* le numéro affiché sur la page */
-      if (d && lien) {
-        var p = doc.createElement('p');
-        p.className = 'done-fallback';
-        p.innerHTML = "Votre demande n'a pas pu être transmise. Appelez-nous directement au "
-          + '<a href="' + lien.getAttribute('href') + '">' + lien.textContent.trim() + '</a>.';
-        d.appendChild(p);
+  function initDevis(form) {
+    var shell = form.closest('.devis-shell');
+    var pos = form.getAttribute('data-pos') || 'haut';
+    var steps = [].slice.call(form.querySelectorAll('.fstep'));
+    var bars = [].slice.call(shell.querySelectorAll('.progress i'));
+    var next = form.querySelector('.btn-next');
+    var back = form.querySelector('.fback');
+    var actions = form.querySelector('.factions');
+    var lbl = next.querySelector('.lbl');
+    var TOTAL = 4;
+    var cur = 1;
+    var reponses = {};
+    var envoye = false;
+
+    function champ(n) { return form.querySelector('[data-champ="' + n + '"]'); }
+    function val(n) { var e = champ(n); return e ? (e.value || '').trim() : ''; }
+    function fieldOf(n) {
+      var g = form.querySelector('.fstep[data-step="' + n + '"] [data-field]');
+      return g ? g.getAttribute('data-field') : null;
+    }
+    function validate() {
+      if (cur === TOTAL) {
+        next.disabled = !(val('nom').length > 1 && val('tel').replace(/\D/g, '').length >= 9);
+        lbl.textContent = 'Envoyer ma demande';
+      } else if (cur < TOTAL) {
+        next.disabled = !reponses[fieldOf(cur)];
+        lbl.textContent = 'Continuer';
       }
+    }
+    function show(n) {
+      cur = n;
+      steps.forEach(function (st) { st.classList.toggle('active', Number(st.getAttribute('data-step')) === n); });
+      bars.forEach(function (b, i) { b.classList.toggle('on', i < Math.min(n, TOTAL)); });
+      back.disabled = n === 1;
+      actions.style.display = n === 5 ? 'none' : 'flex';
+      validate();
+      var h = form.querySelector('.fstep.active [data-focus]');
+      if (h && n > 1) { try { h.focus({ preventScroll: true }); } catch (e) {} }
+    }
+
+    [].slice.call(form.querySelectorAll('.opt')).forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        var group = opt.closest('[data-field]');
+        [].slice.call(group.querySelectorAll('.opt')).forEach(function (o) {
+          o.classList.remove('on'); o.setAttribute('aria-pressed', 'false');
+        });
+        opt.classList.add('on');
+        opt.setAttribute('aria-pressed', 'true');
+        reponses[group.getAttribute('data-field')] = opt.getAttribute('data-value');
+        validate();
+        setTimeout(function () { if (cur < TOTAL) show(cur + 1); }, 320);
+      });
     });
-    window.dataLayer.push({
-      event: 'leads_entrer',
-      lead_probleme: answers.probleme,
-      lead_toiture: answers.toiture,
-      lead_surface: answers.surface,
-      lead_ville: answers.ville
+    ['nom', 'tel', 'ville'].forEach(function (n) {
+      var e = champ(n); if (e) e.addEventListener('input', validate);
     });
+
+    function submit() {
+      if (envoye) return;
+      envoye = true;
+      reponses.nom = val('nom');
+      reponses.tel = val('tel');
+      reponses.ville = val('ville');
+      show(5);
+      /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
+      envoyer(reponses, pos).catch(function () {
+        return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos); });
+      }).catch(function (e) {
+        console.error('Envoi de la demande impossible', e);
+        var d = form.querySelector('.done');
+        var lien = doc.querySelector('a[href^="tel:"]'); /* le numéro affiché sur la page */
+        if (d && lien && !d.querySelector('.done-fallback')) {
+          var pEl = doc.createElement('p');
+          pEl.className = 'done-fallback';
+          pEl.innerHTML = "Votre demande n'a pas pu être transmise. Appelez-nous directement au "
+            + '<a href="' + lien.getAttribute('href') + '">' + lien.textContent.trim() + '</a>.';
+          d.appendChild(pEl);
+        }
+      });
+      window.dataLayer.push({
+        event: 'leads_entrer',
+        lead_probleme: reponses.probleme,
+        lead_toiture: reponses.toiture,
+        lead_surface: reponses.surface,
+        lead_ville: reponses.ville,
+        lead_formulaire: pos
+      });
+    }
+
+    next.addEventListener('click', function () {
+      if (next.disabled) return;
+      if (cur === TOTAL) submit(); else if (cur < TOTAL) show(cur + 1);
+    });
+    back.addEventListener('click', function () { if (cur > 1) show(cur - 1); });
+    form.addEventListener('submit', function (e) { e.preventDefault(); if (!next.disabled) next.click(); });
+    show(1);
   }
-  next.addEventListener('click', function () {
-    if (next.disabled) return;
-    if (cur === TOTAL) submit(); else if (cur < TOTAL) show(cur + 1);
-  });
-  back.addEventListener('click', function () { if (cur > 1) show(cur - 1); });
-  form.addEventListener('submit', function (e) { e.preventDefault(); if (!next.disabled) next.click(); });
-  show(1);
+
+  [].slice.call(doc.querySelectorAll('form.devis-form')).forEach(initDevis);
 })();
 
 </script>

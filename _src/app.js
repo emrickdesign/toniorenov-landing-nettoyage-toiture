@@ -12,6 +12,7 @@
       ticking = true;
       requestAnimationFrame(function () {
         doc.body.classList.toggle('scrolled', (window.scrollY || window.pageYOffset) > 8);
+        tracerEtapes();
         ticking = false;
       });
     }
@@ -29,18 +30,18 @@
     hideZones.forEach(function (z) { fio.observe(z); });
   }
 
-  /* Révélations au scroll (IntersectionObserver) — le contenu reste visible sans JS */
-  var targets = [].slice.call(doc.querySelectorAll('.reveal, .split, .steps'));
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-    targets.forEach(function (t) { io.observe(t); });
-  } else {
-    targets.forEach(function (t) { t.classList.add('in'); });
+  /* Trait de progression de la section « Comment ça marche » : purement décoratif.
+     Aucun contenu n'est masqué en attente — voir le commentaire dans style.css. */
+  var etapes = [].slice.call(doc.querySelectorAll('.steps'));
+  function tracerEtapes() {
+    etapes = etapes.filter(function (el) {
+      if (el.getBoundingClientRect().top < (window.innerHeight || 800) * 0.92) { el.classList.add('in'); return false; }
+      return true;
+    });
   }
+  window.addEventListener('resize', tracerEtapes, { passive: true });
+  window.addEventListener('load', tracerEtapes);
+  tracerEtapes();
 
   /* Suivi GTM : clic sur un numéro d'appel */
   [].slice.call(doc.querySelectorAll('a[href^="tel:"]')).forEach(function (a) {
@@ -86,58 +87,12 @@
     }
   });
 
-  /* Formulaire multi-étapes à choix */
-  var form = doc.getElementById('devisForm');
-  if (!form) return;
-  var steps = [].slice.call(form.querySelectorAll('.fstep'));
-  var bars = [].slice.call(doc.querySelectorAll('#progress i'));
-  var next = doc.getElementById('btnNext');
-  var back = doc.getElementById('btnBack');
-  var actions = doc.getElementById('fActions');
-  var lbl = next.querySelector('.lbl');
-  var TOTAL = 4;
-  var cur = 1;
-  var answers = {};
+  /* ---------------------------------------------------------------
+     Formulaires de devis — il y en a deux par page (haut et bas).
+     Chacun vit sa vie : ses réponses, son étape, son envoi.
+     --------------------------------------------------------------- */
 
-  function val(id) { return (doc.getElementById(id).value || '').trim(); }
-  function fieldOf(n) {
-    var g = form.querySelector('.fstep[data-step="' + n + '"] [data-field]');
-    return g ? g.getAttribute('data-field') : null;
-  }
-  function validate() {
-    if (cur === TOTAL) {
-      next.disabled = !(val('f-nom').length > 1 && val('f-tel').replace(/\D/g, '').length >= 9);
-      lbl.textContent = 'Envoyer ma demande';
-    } else if (cur < TOTAL) {
-      next.disabled = !answers[fieldOf(cur)];
-      lbl.textContent = 'Continuer';
-    }
-  }
-  function show(n) {
-    cur = n;
-    steps.forEach(function (s) { s.classList.toggle('active', Number(s.getAttribute('data-step')) === n); });
-    bars.forEach(function (b, i) { b.classList.toggle('on', i < Math.min(n, TOTAL)); });
-    back.disabled = n === 1;
-    actions.style.display = n === 5 ? 'none' : 'flex';
-    validate();
-    var h = form.querySelector('.fstep.active [data-focus]');
-    if (h && n > 1) { try { h.focus({ preventScroll: true }); } catch (e) {} }
-  }
-
-  [].slice.call(form.querySelectorAll('.opt')).forEach(function (opt) {
-    opt.addEventListener('click', function () {
-      var group = opt.closest('[data-field]');
-      [].slice.call(group.querySelectorAll('.opt')).forEach(function (o) { o.classList.remove('on'); o.setAttribute('aria-pressed', 'false'); });
-      opt.classList.add('on');
-      opt.setAttribute('aria-pressed', 'true');
-      answers[group.getAttribute('data-field')] = opt.getAttribute('data-value');
-      validate();
-      setTimeout(function () { if (cur < TOTAL) show(cur + 1); }, 320);
-    });
-  });
-  ['f-nom', 'f-tel', 'f-ville'].forEach(function (id) { doc.getElementById(id).addEventListener('input', validate); });
-
-  /* Envoi de la demande dans l'espace client Potentieel (table form_submissions).
+  /* Destination des demandes : espace client Potentieel (table form_submissions).
      Le lead apparaît dans la fiche du client, à côté des appels Twilio. */
   var LEAD = {
     url: 'https://alpzagoprkpzirgtrdup.supabase.co/rest/v1/form_submissions',
@@ -147,64 +102,127 @@
 
   function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
 
-  function envoyer() {
-    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page d'origine. */
-    var details = [answers.toiture, answers.surface].filter(Boolean).join(' · ') || null;
+  function envoyer(reponses, pos) {
+    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page et formulaire d'origine. */
+    var details = [reponses.toiture, reponses.surface].filter(Boolean).join(' · ') || null;
+    var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
     var corps = {
       client_id: LEAD.client,
-      prenom: answers.nom || null,
-      telephone: answers.tel || null,
-      ville: answers.ville || null,
-      domaine: answers.probleme || null,
+      prenom: reponses.nom || null,
+      telephone: reponses.tel || null,
+      ville: reponses.ville || null,
+      domaine: reponses.probleme || null,
       details: details,
-      source: 'landing-ads' + (location.pathname === '/' ? '' : location.pathname),
+      source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
       publicite: param('utm_term') || param('utm_content'),
       gclid: param('gclid'),
-      fields_filled: Object.keys(answers).length
+      fields_filled: Object.keys(reponses).length
     };
     return fetch(LEAD.url, {
       method: 'POST',
       headers: { 'apikey': LEAD.key, 'Authorization': 'Bearer ' + LEAD.key, 'Content-Type': 'application/json' },
       body: JSON.stringify(corps)
-    }).then(function (r) {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-    });
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
   }
 
-  function submit() {
-    answers.nom = val('f-nom');
-    answers.tel = val('f-tel');
-    answers.ville = val('f-ville');
-    show(5);
-    /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
-    envoyer().catch(function () {
-      return new Promise(function (ok) { setTimeout(ok, 1500); }).then(envoyer);
-    }).catch(function (e) {
-      console.error('Envoi de la demande impossible', e);
-      var d = doc.querySelector('.done');
-      var lien = doc.querySelector('a[href^="tel:"]'); /* le numéro affiché sur la page */
-      if (d && lien) {
-        var p = doc.createElement('p');
-        p.className = 'done-fallback';
-        p.innerHTML = "Votre demande n'a pas pu être transmise. Appelez-nous directement au "
-          + '<a href="' + lien.getAttribute('href') + '">' + lien.textContent.trim() + '</a>.';
-        d.appendChild(p);
+  function initDevis(form) {
+    var shell = form.closest('.devis-shell');
+    var pos = form.getAttribute('data-pos') || 'haut';
+    var steps = [].slice.call(form.querySelectorAll('.fstep'));
+    var bars = [].slice.call(shell.querySelectorAll('.progress i'));
+    var next = form.querySelector('.btn-next');
+    var back = form.querySelector('.fback');
+    var actions = form.querySelector('.factions');
+    var lbl = next.querySelector('.lbl');
+    var TOTAL = 4;
+    var cur = 1;
+    var reponses = {};
+    var envoye = false;
+
+    function champ(n) { return form.querySelector('[data-champ="' + n + '"]'); }
+    function val(n) { var e = champ(n); return e ? (e.value || '').trim() : ''; }
+    function fieldOf(n) {
+      var g = form.querySelector('.fstep[data-step="' + n + '"] [data-field]');
+      return g ? g.getAttribute('data-field') : null;
+    }
+    function validate() {
+      if (cur === TOTAL) {
+        next.disabled = !(val('nom').length > 1 && val('tel').replace(/\D/g, '').length >= 9);
+        lbl.textContent = 'Envoyer ma demande';
+      } else if (cur < TOTAL) {
+        next.disabled = !reponses[fieldOf(cur)];
+        lbl.textContent = 'Continuer';
       }
+    }
+    function show(n) {
+      cur = n;
+      steps.forEach(function (st) { st.classList.toggle('active', Number(st.getAttribute('data-step')) === n); });
+      bars.forEach(function (b, i) { b.classList.toggle('on', i < Math.min(n, TOTAL)); });
+      back.disabled = n === 1;
+      actions.style.display = n === 5 ? 'none' : 'flex';
+      validate();
+      var h = form.querySelector('.fstep.active [data-focus]');
+      if (h && n > 1) { try { h.focus({ preventScroll: true }); } catch (e) {} }
+    }
+
+    [].slice.call(form.querySelectorAll('.opt')).forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        var group = opt.closest('[data-field]');
+        [].slice.call(group.querySelectorAll('.opt')).forEach(function (o) {
+          o.classList.remove('on'); o.setAttribute('aria-pressed', 'false');
+        });
+        opt.classList.add('on');
+        opt.setAttribute('aria-pressed', 'true');
+        reponses[group.getAttribute('data-field')] = opt.getAttribute('data-value');
+        validate();
+        setTimeout(function () { if (cur < TOTAL) show(cur + 1); }, 320);
+      });
     });
-    window.dataLayer.push({
-      event: 'leads_entrer',
-      lead_probleme: answers.probleme,
-      lead_toiture: answers.toiture,
-      lead_surface: answers.surface,
-      lead_ville: answers.ville
+    ['nom', 'tel', 'ville'].forEach(function (n) {
+      var e = champ(n); if (e) e.addEventListener('input', validate);
     });
+
+    function submit() {
+      if (envoye) return;
+      envoye = true;
+      reponses.nom = val('nom');
+      reponses.tel = val('tel');
+      reponses.ville = val('ville');
+      show(5);
+      /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
+      envoyer(reponses, pos).catch(function () {
+        return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos); });
+      }).catch(function (e) {
+        console.error('Envoi de la demande impossible', e);
+        var d = form.querySelector('.done');
+        var lien = doc.querySelector('a[href^="tel:"]'); /* le numéro affiché sur la page */
+        if (d && lien && !d.querySelector('.done-fallback')) {
+          var pEl = doc.createElement('p');
+          pEl.className = 'done-fallback';
+          pEl.innerHTML = "Votre demande n'a pas pu être transmise. Appelez-nous directement au "
+            + '<a href="' + lien.getAttribute('href') + '">' + lien.textContent.trim() + '</a>.';
+          d.appendChild(pEl);
+        }
+      });
+      window.dataLayer.push({
+        event: 'leads_entrer',
+        lead_probleme: reponses.probleme,
+        lead_toiture: reponses.toiture,
+        lead_surface: reponses.surface,
+        lead_ville: reponses.ville,
+        lead_formulaire: pos
+      });
+    }
+
+    next.addEventListener('click', function () {
+      if (next.disabled) return;
+      if (cur === TOTAL) submit(); else if (cur < TOTAL) show(cur + 1);
+    });
+    back.addEventListener('click', function () { if (cur > 1) show(cur - 1); });
+    form.addEventListener('submit', function (e) { e.preventDefault(); if (!next.disabled) next.click(); });
+    show(1);
   }
-  next.addEventListener('click', function () {
-    if (next.disabled) return;
-    if (cur === TOTAL) submit(); else if (cur < TOTAL) show(cur + 1);
-  });
-  back.addEventListener('click', function () { if (cur > 1) show(cur - 1); });
-  form.addEventListener('submit', function (e) { e.preventDefault(); if (!next.disabled) next.click(); });
-  show(1);
+
+  [].slice.call(doc.querySelectorAll('form.devis-form')).forEach(initDevis);
 })();
