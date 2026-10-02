@@ -95,7 +95,7 @@ PAGES = [
   title="Nettoyage & démoussage de toiture — Bayonne · Tonio Rénov'",
   desc="Démoussage et nettoyage de toiture à Bayonne, Côte Basque et Sud-Landes. Traitement hydrofuge, devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='60% 38%', crop='28% 74%', alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'",
-  h1="Votre toiture se couvre de mousse ?<br><mark>Tonio Rénov' la nettoie et la protège.</mark>",
+  h1="Mousse sur votre toiture ?<br><mark>Tonio Rénov' la nettoie.</mark>",
   sub="<strong>Nettoyage et démoussage de toiture</strong>, traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on traite avant que l'eau s'infiltre. Garantie décennale.",
   ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre toiture vous envoie déjà des signaux",
@@ -123,7 +123,7 @@ PAGES = [
   title="Entretien & traitement hydrofuge de toiture — Bayonne · Tonio Rénov'",
   desc="Entretien préventif et traitement hydrofuge de toiture à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, entretien par Tonio Rénov'",
-  h1="Votre toit s'abîme ?<br><mark>Tonio Rénov' et ses équipes l'entretiennent.</mark>",
+  h1="Votre toit s'abîme ?<br><mark>Tonio Rénov' l'entretient.</mark>",
   sub="<strong>Entretien de toiture</strong>, contrôle des tuiles et traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on garde votre toit étanche. Garantie décennale.",
   ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Ce qui abîme une toiture, c'est le temps qu'on laisse passer",
@@ -150,8 +150,8 @@ PAGES = [
   title="Fuite de toiture & urgence — Bayonne · Tonio Rénov'",
   desc="Fuite ou infiltration sur votre toiture ? Intervention rapide à Bayonne, Côte Basque et Sud-Landes. Artisan local, garantie décennale.",
   img='/roof.jpg', pos='64% 42%', crop='60% 78%', alt="Toiture en tuiles et gouttière, diagnostic et réparation par Tonio Rénov'",
-  h1="Une fuite sur votre toiture ?<br><mark>On la répare avant qu'il ne soit trop tard.</mark>",
-  sub="<strong>Réparation de fuite</strong>, tuile cassée, infiltration. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong>, déplacement <strong>en priorité</strong> — une infiltration abîme la charpente en quelques jours.",
+  h1="Une fuite sur votre toit ?<br><mark>On la répare sans attendre.</mark>",
+  sub="<strong>Réparation de fuite</strong>, tuile cassée, infiltration. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong>, déplacement <strong>en priorité</strong> — on intervient avant qu'il ne soit trop tard pour la charpente.",
   ghost="Décrire mon urgence", last_trust=("clock", "Intervention sous 48h", "priorité aux urgences"),
   signs=dict(t="Une fuite ne s'aggrave pas si vous agissez vite",
     p="<strong>Chaque heure compte</strong> : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.",
@@ -178,7 +178,7 @@ PAGES = [
   title="Ravalement & peinture de façade — Bayonne · Tonio Rénov'",
   desc="Ravalement, nettoyage et peinture de façade à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov'",
-  h1="Votre façade se dégrade ?<br><mark>Tonio Rénov' la ravale et la repeint.</mark>",
+  h1="Façade qui se dégrade ?<br><mark>Tonio Rénov' la ravale.</mark>",
   sub="<strong>Ravalement et peinture de façade</strong>, décrassage et reprise des fissures. Artisan façadier sur la <strong>Côte Basque et les Sud-Landes</strong> — on protège le mur, pas seulement la couleur.",
   ghost="Décrire ma façade", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre façade vous envoie déjà des signaux",
@@ -294,9 +294,9 @@ def render(p):
         corps = f'''<div class="devis-shell">
       <div class="progress" aria-hidden="true">{prog}</div>
       <form class="devis-form" data-pos="{pos}" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p>{opts('probleme', f['o1'])}</div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p>{opts('toiture', f['o2'])}</div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p>{opts('surface', f['o3'])}</div>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('probleme', f['o1'])}</div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('toiture', f['o2'])}</div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('surface', f['o3'])}</div>
         <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>{champs}</div>
         <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>

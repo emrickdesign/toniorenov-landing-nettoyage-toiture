@@ -13,22 +13,29 @@
       requestAnimationFrame(function () {
         doc.body.classList.toggle('scrolled', (window.scrollY || window.pageYOffset) > 8);
         tracerEtapes();
+        placerFab();
         ticking = false;
       });
     }
   }, { passive: true });
 
-  /* Bouton d'appel flottant : présent tout le long, sauf quand les boutons du hero, le formulaire, l'appel final ou le pied de page sont déjà à l'écran (il ne doit jamais les recouvrir) */
+  /* Bouton d'appel flottant : présent tout le long, sauf quand les boutons du hero, un
+     formulaire, l'appel final ou le pied de page sont à l'écran (il ne doit jamais les
+     recouvrir). Calcul au scroll plutôt qu'en IntersectionObserver : un saut d'ancre ne
+     franchit aucun seuil, et le bouton restait alors posé sur « Continuer ». */
   var hideZones = [].slice.call(doc.querySelectorAll('.hero-cta, .devis-shell, .cta, footer'));
-  if ('IntersectionObserver' in window && hideZones.length) {
-    var seen = {};
-    var fio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { seen[hideZones.indexOf(e.target)] = e.isIntersecting; });
-      var any = Object.keys(seen).some(function (k) { return seen[k]; });
-      doc.body.classList.toggle('fab-off', any);
-    }, { threshold: 0.15 });
-    hideZones.forEach(function (z) { fio.observe(z); });
+  function placerFab() {
+    var vh = window.innerHeight || 800;
+    var gene = hideZones.some(function (z) {
+      var r = z.getBoundingClientRect();
+      var visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      return visible >= Math.min(140, r.height * 0.9);
+    });
+    doc.body.classList.toggle('fab-off', gene);
   }
+  window.addEventListener('resize', placerFab, { passive: true });
+  window.addEventListener('load', placerFab);
+  placerFab();
 
   /* Trait de progression de la section « Comment ça marche » : purement décoratif.
      Aucun contenu n'est masqué en attente — voir le commentaire dans style.css. */
