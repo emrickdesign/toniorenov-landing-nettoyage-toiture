@@ -95,9 +95,9 @@ PAGES = [
   title="Nettoyage & démoussage de toiture — Bayonne · Tonio Rénov'",
   desc="Démoussage et nettoyage de toiture à Bayonne, Côte Basque et Sud-Landes. Traitement hydrofuge, devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='60% 38%', crop='28% 74%', alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'",
-  h1="Votre toiture est couverte de mousse ?<br><mark>On la nettoie avant qu'elle infiltre.</mark>",
-  sub="<strong>Démoussage complet</strong>, entretien basse pression et <strong>traitement hydrofuge</strong> par Tonio Rénov', artisan à Boucau. <strong>Devis gratuit sous 24h</strong>, chantier sous garantie décennale.",
-  ghost="Devis en 30 secondes", last_trust=("clock", "Devis sous 24h", "détaillé et gratuit"),
+  h1="Mousse sur vos tuiles ?<br><mark>L'eau finit par passer.</mark>",
+  sub="Chaque hiver, la mousse retient l'humidité contre les tuiles et les descelle. <strong>Démoussage et traitement hydrofuge</strong> par Tonio Rénov', artisan à Boucau — on traite avant l'infiltration. Garantie décennale.",
+  ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre toiture vous envoie déjà des signaux",
     p="La mousse retient l'humidité contre les tuiles. Non traitée, elle finit par soulever les tuiles et infiltrer la charpente — un <strong>entretien à temps</strong> évite une réfection complète.",
     items=[("sprout", "Mousse verte visible", "Des plaques de mousse ou de lichen apparaissent sur les tuiles, surtout côté nord ou sous les arbres."),
@@ -108,10 +108,10 @@ PAGES = [
   real=dict(t="Démoussage complet avec traitement hydrofuge", items=["Démoussage basse pression, sans abîmer les tuiles", "Traitement hydrofuge biocide sans chlore", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['marie', 'pierre', 'fatima'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis démoussage", prix_titre="Combien coûte un démoussage de toiture ?", prix_criteres=[('home', 'Surface de la toiture'), ('layers', 'Type de tuile'), ('sprout', 'Ampleur de la mousse'), ('pin', 'Pente et accès')], prix_depart=None, q1="Qu'observez-vous sur votre toiture ?",
+    t2="Recevez votre devis démoussage", t1="Dites-nous ce que vous voyez sur votre toit", q1="Qu'observez-vous sur votre toiture ?",
     o1=[("Mousse / lichen visible", "Mousse / lichen visible", "sprout"), ("Tuiles cassées ou déplacées", "Tuiles cassées / déplacées", "layers"), ("Fuite ou infiltration", "Fuite / infiltration", "drop"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
-  faq=[("Quels sont vos tarifs pour un démoussage ?", "Le prix dépend de la surface, de la pente et de l'état de la toiture. On se déplace gratuitement pour établir un devis précis sous 24h — pas de mauvaise surprise à la fin du chantier."),
+  faq=[("J'ai de la mousse sur mon toit, c'est urgent ?", "Tant qu'elle est en surface, un démoussage suffit. Dès qu'elle soulève les tuiles ou que des taches apparaissent au plafond, l'eau passe déjà — et là, chaque mois compte."),
        ("Intervenez-vous en urgence pour une fuite ?", "Oui, on priorise les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
        FAQ_GARANTIE,
        ("Le démoussage abîme-t-il les tuiles ?", "Non — on travaille en basse pression avec des produits biocides sans chlore, spécifiquement pour préserver l'étanchéité et la couleur des tuiles."),
@@ -123,11 +123,11 @@ PAGES = [
   title="Entretien & traitement hydrofuge de toiture — Bayonne · Tonio Rénov'",
   desc="Entretien préventif et traitement hydrofuge de toiture à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, entretien par Tonio Rénov'",
-  h1="Une toiture entretenue chaque année<br><mark>ne coûte jamais cher à réparer.</mark>",
-  sub="<strong>Entretien préventif</strong> et <strong>traitement hydrofuge</strong> par Tonio Rénov', artisan à Boucau — on protège votre toiture avant que l'humidité ne s'installe. <strong>Devis gratuit sous 24h</strong>.",
-  ghost="Devis en 30 secondes", last_trust=("clock", "Devis sous 24h", "détaillé et gratuit"),
-  signs=dict(t="Un entretien tous les 2-3 ans coûte bien moins cher qu'une réfection",
-    p="Sans entretien, l'humidité s'installe progressivement dans la couverture — le <strong>traitement hydrofuge</strong> et le contrôle régulier gardent votre toiture saine et évitent les mauvaises surprises.",
+  h1="Votre toit s'abîme<br><mark>bien plus vite qu'il n'y paraît.</mark>",
+  sub="Une tuile qui bouge, une gouttière bouchée, et c'est la charpente qui prend l'eau. <strong>Entretien et traitement hydrofuge</strong> par Tonio Rénov', artisan à Boucau — on garde votre toit étanche. Garantie décennale.",
+  ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
+  signs=dict(t="Ce qui abîme une toiture, c'est le temps qu'on laisse passer",
+    p="L'humidité s'installe sans bruit dans la couverture, puis dans la charpente. Le <strong>traitement hydrofuge</strong> et le contrôle régulier arrêtent le processus avant les dégâts.",
     items=[("drop", "Traitement hydrofuge préventif", "Un traitement biocide sans chlore qui empêche la mousse et le lichen de s'installer durablement."),
            ("search", "Contrôle des tuiles", "On vérifie tuile par tuile qu'aucune n'a bougé ou ne s'est fissurée avec le temps et les intempéries."),
            ("waves", "Nettoyage des gouttières", "Débris et feuilles sont évacués pour que l'eau s'écoule normalement, sans stagner sur la toiture."),
@@ -136,11 +136,11 @@ PAGES = [
   real=dict(t="Entretien annuel avec traitement hydrofuge DALEP 2100", items=["Contrôle complet de la couverture, tuile par tuile", "Traitement hydrofuge biocide sans chlore, produit pro", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['fatima', 'marie', 'pierre'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis d'entretien", prix_titre="Combien coûte l'entretien d'une toiture ?", prix_criteres=[('home', 'Surface de la toiture'), ('drop', 'Traitement souhaité'), ('search', 'État de la couverture'), ('pin', 'Pente et accès')], prix_depart=None, q1="Quel entretien recherchez-vous ?",
+    t2="Recevez votre devis d'entretien", t1="Dites-nous où en est votre toiture", q1="Quel entretien recherchez-vous ?",
     o1=[("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Contrôle général de toiture", "Contrôle général", "search"), ("Nettoyage de gouttières", "Nettoyage gouttières", "waves"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Tous les combien de temps faut-il entretenir sa toiture ?", "En moyenne tous les 2 à 3 ans sur la Côte Basque, selon l'exposition (vent, embruns, arbres à proximité). Nos traitements DALEP 2100 tiennent dans la durée, ce qui espace les passages."),
-       ("Quels sont vos tarifs pour un entretien ?", "Le prix dépend de la surface, de la pente et de l'état de la toiture. On se déplace gratuitement pour établir un devis précis sous 24h — pas de mauvaise surprise à la fin du chantier."),
+       ("Comment savoir si ma toiture a besoin d'un passage ?", "Mousse visible, tuiles décalées, gouttière qui déborde, traces sombres au plafond : ces quatre signes suffisent. On vient regarder gratuitement et on vous dit franchement si ça peut attendre."),
        ("Le traitement hydrofuge abîme-t-il les tuiles ?", "Non — on utilise des produits biocides sans chlore, spécifiquement pour préserver l'étanchéité et la couleur des tuiles."),
        FAQ_GARANTIE, FAQ_ZONE],
   cta=dict(t="Une toiture entretenue, c'est une toiture qui dure", p="<strong>Devis gratuit sous 24h</strong>, aucun engagement."),
@@ -150,8 +150,8 @@ PAGES = [
   title="Fuite de toiture & urgence — Bayonne · Tonio Rénov'",
   desc="Fuite ou infiltration sur votre toiture ? Intervention rapide à Bayonne, Côte Basque et Sud-Landes. Artisan local, garantie décennale.",
   img='/roof.jpg', pos='64% 42%', crop='60% 78%', alt="Toiture en tuiles et gouttière, diagnostic et réparation par Tonio Rénov'",
-  h1="Une fuite sur le toit ?<br><mark>On intervient vite, avant que ça s'aggrave.</mark>",
-  sub="<strong>Fuite, infiltration, tuile cassée</strong> : Tonio Rénov', artisan à Boucau, intervient <strong>rapidement</strong> pour diagnostiquer et réparer. Devis gratuit, chantier sous garantie décennale.",
+  h1="Ça goutte au plafond ?<br><mark>On intervient avant que ça empire.</mark>",
+  sub="Une infiltration abîme la charpente, l'isolation et les plafonds en quelques jours. <strong>Fuite, tuile cassée, infiltration</strong> : Tonio Rénov', artisan à Boucau, se déplace <strong>en priorité</strong>. Garantie décennale.",
   ghost="Décrire mon urgence", last_trust=("clock", "Intervention sous 48h", "priorité aux urgences"),
   signs=dict(t="Une fuite ne s'aggrave pas si vous agissez vite",
     p="<strong>Chaque heure compte</strong> : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.",
@@ -163,11 +163,11 @@ PAGES = [
   real=dict(t="Fuite réparée en une journée", items=["Diagnostic sur place pour localiser précisément l'infiltration", "Réparation le jour même quand c'est possible", "Prix annoncé avant intervention, pas de surprise", "Réparation couverte par la garantie décennale"]),
   reviews=['pierre', 'marie', 'fatima'],
   form=dict(t="Décrivez votre urgence en 4 questions", sub="<strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong>",
-    t2="Décrivez votre urgence, on vous rappelle", prix_titre="Combien coûte la réparation d'une fuite ?", prix_criteres=[('drop', 'Origine de la fuite'), ('alert', 'Étendue des dégâts'), ('layers', 'Tuiles à remplacer'), ('pin', 'Accès au toit')], prix_depart=None, q1="Quelle est votre urgence ?",
+    t2="Décrivez votre urgence, on vous rappelle", t1="Décrivez ce qui se passe chez vous", q1="Quelle est votre urgence ?",
     o1=[("Fuite active", "Fuite active", "drop"), ("Infiltration / tache d'humidité", "Infiltration / tache", "waves"), ("Tuiles endommagées", "Tuiles endommagées", "layers"), ("Autre urgence toiture", "Autre urgence", "alert")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("En combien de temps intervenez-vous en cas de fuite ?", "On priorise systématiquement les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
-       ("Combien coûte une réparation de fuite ?", "Ça dépend de la cause et de l'ampleur des dégâts. On établit un diagnostic sur place et un prix clair avant de commencer les travaux."),
+       ("Et si la fuite abîme déjà la charpente ?", "C'est justement ce qu'on va regarder en premier. Plus l'eau stagne, plus le bois et l'isolation souffrent — on localise l'origine et on arrête l'infiltration avant de reprendre le reste."),
        ("Que faire en attendant votre arrivée ?", "Protégez l'intérieur avec un seau ou une bâche sous la fuite, et coupez l'électricité de la zone si l'eau s'en approche. On vous guide par téléphone si besoin."),
        ("Quelles garanties proposez-vous ?", "Toutes nos réparations sont couvertes par notre garantie décennale et notre assurance RC Pro. Nous sommes artisan certifié RGE."),
        FAQ_ZONE],
@@ -178,9 +178,9 @@ PAGES = [
   title="Ravalement & peinture de façade — Bayonne · Tonio Rénov'",
   desc="Ravalement, nettoyage et peinture de façade à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov'",
-  h1="Une façade encrassée ou fissurée ?<br><mark>On lui redonne son éclat.</mark>",
-  sub="<strong>Ravalement</strong>, décrassage complet et <strong>peinture de façade</strong> par Tonio Rénov', artisan à Boucau. <strong>Devis gratuit sous 24h</strong>, chantier sous garantie décennale.",
-  ghost="Devis en 30 secondes", last_trust=("clock", "Devis sous 24h", "détaillé et gratuit"),
+  h1="Façade noircie et fissurée ?<br><mark>Votre maison prend dix ans.</mark>",
+  sub="Les fissures laissent entrer l'eau, l'humidité remonte dans les murs. <strong>Ravalement, décrassage et peinture</strong> par Tonio Rénov', artisan à Boucau — on protège le mur, pas seulement la couleur. Garantie décennale.",
+  ghost="Décrire ma façade", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre façade vous envoie déjà des signaux",
     p="L'humidité et la pollution s'installent progressivement dans l'enduit. Non traitées, les <strong>fissures s'aggravent</strong> et l'eau finit par s'infiltrer dans les murs.",
     items=[("sprout", "Mousse ou noirceur visible", "Traces vertes ou noires sur l'enduit, souvent côté nord ou dans les zones peu exposées au soleil."),
@@ -191,11 +191,11 @@ PAGES = [
   real=dict(t="Ravalement complet avec peinture Tollens", items=["Décrassage complet de la façade, sans abîmer l'enduit", "Réparation des fissures avant remise en peinture", "Peintures professionnelles Tollens, finitions soignées", "Chantier couvert par la garantie décennale"]),
   reviews=['amadou', 'sofia', 'marie'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis ravalement", prix_titre="Combien coûte un ravalement de façade ?", prix_criteres=[('home', 'Surface de façade'), ('crack', "État de l'enduit"), ('roller', 'Finition choisie'), ('pin', 'Accès et échafaudage')], prix_depart=None, q1="Qu'observez-vous sur votre façade ?",
+    t2="Recevez votre devis ravalement", t1="Dites-nous dans quel état est votre façade", q1="Qu'observez-vous sur votre façade ?",
     o1=[("Façade encrassée / noircie", "Façade encrassée", "sprout"), ("Fissures apparentes", "Fissures apparentes", "crack"), ("Peinture à refaire", "Peinture à refaire", "roller"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de revêtement avez-vous ?", o2=[("Enduit", "Enduit", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Crépi", "Crépi", "home"), ("Je ne sais pas", "Je ne sais pas", "help")],
     q3="Surface approximative de la façade ?", o3=OPT_SURF),
-  faq=[("Quels sont vos tarifs pour un ravalement de façade ?", "Le prix dépend de la surface, de l'état de l'enduit et du type de finition souhaité. On se déplace gratuitement pour établir un devis précis sous 24h."),
+  faq=[("Mes fissures sont-elles graves ?", "Une microfissure se traite facilement ; une fissure qui traverse l'enduit laisse l'eau entrer dans le mur et fait remonter l'humidité à l'intérieur. On vient voir sur place et on vous le dit clairement."),
        ("Combien de temps dure un chantier de façade ?", "Ça dépend de la surface et de l'ampleur des réparations, mais on planifie toujours le chantier à l'avance et on respecte les délais annoncés."),
        FAQ_GARANTIE,
        ("Quelles peintures utilisez-vous ?", "Des peintures professionnelles Tollens, adaptées au climat de la Côte Basque (humidité, embruns) pour une tenue durable."),
@@ -274,7 +274,6 @@ def render(p):
     method_h2 = h2("De l'appel au chantier, sans mauvaise surprise", 'on-dark')
     real_h2 = h2(p['real']['t'])
     rev_h2 = h2("Ce que disent nos clients sur la Côte Basque")
-    devis_h2 = h2(f['t'])
     zone_h2 = h2("Basés à Boucau, on se déplace sur toute la Côte Basque")
     faq_h2 = h2("Vos questions avant de nous appeler")
     cta_h2 = h2(p['cta']['t'])
@@ -309,18 +308,8 @@ def render(p):
   </div>
 </section>'''
 
-    # Réponse à l'intention « prix » : on dit franchement de quoi dépend le devis,
-    # et le formulaire juste en dessous donne le chiffre. Pas de tarif inventé.
-    crit = ''.join(f'<li>{ic(i)}<span>{t}</span></li>' for i, t in f['prix_criteres'])
-    depart = (f'<p class="prix-depart"><span>à partir de</span><b>{f["prix_depart"]}</b></p>'
-              if f.get('prix_depart') else '')
-    prix_intro = f'''<div class="prix-bloc">
-      {depart}
-      <p class="lead">Chaque chantier est différent : le prix dépend de ces quatre éléments.</p>
-      <ul class="prix-crit">{crit}</ul>
-      <p class="prix-note">{ic("check")}<span><strong>Devis gratuit, chiffré et détaillé sous 24h</strong> — sans engagement, et le prix annoncé est celui que vous payez.</span></p>
-    </div>'''
-    devis_haut = devis_bloc('haut', h2(f['prix_titre']), 'devis', prix_intro)
+    # Le formulaire arrive directement sous la barre de garanties : rien entre les deux.
+    devis_haut = devis_bloc('haut', h2(f['t1']), 'devis')
     devis_bas = devis_bloc('bas', h2(f['t2']), 'devis-bas')
 
     return f'''<!DOCTYPE html>
