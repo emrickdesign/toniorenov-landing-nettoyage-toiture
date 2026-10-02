@@ -283,6 +283,21 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .rev-sum{display:flex;align-items:center;gap:12px;margin-top:22px;color:var(--texte-2);font-size:.9375rem}
 .rev-sum .stars{color:#e8a416}
 
+/* réponse à l'intention « prix » : de quoi dépend le devis */
+.prix-bloc{margin-top:20px}
+.prix-bloc .lead{margin-inline:auto}
+.prix-depart{display:inline-flex;align-items:baseline;gap:.5em;margin-bottom:14px;padding:10px 20px;border-radius:999px;background:var(--marine);color:#fff}
+.prix-depart span{font-size:.9375rem;color:rgba(255,255,255,.75)}
+.prix-depart b{font-size:1.375rem;font-weight:800;letter-spacing:-.02em;color:var(--tuile-clair);font-variant-numeric:tabular-nums}
+.prix-crit{display:grid;gap:10px;margin:22px auto 0;max-width:620px;text-align:left}
+@media(min-width:560px){.prix-crit{grid-template-columns:1fr 1fr}}
+.prix-crit li{display:flex;align-items:center;gap:11px;padding:13px 16px;background:#fff;border-radius:12px;box-shadow:inset 0 0 0 1px var(--ciel-2);font-weight:600;font-size:.9375rem;color:var(--texte)}
+.prix-crit .ic{width:19px;height:19px;flex:none;color:var(--tuile)}
+.prix-note{display:flex;align-items:flex-start;gap:11px;max-width:620px;margin:18px auto 0;text-align:left;font-size.9375rem;color:var(--texte-2);line-height:1.5}
+.prix-note{font-size:.9375rem}
+.prix-note .ic{width:19px;height:19px;flex:none;margin-top:.15em;color:var(--vert)}
+.prix-note strong{color:var(--tuile-fonce)}
+
 /* devis (formulaire à choix) */
 .devis-shell{max-width:640px;margin:clamp(32px,4vw,48px) auto 0;background:var(--nuit);color:#fff;border-radius:var(--r);padding:clamp(26px,4.5vw,48px);box-shadow:0 40px 70px -40px rgba(11,24,39,.75)}
 .progress{display:flex;gap:6px;margin-bottom:30px}
@@ -424,7 +439,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec sec-light devis" id="devis">
   <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Décrivez votre urgence en 4 questions"><span class="w" style="--i:0" aria-hidden="true">Décrivez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">urgence</span> <span class="w" style="--i:3" aria-hidden="true">en</span> <span class="w" style="--i:4" aria-hidden="true">4</span> <span class="w" style="--i:5" aria-hidden="true">questions</span></h2><p class="lead reveal" style="--d:1"><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p></div>
+    <div class="sec-head center"><h2 class="split " aria-label="Combien coûte la réparation d'une fuite ?"><span class="w" style="--i:0" aria-hidden="true">Combien</span> <span class="w" style="--i:1" aria-hidden="true">coûte</span> <span class="w" style="--i:2" aria-hidden="true">la</span> <span class="w" style="--i:3" aria-hidden="true">réparation</span> <span class="w" style="--i:4" aria-hidden="true">d'une</span> <span class="w" style="--i:5" aria-hidden="true">fuite</span> <span class="w" style="--i:6" aria-hidden="true">?</span></h2><div class="prix-bloc">
+      
+      <p class="lead">Chaque chantier est différent : le prix dépend de ces quatre éléments.</p>
+      <ul class="prix-crit"><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Origine de la fuite</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span>Étendue des dégâts</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles à remplacer</span></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Accès au toit</span></li></ul>
+      <p class="prix-note"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong>Devis gratuit, chiffré et détaillé sous 24h</strong> — sans engagement, et le prix annoncé est celui que vous payez.</span></p>
+    </div></div>
     <div class="devis-shell reveal" style="--d:2">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="haut" novalidate>
@@ -497,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 <section class="sec sec-light devis" id="devis-bas">
   <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Décrivez votre urgence, on vous rappelle"><span class="w" style="--i:0" aria-hidden="true">Décrivez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">urgence,</span> <span class="w" style="--i:3" aria-hidden="true">on</span> <span class="w" style="--i:4" aria-hidden="true">vous</span> <span class="w" style="--i:5" aria-hidden="true">rappelle</span></h2><p class="lead reveal" style="--d:1"><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p></div>
+    <div class="sec-head center"><h2 class="split " aria-label="Décrivez votre urgence, on vous rappelle"><span class="w" style="--i:0" aria-hidden="true">Décrivez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">urgence,</span> <span class="w" style="--i:3" aria-hidden="true">on</span> <span class="w" style="--i:4" aria-hidden="true">vous</span> <span class="w" style="--i:5" aria-hidden="true">rappelle</span></h2><p class="lead"><strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong></p></div>
     <div class="devis-shell reveal" style="--d:2">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="bas" novalidate>

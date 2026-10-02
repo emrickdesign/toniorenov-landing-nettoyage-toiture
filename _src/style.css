@@ -256,6 +256,21 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .rev-sum{display:flex;align-items:center;gap:12px;margin-top:22px;color:var(--texte-2);font-size:.9375rem}
 .rev-sum .stars{color:#e8a416}
 
+/* réponse à l'intention « prix » : de quoi dépend le devis */
+.prix-bloc{margin-top:20px}
+.prix-bloc .lead{margin-inline:auto}
+.prix-depart{display:inline-flex;align-items:baseline;gap:.5em;margin-bottom:14px;padding:10px 20px;border-radius:999px;background:var(--marine);color:#fff}
+.prix-depart span{font-size:.9375rem;color:rgba(255,255,255,.75)}
+.prix-depart b{font-size:1.375rem;font-weight:800;letter-spacing:-.02em;color:var(--tuile-clair);font-variant-numeric:tabular-nums}
+.prix-crit{display:grid;gap:10px;margin:22px auto 0;max-width:620px;text-align:left}
+@media(min-width:560px){.prix-crit{grid-template-columns:1fr 1fr}}
+.prix-crit li{display:flex;align-items:center;gap:11px;padding:13px 16px;background:#fff;border-radius:12px;box-shadow:inset 0 0 0 1px var(--ciel-2);font-weight:600;font-size:.9375rem;color:var(--texte)}
+.prix-crit .ic{width:19px;height:19px;flex:none;color:var(--tuile)}
+.prix-note{display:flex;align-items:flex-start;gap:11px;max-width:620px;margin:18px auto 0;text-align:left;font-size.9375rem;color:var(--texte-2);line-height:1.5}
+.prix-note{font-size:.9375rem}
+.prix-note .ic{width:19px;height:19px;flex:none;margin-top:.15em;color:var(--vert)}
+.prix-note strong{color:var(--tuile-fonce)}
+
 /* devis (formulaire à choix) */
 .devis-shell{max-width:640px;margin:clamp(32px,4vw,48px) auto 0;background:var(--nuit);color:#fff;border-radius:var(--r);padding:clamp(26px,4.5vw,48px);box-shadow:0 40px 70px -40px rgba(11,24,39,.75)}
 .progress{display:flex;gap:6px;margin-bottom:30px}

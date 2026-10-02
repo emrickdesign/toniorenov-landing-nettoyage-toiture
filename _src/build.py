@@ -108,7 +108,7 @@ PAGES = [
   real=dict(t="Démoussage complet avec traitement hydrofuge", items=["Démoussage basse pression, sans abîmer les tuiles", "Traitement hydrofuge biocide sans chlore", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['marie', 'pierre', 'fatima'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis démoussage", q1="Qu'observez-vous sur votre toiture ?",
+    t2="Recevez votre devis démoussage", prix_titre="Combien coûte un démoussage de toiture ?", prix_criteres=[('home', 'Surface de la toiture'), ('layers', 'Type de tuile'), ('sprout', 'Ampleur de la mousse'), ('pin', 'Pente et accès')], prix_depart=None, q1="Qu'observez-vous sur votre toiture ?",
     o1=[("Mousse / lichen visible", "Mousse / lichen visible", "sprout"), ("Tuiles cassées ou déplacées", "Tuiles cassées / déplacées", "layers"), ("Fuite ou infiltration", "Fuite / infiltration", "drop"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Quels sont vos tarifs pour un démoussage ?", "Le prix dépend de la surface, de la pente et de l'état de la toiture. On se déplace gratuitement pour établir un devis précis sous 24h — pas de mauvaise surprise à la fin du chantier."),
@@ -136,7 +136,7 @@ PAGES = [
   real=dict(t="Entretien annuel avec traitement hydrofuge DALEP 2100", items=["Contrôle complet de la couverture, tuile par tuile", "Traitement hydrofuge biocide sans chlore, produit pro", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['fatima', 'marie', 'pierre'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis d'entretien", q1="Quel entretien recherchez-vous ?",
+    t2="Recevez votre devis d'entretien", prix_titre="Combien coûte l'entretien d'une toiture ?", prix_criteres=[('home', 'Surface de la toiture'), ('drop', 'Traitement souhaité'), ('search', 'État de la couverture'), ('pin', 'Pente et accès')], prix_depart=None, q1="Quel entretien recherchez-vous ?",
     o1=[("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Contrôle général de toiture", "Contrôle général", "search"), ("Nettoyage de gouttières", "Nettoyage gouttières", "waves"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Tous les combien de temps faut-il entretenir sa toiture ?", "En moyenne tous les 2 à 3 ans sur la Côte Basque, selon l'exposition (vent, embruns, arbres à proximité). Nos traitements DALEP 2100 tiennent dans la durée, ce qui espace les passages."),
@@ -163,7 +163,7 @@ PAGES = [
   real=dict(t="Fuite réparée en une journée", items=["Diagnostic sur place pour localiser précisément l'infiltration", "Réparation le jour même quand c'est possible", "Prix annoncé avant intervention, pas de surprise", "Réparation couverte par la garantie décennale"]),
   reviews=['pierre', 'marie', 'fatima'],
   form=dict(t="Décrivez votre urgence en 4 questions", sub="<strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong>",
-    t2="Décrivez votre urgence, on vous rappelle", q1="Quelle est votre urgence ?",
+    t2="Décrivez votre urgence, on vous rappelle", prix_titre="Combien coûte la réparation d'une fuite ?", prix_criteres=[('drop', 'Origine de la fuite'), ('alert', 'Étendue des dégâts'), ('layers', 'Tuiles à remplacer'), ('pin', 'Accès au toit')], prix_depart=None, q1="Quelle est votre urgence ?",
     o1=[("Fuite active", "Fuite active", "drop"), ("Infiltration / tache d'humidité", "Infiltration / tache", "waves"), ("Tuiles endommagées", "Tuiles endommagées", "layers"), ("Autre urgence toiture", "Autre urgence", "alert")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("En combien de temps intervenez-vous en cas de fuite ?", "On priorise systématiquement les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
@@ -191,7 +191,7 @@ PAGES = [
   real=dict(t="Ravalement complet avec peinture Tollens", items=["Décrassage complet de la façade, sans abîmer l'enduit", "Réparation des fissures avant remise en peinture", "Peintures professionnelles Tollens, finitions soignées", "Chantier couvert par la garantie décennale"]),
   reviews=['amadou', 'sofia', 'marie'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis ravalement", q1="Qu'observez-vous sur votre façade ?",
+    t2="Recevez votre devis ravalement", prix_titre="Combien coûte un ravalement de façade ?", prix_criteres=[('home', 'Surface de façade'), ('crack', "État de l'enduit"), ('roller', 'Finition choisie'), ('pin', 'Accès et échafaudage')], prix_depart=None, q1="Qu'observez-vous sur votre façade ?",
     o1=[("Façade encrassée / noircie", "Façade encrassée", "sprout"), ("Fissures apparentes", "Fissures apparentes", "crack"), ("Peinture à refaire", "Peinture à refaire", "roller"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de revêtement avez-vous ?", o2=[("Enduit", "Enduit", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Crépi", "Crépi", "home"), ("Je ne sais pas", "Je ne sais pas", "help")],
     q3="Surface approximative de la façade ?", o3=OPT_SURF),
@@ -281,7 +281,7 @@ def render(p):
     call_btn = lambda label, extra='': f'''<a class="btn btn-call {extra}" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true">{ICONS["phone"]}</svg><span>{label}</span></a>'''
     next_btn = f'''<button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span>{ic("arrow","arr")}</button>'''
 
-    def devis_bloc(pos, titre, ident):
+    def devis_bloc(pos, titre, ident, intro=''):
         """Un formulaire complet. `pos` rend les identifiants uniques : il y en a deux par page."""
         champs = (
             f'<div class="field"><label for="f-nom-{pos}">Nom</label>'
@@ -293,7 +293,7 @@ def render(p):
         )
         return f'''<section class="sec sec-light devis" id="{ident}">
   <div class="wrap">
-    <div class="sec-head center">{titre}<p class="lead reveal" style="--d:1">{f['sub']}</p></div>
+    <div class="sec-head center">{titre}{intro or f'<p class="lead">{f["sub"]}</p>'}</div>
     <div class="devis-shell reveal" style="--d:2">
       <div class="progress" aria-hidden="true">{prog}</div>
       <form class="devis-form" data-pos="{pos}" novalidate>
@@ -309,7 +309,18 @@ def render(p):
   </div>
 </section>'''
 
-    devis_haut = devis_bloc('haut', devis_h2, 'devis')
+    # Réponse à l'intention « prix » : on dit franchement de quoi dépend le devis,
+    # et le formulaire juste en dessous donne le chiffre. Pas de tarif inventé.
+    crit = ''.join(f'<li>{ic(i)}<span>{t}</span></li>' for i, t in f['prix_criteres'])
+    depart = (f'<p class="prix-depart"><span>à partir de</span><b>{f["prix_depart"]}</b></p>'
+              if f.get('prix_depart') else '')
+    prix_intro = f'''<div class="prix-bloc">
+      {depart}
+      <p class="lead">Chaque chantier est différent : le prix dépend de ces quatre éléments.</p>
+      <ul class="prix-crit">{crit}</ul>
+      <p class="prix-note">{ic("check")}<span><strong>Devis gratuit, chiffré et détaillé sous 24h</strong> — sans engagement, et le prix annoncé est celui que vous payez.</span></p>
+    </div>'''
+    devis_haut = devis_bloc('haut', h2(f['prix_titre']), 'devis', prix_intro)
     devis_bas = devis_bloc('bas', h2(f['t2']), 'devis-bas')
 
     return f'''<!DOCTYPE html>
