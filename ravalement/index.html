@@ -137,14 +137,14 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 @media(max-width:430px){.brand b,.brand small{display:none}}
 
 /* ---------- Hero : la photo EST le fond ---------- */
-.hero{position:relative;isolation:isolate;min-height:clamp(520px,calc(100svh - 64px - 104px),900px);display:flex;align-items:flex-end;color:#fff;background:var(--nuit);overflow:hidden}
+.hero{position:relative;isolation:isolate;display:flex;align-items:center;color:#fff;background:var(--nuit);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%)}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
-.hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(56px,10vh,140px) var(--gutter) clamp(30px,6vh,64px)}
-.hero h1{font-size:clamp(2.45rem,1.15rem + 5.6vw,5rem);line-height:1;letter-spacing:-.038em;max-width:13.8em}
+.hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(40px,7vh,96px) var(--gutter) clamp(40px,7vh,96px);display:grid;gap:clamp(28px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(2.3rem,1.2rem + 4.4vw,3.9rem);line-height:1.03;letter-spacing:-.035em}
 .hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/100% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em}
-.hero-sub{margin-top:clamp(18px,3vh,28px);max-width:44ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
+.hero-sub{margin-top:clamp(16px,2.4vh,24px);max-width:42ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
 .hero-sub strong{color:#fff;font-weight:700;background:linear-gradient(rgba(201,64,43,.55),rgba(201,64,43,.55)) no-repeat 0 100%/100% .38em;padding:0 .06em}
 .hero-cta{margin-top:clamp(24px,4vh,36px);display:flex;flex-wrap:wrap;gap:12px}
 .hero-proof{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;font-size:.9375rem;color:rgba(255,255,255,.85)}
@@ -159,6 +159,25 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
   .hero-cta .btn{--h:54px}
   .hero-proof{margin-top:16px}
   .hero-proof span:nth-child(2){display:none}
+}
+
+/* ---------- Formulaire du hero ----------
+   Ordinateur : texte et boutons à gauche, formulaire à droite, sur la même ligne.
+   Mobile : titre + boutons d'appel d'abord, formulaire directement en dessous. */
+@media(min-width:1060px){
+  .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px)}
+  .hero::before{background:linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
+}
+.hero-form{min-width:0}
+.hf-head{margin-bottom:18px}
+.hf-t{font-size:clamp(1.45rem,1.15rem + 1.1vw,1.9rem);line-height:1.15;letter-spacing:-.03em;color:#fff}
+.hf-sub{margin-top:8px;font-size:1rem;line-height:1.5;color:rgba(255,255,255,.8)}
+.hf-sub strong{color:#fff}
+.hero-form .devis-shell{margin:0;max-width:none;border:1px solid rgba(255,255,255,.14);box-shadow:0 44px 80px -38px rgba(0,0,0,.85)}
+.hero-form .progress{margin-bottom:24px}
+@media(max-width:1059px){
+  .hero-form{margin-top:clamp(20px,3.5vh,32px);max-width:640px}
+  .hero-in{gap:0}
 }
 
 /* ---------- Bandeau de preuves ---------- */
@@ -286,12 +305,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 /* réponse à l'intention « prix » : de quoi dépend le devis */
 
 /* devis (formulaire à choix) */
-/* Formulaire du haut : collé à la barre de garanties, c'est la première action possible. */
-#devis{padding-top:clamp(38px,5vw,62px)}
-#devis .sec-head .lead{margin-top:12px}
-#devis .devis-shell{margin-top:clamp(20px,3vw,30px)}
-@media(max-width:600px){#devis{padding-top:30px}}
-.devis-shell{max-width:640px;margin:clamp(32px,4vw,48px) auto 0;background:var(--nuit);color:#fff;border-radius:var(--r);padding:clamp(26px,4.5vw,48px);box-shadow:0 40px 70px -40px rgba(11,24,39,.75)}
+.devis-shell{max-width:640px;margin:clamp(32px,4vw,48px) auto 0;min-width:0;background:var(--nuit);color:#fff;border-radius:var(--r);padding:clamp(26px,4.5vw,48px);box-shadow:0 40px 70px -40px rgba(11,24,39,.75)}
 .progress{display:flex;gap:6px;margin-bottom:30px}
 .progress i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden;position:relative}
 .progress i::after{content:"";position:absolute;inset:0;background:var(--tuile-clair);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
@@ -417,22 +431,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero">
   <div class="hero-bg"><img src="/facade.jpg" alt="Façade blanche à volets rouges ravalée par Tonio Rénov'" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:50% 42%"></div>
   <div class="hero-in">
-    <h1 aria-label="Façade noircie et fissurée ? Votre maison prend dix ans."><span class="w" style="--i:0" aria-hidden="true">Façade</span> <span class="w" style="--i:1" aria-hidden="true">noircie</span> <span class="w" style="--i:2" aria-hidden="true">et</span> <span class="w" style="--i:3" aria-hidden="true">fissurée</span> <span class="w" style="--i:4" aria-hidden="true">?</span><br><mark><span class="w" style="--i:5" aria-hidden="true">Votre</span> <span class="w" style="--i:6" aria-hidden="true">maison</span> <span class="w" style="--i:7" aria-hidden="true">prend</span> <span class="w" style="--i:8" aria-hidden="true">dix</span> <span class="w" style="--i:9" aria-hidden="true">ans.</span></mark></h1>
-    <p class="hero-sub fade" style="--d:0">Les fissures laissent entrer l'eau, l'humidité remonte dans les murs. <strong>Ravalement, décrassage et peinture</strong> par Tonio Rénov', artisan à Boucau — on protège le mur, pas seulement la couleur. Garantie décennale.</p>
-    <div class="hero-cta fade" style="--d:1">
-      <a class="btn btn-call " href="tel:+33415870242"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Appeler maintenant</span></a>
-      <a class="btn btn-ghost" href="#devis"><span>Décrire ma façade</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    <div class="hero-copy">
+      <h1 aria-label="Votre façade se dégrade ? Tonio Rénov' la ravale et la repeint."><span class="w" style="--i:0" aria-hidden="true">Votre</span> <span class="w" style="--i:1" aria-hidden="true">façade</span> <span class="w" style="--i:2" aria-hidden="true">se</span> <span class="w" style="--i:3" aria-hidden="true">dégrade</span> <span class="w" style="--i:4" aria-hidden="true">?</span><br><mark><span class="w" style="--i:5" aria-hidden="true">Tonio</span> <span class="w" style="--i:6" aria-hidden="true">Rénov'</span> <span class="w" style="--i:7" aria-hidden="true">la</span> <span class="w" style="--i:8" aria-hidden="true">ravale</span> <span class="w" style="--i:9" aria-hidden="true">et</span> <span class="w" style="--i:10" aria-hidden="true">la</span> <span class="w" style="--i:11" aria-hidden="true">repeint.</span></mark></h1>
+      <p class="hero-sub fade" style="--d:0"><strong>Ravalement et peinture de façade</strong>, décrassage et reprise des fissures. Artisan façadier sur la <strong>Côte Basque et les Sud-Landes</strong> — on protège le mur, pas seulement la couleur.</p>
+      <div class="hero-cta fade" style="--d:1">
+        <a class="btn btn-call " href="tel:+33415870242"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Appeler maintenant</span></a>
+        <a class="btn btn-ghost" href="#devis"><span>Décrire ma façade</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <p class="hero-proof fade" style="--d:2"><span><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><b>5/5</b> avis vérifiés</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Côte Basque &amp; Sud-Landes</span></p>
     </div>
-    <p class="hero-proof fade" style="--d:2"><span><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><b>5/5</b> avis vérifiés</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bayonne · Côte Basque · Sud-Landes</span></p>
-  </div>
-</section>
-
-<section class="band" aria-label="Nos garanties"><div class="wrap"><ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><div><b>Plus de 500 chantiers</b><small>sur la Côte Basque</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Garantie décennale</b><small>sur tous nos travaux</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div><b>Assurance RC Pro</b><small>artisan assuré</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><div><b>Certifié RGE</b><small>qualification reconnue</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Réponse sous 24h</b><small>on vous rappelle</small></div></li></ul></div></section>
-
-<section class="sec sec-light devis" id="devis">
-  <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Dites-nous dans quel état est votre façade"><span class="w" style="--i:0" aria-hidden="true">Dites-nous</span> <span class="w" style="--i:1" aria-hidden="true">dans</span> <span class="w" style="--i:2" aria-hidden="true">quel</span> <span class="w" style="--i:3" aria-hidden="true">état</span> <span class="w" style="--i:4" aria-hidden="true">est</span> <span class="w" style="--i:5" aria-hidden="true">votre</span> <span class="w" style="--i:6" aria-hidden="true">façade</span></h2><p class="lead"><strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong></p></div>
-    <div class="devis-shell reveal" style="--d:2">
+    <div class="hero-form" id="devis">
+      <div class="hf-head"><h2 class="hf-t">Votre devis en 4 questions</h2><p class="hf-sub"><strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong></p></div>
+      <div class="devis-shell">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="haut" novalidate>
         <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>Qu'observez-vous sur votre façade ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Façade encrassée / noircie" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg><span>Façade encrassée</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Fissures apparentes" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2v6l-4 3 5 3-3 3v5"/></svg><span>Fissures apparentes</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Peinture à refaire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="6" x="2" y="2" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect width="4" height="6" x="8" y="16" rx="1"/></svg><span>Peinture à refaire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Entretien préventif" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Entretien préventif</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
@@ -443,9 +453,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="factions"><button type="button" class="fback" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
       </form>
     </div>
-    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="tel:+33415870242">04 15 87 02 42</a></p>
+    </div>
   </div>
 </section>
+
+<section class="band" aria-label="Nos garanties"><div class="wrap"><ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><div><b>Plus de 500 chantiers</b><small>sur la Côte Basque</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Garantie décennale</b><small>sur tous nos travaux</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div><b>Assurance RC Pro</b><small>artisan assuré</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><div><b>Certifié RGE</b><small>qualification reconnue</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Réponse sous 24h</b><small>on vous rappelle</small></div></li></ul></div></section>
 
 <section class="sec sec-light">
   <div class="wrap signs-grid">
@@ -505,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec sec-light devis" id="devis-bas">
   <div class="wrap">
     <div class="sec-head center"><h2 class="split " aria-label="Recevez votre devis ravalement"><span class="w" style="--i:0" aria-hidden="true">Recevez</span> <span class="w" style="--i:1" aria-hidden="true">votre</span> <span class="w" style="--i:2" aria-hidden="true">devis</span> <span class="w" style="--i:3" aria-hidden="true">ravalement</span></h2><p class="lead"><strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong></p></div>
-    <div class="devis-shell reveal" style="--d:2">
+    <div class="devis-shell">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="bas" novalidate>
         <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>Qu'observez-vous sur votre façade ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Façade encrassée / noircie" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg><span>Façade encrassée</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Fissures apparentes" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2v6l-4 3 5 3-3 3v5"/></svg><span>Fissures apparentes</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Peinture à refaire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="6" x="2" y="2" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect width="4" height="6" x="8" y="16" rx="1"/></svg><span>Peinture à refaire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Entretien préventif" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Entretien préventif</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
@@ -516,7 +528,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="factions"><button type="button" class="fback" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
       </form>
     </div>
-    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="tel:+33415870242">04 15 87 02 42</a></p>
+    <p class="alt-call">Vous préférez en parler ? Appelez-nous au <a href="tel:+33415870242">04 15 87 02 42</a></p>
   </div>
 </section>
 </main>

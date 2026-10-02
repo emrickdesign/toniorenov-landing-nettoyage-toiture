@@ -110,14 +110,14 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 @media(max-width:430px){.brand b,.brand small{display:none}}
 
 /* ---------- Hero : la photo EST le fond ---------- */
-.hero{position:relative;isolation:isolate;min-height:clamp(520px,calc(100svh - 64px - 104px),900px);display:flex;align-items:flex-end;color:#fff;background:var(--nuit);overflow:hidden}
+.hero{position:relative;isolation:isolate;display:flex;align-items:center;color:#fff;background:var(--nuit);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%)}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
-.hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(56px,10vh,140px) var(--gutter) clamp(30px,6vh,64px)}
-.hero h1{font-size:clamp(2.45rem,1.15rem + 5.6vw,5rem);line-height:1;letter-spacing:-.038em;max-width:13.8em}
+.hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(40px,7vh,96px) var(--gutter) clamp(40px,7vh,96px);display:grid;gap:clamp(28px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(2.3rem,1.2rem + 4.4vw,3.9rem);line-height:1.03;letter-spacing:-.035em}
 .hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/100% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em}
-.hero-sub{margin-top:clamp(18px,3vh,28px);max-width:44ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
+.hero-sub{margin-top:clamp(16px,2.4vh,24px);max-width:42ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
 .hero-sub strong{color:#fff;font-weight:700;background:linear-gradient(rgba(201,64,43,.55),rgba(201,64,43,.55)) no-repeat 0 100%/100% .38em;padding:0 .06em}
 .hero-cta{margin-top:clamp(24px,4vh,36px);display:flex;flex-wrap:wrap;gap:12px}
 .hero-proof{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;font-size:.9375rem;color:rgba(255,255,255,.85)}
@@ -132,6 +132,25 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
   .hero-cta .btn{--h:54px}
   .hero-proof{margin-top:16px}
   .hero-proof span:nth-child(2){display:none}
+}
+
+/* ---------- Formulaire du hero ----------
+   Ordinateur : texte et boutons à gauche, formulaire à droite, sur la même ligne.
+   Mobile : titre + boutons d'appel d'abord, formulaire directement en dessous. */
+@media(min-width:1060px){
+  .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px)}
+  .hero::before{background:linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
+}
+.hero-form{min-width:0}
+.hf-head{margin-bottom:18px}
+.hf-t{font-size:clamp(1.45rem,1.15rem + 1.1vw,1.9rem);line-height:1.15;letter-spacing:-.03em;color:#fff}
+.hf-sub{margin-top:8px;font-size:1rem;line-height:1.5;color:rgba(255,255,255,.8)}
+.hf-sub strong{color:#fff}
+.hero-form .devis-shell{margin:0;max-width:none;border:1px solid rgba(255,255,255,.14);box-shadow:0 44px 80px -38px rgba(0,0,0,.85)}
+.hero-form .progress{margin-bottom:24px}
+@media(max-width:1059px){
+  .hero-form{margin-top:clamp(20px,3.5vh,32px);max-width:640px}
+  .hero-in{gap:0}
 }
 
 /* ---------- Bandeau de preuves ---------- */
@@ -259,12 +278,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 /* réponse à l'intention « prix » : de quoi dépend le devis */
 
 /* devis (formulaire à choix) */
-/* Formulaire du haut : collé à la barre de garanties, c'est la première action possible. */
-#devis{padding-top:clamp(38px,5vw,62px)}
-#devis .sec-head .lead{margin-top:12px}
-#devis .devis-shell{margin-top:clamp(20px,3vw,30px)}
-@media(max-width:600px){#devis{padding-top:30px}}
-.devis-shell{max-width:640px;margin:clamp(32px,4vw,48px) auto 0;background:var(--nuit);color:#fff;border-radius:var(--r);padding:clamp(26px,4.5vw,48px);box-shadow:0 40px 70px -40px rgba(11,24,39,.75)}
+.devis-shell{max-width:640px;margin:clamp(32px,4vw,48px) auto 0;min-width:0;background:var(--nuit);color:#fff;border-radius:var(--r);padding:clamp(26px,4.5vw,48px);box-shadow:0 40px 70px -40px rgba(11,24,39,.75)}
 .progress{display:flex;gap:6px;margin-bottom:30px}
 .progress i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden;position:relative}
 .progress i::after{content:"";position:absolute;inset:0;background:var(--tuile-clair);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}

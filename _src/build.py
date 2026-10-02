@@ -95,8 +95,8 @@ PAGES = [
   title="Nettoyage & démoussage de toiture — Bayonne · Tonio Rénov'",
   desc="Démoussage et nettoyage de toiture à Bayonne, Côte Basque et Sud-Landes. Traitement hydrofuge, devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='60% 38%', crop='28% 74%', alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'",
-  h1="Mousse sur vos tuiles ?<br><mark>L'eau finit par passer.</mark>",
-  sub="Chaque hiver, la mousse retient l'humidité contre les tuiles et les descelle. <strong>Démoussage et traitement hydrofuge</strong> par Tonio Rénov', artisan à Boucau — on traite avant l'infiltration. Garantie décennale.",
+  h1="Votre toiture se couvre de mousse ?<br><mark>Tonio Rénov' la nettoie et la protège.</mark>",
+  sub="<strong>Nettoyage et démoussage de toiture</strong>, traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on traite avant que l'eau s'infiltre. Garantie décennale.",
   ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre toiture vous envoie déjà des signaux",
     p="La mousse retient l'humidité contre les tuiles. Non traitée, elle finit par soulever les tuiles et infiltrer la charpente — un <strong>entretien à temps</strong> évite une réfection complète.",
@@ -108,7 +108,7 @@ PAGES = [
   real=dict(t="Démoussage complet avec traitement hydrofuge", items=["Démoussage basse pression, sans abîmer les tuiles", "Traitement hydrofuge biocide sans chlore", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['marie', 'pierre', 'fatima'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis démoussage", t1="Dites-nous ce que vous voyez sur votre toit", q1="Qu'observez-vous sur votre toiture ?",
+    t2="Recevez votre devis démoussage", q1="Qu'observez-vous sur votre toiture ?",
     o1=[("Mousse / lichen visible", "Mousse / lichen visible", "sprout"), ("Tuiles cassées ou déplacées", "Tuiles cassées / déplacées", "layers"), ("Fuite ou infiltration", "Fuite / infiltration", "drop"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("J'ai de la mousse sur mon toit, c'est urgent ?", "Tant qu'elle est en surface, un démoussage suffit. Dès qu'elle soulève les tuiles ou que des taches apparaissent au plafond, l'eau passe déjà — et là, chaque mois compte."),
@@ -123,8 +123,8 @@ PAGES = [
   title="Entretien & traitement hydrofuge de toiture — Bayonne · Tonio Rénov'",
   desc="Entretien préventif et traitement hydrofuge de toiture à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, entretien par Tonio Rénov'",
-  h1="Votre toit s'abîme<br><mark>bien plus vite qu'il n'y paraît.</mark>",
-  sub="Une tuile qui bouge, une gouttière bouchée, et c'est la charpente qui prend l'eau. <strong>Entretien et traitement hydrofuge</strong> par Tonio Rénov', artisan à Boucau — on garde votre toit étanche. Garantie décennale.",
+  h1="Votre toit s'abîme ?<br><mark>Tonio Rénov' et ses équipes l'entretiennent.</mark>",
+  sub="<strong>Entretien de toiture</strong>, contrôle des tuiles et traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on garde votre toit étanche. Garantie décennale.",
   ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Ce qui abîme une toiture, c'est le temps qu'on laisse passer",
     p="L'humidité s'installe sans bruit dans la couverture, puis dans la charpente. Le <strong>traitement hydrofuge</strong> et le contrôle régulier arrêtent le processus avant les dégâts.",
@@ -136,7 +136,7 @@ PAGES = [
   real=dict(t="Entretien annuel avec traitement hydrofuge DALEP 2100", items=["Contrôle complet de la couverture, tuile par tuile", "Traitement hydrofuge biocide sans chlore, produit pro", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['fatima', 'marie', 'pierre'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis d'entretien", t1="Dites-nous où en est votre toiture", q1="Quel entretien recherchez-vous ?",
+    t2="Recevez votre devis d'entretien", q1="Quel entretien recherchez-vous ?",
     o1=[("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Contrôle général de toiture", "Contrôle général", "search"), ("Nettoyage de gouttières", "Nettoyage gouttières", "waves"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Tous les combien de temps faut-il entretenir sa toiture ?", "En moyenne tous les 2 à 3 ans sur la Côte Basque, selon l'exposition (vent, embruns, arbres à proximité). Nos traitements DALEP 2100 tiennent dans la durée, ce qui espace les passages."),
@@ -150,8 +150,8 @@ PAGES = [
   title="Fuite de toiture & urgence — Bayonne · Tonio Rénov'",
   desc="Fuite ou infiltration sur votre toiture ? Intervention rapide à Bayonne, Côte Basque et Sud-Landes. Artisan local, garantie décennale.",
   img='/roof.jpg', pos='64% 42%', crop='60% 78%', alt="Toiture en tuiles et gouttière, diagnostic et réparation par Tonio Rénov'",
-  h1="Ça goutte au plafond ?<br><mark>On intervient avant que ça empire.</mark>",
-  sub="Une infiltration abîme la charpente, l'isolation et les plafonds en quelques jours. <strong>Fuite, tuile cassée, infiltration</strong> : Tonio Rénov', artisan à Boucau, se déplace <strong>en priorité</strong>. Garantie décennale.",
+  h1="Une fuite sur votre toiture ?<br><mark>On la répare avant qu'il ne soit trop tard.</mark>",
+  sub="<strong>Réparation de fuite</strong>, tuile cassée, infiltration. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong>, déplacement <strong>en priorité</strong> — une infiltration abîme la charpente en quelques jours.",
   ghost="Décrire mon urgence", last_trust=("clock", "Intervention sous 48h", "priorité aux urgences"),
   signs=dict(t="Une fuite ne s'aggrave pas si vous agissez vite",
     p="<strong>Chaque heure compte</strong> : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.",
@@ -163,7 +163,7 @@ PAGES = [
   real=dict(t="Fuite réparée en une journée", items=["Diagnostic sur place pour localiser précisément l'infiltration", "Réparation le jour même quand c'est possible", "Prix annoncé avant intervention, pas de surprise", "Réparation couverte par la garantie décennale"]),
   reviews=['pierre', 'marie', 'fatima'],
   form=dict(t="Décrivez votre urgence en 4 questions", sub="<strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong>",
-    t2="Décrivez votre urgence, on vous rappelle", t1="Décrivez ce qui se passe chez vous", q1="Quelle est votre urgence ?",
+    t2="Décrivez votre urgence, on vous rappelle", q1="Quelle est votre urgence ?",
     o1=[("Fuite active", "Fuite active", "drop"), ("Infiltration / tache d'humidité", "Infiltration / tache", "waves"), ("Tuiles endommagées", "Tuiles endommagées", "layers"), ("Autre urgence toiture", "Autre urgence", "alert")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("En combien de temps intervenez-vous en cas de fuite ?", "On priorise systématiquement les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
@@ -178,8 +178,8 @@ PAGES = [
   title="Ravalement & peinture de façade — Bayonne · Tonio Rénov'",
   desc="Ravalement, nettoyage et peinture de façade à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov'",
-  h1="Façade noircie et fissurée ?<br><mark>Votre maison prend dix ans.</mark>",
-  sub="Les fissures laissent entrer l'eau, l'humidité remonte dans les murs. <strong>Ravalement, décrassage et peinture</strong> par Tonio Rénov', artisan à Boucau — on protège le mur, pas seulement la couleur. Garantie décennale.",
+  h1="Votre façade se dégrade ?<br><mark>Tonio Rénov' la ravale et la repeint.</mark>",
+  sub="<strong>Ravalement et peinture de façade</strong>, décrassage et reprise des fissures. Artisan façadier sur la <strong>Côte Basque et les Sud-Landes</strong> — on protège le mur, pas seulement la couleur.",
   ghost="Décrire ma façade", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre façade vous envoie déjà des signaux",
     p="L'humidité et la pollution s'installent progressivement dans l'enduit. Non traitées, les <strong>fissures s'aggravent</strong> et l'eau finit par s'infiltrer dans les murs.",
@@ -191,7 +191,7 @@ PAGES = [
   real=dict(t="Ravalement complet avec peinture Tollens", items=["Décrassage complet de la façade, sans abîmer l'enduit", "Réparation des fissures avant remise en peinture", "Peintures professionnelles Tollens, finitions soignées", "Chantier couvert par la garantie décennale"]),
   reviews=['amadou', 'sofia', 'marie'],
   form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis ravalement", t1="Dites-nous dans quel état est votre façade", q1="Qu'observez-vous sur votre façade ?",
+    t2="Recevez votre devis ravalement", q1="Qu'observez-vous sur votre façade ?",
     o1=[("Façade encrassée / noircie", "Façade encrassée", "sprout"), ("Fissures apparentes", "Fissures apparentes", "crack"), ("Peinture à refaire", "Peinture à refaire", "roller"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de revêtement avez-vous ?", o2=[("Enduit", "Enduit", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Crépi", "Crépi", "home"), ("Je ne sais pas", "Je ne sais pas", "help")],
     q3="Surface approximative de la façade ?", o3=OPT_SURF),
@@ -280,8 +280,9 @@ def render(p):
     call_btn = lambda label, extra='': f'''<a class="btn btn-call {extra}" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true">{ICONS["phone"]}</svg><span>{label}</span></a>'''
     next_btn = f'''<button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span>{ic("arrow","arr")}</button>'''
 
-    def devis_bloc(pos, titre, ident, intro=''):
-        """Un formulaire complet. `pos` rend les identifiants uniques : il y en a deux par page."""
+    def devis_bloc(pos, titre, ident, hero=False):
+        """Un formulaire complet. `pos` rend les identifiants uniques : il y en a deux par page.
+        `hero=True` renvoie la carte seule, à poser dans la colonne droite du hero."""
         champs = (
             f'<div class="field"><label for="f-nom-{pos}">Nom</label>'
             f'<input id="f-nom-{pos}" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div>'
@@ -290,10 +291,7 @@ def render(p):
             f'<div class="field"><label for="f-ville-{pos}">Ville</label>'
             f'<input id="f-ville-{pos}" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>'
         )
-        return f'''<section class="sec sec-light devis" id="{ident}">
-  <div class="wrap">
-    <div class="sec-head center">{titre}{intro or f'<p class="lead">{f["sub"]}</p>'}</div>
-    <div class="devis-shell reveal" style="--d:2">
+        corps = f'''<div class="devis-shell">
       <div class="progress" aria-hidden="true">{prog}</div>
       <form class="devis-form" data-pos="{pos}" novalidate>
         <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p>{opts('probleme', f['o1'])}</div>
@@ -303,13 +301,23 @@ def render(p):
         <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
       </form>
-    </div>
-    <p class="alt-call reveal">Vous préférez en parler ? Appelez-nous au <a href="{tel}">{s['phone']}</a></p>
+    </div>'''
+        if hero:
+            return f'''<div class="hero-form" id="{ident}">
+      <div class="hf-head"><h2 class="hf-t">{titre}</h2><p class="hf-sub">{f['sub']}</p></div>
+      {corps}
+    </div>'''
+        return f'''<section class="sec sec-light devis" id="{ident}">
+  <div class="wrap">
+    <div class="sec-head center">{titre}<p class="lead">{f['sub']}</p></div>
+    {corps}
+    <p class="alt-call">Vous préférez en parler ? Appelez-nous au <a href="{tel}">{s['phone']}</a></p>
   </div>
 </section>'''
 
-    # Le formulaire arrive directement sous la barre de garanties : rien entre les deux.
-    devis_haut = devis_bloc('haut', h2(f['t1']), 'devis')
+    # Le formulaire du haut est dans le hero : texte et boutons à gauche, formulaire à droite
+    # sur ordinateur ; en dessous du titre et des boutons d'appel sur mobile.
+    devis_haut = devis_bloc('haut', f['t'], 'devis', hero=True)
     devis_bas = devis_bloc('bas', h2(f['t2']), 'devis-bas')
 
     return f'''<!DOCTYPE html>
@@ -364,19 +372,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero">
   <div class="hero-bg"><img src="{p['img']}" alt="{p['alt']}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p['pos']}"></div>
   <div class="hero-in">
-    {h1}
-    <p class="hero-sub fade" style="--d:0">{p['sub']}</p>
-    <div class="hero-cta fade" style="--d:1">
-      {call_btn("Appeler maintenant")}
-      <a class="btn btn-ghost" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
+    <div class="hero-copy">
+      {h1}
+      <p class="hero-sub fade" style="--d:0">{p['sub']}</p>
+      <div class="hero-cta fade" style="--d:1">
+        {call_btn("Appeler maintenant")}
+        <a class="btn btn-ghost" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
+      </div>
+      <p class="hero-proof fade" style="--d:2"><span>{stars()}<b>5/5</b> avis vérifiés</span><span>{ic("pin")}Côte Basque &amp; Sud-Landes</span></p>
     </div>
-    <p class="hero-proof fade" style="--d:2"><span>{stars()}<b>5/5</b> avis vérifiés</span><span>{ic("map-pin" if False else "pin")}Bayonne · Côte Basque · Sud-Landes</span></p>
+    {devis_haut}
   </div>
 </section>
 
 <section class="band" aria-label="Nos garanties"><div class="wrap"><ul>{band}</ul></div></section>
-
-{devis_haut}
 
 <section class="sec sec-light">
   <div class="wrap signs-grid">
