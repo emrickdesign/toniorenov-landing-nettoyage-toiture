@@ -91,7 +91,7 @@ STEPS_TOIT = lambda s2, s3: [("Vous nous appelez", "Décrivez l'état de votre t
 
 PAGES = [
  dict(
-  out='index.html', path='/',
+  out='index.html', path='/', host='nettoyage-toiture.toniorenov.fr',
   title="Nettoyage & démoussage de toiture — Bayonne · Tonio Rénov'",
   desc="Démoussage et nettoyage de toiture à Bayonne, Côte Basque et Sud-Landes. Traitement hydrofuge, devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='60% 38%', crop='28% 74%', alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'",
@@ -119,7 +119,7 @@ PAGES = [
   cta=dict(t="Une toiture entretenue, c'est une toiture qui dure", p="<strong>Devis gratuit sous 24h</strong>, aucun engagement."),
  ),
  dict(
-  out='entretien/index.html', path='/entretien/',
+  out='entretien/index.html', path='/entretien/', host='entretien-toiture.toniorenov.fr',
   title="Entretien & traitement hydrofuge de toiture — Bayonne · Tonio Rénov'",
   desc="Entretien préventif et traitement hydrofuge de toiture à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, entretien par Tonio Rénov'",
@@ -146,7 +146,7 @@ PAGES = [
   cta=dict(t="Une toiture entretenue, c'est une toiture qui dure", p="<strong>Devis gratuit sous 24h</strong>, aucun engagement."),
  ),
  dict(
-  out='urgence/index.html', path='/urgence/',
+  out='urgence/index.html', path='/urgence/', host='urgence-toiture.toniorenov.fr',
   title="Fuite de toiture & urgence — Bayonne · Tonio Rénov'",
   desc="Fuite ou infiltration sur votre toiture ? Intervention rapide à Bayonne, Côte Basque et Sud-Landes. Artisan local, garantie décennale.",
   img='/roof.jpg', pos='64% 42%', crop='60% 78%', alt="Toiture en tuiles et gouttière, diagnostic et réparation par Tonio Rénov'",
@@ -174,7 +174,7 @@ PAGES = [
   cta=dict(t="Chaque minute compte face à une fuite", p="Appelez-nous, on évalue la situation <strong>tout de suite</strong>."),
  ),
  dict(
-  out='ravalement/index.html', path='/ravalement/',
+  out='ravalement/index.html', path='/ravalement/', host='ravalement-facade.toniorenov.fr',
   title="Ravalement & peinture de façade — Bayonne · Tonio Rénov'",
   desc="Ravalement, nettoyage et peinture de façade à Bayonne, Côte Basque et Sud-Landes. Devis gratuit sous 24h, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov'",
@@ -339,8 +339,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:title" content="{p['title']}">
 <meta property="og:description" content="{p['desc']}">
-<meta property="og:image" content="{s['base']}{p['img']}">
-<link rel="canonical" href="{s['base']}{p['path']}">
+<meta property="og:image" content="https://{p['host']}{p['img']}">
+<link rel="canonical" href="https://{p['host']}/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preload" as="image" href="{p['img']}" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">

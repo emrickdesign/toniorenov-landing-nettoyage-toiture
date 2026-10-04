@@ -112,7 +112,12 @@
   function envoyer(reponses, pos) {
     /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page et formulaire d'origine. */
     var details = [reponses.toiture, reponses.surface].filter(Boolean).join(' · ') || null;
-    var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
+    /* Chaque prestation a son sous-domaine (entretien-toiture, ravalement-facade…) :
+       c'est lui qui identifie la page, le chemin valant « / » partout. */
+    var hote = location.hostname.split('.')[0];
+    var page = /toniorenov\.fr$/.test(location.hostname)
+      ? hote
+      : (location.pathname === '/' ? 'nettoyage-toiture' : location.pathname.replace(/^\/|\/$/g, ''));
     var corps = {
       client_id: LEAD.client,
       prenom: reponses.nom || null,
@@ -120,7 +125,7 @@
       ville: reponses.ville || null,
       domaine: reponses.probleme || null,
       details: details,
-      source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
+      source: 'landing-ads ' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
       publicite: param('utm_term') || param('utm_content'),
       gclid: param('gclid'),
