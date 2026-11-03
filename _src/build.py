@@ -522,14 +522,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="sec sec-light" style="padding-top:0">
+<section class="sec sec-light" id="avis" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · avis vérifiés de clients de la Côte Basque et des Landes</span></p></div>
     <div class="rev-grid">{''.join(revs)}</div>
   </div>
 </section>
 
-<section class="sec sec-light" style="padding-top:0">
+<section class="sec sec-light" id="zone" style="padding-top:0">
   <div class="wrap zone-grid">
     <div>{zone_h2}<p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
     <ul class="chips reveal" style="--d:2">{zones}</ul>
