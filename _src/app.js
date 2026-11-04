@@ -66,6 +66,10 @@
         call_zone: zone,
         call_number: a.getAttribute('href').replace('tel:', '')
       });
+      /* Backup de GTM : si le tag GTM ne fire pas (bloqueur, timing, bug), la conv remonte quand même. ONE_PER_CLICK dédoublonne côté Ads. */
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18220615555/6RlhCNez6vgcEIOPovBD' });
+      }
     });
   });
 
@@ -220,6 +224,10 @@
         lead_ville: reponses.ville,
         lead_formulaire: pos
       });
+      /* Backup de GTM : si le tag GTM ne fire pas (bloqueur, timing, bug), la conv remonte quand même. ONE_PER_CLICK dédoublonne côté Ads. */
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18220615555/01TxCPPv6fgcEIOPovBD' });
+      }
     }
 
     next.addEventListener('click', function () {

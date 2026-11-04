@@ -443,6 +443,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 }})(window,document,'script','dataLayer','{s["gtm"]}');</script>
 <!-- End Google Tag Manager -->
+<!-- Google Ads Conversion Tag (direct, backup de GTM) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18220615555"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'AW-18220615555');
+</script>
+<!-- End Google Ads Conversion Tag -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{p['title']}</title>
