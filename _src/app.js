@@ -66,6 +66,10 @@
         call_zone: zone,
         call_number: a.getAttribute('href').replace('tel:', '')
       });
+      /* Déclenche la conversion Google Ads en direct (indépendamment de GTM). */
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18220615555/6RlhCNez6vgcEIOPovBD' });
+      }
     });
   });
 
@@ -220,6 +224,10 @@
         lead_ville: reponses.ville,
         lead_formulaire: pos
       });
+      /* Déclenche la conversion Google Ads en direct (indépendamment de GTM). */
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { 'send_to': 'AW-18220615555/01TxCPPv6fgcEIOPovBD' });
+      }
     }
 
     next.addEventListener('click', function () {
