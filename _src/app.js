@@ -344,7 +344,7 @@
   }, { passive: true });
 
   /* 3. Temps passé : jalons visiteur engagé */
-  [15, 30, 60, 120, 180, 300].forEach(function (s) {
+  [10, 15, 30, 60, 120, 180, 300].forEach(function (s) {
     setTimeout(function () {
       if (!document.hidden && !ENGAGED_SENT[s]) {
         ENGAGED_SENT[s] = true;
@@ -411,9 +411,11 @@
       var a = form.querySelector('.fstep.active');
       return a ? parseInt(a.getAttribute('data-step'), 10) : null;
     }
+    /* On n'envoie form_step_N que pour N >= 2 : l'étape 1 est active au chargement,
+       elle n'indique rien d'intéressant. Chaque étape suivante = une case de plus remplie. */
     var mo = new MutationObserver(function () {
       var n = etapeActuelle();
-      if (n && LAST_STEP[pos] !== n) {
+      if (n && n >= 2 && LAST_STEP[pos] !== n) {
         LAST_STEP[pos] = n;
         send('form_step_' + n, { pos: pos });
       }
