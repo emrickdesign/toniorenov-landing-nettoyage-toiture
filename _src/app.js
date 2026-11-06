@@ -241,3 +241,225 @@
 
   [].slice.call(doc.querySelectorAll('form.devis-form')).forEach(initDevis);
 })();
+
+/* ---------------------------------------------------------------------
+   Suivi des visiteurs — ce que les gens font vraiment sur la page.
+   Écrit dans tonio_page_events (CRM Potentieel OS). Un identifiant de
+   session tient le temps d'un onglet. Aucune donnée personnelle n'est
+   envoyée : pathname, référent, utm/gclid, et les actions sur la page.
+   --------------------------------------------------------------------- */
+(function () {
+  var TRACK = {
+    url: 'https://ktzegmikprmltuelxsgi.supabase.co/rest/v1/tonio_page_events',
+    key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0emVnbWlrcHJtbHR1ZWx4c2dpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjExMzEsImV4cCI6MjEwOTI5NzEzMX0.yg0-RZgekOcy8GNKpdg3OUpxp6vp5jZu2iIFJK21TAk'
+  };
+
+  function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 10); }
+  function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
+
+  /* Identifiant de session : un par onglet, perdu à la fermeture. Plus fidèle à "une visite". */
+  var SID;
+  try {
+    SID = sessionStorage.getItem('tonio_sid');
+    if (!SID) { SID = uid(); sessionStorage.setItem('tonio_sid', SID); }
+  } catch (e) { SID = uid(); }
+
+  var PAGE = location.pathname;
+  var REF = document.referrer || '';
+  var UA = navigator.userAgent || '';
+  var START = Date.now();
+  var MAX_SCROLL = 0;
+  var SCROLL_SENT = {};
+  var ENGAGED_SENT = {};
+  var FORM_IN_VIEW_SENT = false;
+  var FORM_START_SENT = false;
+  var LAST_STEP = {};
+  var EXIT_SENT = false;
+
+  var UTM = {
+    gclid: param('gclid'),
+    utm_source: param('utm_source'),
+    utm_medium: param('utm_medium'),
+    utm_campaign: param('utm_campaign'),
+    utm_term: param('utm_term'),
+    utm_content: param('utm_content')
+  };
+
+  function send(type, meta, beacon) {
+    var corps = JSON.stringify({
+      event_type: type,
+      page: PAGE,
+      session_id: SID,
+      user_agent: UA,
+      referrer: REF,
+      meta: Object.assign({}, UTM, meta || {})
+    });
+    try {
+      if (beacon && navigator.sendBeacon) {
+        /* sendBeacon ne porte pas d'en-tête ; Supabase accepte apikey en query string */
+        navigator.sendBeacon(TRACK.url + '?apikey=' + encodeURIComponent(TRACK.key),
+                             new Blob([corps], { type: 'application/json' }));
+      } else {
+        fetch(TRACK.url, {
+          method: 'POST',
+          keepalive: !!beacon,
+          headers: {
+            'apikey': TRACK.key,
+            'Authorization': 'Bearer ' + TRACK.key,
+            'Content-Type': 'application/json'
+          },
+          body: corps
+        }).catch(function () {});
+      }
+    } catch (e) {}
+  }
+
+  /* 1. Page vue */
+  send('pageview', { title: document.title });
+
+  /* 2. Scroll : 10 paliers de 10% pour voir précisément jusqu'où on descend */
+  var SEUILS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+  function pctScroll() {
+    var h = document.documentElement;
+    var sc = h.scrollTop || document.body.scrollTop;
+    var dh = Math.max(h.scrollHeight, document.body.scrollHeight) - h.clientHeight;
+    return dh > 0 ? Math.min(100, Math.round(sc / dh * 100)) : 0;
+  }
+  function checkScroll() {
+    var p = pctScroll();
+    if (p > MAX_SCROLL) MAX_SCROLL = p;
+    for (var i = 0; i < SEUILS.length; i++) {
+      var s = SEUILS[i];
+      if (p >= s && !SCROLL_SENT[s]) {
+        SCROLL_SENT[s] = true;
+        send('scroll_' + s);
+      }
+    }
+  }
+  var scrollRaf = false;
+  window.addEventListener('scroll', function () {
+    if (scrollRaf) return;
+    scrollRaf = true;
+    requestAnimationFrame(function () { checkScroll(); scrollRaf = false; });
+  }, { passive: true });
+
+  /* 3. Temps passé : jalons visiteur engagé */
+  [15, 30, 60, 120, 180, 300].forEach(function (s) {
+    setTimeout(function () {
+      if (!document.hidden && !ENGAGED_SENT[s]) {
+        ENGAGED_SENT[s] = true;
+        send('engaged_' + s + 's');
+      }
+    }, s * 1000);
+  });
+
+  /* 4 & 5. Clics sur téléphone et sur bouton "Devis gratuit" */
+  document.addEventListener('click', function (ev) {
+    var t = ev.target;
+    if (!t || !t.closest) return;
+    var a = t.closest('a[href^="tel:"]');
+    if (a) {
+      var zone = a.closest('.fab') ? 'bouton_flottant'
+        : a.closest('.bar') ? 'barre_sticky'
+        : a.closest('.hero') ? 'hero'
+        : a.closest('.cta') ? 'cta_final'
+        : a.closest('.done') ? 'devis_succes'
+        : a.closest('footer') ? 'footer'
+        : a.closest('.devis') ? 'devis'
+        : 'autre';
+      send('click_call', { zone: zone, numero: (a.getAttribute('href') || '').replace('tel:', '') });
+      return;
+    }
+    var btn = t.closest('a[href="#devis"], a[href="#devis-bas"]');
+    if (btn) {
+      var z = btn.closest('.bar') ? 'barre_sticky'
+        : btn.closest('.hero') ? 'hero'
+        : btn.closest('.cta') ? 'cta_final'
+        : btn.closest('footer') ? 'footer'
+        : 'autre';
+      send('click_cta_devis', { zone: z, href: btn.getAttribute('href') });
+    }
+  }, true);
+
+  /* 6. Formulaire visible dans l'écran */
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting || FORM_IN_VIEW_SENT) return;
+        FORM_IN_VIEW_SENT = true;
+        var f = e.target.querySelector('form.devis-form');
+        var pos = f ? (f.getAttribute('data-pos') || 'haut') : 'haut';
+        send('form_in_view', { pos: pos });
+      });
+    }, { threshold: 0.4 });
+    [].slice.call(document.querySelectorAll('.devis-shell')).forEach(function (sh) { obs.observe(sh); });
+  }
+
+  /* 7. Interactions dans le formulaire : premier clic (= démarrage) + chaque étape */
+  [].slice.call(document.querySelectorAll('form.devis-form')).forEach(function (form) {
+    var pos = form.getAttribute('data-pos') || 'haut';
+
+    form.addEventListener('click', function (ev) {
+      var opt = ev.target && ev.target.closest && ev.target.closest('.opt');
+      if (opt && !FORM_START_SENT) {
+        FORM_START_SENT = true;
+        send('form_start', { pos: pos, premier_choix: opt.getAttribute('data-value') });
+      }
+    });
+
+    function etapeActuelle() {
+      var a = form.querySelector('.fstep.active');
+      return a ? parseInt(a.getAttribute('data-step'), 10) : null;
+    }
+    var mo = new MutationObserver(function () {
+      var n = etapeActuelle();
+      if (n && LAST_STEP[pos] !== n) {
+        LAST_STEP[pos] = n;
+        send('form_step_' + n, { pos: pos });
+      }
+    });
+    mo.observe(form, { attributes: true, subtree: true, attributeFilter: ['class'] });
+    LAST_STEP[pos] = etapeActuelle();
+  });
+
+  /* 8. Succès du formulaire : on se branche sur dataLayer.push (déjà émis par le submit) */
+  (function () {
+    var dl = window.dataLayer;
+    if (!Array.isArray(dl)) return;
+    var pushOrigine = dl.push;
+    dl.push = function () {
+      try {
+        for (var i = 0; i < arguments.length; i++) {
+          var e = arguments[i];
+          if (e && e.event === 'leads_entrer') {
+            send('form_submit_success', {
+              pos: e.lead_formulaire,
+              probleme: e.lead_probleme,
+              toiture: e.lead_toiture,
+              surface: e.lead_surface,
+              ville: e.lead_ville
+            });
+          }
+        }
+      } catch (ex) {}
+      return pushOrigine.apply(this, arguments);
+    };
+  })();
+
+  /* 9. Sortie de page : temps total + scroll maximum atteint, envoyé via sendBeacon */
+  function partir(cause) {
+    if (EXIT_SENT) return;
+    EXIT_SENT = true;
+    send('page_exit', {
+      cause: cause || 'unload',
+      time_on_page_s: Math.round((Date.now() - START) / 1000),
+      max_scroll: MAX_SCROLL,
+      form_in_view: FORM_IN_VIEW_SENT,
+      form_start: FORM_START_SENT,
+      derniere_etape: LAST_STEP
+    }, true);
+  }
+  document.addEventListener('visibilitychange', function () { if (document.hidden) partir('hidden'); });
+  window.addEventListener('pagehide', function () { partir('pagehide'); });
+  window.addEventListener('beforeunload', function () { partir('beforeunload'); });
+})();
