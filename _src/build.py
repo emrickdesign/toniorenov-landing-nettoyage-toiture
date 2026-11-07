@@ -54,6 +54,16 @@ def ic(name, cls=''):
 STAR = '<svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>'
 def stars(): return '<span class="stars" role="img" aria-label="5 étoiles sur 5">' + STAR * 5 + '</span>'
 
+# Verbe de la « méthode Tonio » adapté au métier de la LP. Appelée dans la sec-head
+# de la section « Tonio vient voir avant de chiffrer » pour que la phrase reste
+# vraie (on ne monte pas sur un toit pour peindre un salon).
+def method_tagline(path):
+    if '/peinture' in path:     return 'passe dans la pièce'
+    if '/ravalement' in path:   return 'examine la façade'
+    if '/zinguerie' in path:    return 'regarde les gouttières et la zinguerie'
+    if '/urgence' in path:      return 'monte localiser la fuite'
+    return 'monte sur le toit'  # couvreur, entretien, nettoyage (racine)
+
 # Repère de marque (chevrons du logo) — version claire pour fonds sombres
 def mark(light=True):
     big, small = ('#ffffff', '#ff6f58') if light else ('#152c48', '#8c1c2c')
@@ -383,7 +393,7 @@ def render(p):
     zones = ''.join(f'<li class="{"base" if z=="Boucau" else ""}">{ic("pin")}{z}</li>' for z in ZONES)
     tel = f'tel:{s["tel"]}'
     sig_h2 = h2(p['signs']['t'])
-    method_h2 = h2("De l'appel au chantier, sans mauvaise surprise", 'on-dark')
+    method_h2 = h2("Tonio vient voir avant de chiffrer", 'on-dark')
     real_h2 = h2(p['real']['t'])
     rev_h2 = h2("Ce que disent nos clients sur la Côte Basque")
     zone_h2 = h2("Basés à Boucau, on se déplace sur toute la Côte Basque")
@@ -519,7 +529,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec sec-dark has-bg">
   {bgimg(M["bgm"])}
   <div class="wrap">
-    <div class="sec-head center">{method_h2}<p class="lead reveal on-dark" style="--d:1">Un diagnostic sur place, un <strong>devis détaillé</strong>, une intervention propre et planifiée.</p></div>
+    <div class="sec-head center">{method_h2}<p class="lead reveal on-dark" style="--d:1"><strong>Pas de devis par mail. Pas de commercial envoyé par un autre. Pas de prix balancé au téléphone.</strong><br>Tonio décroche, passe chez vous le soir même ou le lendemain, {method_tagline(p['path'])}, puis chiffre devant vous, sur place.</p></div>
     <ol class="steps">{steps}</ol>
   </div>
 </section>
