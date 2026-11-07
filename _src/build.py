@@ -216,8 +216,8 @@ PAGES = [
   title="Couvreur à Bayonne, Anglet, Boucau — Tonio Rénov'",
   desc="Couvreur zingueur sur la Côte Basque et les Sud-Landes : fuite, tuile cassée, faîtage, bâchage, gouttière. Artisan couvreur local, intervention rapide, garantie décennale.",
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur zingueur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
-  h1="Un couvreur à Bayonne,<br><mark>sans sous-traitance.</mark>",
-  sub="<strong>Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz.</strong> Fuite, tuile cassée, gouttière, faîtage, bâchage urgence : on monte, on regarde, on vous dit. Artisan couvreur local, pas de sous-traitance, garantie décennale.",
+  h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous 48 h</mark><br>à Bayonne — sans sous-traitance.",
+  sub="<strong>On monte, on regarde, on vous dit.</strong> Puis on chiffre devant vous, sur place. Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz. Artisan local, décennale, pas de sous-traitance.",
   ghost="Décrire mon besoin couvreur", last_trust=("clock", "Intervention rapide", "bâchage priorité"),
   signs=dict(t="Ce qu'un couvreur zingueur voit avant tout le monde",
     p="<strong>Un bon couvreur zingueur</strong> ne vient pas juste quand ça fuit. Il repère ce qui va bouger à la prochaine tempête — c'est tout l'intérêt d'un couvreur local qui connaît les toitures du secteur.",
@@ -277,8 +277,8 @@ PAGES = [
   title="Peintre intérieur à Bayonne — salon, chambre, appartement · Tonio Rénov'",
   desc="Entreprise de peinture intérieure à Bayonne, Anglet, Biarritz : peinture salon, chambre, appartement, maison, rénovation complète. Peintures pro Tollens, protection du mobilier, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov' — TODO remplacer par photo intérieure réelle",
-  h1="Un salon, une chambre à repeindre ?<br><mark>Tonio Rénov' le fait proprement.</mark>",
-  sub="<strong>Entreprise de peinture intérieure sur la Côte Basque</strong> : peinture salon, chambre, appartement complet, maison, rénovation peinture, moulures sur-mesure. Peintures professionnelles Tollens, protection du mobilier, chantier propre chaque soir. Garantie décennale.",
+  h1="Peintre intérieur à Bayonne :<br><mark>un chantier propre chaque soir,</mark><br>peintures Tollens, devis sous 24 h.",
+  sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
   ghost="Décrire mon projet peinture", last_trust=("clock", "Devis rénovation", "chantier planifié"),
   signs=dict(t="Une bonne peinture, c'est 20 % de produit et 80 % de préparation",
     p="Le résultat ne tient pas à la couleur, il tient à ce qu'on fait <strong>avant</strong> de la poser. Dégraissage, rebouchage, ponçage, sous-couche : la peinture Tollens vient en dernier.",
@@ -494,13 +494,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-bg"><img src="{p['img']}" alt="{p['alt']}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p['pos']}"></div>
   <div class="hero-in">
     <div class="hero-copy">
+      <p class="hero-eyebrow fade" style="--d:0"><span>{ic("award")}<b>500 chantiers</b> Côte Basque</span><span>{ic("shield-check")}Décennale &amp; RC Pro</span><span>{stars()}<b>5/5</b> clients</span></p>
       {h1}
-      <p class="hero-sub fade" style="--d:0">{p['sub']}</p>
-      <div class="hero-cta fade" style="--d:1">
-        {call_btn("Appeler maintenant")}
-        <a class="btn btn-ghost" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
+      <p class="hero-sub fade" style="--d:1">{p['sub']}</p>
+      <div class="hero-cta fade" style="--d:2">
+        <a class="btn btn-primary" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
+        <a class="btn-tel" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
       </div>
-      <p class="hero-proof fade" style="--d:2"><span>{stars()}<b>5/5</b> avis vérifiés</span><span>{ic("pin")}Côte Basque &amp; Sud-Landes</span></p>
+      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}<b>Devis gratuit</b></span><span>{ic("clock")}<b>Réponse sous 24&nbsp;h</b></span><span>{ic("shield")}Sans engagement</span></p>
     </div>
     {devis_haut}
   </div>
