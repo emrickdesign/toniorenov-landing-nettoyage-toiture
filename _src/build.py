@@ -64,6 +64,20 @@ def method_tagline(path):
     if '/urgence' in path:      return 'monte localiser la fuite'
     return 'monte sur le toit'  # couvreur, entretien, nettoyage (racine)
 
+# PS final (Sabri : « vendre contre le coût de l'inaction ») — adapté au métier.
+def ps_subject(path):
+    if '/peinture' in path:     return 'intérieur'
+    if '/ravalement' in path:   return 'façade'
+    if '/urgence' in path:      return 'fuite'
+    return 'toit'  # couvreur, entretien, nettoyage, zinguerie, racine
+
+def ps_cost(path):
+    if '/peinture' in path:     return 'cohabiter avec des murs abîmés un hiver de plus'
+    if '/ravalement' in path:   return 'voir l\'humidité gagner le mur et doubler le budget dans 2 ans'
+    if '/urgence' in path:      return 'laisser l\'eau fragiliser la charpente — et là ce n\'est plus la tuile, c\'est le toit entier'
+    if '/zinguerie' in path:    return 'regarder la gouttière arracher un bout de façade au prochain orage'
+    return 'laisser la couverture se fatiguer un hiver de plus — et payer la charpente en plus de la toiture'
+
 # Repère de marque (chevrons du logo) — version claire pour fonds sombres
 def mark(light=True):
     big, small = ('#ffffff', '#ff6f58') if light else ('#152c48', '#8c1c2c')
@@ -113,7 +127,7 @@ PAGES = [
   img='/roof.jpg', pos='60% 38%', crop='28% 74%', alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'",
   h1="Mousse sur votre toiture ?<br><mark>Tonio Rénov' la nettoie.</mark>",
   sub="<strong>Nettoyage et démoussage de toiture</strong>, traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on traite avant que l'eau s'infiltre. Garantie décennale.",
-  ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
+  ghost="Faire venir Tonio chez moi", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre toiture vous envoie déjà des signaux",
     p="La mousse retient l'humidité contre les tuiles. Non traitée, elle finit par soulever les tuiles et infiltrer la charpente — un <strong>entretien à temps</strong> évite une réfection complète.",
     items=[("sprout", "Mousse verte visible", "Des plaques de mousse ou de lichen apparaissent sur les tuiles, surtout côté nord ou sous les arbres."),
@@ -141,7 +155,7 @@ PAGES = [
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, entretien par Tonio Rénov'",
   h1="Votre toit s'abîme ?<br><mark>Tonio Rénov' l'entretient.</mark>",
   sub="<strong>Entretien de toiture</strong>, contrôle des tuiles et traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on garde votre toit étanche. Garantie décennale.",
-  ghost="Décrire ma toiture", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
+  ghost="Faire venir Tonio chez moi", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Ce qui abîme une toiture, c'est le temps qu'on laisse passer",
     p="L'humidité s'installe sans bruit dans la couverture, puis dans la charpente. Le <strong>traitement hydrofuge</strong> et le contrôle régulier arrêtent le processus avant les dégâts.",
     items=[("drop", "Traitement hydrofuge préventif", "Un traitement biocide sans chlore qui empêche la mousse et le lichen de s'installer durablement."),
@@ -168,7 +182,7 @@ PAGES = [
   img='/roof.jpg', pos='64% 42%', crop='60% 78%', alt="Toiture en tuiles et gouttière, diagnostic et réparation par Tonio Rénov'",
   h1="Une fuite sur votre toit ?<br><mark>On la répare sans attendre.</mark>",
   sub="<strong>Réparation de fuite</strong>, tuile cassée, infiltration. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong>, déplacement <strong>en priorité</strong> — on intervient avant qu'il ne soit trop tard pour la charpente.",
-  ghost="Décrire mon urgence", last_trust=("clock", "Intervention sous 48h", "priorité aux urgences"),
+  ghost="Faire venir Tonio en urgence", last_trust=("clock", "Intervention sous 48h", "priorité aux urgences"),
   signs=dict(t="Une fuite ne s'aggrave pas si vous agissez vite",
     p="<strong>Chaque heure compte</strong> : plus l'eau s'infiltre longtemps, plus les dégâts sur la charpente et l'isolation grandissent. Voici les réflexes à avoir en attendant l'intervention.",
     items=[("drop", "Protégez l'intérieur", "Placez un seau ou une bâche sous la fuite pour limiter les dégâts au plafond et au sol en attendant."),
@@ -196,7 +210,7 @@ PAGES = [
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov'",
   h1="Façade qui se dégrade ?<br><mark>Tonio Rénov' la ravale.</mark>",
   sub="<strong>Ravalement et peinture de façade</strong>, décrassage et reprise des fissures. Artisan façadier sur la <strong>Côte Basque et les Sud-Landes</strong> — on protège le mur, pas seulement la couleur.",
-  ghost="Décrire ma façade", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
+  ghost="Faire venir Tonio chez moi", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre façade vous envoie déjà des signaux",
     p="L'humidité et la pollution s'installent progressivement dans l'enduit. Non traitées, les <strong>fissures s'aggravent</strong> et l'eau finit par s'infiltrer dans les murs.",
     items=[("sprout", "Mousse ou noirceur visible", "Traces vertes ou noires sur l'enduit, souvent côté nord ou dans les zones peu exposées au soleil."),
@@ -228,7 +242,7 @@ PAGES = [
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur zingueur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
   h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous 48 h</mark><br>à Bayonne — sans sous-traitance.",
   sub="<strong>On monte, on regarde, on vous dit.</strong> Puis on chiffre devant vous, sur place. Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz. Artisan local, décennale, pas de sous-traitance.",
-  ghost="Décrire mon besoin couvreur", last_trust=("clock", "Intervention rapide", "bâchage priorité"),
+  ghost="Faire venir Tonio chez moi", last_trust=("clock", "Intervention rapide", "bâchage priorité"),
   signs=dict(t="Ce qu'un couvreur zingueur voit avant tout le monde",
     p="<strong>Un bon couvreur zingueur</strong> ne vient pas juste quand ça fuit. Il repère ce qui va bouger à la prochaine tempête — c'est tout l'intérêt d'un couvreur local qui connaît les toitures du secteur.",
     items=[("drop", "Fuite ou infiltration", "Taches au plafond, auréoles, humidité : votre couvreur localise l'origine avant que la charpente souffre. Bâchage d'urgence si la pluie approche."),
@@ -257,7 +271,7 @@ PAGES = [
   img='/roof.jpg', pos='52% 45%', crop='48% 68%', alt="Faîtage et gouttières zinc sur toiture tuiles, zinguerie Tonio Rénov'",
   h1="Gouttières, faîtage, solins ?<br><mark>Tonio Rénov' les refait.</mark>",
   sub="<strong>Zinguerie à Bayonne, Anglet, Boucau</strong> : pose de gouttières zinc ou alu, reprise de faîtage au mortier, solins de cheminée étanches. Artisan zingueur local, on fixe au lieu de rafistoler. Garantie décennale.",
-  ghost="Décrire ma zinguerie", last_trust=("clock", "Avant la tempête", "devis sous 24h"),
+  ghost="Faire venir Tonio chez moi", last_trust=("clock", "Avant la tempête", "devis sous 24h"),
   signs=dict(t="La zinguerie, c'est ce qui tient la toiture pendant l'hiver",
     p="Ce qui lâche d'abord en tempête, ce n'est presque jamais la tuile — c'est la <strong>gouttière</strong>, le <strong>faîtage</strong>, le <strong>solin de cheminée</strong>. Trois points de zinguerie qui, bien repris, évitent 90 % des infiltrations.",
     items=[("waves", "Gouttière qui déborde ou fuit", "Débris, pente qui s'est faussée, soudure fatiguée : la gouttière lâche d'abord. Zinguerie à reprendre, pas à rafistoler."),
@@ -289,7 +303,7 @@ PAGES = [
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov' — TODO remplacer par photo intérieure réelle",
   h1="Peintre intérieur à Bayonne :<br><mark>un chantier propre chaque soir,</mark><br>peintures Tollens, devis sous 24 h.",
   sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
-  ghost="Décrire mon projet peinture", last_trust=("clock", "Devis rénovation", "chantier planifié"),
+  ghost="Faire venir Tonio chez moi", last_trust=("clock", "Devis rénovation", "chantier planifié"),
   signs=dict(t="Une bonne peinture, c'est 20 % de produit et 80 % de préparation",
     p="Le résultat ne tient pas à la couleur, il tient à ce qu'on fait <strong>avant</strong> de la poser. Dégraissage, rebouchage, ponçage, sous-couche : la peinture Tollens vient en dernier.",
     items=[("roller", "Préparation complète des supports", "Rebouchage des fissures, ponçage des zones écaillées, dégraissage : la peinture tient parce qu'elle accroche sur un support propre."),
@@ -490,12 +504,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#top" aria-label="{s['name']} — haut de page">{mark()}<span><b>{s['name']}</b><small>Toiture &amp; façade · Boucau</small></span></a>
-    <div class="bar-actions">
-      <a class="bar-tel" href="{tel}">{s['phone']}</a>
-      <a class="btn btn-call btn-sm" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Appeler</span></a>
-      <a class="btn btn-ghost btn-sm" href="#devis"><span class="lbl-long">Devis gratuit</span><span class="lbl-short">Devis</span></a>
-    </div>
+    <a class="brand" href="#top" aria-label="{s['name']} — haut de page">{mark()}<span><b>{s['name']}</b><small>Toiture &amp; peinture · Boucau</small></span></a>
+    <a class="bar-tel-link" href="{tel}" aria-label="Appeler {s['name']} au {s['phone']}">{ic("phone")}<span class="bar-tel-num">{s['phone']}</span></a>
   </div>
 </header>
 
@@ -568,10 +578,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     {cta_h2}
     <p class="reveal" style="--d:1">{p['cta']['p']}</p>
+    <p class="rarete reveal on-dark" style="--d:1.5"><em>Tonio prend 6 à 8 nouveaux chantiers par mois pour garder la qualité, pas à la chaîne.</em></p>
     <div class="btns reveal" style="--d:2">
-      <a class="btn btn-light" href="{tel}">{ic("phone")}<span>{s['phone']}</span></a>
-      <a class="btn btn-outline-light" href="#devis-bas"><span>Demander un devis</span>{ic("arrow","arr")}</a>
+      <a class="btn btn-primary" href="#devis-bas"><span>Faire venir Tonio chez moi</span>{ic("arrow","arr")}</a>
+      <a class="btn-tel on-dark" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
     </div>
+    <p class="ps reveal on-dark" style="--d:3"><strong>PS —</strong> Votre {ps_subject(p['path'])} ne va pas s'arranger tout seul. Un diagnostic gratuit maintenant = zéro euro pour savoir. Attendre, c'est {ps_cost(p['path'])}.</p>
   </div>
 </section>
 {devis_bas}

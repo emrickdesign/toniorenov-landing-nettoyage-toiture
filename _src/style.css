@@ -54,6 +54,11 @@ h2+.lead,h2+p{margin-top:20px}
 .on-dark{color:#fff}
 .on-dark strong{color:var(--tuile-clair)}
 .on-dark .lead{color:rgba(255,255,255,.78)}
+/* Rareté honnête : petit paragraphe italique discret au-dessus du CTA final, pose la capacité réelle sans faire de pression fake. */
+.rarete{margin-top:14px;font-size:.9375rem;color:rgba(255,255,255,.72);font-style:italic}
+/* PS final : vendre contre le coût de l'inaction (Sabri). Plus petit que le body mais pas caché, tout le monde scroll jusqu'ici. */
+.ps{margin-top:22px;max-width:62ch;margin-inline:auto;font-size:.9375rem;line-height:1.55;color:rgba(255,255,255,.82);text-wrap:pretty}
+.ps strong{color:#fff}
 
 /* Animation de titres (21st.dev « Blur Out Up ») : chaque mot sort du flou */
 .w{display:inline-block}
@@ -103,11 +108,11 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .brand svg{width:40px;height:auto;flex:none}
 .brand b{font-size:1.0625rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
 .brand small{display:block;font-size:.75rem;font-weight:500;color:rgba(255,255,255,.62);letter-spacing:0;line-height:1.1}
-.bar-actions{display:flex;align-items:center;gap:10px}
-.bar-tel{display:none;color:#fff;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.bar-tel:hover{color:var(--tuile-clair)}
-@media(min-width:760px){.bar-tel{display:inline-flex;align-items:center;gap:.5em;margin-right:6px}}
-@media(max-width:430px){.brand b,.brand small{display:none}}
+/* Header épuré : brand + lien tel discret, PAS de deuxième CTA. Le FAB flottant prend le relais après scroll, et le hero porte le vrai CTA. */
+.bar-tel-link{display:inline-flex;align-items:center;gap:.5em;color:#fff;font-weight:600;font-size:.9375rem;text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:-.01em;padding:8px 10px;border-radius:999px;transition:background .2s}
+.bar-tel-link:hover{background:rgba(255,255,255,.08)}
+.bar-tel-link .ic{width:1.1em;height:1.1em}
+@media(max-width:430px){.brand small{display:none}.bar-tel-num{display:none}.bar-tel-link{padding:10px}}
 
 /* ---------- Hero : la photo EST le fond ---------- */
 .hero{position:relative;isolation:isolate;display:flex;align-items:center;color:#fff;background:var(--nuit);overflow:hidden}
@@ -143,8 +148,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
   .hero-cta{margin-top:22px;gap:14px}
   .hero-cta .btn{--h:54px}
   .btn-tel{justify-content:center;width:100%;padding:8px 0}
-  .hero-proof{margin-top:16px}
-  .hero-proof span:nth-child(3){display:none}
+  .hero-proof{margin-top:16px;flex-direction:column;align-items:flex-start;gap:8px 0}
   .hero-eyebrow{font-size:.8125rem;gap:6px 14px}
 }
 

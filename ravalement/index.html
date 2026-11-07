@@ -90,6 +90,11 @@ h2+.lead,h2+p{margin-top:20px}
 .on-dark{color:#fff}
 .on-dark strong{color:var(--tuile-clair)}
 .on-dark .lead{color:rgba(255,255,255,.78)}
+/* Rareté honnête : petit paragraphe italique discret au-dessus du CTA final, pose la capacité réelle sans faire de pression fake. */
+.rarete{margin-top:14px;font-size:.9375rem;color:rgba(255,255,255,.72);font-style:italic}
+/* PS final : vendre contre le coût de l'inaction (Sabri). Plus petit que le body mais pas caché, tout le monde scroll jusqu'ici. */
+.ps{margin-top:22px;max-width:62ch;margin-inline:auto;font-size:.9375rem;line-height:1.55;color:rgba(255,255,255,.82);text-wrap:pretty}
+.ps strong{color:#fff}
 
 /* Animation de titres (21st.dev « Blur Out Up ») : chaque mot sort du flou */
 .w{display:inline-block}
@@ -139,11 +144,11 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .brand svg{width:40px;height:auto;flex:none}
 .brand b{font-size:1.0625rem;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
 .brand small{display:block;font-size:.75rem;font-weight:500;color:rgba(255,255,255,.62);letter-spacing:0;line-height:1.1}
-.bar-actions{display:flex;align-items:center;gap:10px}
-.bar-tel{display:none;color:#fff;font-weight:600;text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
-.bar-tel:hover{color:var(--tuile-clair)}
-@media(min-width:760px){.bar-tel{display:inline-flex;align-items:center;gap:.5em;margin-right:6px}}
-@media(max-width:430px){.brand b,.brand small{display:none}}
+/* Header épuré : brand + lien tel discret, PAS de deuxième CTA. Le FAB flottant prend le relais après scroll, et le hero porte le vrai CTA. */
+.bar-tel-link{display:inline-flex;align-items:center;gap:.5em;color:#fff;font-weight:600;font-size:.9375rem;text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:-.01em;padding:8px 10px;border-radius:999px;transition:background .2s}
+.bar-tel-link:hover{background:rgba(255,255,255,.08)}
+.bar-tel-link .ic{width:1.1em;height:1.1em}
+@media(max-width:430px){.brand small{display:none}.bar-tel-num{display:none}.bar-tel-link{padding:10px}}
 
 /* ---------- Hero : la photo EST le fond ---------- */
 .hero{position:relative;isolation:isolate;display:flex;align-items:center;color:#fff;background:var(--nuit);overflow:hidden}
@@ -179,8 +184,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
   .hero-cta{margin-top:22px;gap:14px}
   .hero-cta .btn{--h:54px}
   .btn-tel{justify-content:center;width:100%;padding:8px 0}
-  .hero-proof{margin-top:16px}
-  .hero-proof span:nth-child(3){display:none}
+  .hero-proof{margin-top:16px;flex-direction:column;align-items:flex-start;gap:8px 0}
   .hero-eyebrow{font-size:.8125rem;gap:6px 14px}
 }
 
@@ -444,12 +448,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="bar">
   <div class="bar-in">
-    <a class="brand" href="#top" aria-label="Tonio Rénov' — haut de page"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Toiture &amp; façade · Boucau</small></span></a>
-    <div class="bar-actions">
-      <a class="bar-tel" href="tel:+33415870242">04 15 87 02 42</a>
-      <a class="btn btn-call btn-sm" href="tel:+33415870242"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Appeler</span></a>
-      <a class="btn btn-ghost btn-sm" href="#devis"><span class="lbl-long">Devis gratuit</span><span class="lbl-short">Devis</span></a>
-    </div>
+    <a class="brand" href="#top" aria-label="Tonio Rénov' — haut de page"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Toiture &amp; peinture · Boucau</small></span></a>
+    <a class="bar-tel-link" href="tel:+33415870242" aria-label="Appeler Tonio Rénov' au 04 15 87 02 42"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="bar-tel-num">04 15 87 02 42</span></a>
   </div>
 </header>
 
@@ -462,7 +462,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 aria-label="Façade qui se dégrade ? Tonio Rénov' la ravale."><span class="w" style="--i:0" aria-hidden="true">Façade</span> <span class="w" style="--i:1" aria-hidden="true">qui</span> <span class="w" style="--i:2" aria-hidden="true">se</span> <span class="w" style="--i:3" aria-hidden="true">dégrade</span> <span class="w" style="--i:4" aria-hidden="true">?</span><br><mark><span class="w" style="--i:5" aria-hidden="true">Tonio</span> <span class="w" style="--i:6" aria-hidden="true">Rénov'</span> <span class="w" style="--i:7" aria-hidden="true">la</span> <span class="w" style="--i:8" aria-hidden="true">ravale.</span></mark></h1>
       <p class="hero-sub fade" style="--d:1"><strong>Ravalement et peinture de façade</strong>, décrassage et reprise des fissures. Artisan façadier sur la <strong>Côte Basque et les Sud-Landes</strong> — on protège le mur, pas seulement la couleur.</p>
       <div class="hero-cta fade" style="--d:2">
-        <a class="btn btn-primary" href="#devis"><span>Décrire ma façade</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="btn btn-primary" href="#devis"><span>Faire venir Tonio chez moi</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         <a class="btn-tel" href="tel:+33415870242"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>ou appeler <b>04 15 87 02 42</b></span></a>
       </div>
       <p class="hero-proof fade" style="--d:3"><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><b>Visite gratuite</b> le soir même ou le lendemain</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>100&nbsp;% sans engagement</span></p>
@@ -535,10 +535,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <h2 class="split " aria-label="Une façade entretenue, c'est une maison qui dure"><span class="w" style="--i:0" aria-hidden="true">Une</span> <span class="w" style="--i:1" aria-hidden="true">façade</span> <span class="w" style="--i:2" aria-hidden="true">entretenue,</span> <span class="w" style="--i:3" aria-hidden="true">c'est</span> <span class="w" style="--i:4" aria-hidden="true">une</span> <span class="w" style="--i:5" aria-hidden="true">maison</span> <span class="w" style="--i:6" aria-hidden="true">qui</span> <span class="w" style="--i:7" aria-hidden="true">dure</span></h2>
     <p class="reveal" style="--d:1"><strong>Devis gratuit sous 24h</strong>, aucun engagement.</p>
+    <p class="rarete reveal on-dark" style="--d:1.5"><em>Tonio prend 6 à 8 nouveaux chantiers par mois pour garder la qualité, pas à la chaîne.</em></p>
     <div class="btns reveal" style="--d:2">
-      <a class="btn btn-light" href="tel:+33415870242"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>04 15 87 02 42</span></a>
-      <a class="btn btn-outline-light" href="#devis-bas"><span>Demander un devis</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="btn btn-primary" href="#devis-bas"><span>Faire venir Tonio chez moi</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="btn-tel on-dark" href="tel:+33415870242"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>ou appeler <b>04 15 87 02 42</b></span></a>
     </div>
+    <p class="ps reveal on-dark" style="--d:3"><strong>PS —</strong> Votre façade ne va pas s'arranger tout seul. Un diagnostic gratuit maintenant = zéro euro pour savoir. Attendre, c'est voir l'humidité gagner le mur et doubler le budget dans 2 ans.</p>
   </div>
 </section>
 <section class="sec sec-light devis" id="devis-bas">
