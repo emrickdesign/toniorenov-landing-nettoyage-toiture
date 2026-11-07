@@ -494,14 +494,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-bg"><img src="{p['img']}" alt="{p['alt']}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p['pos']}"></div>
   <div class="hero-in">
     <div class="hero-copy">
-      <p class="hero-eyebrow fade" style="--d:0"><span>{ic("award")}<b>500 chantiers</b> Côte Basque</span><span>{ic("shield-check")}Décennale &amp; RC Pro</span><span>{stars()}<b>5/5</b> clients</span></p>
+      <p class="hero-eyebrow fade" style="--d:0"><span>{ic("award")}<b>500 chantiers</b> Côte Basque</span><span>{ic("shield-check")}Décennale &amp; RC Pro</span><span>{stars()}<b>5/5</b> sur <b>23 avis</b> Google</span></p>
       {h1}
       <p class="hero-sub fade" style="--d:1">{p['sub']}</p>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
         <a class="btn-tel" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
       </div>
-      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}<b>Devis gratuit</b></span><span>{ic("clock")}<b>Réponse sous 24&nbsp;h</b></span><span>{ic("shield")}Sans engagement</span></p>
+      <p class="hero-proof fade" style="--d:3"><span>{ic("clock")}<b>Visite gratuite</b> le soir même ou le lendemain</span><span>{ic("shield")}100&nbsp;% sans engagement</span></p>
     </div>
     {devis_haut}
   </div>
