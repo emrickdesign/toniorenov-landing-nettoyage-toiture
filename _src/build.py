@@ -542,9 +542,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {stars()}<span><b>5/5</b> · <b>23 avis</b></span>
       </a>
       <div class="hero-cta fade" style="--d:2">
-        <a class="btn btn-primary" href="{tel}">{ic("phone","btn-ph")}<span>{p['ghost']}</span></a>
+        <a class="btn btn-primary btn-stack" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone","btn-ph")}<span class="btn-txt"><b>{p['ghost']}</b><small>{s['phone']}</small></span></a>
       </div>
-      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}Visite gratuite</span><span>{ic("shield")}Sans engagement</span><span class="hero-num">{s['phone']}</span></p>
+      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}Visite gratuite</span><span>{ic("shield")}Sans engagement</span></p>
     </div>
     {devis_haut}
   </div>
