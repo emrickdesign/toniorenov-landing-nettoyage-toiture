@@ -120,6 +120,10 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%)}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
 .hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(40px,7vh,96px) var(--gutter) clamp(40px,7vh,96px);display:grid;gap:clamp(28px,4vw,56px);align-items:center}
+/* Hero centré (demande Emrick 09/11) : plus posé, plus LP de conversion. En desktop quand on passe en split (hero-copy à gauche, formulaire à droite), on revient à text-align:left — un texte centré dans une colonne gauche tombe mal à côté d'un bloc à droite. */
+.hero-copy{text-align:center}
+.hero-cta{justify-content:center}
+.hero-proof{justify-content:center}
 .hero h1{font-size:clamp(1.9rem,1.05rem + 2.6vw,2.7rem);line-height:1.1;letter-spacing:-.03em;text-wrap:balance}
 .hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/100% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em}
 .hero-sub{margin-top:clamp(16px,2.4vh,24px);max-width:42ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
@@ -163,6 +167,10 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 @media(min-width:1060px){
   .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px)}
   .hero::before{background:linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
+  /* Quand hero split (texte à gauche, formulaire à droite), le centrage tombe mal. On revient à gauche. */
+  .hero-copy{text-align:left}
+  .hero-cta{justify-content:flex-start}
+  .hero-proof{justify-content:flex-start}
 }
 .hero-form{min-width:0}
 .hf-head{margin-bottom:18px}
