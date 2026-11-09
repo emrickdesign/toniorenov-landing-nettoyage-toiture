@@ -78,6 +78,28 @@ def ps_cost(path):
     if '/zinguerie' in path:    return 'regarder la gouttière arracher un bout de façade au prochain orage'
     return 'laisser la couverture se fatiguer un hiver de plus — et payer la charpente en plus de la toiture'
 
+# Galerie photos : vraies réalisations Tonio récupérées sur toniorenov.fr,
+# adaptées au métier de la LP. Alt descriptifs géolocalisés (SEO + crédibilité).
+def gallery_photos(path):
+    if '/peinture' in path:
+        return [
+            ('img/galerie-real-peinture-sejour.jpg', 'Peinture & moulures à Anglet'),
+            ('img/galerie-real-peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
+            ('img/galerie-real-peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque'),
+        ]
+    if '/ravalement' in path:
+        return [
+            ('img/galerie-real-facade-basque.jpg', 'Ravalement de façade Côte Basque'),
+            ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
+            ('img/galerie-real-refection-toiture.jpg', 'Chantier complet Pays Basque'),
+        ]
+    # Défaut : couvreur, entretien, urgence, zinguerie, nettoyage-toiture (racine)
+    return [
+        ('img/galerie-real-refection-toiture.jpg', 'Réfection de couverture au Pays Basque'),
+        ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage & zinguerie au Pays Basque'),
+        ('img/galerie-real-toiture-chantier.jpg', 'Entretien de toiture à Boucau'),
+    ]
+
 # Repère de marque (chevrons du logo) — version claire pour fonds sombres
 def mark(light=True):
     big, small = ('#ffffff', '#ff6f58') if light else ('#152c48', '#8c1c2c')
@@ -253,7 +275,7 @@ PAGES = [
   real=dict(t="Un couvreur zingueur qui monte, regarde, et vous dit vraiment", items=["Diagnostic couvreur sur place, prix annoncé avant travaux", "Intervention en priorité sur les fuites, bâchage urgence si besoin", "Faîtage, solins, zinguerie, gouttière zinc ou aluminium, chéneau, tuiles, ardoise : couvreur zingueur toutes couvertures", "Pose et remplacement de gouttière alu ou zinc, soudure à l'étain", "Chantier couvert par la garantie décennale et RC Pro"]),
   reviews=['pierre', 'laurent', 'marie'],
   form=dict(t="Décrivez votre besoin en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Décrivez votre besoin couvreur, on vous rappelle", q1="Quel est votre besoin couvreur ?",
+    t2="Décrivez votre besoin, on vous rappelle", q1="Quel est votre besoin ?",
     o1=[("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Vous intervenez vite en cas de fuite ?", "Oui, on priorise systématiquement les urgences couvreur (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
@@ -540,30 +562,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <section class="sec sec-light">
-  <div class="wrap real-grid">
-    <div class="real-head">{real_h2}</div>
-    <div class="ba-col">{compare(M)}</div>
-    <ul class="real-list reveal" style="--d:1">{real}</ul>
+  <div class="wrap">
+    <div class="sec-head center">{h2("Nos derniers chantiers sur la Côte Basque")}</div>
+    <ul class="gal-grid reveal" style="--d:1">
+{''.join(f'      <li><img src="{src}" alt="{alt}" loading="lazy" decoding="async"><figcaption>{alt}</figcaption></li>' + chr(10) for src, alt in gallery_photos(p['path']))}    </ul>
   </div>
 </section>
 
 <section class="sec sec-light" id="avis" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · avis vérifiés de clients de la Côte Basque et des Landes</span></p></div>
+    <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · avis vérifiés de clients de la Côte Basque et des Landes</span></p></div>
     <div class="rev-grid">{''.join(revs)}</div>
   </div>
 </section>
 
 <section class="sec sec-light" id="zone" style="padding-top:0">
-  <div class="wrap zone-grid">
-    <div>{zone_h2}<p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
+  <div class="wrap">
+    <div class="sec-head center">{zone_h2}<p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
     <ul class="chips reveal" style="--d:2">{zones}</ul>
   </div>
 </section>
 
 <section class="sec sec-light" style="padding-top:0">
-  <div class="wrap faq-grid">
-    <div class="faq-head">{faq_h2}<p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="{tel}"><strong>{s['phone']}</strong></a>.</p></div>
+  <div class="wrap">
+    <div class="sec-head center">{faq_h2}<p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="{tel}"><strong>{s['phone']}</strong></a>.</p></div>
     <div class="faq-list reveal" style="--d:1">{faq}</div>
   </div>
 </section>
