@@ -160,15 +160,19 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .hero mark{background:linear-gradient(var(--jaune),var(--jaune)) no-repeat 0 94%/100% .1em;color:var(--jaune);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:.06em}
 .hero-sub{margin-top:clamp(16px,2.4vh,24px);max-width:42ch;font-size:clamp(1.0625rem,.95rem + .55vw,1.3125rem);line-height:1.5;color:rgba(255,255,255,.88);text-wrap:pretty}
 .hero-sub strong{color:#fff;font-weight:700;background:linear-gradient(rgba(201,64,43,.55),rgba(201,64,43,.55)) no-repeat 0 100%/100% .38em;padding:0 .06em}
-.hero-cta{margin-top:clamp(24px,4vh,36px);display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
-.hero-proof{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;font-size:.9375rem;color:rgba(255,255,255,.85)}
+.hero-cta{margin-top:clamp(20px,3.5vh,32px);display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+.hero-proof{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:.9375rem;color:rgba(255,255,255,.85)}
 .stars{display:inline-flex;gap:2px;color:#ffbf47}
 .stars .ic{width:16px;height:16px}
-.hero-proof span,.hero-eyebrow span{display:inline-flex;align-items:center;gap:.55em}
-/* Ligne de preuve chiffrée au-dessus du H1 : les 3 chiffres qui plantent la confiance avant même qu'on lise. */
-.hero-eyebrow{margin:0 0 clamp(14px,2vh,18px);display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:.875rem;color:rgba(255,255,255,.82);letter-spacing:.02em}
-.hero-eyebrow b{color:#fff;font-weight:700}
-.hero-eyebrow .ic{width:1.05em;height:1.05em;color:#ffbf47}
+.hero-proof span{display:inline-flex;align-items:center;gap:.4em}
+.hero-proof .ic{width:1em;height:1em;color:#ffbf47}
+/* Badge « Avis Google · 23 avis » juste au-dessus du CTA — social proof pointée, pas pavé. */
+.google-badge{display:inline-flex;align-items:center;gap:.55em;margin-top:clamp(18px,3vh,24px);padding:7px 14px 7px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:999px;color:#fff;text-decoration:none;font-size:.9375rem;font-weight:500;transition:background .2s}
+.google-badge:hover{background:rgba(255,255,255,.14)}
+.google-badge .g-logo{display:inline-flex;font-family:Geist,system-ui,sans-serif;font-weight:800;font-size:.875rem;letter-spacing:-.02em}
+.google-badge .g-logo b{font-weight:800}
+.google-badge .stars .ic{width:14px;height:14px}
+.google-badge b{font-weight:700}
 /* CTA primaire du hero : même intensité que btn-call pour que « Décrire mon besoin » porte seul la conversion. */
 .btn-primary{background:var(--tuile);color:#fff;box-shadow:0 18px 34px -14px rgba(201,64,43,.85)}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 24px 40px -14px rgba(201,64,43,.95)}
@@ -184,7 +188,8 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
   .hero-cta{margin-top:22px;gap:14px}
   .hero-cta .btn{--h:54px}
   .btn-tel{justify-content:center;width:100%;padding:8px 0}
-  .hero-proof{margin-top:16px;flex-direction:column;align-items:flex-start;gap:8px 0}
+  .hero-proof{margin-top:14px;gap:6px 14px;font-size:.875rem}
+  .google-badge{font-size:.875rem;padding:6px 12px 6px 10px}
   .hero-eyebrow{font-size:.8125rem;gap:6px 14px}
 }
 
@@ -458,17 +463,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-bg"><img src="/facade.jpg" alt="Façade blanche à volets rouges ravalée par Tonio Rénov'" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:50% 42%"></div>
   <div class="hero-in">
     <div class="hero-copy">
-      <p class="hero-eyebrow fade" style="--d:0"><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><b>500 chantiers</b> Côte Basque</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Décennale &amp; RC Pro</span><span><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><b>5/5</b> sur <b>23 avis</b> Google</span></p>
       <h1 aria-label="Façade qui se dégrade ? Tonio Rénov' la ravale."><span class="w" style="--i:0" aria-hidden="true">Façade</span> <span class="w" style="--i:1" aria-hidden="true">qui</span> <span class="w" style="--i:2" aria-hidden="true">se</span> <span class="w" style="--i:3" aria-hidden="true">dégrade</span> <span class="w" style="--i:4" aria-hidden="true">?</span><br><mark><span class="w" style="--i:5" aria-hidden="true">Tonio</span> <span class="w" style="--i:6" aria-hidden="true">Rénov'</span> <span class="w" style="--i:7" aria-hidden="true">la</span> <span class="w" style="--i:8" aria-hidden="true">ravale.</span></mark></h1>
-      <p class="hero-sub fade" style="--d:1"><strong>Ravalement et peinture de façade</strong>, décrassage et reprise des fissures. Artisan façadier sur la <strong>Côte Basque et les Sud-Landes</strong> — on protège le mur, pas seulement la couleur.</p>
+      <a class="google-badge fade" style="--d:1" href="https://www.google.com/search?q=Tonio+Rénov+Boucau+avis" target="_blank" rel="noopener">
+        <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
+        <span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><span><b>5/5</b> · <b>23 avis</b></span>
+      </a>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary" href="#devis"><span>Faire venir Tonio chez moi</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         <a class="btn-tel" href="tel:+33415870242"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>ou appeler <b>04 15 87 02 42</b></span></a>
       </div>
-      <p class="hero-proof fade" style="--d:3"><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><b>Visite gratuite</b> le soir même ou le lendemain</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>100&nbsp;% sans engagement</span></p>
+      <p class="hero-proof fade" style="--d:3"><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Visite gratuite</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>Sans engagement</span></p>
     </div>
     <div class="hero-form" id="devis">
-      <div class="hf-head"><h2 class="hf-t">Votre devis en 4 questions</h2><p class="hf-sub"><strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong></p></div>
+      <div class="hf-head"><h2 class="hf-t">Votre devis en 4 questions</h2></div>
       <div class="devis-shell">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="haut" novalidate>
@@ -485,13 +492,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <section class="band" aria-label="Nos garanties"><div class="wrap"><ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><div><b>Plus de 500 chantiers</b><small>sur la Côte Basque</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Garantie décennale</b><small>sur tous nos travaux</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div><b>Assurance RC Pro</b><small>artisan assuré</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><div><b>Certifié RGE</b><small>qualification reconnue</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Réponse sous 24h</b><small>on vous rappelle</small></div></li></ul></div></section>
-
-<section class="sec sec-light">
-  <div class="wrap signs-grid">
-    <div class="signs-head"><h2 class="split " aria-label="Votre façade vous envoie déjà des signaux"><span class="w" style="--i:0" aria-hidden="true">Votre</span> <span class="w" style="--i:1" aria-hidden="true">façade</span> <span class="w" style="--i:2" aria-hidden="true">vous</span> <span class="w" style="--i:3" aria-hidden="true">envoie</span> <span class="w" style="--i:4" aria-hidden="true">déjà</span> <span class="w" style="--i:5" aria-hidden="true">des</span> <span class="w" style="--i:6" aria-hidden="true">signaux</span></h2><p class="lead reveal" style="--d:1">L'humidité et la pollution s'installent progressivement dans l'enduit. Non traitées, les <strong>fissures s'aggravent</strong> et l'eau finit par s'infiltrer dans les murs.</p></div>
-    <ul class="signs-list"><li class="sign reveal" style="--d:0"><span class="sign-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span><div><h3>Mousse ou noirceur visible</h3><p>Traces vertes ou noires sur l'enduit, souvent côté nord ou dans les zones peu exposées au soleil.</p></div></li><li class="sign reveal" style="--d:1"><span class="sign-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2v6l-4 3 5 3-3 3v5"/></svg></span><div><h3>Fissures dans l'enduit</h3><p>De fines craquelures apparaissent avec le temps et les mouvements du bâti — elles laissent l'eau s'infiltrer.</p></div></li><li class="sign reveal" style="--d:2"><span class="sign-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="6" x="2" y="2" rx="2"/><path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect width="4" height="6" x="8" y="16" rx="1"/></svg></span><div><h3>Peinture qui s'écaille</h3><p>Le revêtement se décolle ou change de teinte : la protection de la façade s'affaiblit.</p></div></li><li class="sign reveal" style="--d:3"><span class="sign-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg></span><div><h3>Taches d'humidité</h3><p>Des auréoles sombres apparaissent en bas des murs ou autour des fenêtres, souvent liées à un défaut d'étanchéité.</p></div></li></ul>
-  </div>
-</section>
 
 <section class="sec sec-dark has-bg">
   <img class="sec-bg" src="/img/ravalement-bg-methode.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1300" height="2311">

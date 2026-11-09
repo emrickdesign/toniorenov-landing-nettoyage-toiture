@@ -240,7 +240,7 @@ PAGES = [
   title="Couvreur à Bayonne, Anglet, Boucau — Tonio Rénov'",
   desc="Couvreur zingueur sur la Côte Basque et les Sud-Landes : fuite, tuile cassée, faîtage, bâchage, gouttière. Artisan couvreur local, intervention rapide, garantie décennale.",
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur zingueur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
-  h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous 48 h</mark><br>à Bayonne — sans sous-traitance.",
+  h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous&nbsp;48&nbsp;h</mark><br>à Bayonne — sans sous-traitance.",
   sub="<strong>On monte, on regarde, on vous dit.</strong> Puis on chiffre devant vous, sur place. Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz. Artisan local, décennale, pas de sous-traitance.",
   ghost="Faire venir Tonio chez moi", last_trust=("clock", "Intervention rapide", "bâchage priorité"),
   signs=dict(t="Ce qu'un couvreur zingueur voit avant tout le monde",
@@ -440,7 +440,7 @@ def render(p):
     </div>'''
         if hero:
             return f'''<div class="hero-form" id="{ident}">
-      <div class="hf-head"><h2 class="hf-t">{titre}</h2><p class="hf-sub">{f['sub']}</p></div>
+      <div class="hf-head"><h2 class="hf-t">{titre}</h2></div>
       {corps}
     </div>'''
         return f'''<section class="sec sec-light devis" id="{ident}">
@@ -514,27 +514,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-bg"><img src="{p['img']}" alt="{p['alt']}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p['pos']}"></div>
   <div class="hero-in">
     <div class="hero-copy">
-      <p class="hero-eyebrow fade" style="--d:0"><span>{ic("award")}<b>500 chantiers</b> Côte Basque</span><span>{ic("shield-check")}Décennale &amp; RC Pro</span><span>{stars()}<b>5/5</b> sur <b>23 avis</b> Google</span></p>
       {h1}
-      <p class="hero-sub fade" style="--d:1">{p['sub']}</p>
+      <a class="google-badge fade" style="--d:1" href="https://www.google.com/search?q=Tonio+Rénov+Boucau+avis" target="_blank" rel="noopener">
+        <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
+        {stars()}<span><b>5/5</b> · <b>23 avis</b></span>
+      </a>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
         <a class="btn-tel" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
       </div>
-      <p class="hero-proof fade" style="--d:3"><span>{ic("clock")}<b>Visite gratuite</b> le soir même ou le lendemain</span><span>{ic("shield")}100&nbsp;% sans engagement</span></p>
+      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}Visite gratuite</span><span>{ic("shield")}Sans engagement</span></p>
     </div>
     {devis_haut}
   </div>
 </section>
 
 <section class="band" aria-label="Nos garanties"><div class="wrap"><ul>{band}</ul></div></section>
-
-<section class="sec sec-light">
-  <div class="wrap signs-grid">
-    <div class="signs-head">{sig_h2}<p class="lead reveal" style="--d:1">{p['signs']['p']}</p></div>
-    <ul class="signs-list">{signs}</ul>
-  </div>
-</section>
 
 <section class="sec sec-dark has-bg">
   {bgimg(M["bgm"])}
