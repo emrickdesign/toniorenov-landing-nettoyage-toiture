@@ -262,7 +262,7 @@ PAGES = [
   title="Couvreur à Bayonne, Anglet, Boucau — Tonio Rénov'",
   desc="Couvreur zingueur sur la Côte Basque et les Sud-Landes : fuite, tuile cassée, faîtage, bâchage, gouttière. Artisan couvreur local, intervention rapide, garantie décennale.",
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur zingueur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
-  h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous&nbsp;48&nbsp;h</mark><br>à Bayonne — sans sous-traitance.",
+  h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous&nbsp;48&nbsp;h</mark><br>sur toute la Côte Basque.",
   sub="<strong>On monte, on regarde, on vous dit.</strong> Puis on chiffre devant vous, sur place. Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz. Artisan local, décennale, pas de sous-traitance.",
   ghost="Faire venir Tonio chez moi", last_trust=("clock", "Intervention rapide", "bâchage priorité"),
   signs=dict(t="Ce qu'un couvreur zingueur voit avant tout le monde",
@@ -323,7 +323,7 @@ PAGES = [
   title="Peintre intérieur à Bayonne — salon, chambre, appartement · Tonio Rénov'",
   desc="Entreprise de peinture intérieure à Bayonne, Anglet, Biarritz : peinture salon, chambre, appartement, maison, rénovation complète. Peintures pro Tollens, protection du mobilier, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov' — TODO remplacer par photo intérieure réelle",
-  h1="Peintre intérieur à Bayonne :<br><mark>un chantier propre chaque soir,</mark><br>peintures Tollens, devis sous 24 h.",
+  h1="Peintre intérieur :<br><mark>chantier propre chaque soir,</mark><br>sur toute la Côte Basque.",
   sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
   ghost="Faire venir Tonio chez moi", last_trust=("clock", "Devis rénovation", "chantier planifié"),
   signs=dict(t="Une bonne peinture, c'est 20 % de produit et 80 % de préparation",
@@ -542,10 +542,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {stars()}<span><b>5/5</b> · <b>23 avis</b></span>
       </a>
       <div class="hero-cta fade" style="--d:2">
-        <a class="btn btn-primary" href="#devis"><span>{p['ghost']}</span>{ic("arrow","arr")}</a>
-        <a class="btn-tel" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
+        <a class="btn btn-primary" href="{tel}">{ic("phone","btn-ph")}<span>{p['ghost']}</span></a>
       </div>
-      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}Visite gratuite</span><span>{ic("shield")}Sans engagement</span></p>
+      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}Visite gratuite</span><span>{ic("shield")}Sans engagement</span><span class="hero-num">{s['phone']}</span></p>
     </div>
     {devis_haut}
   </div>
