@@ -322,7 +322,7 @@ PAGES = [
   out='peinture-interieure/index.html', path='/peinture-interieure/',
   title="Peintre intérieur à Bayonne — salon, chambre, appartement · Tonio Rénov'",
   desc="Entreprise de peinture intérieure à Bayonne, Anglet, Biarritz : peinture salon, chambre, appartement, maison, rénovation complète. Peintures pro Tollens, protection du mobilier, garantie décennale.",
-  img='/interieur.jpg', pos='50% 50%', crop='50% 50%', alt="Séjour fraîchement repeint par Tonio Rénov' sur la Côte Basque",
+  img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov'",
   h1="Peintre intérieur :<br><mark>chantier propre chaque soir,</mark><br>sur toute la Côte Basque.",
   sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
   ghost="Appeler Tonio pour qu'il vienne", last_trust=("clock", "Devis rénovation", "chantier planifié"),
