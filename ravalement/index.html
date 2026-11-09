@@ -213,12 +213,14 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
    Ordinateur : texte et boutons à gauche, formulaire à droite, sur la même ligne.
    Mobile : titre + boutons d'appel d'abord, formulaire directement en dessous. */
 @media(min-width:1060px){
-  .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px)}
+  .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px);padding-block:clamp(72px,8vh,112px)}
   .hero::before{background:linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
   /* Quand hero split (texte à gauche, formulaire à droite), le centrage tombe mal. On revient à gauche. */
   .hero-copy{text-align:left}
   .hero-cta{justify-content:flex-start}
   .hero-proof{justify-content:flex-start}
+  /* Garantit que la colonne droite (formulaire) ne touche jamais le bord bas du hero. */
+  .hero-form{padding-bottom:8px}
 }
 .hero-form{min-width:0}
 .hf-head{margin-bottom:18px;text-align:center}
@@ -534,9 +536,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="sec-head center"><h2 class="split " aria-label="Nos derniers chantiers sur la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Nos</span> <span class="w" style="--i:1" aria-hidden="true">derniers</span> <span class="w" style="--i:2" aria-hidden="true">chantiers</span> <span class="w" style="--i:3" aria-hidden="true">sur</span> <span class="w" style="--i:4" aria-hidden="true">la</span> <span class="w" style="--i:5" aria-hidden="true">Côte</span> <span class="w" style="--i:6" aria-hidden="true">Basque</span></h2></div>
     <ul class="gal-grid reveal" style="--d:1">
-      <li><img src="img/galerie-real-facade-basque.jpg" alt="Ravalement de façade Côte Basque" loading="lazy" decoding="async"><figcaption>Ravalement de façade Côte Basque</figcaption></li>
-      <li><img src="img/galerie-real-nettoyage-facade.jpg" alt="Nettoyage de façade à Bayonne" loading="lazy" decoding="async"><figcaption>Nettoyage de façade à Bayonne</figcaption></li>
-      <li><img src="img/galerie-real-refection-toiture.jpg" alt="Chantier complet Pays Basque" loading="lazy" decoding="async"><figcaption>Chantier complet Pays Basque</figcaption></li>
+      <li><img src="/img/galerie-real-facade-basque.jpg" alt="Ravalement de façade Côte Basque" loading="lazy" decoding="async"><figcaption>Ravalement de façade Côte Basque</figcaption></li>
+      <li><img src="/img/galerie-real-nettoyage-facade.jpg" alt="Nettoyage de façade à Bayonne" loading="lazy" decoding="async"><figcaption>Nettoyage de façade à Bayonne</figcaption></li>
+      <li><img src="/img/galerie-real-refection-toiture.jpg" alt="Chantier complet Pays Basque" loading="lazy" decoding="async"><figcaption>Chantier complet Pays Basque</figcaption></li>
     </ul>
   </div>
 </section>
