@@ -139,7 +139,8 @@ OPT_TOIT = [("Tuiles", "Tuiles", "layers"), ("Ardoise", "Ardoise", "layers"), ("
 OPT_SURF = [("Moins de 80 m²", "Moins de 80 m²", "home"), ("80 à 150 m²", "80 à 150 m²", "home"), ("Plus de 150 m²", "Plus de 150 m²", "home"), ("Je ne sais pas", "Je ne sais pas", "help")]
 FAQ_ZONE = ("Quelles villes couvrez-vous ?", "Boucau, Bayonne, Anglet, Biarritz, Bidart, Guéthary, Saint-Jean-de-Luz, Hendaye et les communes du Sud-Landes jusqu'à Capbreton.")
 FAQ_GARANTIE = ("Quelles garanties proposez-vous ?", "Tous nos chantiers sont couverts par notre garantie décennale et notre assurance RC Pro. Nous sommes artisan certifié RGE.")
-STEPS_TOIT = lambda s2, s3: [("Vous nous appelez", "Décrivez l'état de votre toiture, on cale une visite gratuite rapidement."), ("Diagnostic & devis", s2), ("Intervention", s3), ("Contrôle final", "Vérification tuile par tuile et nettoyage du chantier avant de repartir.")]
+TEL = SITE['phone']
+STEPS_TOIT = lambda s2, s3:[("Vous nous appelez", "Décrivez l'état de votre toiture, on cale une visite gratuite rapidement."), ("Diagnostic & devis", s2), ("Intervention", s3), ("Contrôle final", "Vérification tuile par tuile et nettoyage du chantier avant de repartir.")]
 
 PAGES = [
  dict(
@@ -259,8 +260,8 @@ PAGES = [
  # pour remonter le score de qualité des mots-clés "couvreur [ville]" (QS 1-2 sur l'ancienne /urgence).
  dict(
   out='couvreur/index.html', path='/couvreur/',
-  title="Couvreur à Bayonne, Anglet, Boucau — Tonio Rénov'",
-  desc="Couvreur zingueur sur la Côte Basque et les Sud-Landes : fuite, tuile cassée, faîtage, bâchage, gouttière. Artisan couvreur local, intervention rapide, garantie décennale.",
+  title="Couvreur Bayonne, Anglet, Biarritz, Boucau — réparation & urgence toiture · Tonio Rénov'",
+  desc="Couvreur zingueur à Bayonne, Anglet, Biarritz et Boucau : fuite de toiture, urgence, réparation, tuile cassée, réfection. Artisan couvreur local, devis couvreur gratuit, garantie décennale.",
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur zingueur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
   h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous&nbsp;48&nbsp;h</mark><br>sur toute la Côte Basque.",
   sub="<strong>On monte, on regarde, on vous dit.</strong> Puis on chiffre devant vous, sur place. Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz. Artisan local, décennale, pas de sous-traitance.",
@@ -281,9 +282,38 @@ PAGES = [
   faq=[("Vous intervenez vite en cas de fuite ?", "Oui, on priorise systématiquement les urgences couvreur (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
        ("Vous êtes couvreur ou vous sous-traitez ?", "Nous sommes couvreur en direct, pas d'intermédiaire ni de sous-traitance. L'artisan qui monte est celui qui a établi le devis."),
        ("Vous travaillez tous les types de toiture ?", "Oui — tuiles canal, tuiles mécaniques, ardoise, zinc, bac acier. On annonce ce qu'on sait faire et ce qu'on ne fait pas, sur place."),
+       ("Combien coûte une réparation de toiture ?", "Ça dépend de l'accès au toit, du nombre de tuiles à remplacer et de l'état du faîtage et des solins. Le couvreur vous donne le tarif exact sur place, dans un devis gratuit, avant de commencer."),
        FAQ_GARANTIE,
        FAQ_ZONE],
   cta=dict(t="Besoin d'un couvreur local sur la Côte Basque ?", p="On monte, on regarde, on vous dit — <strong>devis clair sous 24h</strong>."),
+  # Sections de contenu sous la zone : une par famille de mots-clés actifs du groupe
+  # « Couvreur / urgence » (score de qualité : pertinence de la page de destination).
+  seo=[
+   dict(t="Couvreur à Bayonne, Anglet, Biarritz et Boucau",
+    p="Tonio Rénov' est une <strong>entreprise de couverture</strong> basée à Boucau. Le même artisan couvreur se déplace dans chaque ville, sans sous-traitance.",
+    items=[("pin", "Couvreur à Bayonne", "Artisan couvreur à Bayonne pour la réparation de toiture, les tuiles cassées et le démoussage de toiture. Entreprise couvreur à Bayonne en direct : le devis toiture est gratuit et fait sur place. Couvreur zingueur à Bayonne pour les gouttières, le faîtage et les solins."),
+           ("alert", "Urgence toiture à Bayonne", f"Fuite de toiture à Bayonne, tuile envolée après un coup de vent : l'urgence couvreur à Bayonne, c'est le {TEL}. Dépannage toiture à Bayonne avec bâchage si la pluie approche, puis réparation de toiture."),
+           ("pin", "Couvreur à Anglet", "Artisan couvreur à Anglet, maisons et résidences. Entreprise couvreur à Anglet sans intermédiaire, devis couvreur à Anglet gratuit : réparation, tuiles, gouttières, fuite."),
+           ("pin", "Couvreur à Biarritz", "Artisan couvreur à Biarritz, sur des toitures exposées au vent et aux embruns. Entreprise couvreur à Biarritz, devis couvreur à Biarritz gratuit et détaillé."),
+           ("home", "Couvreur à Boucau", "Notre base. Couvreur à Boucau et à Tarnos : un artisan du quartier, joignable directement, qui connaît les toitures du secteur.")]),
+   dict(t="Urgence toiture : fuite, infiltration, tuile cassée",
+    p="Une <strong>fuite de toiture</strong> n'attend pas. Appelez : on vous rappelle sous 24 h et on intervient en priorité, souvent sous 48 h.",
+    items=[("drop", "Fuite toiture et infiltration d'eau", "Taches au plafond, goutte à goutte dans les combles : votre couvreur cherche l'origine de l'infiltration d'eau par la toiture (tuile, solin, faîtage, gouttière) et la répare. Une urgence fuite toiture passe en priorité."),
+           ("alert", "Dépannage toiture et bâchage d'urgence", "Toiture en urgence après une tempête : bâchage pour mettre la maison hors d'eau, puis réparation de toiture en urgence dès que la météo le permet."),
+           ("layers", "Tuile cassée, remplacement de tuiles", "Une tuile cassée ou glissée suffit à laisser passer l'eau. Remplacement de tuiles canal, de tuiles mécaniques ou d'ardoises, à l'identique."),
+           ("clock", "Urgence toiture 24h : ce qu'on vous promet", "Un appel ou une demande sur cette page, et un couvreur vous rappelle sous 24 h. On ne promet pas d'intervenir à toute heure : on promet de décrocher, de venir vite et de mettre votre toit hors d'eau.")]),
+   dict(t="Réparation, rénovation et réfection de toiture",
+    p="<strong>Artisan toiture</strong> : de la tuile à remplacer à la couverture à refaire, on vous dit franchement ce qui suffit.",
+    items=[("tools", "Réparation de toiture", "Réparation de toiture sur les tuiles, le faîtage, les rives et les solins de cheminée. Le couvreur répare ce qui laisse passer l'eau, sans vous vendre une toiture neuve."),
+           ("home", "Rénovation, réfection, changer de toiture", "Quand la couverture est trop fatiguée pour être réparée, on chiffre la rénovation de toiture : réfection de la couverture et reprise de la zinguerie. Changer de toiture se décide sur place, photos à l'appui."),
+           ("waves", "Toit en zinc, couvreur zingueur", "Toit en zinc, gouttières zinc ou alu, chéneaux, noues : un couvreur zingueur pose et soude le zinc à l'étain."),
+           ("shield-check", "Toiturier, couvreur, entreprise de couverture", "Toiturier, couvreur ou entreprise de couverture : c'est le même métier. Chez Tonio Rénov', l'artisan couvreur qui monte sur votre toit est celui qui signe le devis. Garantie décennale et RC Pro.")]),
+   dict(t="Devis couvreur gratuit et tarif de réparation de toiture",
+    p="<strong>Devis toiture gratuit</strong>, établi sur place après inspection. Le prix est annoncé avant les travaux.",
+    items=[("search", "Ce qui fait le tarif d'une réparation de toiture", "L'accès au toit, le nombre de tuiles à remplacer, l'état du faîtage et des solins, le type de couverture. Le tarif de réparation de toiture se fixe sur ce que le couvreur voit, pas au téléphone."),
+           ("check", "Devis couvreur sans engagement", f"Remplissez le formulaire ou appelez le {TEL} : votre devis couvreur est gratuit, détaillé et sans engagement."),
+           ("pin", "Un couvreur à proximité", "Vous cherchez un couvreur à proximité ? Basés à Boucau, on couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan couvreur du coin, pas une plateforme.")]),
+  ],
  ),
  # Groupe 2 — Zinguerie / Faîtage : panier moyen 1500-4000 €, saison pré-hiver + post-tempête.
  dict(
@@ -320,8 +350,8 @@ PAGES = [
  # Groupe 3 — Peinture intérieure : panier 1500-5000 €, saison 100% hiver (chantier intérieur).
  dict(
   out='peinture-interieure/index.html', path='/peinture-interieure/',
-  title="Peintre intérieur à Bayonne — salon, chambre, appartement · Tonio Rénov'",
-  desc="Entreprise de peinture intérieure à Bayonne, Anglet, Biarritz : peinture salon, chambre, appartement, maison, rénovation complète. Peintures pro Tollens, protection du mobilier, garantie décennale.",
+  title="Peintre à Bayonne, Anglet, Biarritz — peinture intérieure · Tonio Rénov'",
+  desc="Artisan peintre à Bayonne, Anglet, Biarritz et Boucau : peinture intérieure de salon, chambre, appartement et maison. Entreprise de peinture, devis peintre gratuit, garantie décennale.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov'",
   h1="Peintre intérieur :<br><mark>chantier propre chaque soir,</mark><br>sur toute la Côte Basque.",
   sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
@@ -347,8 +377,40 @@ PAGES = [
        ("Combien de couches posez-vous ?", "Sur un support préparé : une sous-couche + deux couches de finition. C'est ce qui donne un rendu uniforme qui tient dans le temps, pas une seule couche qu'on repose dans 2 ans."),
        ("Vous bougez les meubles ?", "Pour une pièce vide, on prépare tout. Pour une pièce habitée, on protège les meubles sur place et on travaille autour — ou on les déplace ensemble si vous préférez."),
        ("Quelles peintures utilisez-vous ?", "Peintures professionnelles Tollens, en finition mate, satinée ou veloutée selon la pièce. On vous explique sur place laquelle convient à l'exposition et à l'usage."),
+       ("Combien coûte la peinture d'une pièce ?", "Ça dépend de la surface, de l'état des murs et de la finition. Tonio passe voir la pièce et vous donne le prix dans un devis peinture gratuit, avant les travaux."),
+       FAQ_GARANTIE,
        FAQ_ZONE],
   cta=dict(t="Un intérieur refait, c'est l'hiver qui change", p="<strong>Devis gratuit sous 24h</strong>, aucun engagement."),
+  # Sections de contenu sous la zone : une par famille de mots-clés actifs du groupe
+  # « Peinture intérieure ». ATTENTION : peinture-interieure/index.html contient des
+  # retouches faites à la main (hero, formulaire, CSS des options) absentes de ce fichier ;
+  # ne pas régénérer cette page sans les reporter ici.
+  seo=[
+   dict(t="Peintre à Bayonne, Anglet, Biarritz et Boucau",
+    p="Tonio Rénov' est une <strong>entreprise de peinture</strong> basée à Boucau. Le même artisan peintre vient chiffrer, puis peindre chez vous.",
+    items=[("pin", "Peintre à Bayonne", "Artisan peintre à Bayonne pour la peinture intérieure d'un salon, d'une chambre ou d'un appartement entier. Peintre en bâtiment à Bayonne et entreprise de peinture à Bayonne en direct, pour la rénovation peinture des maisons comme des appartements."),
+           ("pin", "Peintre à Anglet", "Artisan peintre à Anglet, en maison ou en appartement. Entreprise de peinture à Anglet sans sous-traitance, devis peintre à Anglet gratuit et fait sur place."),
+           ("pin", "Peintre à Biarritz", "Artisan peintre à Biarritz, pour des intérieurs qui vivent avec l'humidité de la côte. Entreprise de peinture à Biarritz, devis peintre à Biarritz gratuit."),
+           ("home", "Peintre à Boucau", "Notre base. Peintre à Boucau et à Tarnos : un artisan du quartier, joignable directement.")]),
+   dict(t="Peinture intérieure : salon, chambre, appartement, maison",
+    p="<strong>Peintre intérieur</strong> : murs, plafonds, boiseries et moulures, pièce par pièce ou toute la maison.",
+    items=[("home", "Peinture du salon et du séjour", "La pièce qu'on voit le plus. Peinture du salon avec préparation des murs, plafond compris, en finition mate ou veloutée."),
+           ("home", "Peinture d'appartement", "Appartement complet avant une vente, une location ou un emménagement : peinture de toutes les pièces, planning annoncé à l'avance."),
+           ("home", "Peinture intérieure de maison", "Peintre pour l'intérieur de la maison : chambres, couloirs, cage d'escalier, plafonds. Une entreprise de peinture intérieure qui protège le mobilier et repart propre."),
+           ("roller", "Refaire la peinture, rénovation peinture", "Murs jaunis, fissures, peinture qui s'écaille : refaire une peinture, c'est reboucher, poncer, passer une sous-couche, puis deux couches de finition."),
+           ("image", "Peintre décorateur", "Moulures, couleur d'accent, mur de tête de lit, teintes choisies selon la lumière de la pièce : la partie peintre décorateur du métier.")]),
+   dict(t="Un artisan peintre professionnel, pas une plateforme",
+    p="Trouver un <strong>artisan peintre</strong> sérieux, c'est trouver quelqu'un qui prépare avant de peindre.",
+    items=[("award", "Peintre professionnel en bâtiment", "Peintre en bâtiment : préparation des supports, peintures professionnelles Tollens, garantie décennale et RC Pro. Artisan certifié RGE."),
+           ("shield", "Trouver un artisan peintre de confiance", "5/5 sur 23 avis Google, un seul interlocuteur du devis à la fin du chantier, aucune sous-traitance."),
+           ("check", "Chantier propre, mobilier protégé", "Bâches, adhésifs, sols protégés, nettoyage chaque soir : vous continuez à vivre chez vous pendant les travaux de peinture.")]),
+   dict(t="Devis peinture gratuit et tarif au m²",
+    p="<strong>Devis peintre gratuit</strong>, établi sur place. Le prix des travaux de peinture est fixé avant le début du chantier.",
+    items=[("search", "Tarif peinture au m²", "Le prix au m2 dépend de l'état des murs (rebouchage, ponçage), du nombre de couches, de la hauteur sous plafond et de la finition. Votre devis peinture intérieure indique la surface à peindre et le prix des travaux de peinture au m2."),
+           ("layers", "Tarif peinture plafond au m²", "Un plafond se peint plus lentement qu'un mur : protection complète, travail en hauteur, deux couches. Son tarif de peinture au m2 est donc souvent un peu plus élevé."),
+           ("clock", "Taux horaire d'un peintre ou prix total", "Plutôt qu'un taux horaire qui laisse la facture ouverte, vous recevez un devis de travaux de peinture avec le prix total, avant de commencer."),
+           ("check", "Devis peinture sans engagement", f"Devis peinture gratuit et sans engagement : 4 questions dans le formulaire, ou un appel au {TEL}.")]),
+  ],
  ),
 ]
 
@@ -406,6 +468,21 @@ def opts(name, options, first_focus=False):
     for value, label, icon in options:
         out.append(f'<button type="button" class="opt" data-value="{value}" aria-pressed="false">{ic(icon)}<span>{label}</span><span class="tick">{ic("check")}</span></button>')
     return f'<div class="opts" data-field="{name}" role="group">' + ''.join(out) + '</div>'
+
+def kw_sections(p):
+    """Sections de contenu par famille de mots-clés (score de qualité). Lignes .sign
+    sans .reveal : le texte reste visible même sans défilement ni JavaScript."""
+    out = []
+    for b in p.get('seo', []):
+        rows = ''.join(f'<li class="sign"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for i, t, d in b['items'])
+        out.append(f'''<section class="sec sec-light kw" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center">{h2(b['t'])}<p class="lead">{b['p']}</p></div>
+    <ul class="kw-list">{rows}</ul>
+  </div>
+</section>
+''')
+    return ''.join(out)
 
 def render(p):
     s = SITE
@@ -581,7 +658,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="chips reveal" style="--d:2">{zones}</ul>
   </div>
 </section>
-
+{kw_sections(p)}
 <section class="sec sec-light" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center">{faq_h2}<p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="{tel}"><strong>{s['phone']}</strong></a>.</p></div>
