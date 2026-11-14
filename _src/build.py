@@ -160,7 +160,7 @@ PAGES = [
   method_steps=STEPS_TOIT("On évalue l'ampleur de la mousse et l'état des tuiles, devis détaillé sous 24h.", "Nettoyage basse pression, traitement hydrofuge sans chlore, produits DALEP 2100."),
   real=dict(t="Démoussage complet avec traitement hydrofuge", items=["Démoussage basse pression, sans abîmer les tuiles", "Traitement hydrofuge biocide sans chlore", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['marie', 'pierre', 'fatima'],
-  form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
+  form=dict(t="Votre devis en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
     t2="Recevez votre devis démoussage", q1="Qu'observez-vous sur votre toiture ?",
     o1=[("Mousse / lichen visible", "Mousse / lichen visible", "sprout"), ("Tuiles cassées ou déplacées", "Tuiles cassées / déplacées", "layers"), ("Fuite ou infiltration", "Fuite / infiltration", "drop"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -188,7 +188,7 @@ PAGES = [
   method_steps=STEPS_TOIT("On évalue l'état des tuiles, des gouttières et des zones à protéger, devis détaillé sous 24h.", "Contrôle complet, nettoyage basse pression, traitement hydrofuge sans chlore, produits DALEP 2100."),
   real=dict(t="Entretien annuel avec traitement hydrofuge DALEP 2100", items=["Contrôle complet de la couverture, tuile par tuile", "Traitement hydrofuge biocide sans chlore, produit pro", "Tenue dans le temps : toiture toujours nette après 2 ans", "Chantier couvert par la garantie décennale"]),
   reviews=['fatima', 'marie', 'pierre'],
-  form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
+  form=dict(t="Votre devis en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
     t2="Recevez votre devis d'entretien", q1="Quel entretien recherchez-vous ?",
     o1=[("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Contrôle général de toiture", "Contrôle général", "search"), ("Nettoyage de gouttières", "Nettoyage gouttières", "waves"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -215,7 +215,7 @@ PAGES = [
   method_steps=STEPS_TOIT("On localise l'origine de la fuite et l'état de la couverture, prix annoncé avant les travaux.", "Réparation le jour même quand c'est possible : tuiles remplacées, étanchéité reprise."),
   real=dict(t="Fuite réparée en une journée", items=["Diagnostic sur place pour localiser précisément l'infiltration", "Réparation le jour même quand c'est possible", "Prix annoncé avant intervention, pas de surprise", "Réparation couverte par la garantie décennale"]),
   reviews=['pierre', 'marie', 'fatima'],
-  form=dict(t="Décrivez votre urgence en 4 questions", sub="<strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong>",
+  form=dict(t="Décrivez votre urgence en 6 questions", sub="<strong>30 secondes</strong> — on vous rappelle <strong>en priorité</strong>",
     t2="Décrivez votre urgence, on vous rappelle", q1="Quelle est votre urgence ?",
     o1=[("Fuite active", "Fuite active", "drop"), ("Infiltration / tache d'humidité", "Infiltration / tache", "waves"), ("Tuiles endommagées", "Tuiles endommagées", "layers"), ("Autre urgence toiture", "Autre urgence", "alert")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -243,7 +243,7 @@ PAGES = [
   method_steps=[("Vous nous appelez", "Décrivez l'état de votre façade, on cale une visite gratuite rapidement."), ("Diagnostic & devis", "On évalue l'état de l'enduit et du revêtement, devis détaillé sous 24h."), ("Décrassage & ravalement", "Nettoyage complet, réparation des fissures, peinture Tollens sur demande."), ("Contrôle final", "Vérification de la finition et nettoyage du chantier avant de repartir.")],
   real=dict(t="Ravalement complet avec peinture Tollens", items=["Décrassage complet de la façade, sans abîmer l'enduit", "Réparation des fissures avant remise en peinture", "Peintures professionnelles Tollens, finitions soignées", "Chantier couvert par la garantie décennale"]),
   reviews=['amadou', 'sofia', 'marie'],
-  form=dict(t="Votre devis en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
+  form=dict(t="Votre devis en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
     t2="Recevez votre devis ravalement", q1="Qu'observez-vous sur votre façade ?",
     o1=[("Façade encrassée / noircie", "Façade encrassée", "sprout"), ("Fissures apparentes", "Fissures apparentes", "crack"), ("Peinture à refaire", "Peinture à refaire", "roller"), ("Entretien préventif", "Entretien préventif", "clock")],
     q2="Quel type de revêtement avez-vous ?", o2=[("Enduit", "Enduit", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Crépi", "Crépi", "home"), ("Je ne sais pas", "Je ne sais pas", "help")],
@@ -275,7 +275,7 @@ PAGES = [
   method_steps=STEPS_TOIT("Votre couvreur monte, inspecte tuiles, faîtage, gouttière et solins, puis vous annonce un prix clair avant les travaux.", "Réparation le jour même quand c'est possible : bâchage urgence, tuiles remplacées, faîtage et gouttière repris proprement."),
   real=dict(t="Un couvreur zingueur qui monte, regarde, et vous dit vraiment", items=["Diagnostic couvreur sur place, prix annoncé avant travaux", "Intervention en priorité sur les fuites, bâchage urgence si besoin", "Faîtage, solins, zinguerie, gouttière zinc ou aluminium, chéneau, tuiles, ardoise : couvreur zingueur toutes couvertures", "Pose et remplacement de gouttière alu ou zinc, soudure à l'étain", "Chantier couvert par la garantie décennale et RC Pro"]),
   reviews=['pierre', 'laurent', 'marie'],
-  form=dict(t="Décrivez votre besoin en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
+  form=dict(t="Décrivez votre besoin en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
     t2="Décrivez votre besoin, on vous rappelle", q1="Quel est votre besoin ?",
     o1=[("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -336,7 +336,7 @@ PAGES = [
     ("Contrôle final", "Test d'écoulement, vérification des fixations, nettoyage du chantier avant de repartir.")],
   real=dict(t="Zinguerie refaite dans les règles, pas rafistolée", items=["Pose de gouttières zinc ou aluminium soignée", "Reprise de faîtage au mortier bâtard, pas au silicone", "Solins cheminée refaits, bavettes zinc neuves", "Chantier couvert par la garantie décennale"]),
   reviews=['julien', 'pierre', 'marie'],
-  form=dict(t="Votre devis zinguerie en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
+  form=dict(t="Votre devis zinguerie en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
     t2="Recevez votre devis zinguerie", q1="Qu'est-ce qu'il faut reprendre ?",
     o1=[("Gouttières à remplacer / à poser", "Gouttières à (re)poser", "waves"), ("Faîtage à reprendre", "Faîtage à reprendre", "layers"), ("Solin de cheminée fuyant", "Solin cheminée", "home"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -352,7 +352,7 @@ PAGES = [
   out='peinture-interieure/index.html', path='/peinture-interieure/',
   title="Peintre à Bayonne, Anglet, Biarritz — peinture intérieure · Tonio Rénov'",
   desc="Artisan peintre à Bayonne, Anglet, Biarritz et Boucau : peinture intérieure de salon, chambre, appartement et maison. Entreprise de peinture, devis peintre gratuit, garantie décennale.",
-  img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov'",
+  img='/img/peinture-apres.jpg', pos='50% 50%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov'",
   h1="Peintre intérieur :<br><mark>chantier propre chaque soir,</mark><br>sur toute la Côte Basque.",
   sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
   ghost="Appeler Tonio pour qu'il vienne", last_trust=("clock", "Devis rénovation", "chantier planifié"),
@@ -368,7 +368,7 @@ PAGES = [
     ("Contrôle final", "On vérifie chaque angle, chaque raccord, on nettoie avant de repartir.")],
   real=dict(t="Peinture intérieure soignée, pas bâclée", items=["Préparation complète : rebouchage, ponçage, sous-couche", "Peintures professionnelles Tollens, finition mate ou satinée", "Rénovation peinture d'une pièce, d'un appartement ou d'une maison entière", "Entreprise de peinture artisanale, pas de sous-traitance", "Protection intégrale du mobilier et des sols", "Chantier couvert par la garantie décennale"]),
   reviews=['sofia', 'camille', 'amadou'],
-  form=dict(t="Votre devis peinture en 4 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
+  form=dict(t="Votre devis peinture en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
     t2="Recevez votre devis peinture intérieure", q1="Qu'est-ce que vous voulez repeindre ?",
     o1=[("Un salon / séjour", "Salon / séjour", "home"), ("Une ou plusieurs chambres", "Chambre(s)", "home"), ("Un appartement complet", "Appartement complet", "home"), ("Autre pièce / détail", "Autre / à préciser", "help")],
     q2="Dans quel état sont les murs ?", o2=[("Peinture ancienne à refaire", "Peinture ancienne", "roller"), ("Murs abîmés, fissures à reboucher", "Murs abîmés", "crack"), ("Support neuf (plâtre, enduit frais)", "Support neuf", "layers"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
@@ -409,7 +409,7 @@ PAGES = [
     items=[("search", "Tarif peinture au m²", "Le prix au m2 dépend de l'état des murs (rebouchage, ponçage), du nombre de couches, de la hauteur sous plafond et de la finition. Votre devis peinture intérieure indique la surface à peindre et le prix des travaux de peinture au m2."),
            ("layers", "Tarif peinture plafond au m²", "Un plafond se peint plus lentement qu'un mur : protection complète, travail en hauteur, deux couches. Son tarif de peinture au m2 est donc souvent un peu plus élevé."),
            ("clock", "Taux horaire d'un peintre ou prix total", "Plutôt qu'un taux horaire qui laisse la facture ouverte, vous recevez un devis de travaux de peinture avec le prix total, avant de commencer."),
-           ("check", "Devis peinture sans engagement", f"Devis peinture gratuit et sans engagement : 4 questions dans le formulaire, ou un appel au {TEL}.")]),
+           ("check", "Devis peinture sans engagement", f"Devis peinture gratuit et sans engagement : 6 questions dans le formulaire, ou un appel au {TEL}.")]),
   ],
  ),
 ]
@@ -463,6 +463,13 @@ def compare(m):
 def bgimg(name):
     return f'<img class="sec-bg" src="/img/{name}.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" {dims(name)}>'
 
+# Questions communes à toutes les pages (audit Google Ads du 13/11/2026 : qualifier la demande).
+Q_DELAI = "Quand voulez-vous faire les travaux ?"
+O_DELAI = [("Dès que possible", "Dès que possible", "clock"), ("Dans le mois", "Dans le mois", "clock"),
+           ("Dans les 3 mois", "Dans les 3 mois", "clock"), ("Je me renseigne", "Je me renseigne", "help")]
+Q_STATUT = "Vous êtes :"
+O_STATUT = [("Propriétaire", "Propriétaire", "home"), ("Locataire", "Locataire", "home"), ("Syndic", "Syndic", "home")]
+
 def opts(name, options, first_focus=False):
     out = []
     for value, label, icon in options:
@@ -501,7 +508,7 @@ def render(p):
         r = R[key]; big = ' big' if k == 0 else ''
         revs.append(f'<figure class="rev{big} reveal" style="--d:{k}">{stars()}<blockquote>« {r["q"]} »</blockquote><figcaption class="rev-who"><span class="rev-av">{r["i"]}</span><span><b>{r["n"]}</b><small>{r["v"]}</small></span></figcaption></figure>')
     f = p['form']
-    prog = '<i></i>' * 4
+    prog = '<i></i>' * 6
     faq = ''.join(f'<details><summary>{q}{ic("plus")}</summary><p>{a}</p></details>' for q, a in p['faq'])
     zones = ''.join(f'<li class="{"base" if z=="Boucau" else ""}">{ic("pin")}{z}</li>' for z in ZONES)
     tel = f'tel:{s["tel"]}'
@@ -529,11 +536,13 @@ def render(p):
         corps = f'''<div class="devis-shell">
       <div class="progress" aria-hidden="true">{prog}</div>
       <form class="devis-form" data-pos="{pos}" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('probleme', f['o1'])}</div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('toiture', f['o2'])}</div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 4</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('surface', f['o3'])}</div>
-        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 4</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>{champs}</div>
-        <div class="fstep" data-step="5" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 6</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('probleme', f['o1'])}</div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 6</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('toiture', f['o2'])}</div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 6</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('surface', f['o3'])}</div>
+        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 6</span><p class="fq" tabindex="-1" data-focus>{Q_DELAI}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('delai', O_DELAI)}</div>
+        <div class="fstep" data-step="5"><span class="fcount">Étape 5 sur 6</span><p class="fq" tabindex="-1" data-focus>{Q_STATUT}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('statut', O_STATUT)}</div>
+        <div class="fstep" data-step="6"><span class="fcount">Étape 6 sur 6</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>{champs}</div>
+        <div class="fstep" data-step="7" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
       </form>
     </div>'''

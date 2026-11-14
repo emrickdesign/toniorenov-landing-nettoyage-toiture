@@ -114,8 +114,8 @@
   function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
 
   function envoyer(reponses, pos) {
-    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, page et formulaire d'origine. */
-    var details = [reponses.toiture, reponses.surface].filter(Boolean).join(' · ') || null;
+    /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, délai, statut, page et formulaire d'origine. */
+    var details = [reponses.toiture, reponses.surface, reponses.delai, reponses.statut].filter(Boolean).join(' · ') || null;
     var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
     var corps = {
       client_id: LEAD.client,
@@ -146,7 +146,7 @@
     var back = form.querySelector('.fback');
     var actions = form.querySelector('.factions');
     var lbl = next.querySelector('.lbl');
-    var TOTAL = 4;
+    var TOTAL = 6; /* étapes avec réponse ; l'étape TOTAL + 1 = demande envoyée */
     var cur = 1;
     var reponses = {};
     var envoye = false;
@@ -171,7 +171,7 @@
       steps.forEach(function (st) { st.classList.toggle('active', Number(st.getAttribute('data-step')) === n); });
       bars.forEach(function (b, i) { b.classList.toggle('on', i < Math.min(n, TOTAL)); });
       back.disabled = n === 1;
-      actions.style.display = n === 5 ? 'none' : 'flex';
+      actions.style.display = n === TOTAL + 1 ? 'none' : 'flex';
       validate();
       var h = form.querySelector('.fstep.active [data-focus]');
       if (h && n > 1) { try { h.focus({ preventScroll: true }); } catch (e) {} }
@@ -200,7 +200,7 @@
       reponses.nom = val('nom');
       reponses.tel = val('tel');
       reponses.ville = val('ville');
-      show(5);
+      show(TOTAL + 1);
       /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
       envoyer(reponses, pos).catch(function () {
         return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos); });
@@ -221,6 +221,8 @@
         lead_probleme: reponses.probleme,
         lead_toiture: reponses.toiture,
         lead_surface: reponses.surface,
+        lead_delai: reponses.delai,
+        lead_statut: reponses.statut,
         lead_ville: reponses.ville,
         lead_formulaire: pos
       });
@@ -439,6 +441,8 @@
               probleme: e.lead_probleme,
               toiture: e.lead_toiture,
               surface: e.lead_surface,
+              delai: e.lead_delai,
+              statut: e.lead_statut,
               ville: e.lead_ville
             });
           }
