@@ -132,6 +132,10 @@ R = {
  # Avis complémentaires pour les 3 nouvelles pages — À VALIDER AVEC TONIO AVANT PUBLICATION PUBLIQUE
  'camille': dict(q="Chambre et séjour complètement transformés. Mobilier protégé, chantier propre chaque soir, finitions nickel.", n="Camille R.", v="Bayonne", i="CR"),
  'julien':  dict(q="Pose de gouttières zinc avant l'hiver, travail soigné et prix tenu. On a aussi fait reprendre le faîtage.", n="Julien P.", v="Anglet", i="JP"),
+ # Avis Google réels de Tonio (relevés le 16/11/2026, texte exact, auteur réduit aux initiales)
+ 'g_vp':  dict(q="Je souhaitais avoir une meilleure idée de l’état de ma couverture. Tonio RENOV a effectué une inspection des différents éléments de la toiture et m’a donné des explications détaillées. Une intervention claire et professionnelle.", n="V. P.", v="Avis Google", i="VP"),
+ 'g_ml':  dict(q="J'ai fait appel à Tonio Renov pour nettoyer mon toit et les gouttières ce qui a été fait très sérieusement (il faut attendre quelques jours pour vérifier l'effet du produit utilisé pour les tuiles) Tonio et Michel ont ensuite réparé gracieusement notre portail et sa butée.", n="M. L.", v="Avis Google", i="ML"),
+ 'g_m':   dict(q="Très satisfait conforme au devis. Je recommande fortement", n="M.", v="Avis Google", i="M"),
  'laurent': dict(q="Suite à une tempête, Tonio est passé le lendemain, tuile remplacée et faîtage sécurisé. Rassurant.", n="Laurent M.", v="Biarritz", i="LM"),
 }
 
@@ -260,59 +264,78 @@ PAGES = [
  # pour remonter le score de qualité des mots-clés "couvreur [ville]" (QS 1-2 sur l'ancienne /urgence).
  dict(
   out='couvreur/index.html', path='/couvreur/',
-  title="Couvreur Bayonne, Anglet, Biarritz, Boucau — réparation & urgence toiture · Tonio Rénov'",
-  desc="Couvreur zingueur à Bayonne, Anglet, Biarritz et Boucau : fuite de toiture, urgence, réparation, tuile cassée, réfection. Artisan couvreur local, devis couvreur gratuit, garantie décennale.",
-  img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur zingueur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
-  h1="Fuite, tuile, gouttière :<br><mark>couvreur chez vous sous&nbsp;48&nbsp;h</mark><br>sur toute la Côte Basque.",
-  sub="<strong>On monte, on regarde, on vous dit.</strong> Puis on chiffre devant vous, sur place. Couvreur zingueur à Boucau, Bayonne, Anglet, Biarritz, Saint-Jean-de-Luz. Artisan local, décennale, pas de sous-traitance.",
-  ghost="Appeler Tonio pour qu'il vienne", last_trust=("clock", "Intervention rapide", "bâchage priorité"),
-  signs=dict(t="Ce qu'un couvreur zingueur voit avant tout le monde",
-    p="<strong>Un bon couvreur zingueur</strong> ne vient pas juste quand ça fuit. Il repère ce qui va bouger à la prochaine tempête — c'est tout l'intérêt d'un couvreur local qui connaît les toitures du secteur.",
-    items=[("drop", "Fuite ou infiltration", "Taches au plafond, auréoles, humidité : votre couvreur localise l'origine avant que la charpente souffre. Bâchage d'urgence si la pluie approche."),
-           ("layers", "Tuiles déplacées", "Après un coup de vent, des tuiles bougent ou se cassent — un couvreur contrôle l'ensemble, pas seulement la zone visible."),
-           ("sprout", "Mousse qui soulève", "Non traitée, la mousse décolle les tuiles. Un couvreur traite la couverture avant que ça devienne une reprise lourde."),
-           ("waves", "Faîtage, gouttière, solins fatigués", "Mortier qui s'effrite, gouttière en zinc ou aluminium qui lâche, chéneau bouché, zinguerie qui bâille : un couvreur zingueur reprend ces points avant qu'ils laissent passer l'eau.")]),
-  method_steps=STEPS_TOIT("Votre couvreur monte, inspecte tuiles, faîtage, gouttière et solins, puis vous annonce un prix clair avant les travaux.", "Réparation le jour même quand c'est possible : bâchage urgence, tuiles remplacées, faîtage et gouttière repris proprement."),
-  real=dict(t="Un couvreur zingueur qui monte, regarde, et vous dit vraiment", items=["Diagnostic couvreur sur place, prix annoncé avant travaux", "Intervention en priorité sur les fuites, bâchage urgence si besoin", "Faîtage, solins, zinguerie, gouttière zinc ou aluminium, chéneau, tuiles, ardoise : couvreur zingueur toutes couvertures", "Pose et remplacement de gouttière alu ou zinc, soudure à l'étain", "Chantier couvert par la garantie décennale et RC Pro"]),
-  reviews=['pierre', 'laurent', 'marie'],
-  form=dict(t="Décrivez votre besoin en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Décrivez votre besoin, on vous rappelle", q1="Quel est votre besoin ?",
+  # Positionnement B de l'analyse de marché du 16/11/2026 (analyses-marche/tonio-renov/RAPPORT.md) :
+  # photos avant/après de SON toit, prix du devis tenu, reprise si défaut, pas de vendeur.
+  title="Couvreur Bayonne, Anglet, Biarritz, Boucau : fuite et réparation de toiture · Tonio Rénov'",
+  desc="Couvreur à Boucau pour Bayonne, Anglet et Biarritz : fuite, tuile cassée, gouttière. Photos avant/après de votre toit, prix du devis tenu, reprise si défaut.",
+  img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
+  h1="Vous ne voyez pas votre toit ?<br><mark>Tonio vous envoie les photos</mark><br>avant et après.",
+  sub="",
+  ghost="Appeler Tonio pour qu'il vienne",
+  avis='7', rev_sum='7 avis Google', rarete=False,
+  proof=[("image", "Photos avant/après de votre toit"), ("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite si défaut"), ("phone", "Pas de vendeur, Tonio en direct")],
+  band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
+        ("shield-check", "Reprise gratuite", "si défaut sur la zone réparée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
+        ("home", "Artisan depuis 2009", "basé à Boucau")],
+  signs=dict(t="Ce que vous ne voyez pas depuis le jardin",
+    p="Vu d'en bas, un toit a souvent l'air en bon état. <strong>Là-haut, Tonio prend en photo ce qui laisse passer l'eau</strong> et vous le montre avant de chiffrer. Vous savez ce qui est abîmé, et ce qui ne l'est pas.",
+    items=[("drop", "Fuite ou infiltration", "Taches au plafond, auréoles, humidité dans les combles : votre couvreur cherche d'où vient l'eau avant que la charpente souffre. Bâchage d'urgence si la pluie approche."),
+           ("layers", "Tuiles déplacées ou cassées", "Après un coup de vent, des tuiles glissent ou se fendent. Tonio contrôle tout le toit, pas seulement le coin que vous voyez."),
+           ("sprout", "Mousse qui soulève les tuiles", "Laissée en place, la mousse décolle les tuiles et garde l'humidité. On la traite avant que ça devienne une grosse réparation."),
+           ("waves", "Faîtage, gouttière, solins fatigués", "Mortier qui s'effrite, gouttière qui déborde, solin de cheminée qui bâille : ce sont souvent eux qui laissent passer l'eau. Tonio les reprend avant l'hiver.")]),
+  method_steps=[("Vous appelez Tonio", "Vous lui décrivez ce que vous voyez. Il passe chez vous rapidement, souvent le soir même ou le lendemain."),
+                ("Photos et devis", "Tonio monte, prend en photo tuiles, faîtage, gouttières et solins, vous montre les photos et vous donne un prix sur place."),
+                ("Réparation", "Il répare ce qui laisse passer l'eau, pas plus. S'il découvre autre chose, il vous envoie la photo et vous décidez."),
+                ("Photos après", "Contrôle tuile par tuile, chantier nettoyé, et les photos après vous arrivent le jour même.")],
+  real=dict(t="Ce que Tonio vous promet, noir sur blanc", items=[
+    "Les photos avant/après de votre toit, envoyées le jour même",
+    "Le prix du devis est le prix que vous payez. Rien en plus sans votre accord écrit",
+    "Un défaut sur la zone réparée ? Tonio revient le reprendre gratuitement",
+    "Pas de vendeur : Tonio vient, chiffre et répare lui-même",
+    "Il ne refait pas les toitures, donc il n'a rien de plus à vous vendre",
+    "Un seul numéro, du devis jusqu'après les travaux"]),
+  reviews=['g_vp', 'g_ml', 'g_m'],
+  form=dict(t="Décrivez votre besoin en 6 questions", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Quel est votre besoin ?",
     o1=[("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
-  faq=[("Vous intervenez vite en cas de fuite ?", "Oui, on priorise systématiquement les urgences couvreur (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque."),
-       ("Vous êtes couvreur ou vous sous-traitez ?", "Nous sommes couvreur en direct, pas d'intermédiaire ni de sous-traitance. L'artisan qui monte est celui qui a établi le devis."),
-       ("Vous travaillez tous les types de toiture ?", "Oui — tuiles canal, tuiles mécaniques, ardoise, zinc, bac acier. On annonce ce qu'on sait faire et ce qu'on ne fait pas, sur place."),
-       ("Combien coûte une réparation de toiture ?", "Ça dépend de l'accès au toit, du nombre de tuiles à remplacer et de l'état du faîtage et des solins. Le couvreur vous donne le tarif exact sur place, dans un devis gratuit, avant de commencer."),
-       FAQ_GARANTIE,
+  faq=[("Je vais vraiment voir les photos de mon toit ?", "Oui. Tonio prend votre toit en photo avant de commencer et une fois le travail fini, puis vous les envoie par SMS ou WhatsApp. Vous voyez ce qui a été fait sans monter sur l'échelle."),
+       ("Le prix peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois sur le toit, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
+       ("Et si la fuite revient ?", "Appelez Tonio. Si le défaut vient de la zone qu'il a réparée, il revient la reprendre gratuitement."),
+       ("Vous intervenez vite en cas de fuite ?", "Oui, les fuites passent en priorité. Tonio vous rappelle sous 24 h et intervient souvent sous 48 h sur Bayonne et la Côte Basque."),
+       ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio est couvreur et travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
+       ("Vous refaites les toitures complètes ?", "Non. Tonio répare et entretient : fuites, tuiles, faîtage, gouttières, démoussage. C'est aussi pour ça qu'il n'a aucun intérêt à vous vendre une toiture neuve."),
+       ("Combien coûte une réparation de toiture ?", "Ça dépend de l'accès au toit, du nombre de tuiles à remplacer et de l'état du faîtage et des solins. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer."),
+       ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux, plus la reprise gratuite si un défaut apparaît sur la zone réparée."),
        FAQ_ZONE],
-  cta=dict(t="Besoin d'un couvreur local sur la Côte Basque ?", p="On monte, on regarde, on vous dit — <strong>devis clair sous 24h</strong>."),
+  cta=dict(t="Vous voulez savoir ce qui se passe sur votre toit ?", p="Tonio monte, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
   # Sections de contenu sous la zone : une par famille de mots-clés actifs du groupe
   # « Couvreur / urgence » (score de qualité : pertinence de la page de destination).
   seo=[
    dict(t="Couvreur à Bayonne, Anglet, Biarritz et Boucau",
-    p="Tonio Rénov' est une <strong>entreprise de couverture</strong> basée à Boucau. Le même artisan couvreur se déplace dans chaque ville, sans sous-traitance.",
-    items=[("pin", "Couvreur à Bayonne", "Artisan couvreur à Bayonne pour la réparation de toiture, les tuiles cassées et le démoussage de toiture. Entreprise couvreur à Bayonne en direct : le devis toiture est gratuit et fait sur place. Couvreur zingueur à Bayonne pour les gouttières, le faîtage et les solins."),
+    p="Tonio Rénov' est une <strong>entreprise de couverture</strong> basée à Boucau. C'est Tonio qui se déplace dans chaque ville, sans sous-traitance.",
+    items=[("pin", "Couvreur à Bayonne", "Artisan couvreur à Bayonne pour la réparation de toiture, les tuiles cassées et le démoussage de toiture. Entreprise couvreur à Bayonne en direct : le devis toiture est gratuit et fait sur place, photos à l'appui. Couvreur zingueur à Bayonne pour les gouttières, le faîtage et les solins."),
            ("alert", "Urgence toiture à Bayonne", f"Fuite de toiture à Bayonne, tuile envolée après un coup de vent : l'urgence couvreur à Bayonne, c'est le {TEL}. Dépannage toiture à Bayonne avec bâchage si la pluie approche, puis réparation de toiture."),
            ("pin", "Couvreur à Anglet", "Artisan couvreur à Anglet, maisons et résidences. Entreprise couvreur à Anglet sans intermédiaire, devis couvreur à Anglet gratuit : réparation, tuiles, gouttières, fuite."),
            ("pin", "Couvreur à Biarritz", "Artisan couvreur à Biarritz, sur des toitures exposées au vent et aux embruns. Entreprise couvreur à Biarritz, devis couvreur à Biarritz gratuit et détaillé."),
            ("home", "Couvreur à Boucau", "Notre base. Couvreur à Boucau et à Tarnos : un artisan du quartier, joignable directement, qui connaît les toitures du secteur.")]),
    dict(t="Urgence toiture : fuite, infiltration, tuile cassée",
-    p="Une <strong>fuite de toiture</strong> n'attend pas. Appelez : on vous rappelle sous 24 h et on intervient en priorité, souvent sous 48 h.",
-    items=[("drop", "Fuite toiture et infiltration d'eau", "Taches au plafond, goutte à goutte dans les combles : votre couvreur cherche l'origine de l'infiltration d'eau par la toiture (tuile, solin, faîtage, gouttière) et la répare. Une urgence fuite toiture passe en priorité."),
+    p="Une <strong>fuite de toiture</strong> n'attend pas. Appelez : Tonio vous rappelle sous 24 h et intervient en priorité, souvent sous 48 h.",
+    items=[("drop", "Fuite toiture et infiltration d'eau", "Taches au plafond, goutte à goutte dans les combles : votre couvreur cherche d'où vient l'infiltration d'eau par la toiture (tuile, solin, faîtage, gouttière) et la répare. Une urgence fuite toiture passe en priorité."),
            ("alert", "Dépannage toiture et bâchage d'urgence", "Toiture en urgence après une tempête : bâchage pour mettre la maison hors d'eau, puis réparation de toiture en urgence dès que la météo le permet."),
            ("layers", "Tuile cassée, remplacement de tuiles", "Une tuile cassée ou glissée suffit à laisser passer l'eau. Remplacement de tuiles canal, de tuiles mécaniques ou d'ardoises, à l'identique."),
-           ("clock", "Urgence toiture 24h : ce qu'on vous promet", "Un appel ou une demande sur cette page, et un couvreur vous rappelle sous 24 h. On ne promet pas d'intervenir à toute heure : on promet de décrocher, de venir vite et de mettre votre toit hors d'eau.")]),
-   dict(t="Réparation, rénovation et réfection de toiture",
-    p="<strong>Artisan toiture</strong> : de la tuile à remplacer à la couverture à refaire, on vous dit franchement ce qui suffit.",
+           ("clock", "Urgence toiture 24h : ce qu'on vous promet", "Un appel ou une demande sur cette page, et Tonio vous rappelle sous 24 h. Il ne promet pas d'intervenir à toute heure : il promet de décrocher, de venir vite et de mettre votre toit hors d'eau.")]),
+   dict(t="Réparation de toiture : ce qui suffit, pas plus",
+    p="<strong>Artisan toiture</strong> : Tonio répare et entretient, il ne refait pas les toitures. Il n'a donc rien à vous vendre de plus que ce qu'il faut.",
     items=[("tools", "Réparation de toiture", "Réparation de toiture sur les tuiles, le faîtage, les rives et les solins de cheminée. Le couvreur répare ce qui laisse passer l'eau, sans vous vendre une toiture neuve."),
-           ("home", "Rénovation, réfection, changer de toiture", "Quand la couverture est trop fatiguée pour être réparée, on chiffre la rénovation de toiture : réfection de la couverture et reprise de la zinguerie. Changer de toiture se décide sur place, photos à l'appui."),
+           ("search", "Rénovation de toiture : le bon diagnostic d'abord", "Avant de parler de rénovation de toiture, Tonio regarde ce qui peut être réparé. Photos à l'appui, vous savez si une réparation suffit. Si la couverture est vraiment à refaire, il vous le dit franchement."),
            ("waves", "Toit en zinc, couvreur zingueur", "Toit en zinc, gouttières zinc ou alu, chéneaux, noues : un couvreur zingueur pose et soude le zinc à l'étain."),
-           ("shield-check", "Toiturier, couvreur, entreprise de couverture", "Toiturier, couvreur ou entreprise de couverture : c'est le même métier. Chez Tonio Rénov', l'artisan couvreur qui monte sur votre toit est celui qui signe le devis. Garantie décennale et RC Pro.")]),
+           ("shield-check", "Toiturier, couvreur, entreprise de couverture", "Toiturier, couvreur ou entreprise de couverture : c'est le même métier. Chez Tonio Rénov', le couvreur qui monte sur votre toit est celui qui signe le devis.")]),
    dict(t="Devis couvreur gratuit et tarif de réparation de toiture",
-    p="<strong>Devis toiture gratuit</strong>, établi sur place après inspection. Le prix est annoncé avant les travaux.",
+    p="<strong>Devis toiture gratuit</strong>, établi sur place après inspection. Le prix annoncé est le prix payé.",
     items=[("search", "Ce qui fait le tarif d'une réparation de toiture", "L'accès au toit, le nombre de tuiles à remplacer, l'état du faîtage et des solins, le type de couverture. Le tarif de réparation de toiture se fixe sur ce que le couvreur voit, pas au téléphone."),
-           ("check", "Devis couvreur sans engagement", f"Remplissez le formulaire ou appelez le {TEL} : votre devis couvreur est gratuit, détaillé et sans engagement."),
-           ("pin", "Un couvreur à proximité", "Vous cherchez un couvreur à proximité ? Basés à Boucau, on couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan couvreur du coin, pas une plateforme.")]),
+           ("check", "Devis couvreur sans engagement", f"Remplissez le formulaire ou appelez le {TEL} : votre devis couvreur est gratuit, détaillé et sans engagement. Vous le signez quand vous voulez."),
+           ("pin", "Un couvreur à proximité", "Vous cherchez un couvreur à proximité ? Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan couvreur du coin, pas une plateforme.")]),
   ],
  ),
  # Groupe 2 — Zinguerie / Faîtage : panier moyen 1500-4000 €, saison pré-hiver + post-tempête.
@@ -497,8 +520,11 @@ def render(p):
     h1_inner, _ = split_words(p['h1'])
     h1 = f'<h1 aria-label="{plain(p["h1"])}">{h1_inner}</h1>'
     trust = [("award", "Plus de 500 chantiers", "sur la Côte Basque"), ("shield-check", "Garantie décennale", "sur tous nos travaux"),
-             ("shield", "Assurance RC Pro", "artisan assuré"), ("award", "Certifié RGE", "qualification reconnue"), p['last_trust']]
+             ("shield", "Assurance RC Pro", "artisan assuré"), ("award", "Certifié RGE", "qualification reconnue"), p.get('last_trust')]
     trust[0] = ("home", trust[0][1], trust[0][2])
+    if p.get('band'): trust = p['band']
+    proof = ''.join(f'<span>{ic(i)}{t}</span>' for i, t in p.get('proof', [("check", "Visite gratuite"), ("shield", "Sans engagement")]))
+    rarete = '' if p.get('rarete') is False else '<p class="rarete reveal on-dark" style="--d:1.5"><em>Tonio prend 6 à 8 nouveaux chantiers par mois pour garder la qualité, pas à la chaîne.</em></p>'
     band = ''.join(f'<li>{ic(i)}<div><b>{a}</b><small>{b}</small></div></li>' for i, a, b in trust)
     signs = ''.join(f'<li class="sign reveal" style="--d:{k}"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for k, (i, t, d) in enumerate(p['signs']['items']))
     steps = ''.join(f'<li class="step reveal" style="--d:{k}"><span class="step-n">{k+1}</span><h3>{t}</h3><p>{d}</p></li>' for k, (t, d) in enumerate(p['method_steps']))
@@ -625,12 +651,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {h1}
       <a class="google-badge fade" style="--d:1" href="https://www.google.com/search?q=Tonio+Rénov+Boucau+avis" target="_blank" rel="noopener">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
-        {stars()}<span><b>5/5</b> · <b>23 avis</b></span>
+        {stars()}<span><b>5/5</b> · <b>{p.get('avis', '23')} avis</b></span>
       </a>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary btn-stack" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone","btn-ph")}<span class="btn-txt"><b>{s['phone']}</b><small>{p['ghost']}</small></span></a>
       </div>
-      <p class="hero-proof fade" style="--d:3"><span>{ic("check")}Visite gratuite</span><span>{ic("shield")}Sans engagement</span></p>
+      <p class="hero-proof fade" style="--d:3">{proof}</p>
     </div>
     {devis_haut}
   </div>
@@ -656,7 +682,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec sec-light" id="avis" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · avis vérifiés de clients de la Côte Basque et des Landes</span></p></div>
+    <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · {p.get('rev_sum', 'avis vérifiés de clients de la Côte Basque et des Landes')}</span></p></div>
     <div class="rev-grid">{''.join(revs)}</div>
   </div>
 </section>
@@ -680,7 +706,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     {cta_h2}
     <p class="reveal" style="--d:1">{p['cta']['p']}</p>
-    <p class="rarete reveal on-dark" style="--d:1.5"><em>Tonio prend 6 à 8 nouveaux chantiers par mois pour garder la qualité, pas à la chaîne.</em></p>
+    {rarete}
     <div class="btns reveal" style="--d:2">
       <a class="btn btn-primary" href="#devis-bas"><span>Faire venir Tonio chez moi</span>{ic("arrow","arr")}</a>
       <a class="btn-tel on-dark" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
