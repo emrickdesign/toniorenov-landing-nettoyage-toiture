@@ -439,3 +439,48 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.001ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
   .ring{animation:none}
 }
+
+/* ===== Nov. 2026 : bande fine qui défile, carrousels, formulaire court (modèle Sud-Ouest Couverture) ===== */
+/* Bande de garanties : une seule ligne qui défile en continu (2 copies de la liste, pause au survol) */
+.band.marquee{overflow:hidden;padding:12px 0}
+.band.marquee .band-track{display:flex;width:max-content;animation:defile 36s linear infinite}
+.band.marquee:hover .band-track{animation-play-state:paused}
+.band.marquee ul{display:flex;flex:none;grid-template-columns:none}
+.band.marquee li{padding:0 26px;gap:9px;white-space:nowrap;border:0;border-left:1px solid rgba(255,255,255,.16);justify-content:flex-start;grid-column:auto}
+.band.marquee li div{display:flex;align-items:baseline;gap:6px}
+.band.marquee .ic{width:18px;height:18px;flex:none}
+.band.marquee b{display:inline;font-size:.9375rem}
+.band.marquee small{display:inline;margin:0;font-size:.875rem}
+@keyframes defile{to{transform:translateX(-50%)}}
+@media(max-width:560px){.band.marquee{padding:10px 0}.band.marquee li{padding:0 18px}.band.marquee b{font-size:.875rem}.band.marquee small{font-size:.8125rem}}
+@media(prefers-reduced-motion:reduce){.band.marquee .band-track{animation:none}}
+
+/* Carrousels (glisser au doigt + défilement auto) : chantiers et avis */
+[hidden]{display:none!important}
+.carousel-dots{display:flex;justify-content:center;gap:4px;margin-top:16px}
+.carousel-dots button{width:26px;height:26px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.carousel-dots button::before{content:"";width:8px;height:8px;border-radius:99px;background:#c9d2dc;transition:width .3s,background .3s}
+.carousel-dots button.on::before{width:24px;background:var(--tuile)}
+.gal-grid[data-carousel],.rev-grid[data-carousel]{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 10px}
+.gal-grid[data-carousel]::-webkit-scrollbar,.rev-grid[data-carousel]::-webkit-scrollbar{display:none}
+.gal-grid[data-carousel]>li,.rev-grid[data-carousel]>.rev{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start}
+.rev-grid[data-carousel]{margin-top:clamp(24px,3vw,36px)}
+@media(max-width:759px){
+  .gal-grid[data-carousel],.rev-grid[data-carousel]{margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding:0 var(--gutter)}
+  .gal-grid[data-carousel]>li,.rev-grid[data-carousel]>.rev{flex-basis:84%;scroll-snap-align:center}
+  .rev-grid[data-carousel] .rev{text-align:center;align-items:center}
+  .rev-sum{justify-content:center}
+}
+
+/* Formulaire court : pas de « Étape X sur N », question sur une seule ligne */
+.devis-form{container-type:inline-size}
+.devis-form .fq{white-space:nowrap;font-size:min(1.45rem,5.6cqw)}
+.factions{flex-wrap:nowrap}
+.factions .btn-next{flex:0 1 auto;min-width:0;white-space:nowrap}
+@media(max-width:560px){
+  /* bouton pleine largeur, « Précédent » en dessous : « Envoyer ma demande » ne déborde plus */
+  .factions{flex-direction:column-reverse;align-items:stretch;gap:4px;margin-top:22px}
+  .factions .btn-next{width:100%;justify-content:center;padding-inline:1rem}
+  .fback{align-self:center;padding:10px 6px;font-size:.875rem}
+  .fback[disabled]{display:none}
+}

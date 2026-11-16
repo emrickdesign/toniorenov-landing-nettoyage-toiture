@@ -95,7 +95,7 @@ def gallery_photos(path):
         ]
     # Défaut : couvreur, entretien, urgence, zinguerie, nettoyage-toiture (racine)
     return [
-        ('img/galerie-real-refection-toiture.jpg', 'Réfection de couverture au Pays Basque'),
+        ('img/galerie-real-refection-toiture.jpg', 'Chantier de couverture au Pays Basque'),
         ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage & zinguerie au Pays Basque'),
         ('img/galerie-real-toiture-chantier.jpg', 'Entretien de toiture à Boucau'),
     ]
@@ -145,6 +145,12 @@ FAQ_ZONE = ("Quelles villes couvrez-vous ?", "Boucau, Bayonne, Anglet, Biarritz,
 FAQ_GARANTIE = ("Quelles garanties proposez-vous ?", "Tous nos chantiers sont couverts par notre garantie décennale et notre assurance RC Pro. Nous sommes artisan certifié RGE.")
 TEL = SITE['phone']
 STEPS_TOIT = lambda s2, s3:[("Vous nous appelez", "Décrivez l'état de votre toiture, on cale une visite gratuite rapidement."), ("Diagnostic & devis", s2), ("Intervention", s3), ("Contrôle final", "Vérification tuile par tuile et nettoyage du chantier avant de repartir.")]
+
+Q_DELAI = "Quand voulez-vous faire les travaux ?"
+O_DELAI = [("Dès que possible", "Dès que possible", "clock"), ("Dans le mois", "Dans le mois", "clock"),
+           ("Dans les 3 mois", "Dans les 3 mois", "clock"), ("Je me renseigne", "Je me renseigne", "help")]
+Q_STATUT = "Vous êtes :"
+O_STATUT = [("Propriétaire", "Propriétaire", "home"), ("Locataire", "Locataire", "home"), ("Syndic", "Syndic", "home")]
 
 PAGES = [
  dict(
@@ -272,8 +278,8 @@ PAGES = [
   h1="Vous ne voyez pas votre toit ?<br><mark>Tonio vous envoie les photos</mark><br>avant et après.",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
-  avis='7', rev_sum='7 avis Google', rarete=False,
-  proof=[("image", "Photos avant/après de votre toit"), ("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite si défaut"), ("phone", "Pas de vendeur, Tonio en direct")],
+  avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
+  proof=[("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite si défaut"), ("phone", "Pas de vendeur, Tonio en direct")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone réparée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
         ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -295,8 +301,11 @@ PAGES = [
     "Il ne refait pas les toitures, donc il n'a rien de plus à vous vendre",
     "Un seul numéro, du devis jusqu'après les travaux"]),
   reviews=['g_vp', 'g_ml', 'g_m'],
-  form=dict(t="Décrivez votre besoin en 6 questions", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Quel est votre besoin ?",
+  form=dict(t="Décrivez votre besoin", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    etapes=[('probleme', "Quel est votre besoin ?", [("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")]),
+            ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
+            ('delai', Q_DELAI, O_DELAI)],
     o1=[("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Je vais vraiment voir les photos de mon toit ?", "Oui. Tonio prend votre toit en photo avant de commencer et une fois le travail fini, puis vous les envoie par SMS ou WhatsApp. Vous voyez ce qui a été fait sans monter sur l'échelle."),
@@ -487,11 +496,6 @@ def bgimg(name):
     return f'<img class="sec-bg" src="/img/{name}.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" {dims(name)}>'
 
 # Questions communes à toutes les pages (audit Google Ads du 13/11/2026 : qualifier la demande).
-Q_DELAI = "Quand voulez-vous faire les travaux ?"
-O_DELAI = [("Dès que possible", "Dès que possible", "clock"), ("Dans le mois", "Dans le mois", "clock"),
-           ("Dans les 3 mois", "Dans les 3 mois", "clock"), ("Je me renseigne", "Je me renseigne", "help")]
-Q_STATUT = "Vous êtes :"
-O_STATUT = [("Propriétaire", "Propriétaire", "home"), ("Locataire", "Locataire", "home"), ("Syndic", "Syndic", "home")]
 
 def opts(name, options, first_focus=False):
     out = []
@@ -526,12 +530,14 @@ def render(p):
     proof = ''.join(f'<span>{ic(i)}{t}</span>' for i, t in p.get('proof', [("check", "Visite gratuite"), ("shield", "Sans engagement")]))
     rarete = '' if p.get('rarete') is False else '<p class="rarete reveal on-dark" style="--d:1.5"><em>Tonio prend 6 à 8 nouveaux chantiers par mois pour garder la qualité, pas à la chaîne.</em></p>'
     band = ''.join(f'<li>{ic(i)}<div><b>{a}</b><small>{b}</small></div></li>' for i, a, b in trust)
+    band_html = (f'<section class="band marquee" aria-label="Nos garanties"><div class="band-track"><ul>{band}</ul><ul aria-hidden="true">{band}</ul></div></section>'
+                 if p.get('marquee') else f'<section class="band" aria-label="Nos garanties"><div class="wrap"><ul>{band}</ul></div></section>')
     signs = ''.join(f'<li class="sign reveal" style="--d:{k}"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for k, (i, t, d) in enumerate(p['signs']['items']))
     steps = ''.join(f'<li class="step reveal" style="--d:{k}"><span class="step-n">{k+1}</span><h3>{t}</h3><p>{d}</p></li>' for k, (t, d) in enumerate(p['method_steps']))
     real = ''.join(f'<li>{ic("check")}<span>{t}</span></li>' for t in p['real']['items'])
     revs = []
     for k, key in enumerate(p['reviews']):
-        r = R[key]; big = ' big' if k == 0 else ''
+        r = R[key]; big = ' big' if k == 0 and not p.get('marquee') else ''
         revs.append(f'<figure class="rev{big} reveal" style="--d:{k}">{stars()}<blockquote>« {r["q"]} »</blockquote><figcaption class="rev-who"><span class="rev-av">{r["i"]}</span><span><b>{r["n"]}</b><small>{r["v"]}</small></span></figcaption></figure>')
     f = p['form']
     prog = '<i></i>' * 6
@@ -551,24 +557,31 @@ def render(p):
     def devis_bloc(pos, titre, ident, hero=False):
         """Un formulaire complet. `pos` rend les identifiants uniques : il y en a deux par page.
         `hero=True` renvoie la carte seule, à poser dans la colonne droite du hero."""
+        etapes = f.get('etapes') or [('probleme', f['q1'], f['o1']), ('toiture', f['q2'], f['o2']), ('surface', f['q3'], f['o3']),
+                                     ('delai', Q_DELAI, O_DELAI), ('statut', Q_STATUT, O_STATUT)]
+        n_et = len(etapes) + 1
+        court = bool(f.get('etapes'))
+        compte = lambda k: '' if court else f'<span class="fcount">Étape {k} sur {n_et}</span>'
         champs = (
-            f'<div class="field"><label for="f-nom-{pos}">Nom</label>'
-            f'<input id="f-nom-{pos}" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div>'
-            f'<div class="field"><label for="f-tel-{pos}">Téléphone</label>'
+            (f'<div class="field"><label for="f-nom-{pos}">Prénom</label>'
+             f'<input id="f-nom-{pos}" data-champ="nom" type="text" placeholder="Votre prénom" autocomplete="given-name"></div>' if court else
+             f'<div class="field"><label for="f-nom-{pos}">Nom</label>'
+             f'<input id="f-nom-{pos}" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div>')
+            + f'<div class="field"><label for="f-tel-{pos}">Téléphone</label>'
             f'<input id="f-tel-{pos}" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div>'
+            + ('' if court else
             f'<div class="field"><label for="f-ville-{pos}">Ville</label>'
-            f'<input id="f-ville-{pos}" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>'
+            f'<input id="f-ville-{pos}" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>')
         )
+        q_coord = f.get('q_coord', 'Vos coordonnées pour le rappel')
+        fsteps = ''.join(f'<div class="fstep{" active" if k == 1 else ""}" data-step="{k}">{compte(k)}<p class="fq" tabindex="-1" data-focus>{q}</p><span class="fhint">Cliquez sur votre réponse</span>{opts(fld, o)}</div>\n        '
+                         for k, (fld, q, o) in enumerate(etapes, 1))
+        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
+        fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         corps = f'''<div class="devis-shell">
-      <div class="progress" aria-hidden="true">{prog}</div>
+      <div class="progress" aria-hidden="true">{'<i></i>' * n_et}</div>
       <form class="devis-form" data-pos="{pos}" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 6</span><p class="fq" tabindex="-1" data-focus>{f['q1']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('probleme', f['o1'])}</div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 6</span><p class="fq" tabindex="-1" data-focus>{f['q2']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('toiture', f['o2'])}</div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 6</span><p class="fq" tabindex="-1" data-focus>{f['q3']}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('surface', f['o3'])}</div>
-        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 6</span><p class="fq" tabindex="-1" data-focus>{Q_DELAI}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('delai', O_DELAI)}</div>
-        <div class="fstep" data-step="5"><span class="fcount">Étape 5 sur 6</span><p class="fq" tabindex="-1" data-focus>{Q_STATUT}</p><span class="fhint">Cliquez sur votre réponse</span>{opts('statut', O_STATUT)}</div>
-        <div class="fstep" data-step="6"><span class="fcount">Étape 6 sur 6</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p>{champs}</div>
-        <div class="fstep" data-step="7" aria-live="polite"><div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
+        {fsteps}<div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
       </form>
     </div>'''
@@ -662,7 +675,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="band" aria-label="Nos garanties"><div class="wrap"><ul>{band}</ul></div></section>
+{band_html}
 
 <section class="sec sec-dark has-bg">
   {bgimg(M["bgm"])}
@@ -675,7 +688,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec sec-light">
   <div class="wrap">
     <div class="sec-head center">{h2("Nos derniers chantiers sur la Côte Basque")}</div>
-    <ul class="gal-grid reveal" style="--d:1">
+    <ul class="gal-grid reveal" style="--d:1"{' data-carousel="all"' if p.get('marquee') else ''}>
 {''.join(f'      <li><img src="/{src}" alt="{alt}" loading="lazy" decoding="async"><figcaption>{alt}</figcaption></li>' + chr(10) for src, alt in gallery_photos(p['path']))}    </ul>
   </div>
 </section>
@@ -683,7 +696,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sec sec-light" id="avis" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · {p.get('rev_sum', 'avis vérifiés de clients de la Côte Basque et des Landes')}</span></p></div>
-    <div class="rev-grid">{''.join(revs)}</div>
+    <div class="rev-grid"{' data-carousel="all"' if p.get('marquee') else ''}>{''.join(revs)}</div>
   </div>
 </section>
 

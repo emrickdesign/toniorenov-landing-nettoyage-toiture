@@ -122,7 +122,7 @@
       prenom: reponses.nom || null,
       telephone: reponses.tel || null,
       ville: reponses.ville || null,
-      domaine: reponses.probleme || null,
+      domaine: reponses.probleme || (/peinture/.test(location.pathname) ? 'Peinture intérieure' : null),
       details: details,
       source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
@@ -146,7 +146,7 @@
     var back = form.querySelector('.fback');
     var actions = form.querySelector('.factions');
     var lbl = next.querySelector('.lbl');
-    var TOTAL = 6; /* étapes avec réponse ; l'étape TOTAL + 1 = demande envoyée */
+    var TOTAL = steps.length - 1; /* étapes avec réponse (coordonnées incluses) ; l'étape TOTAL + 1 = demande envoyée */
     var cur = 1;
     var reponses = {};
     var envoye = false;
@@ -468,4 +468,61 @@
   document.addEventListener('visibilitychange', function () { if (document.hidden) partir('hidden'); });
   window.addEventListener('pagehide', function () { partir('pagehide'); });
   window.addEventListener('beforeunload', function () { partir('beforeunload'); });
+})();
+
+/* ---------- Carrousels : glisser au doigt, points, défilement auto (pause dès que le visiteur touche) ---------- */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  [].forEach.call(document.querySelectorAll('[data-carousel]'), function (c) {
+    var items = [].slice.call(c.children);
+    var dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    c.parentNode.insertBefore(dots, c.nextSibling);
+    var stops = [], pauseUntil = 0, visible = false, raf = 0;
+
+    function pos(i) { return items[i].offsetLeft - items[0].offsetLeft; }
+    function layout() {
+      var scrollable = c.scrollWidth > c.clientWidth + 4;
+      dots.hidden = !scrollable;
+      if (!scrollable) { stops = []; dots.innerHTML = ''; return; }
+      var max = c.scrollWidth - c.clientWidth;
+      stops = [];
+      for (var i = 0; i < items.length; i++) { var p = Math.min(pos(i), max); if (!stops.length || p - stops[stops.length - 1] > 4) stops.push(p); }
+      dots.innerHTML = '';
+      stops.forEach(function (p, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Aller à l’élément ' + (i + 1));
+        b.addEventListener('click', function () { pause(); go(i); });
+        dots.appendChild(b);
+      });
+      mark();
+    }
+    function current() {
+      var l = c.scrollLeft, best = 0, bd = Infinity;
+      stops.forEach(function (p, i) { var d = Math.abs(p - l); if (d < bd) { bd = d; best = i; } });
+      return best;
+    }
+    function mark() {
+      var k = current();
+      [].forEach.call(dots.children, function (b, i) { b.classList.toggle('on', i === k); });
+    }
+    function go(i) { c.scrollTo({ left: stops[i] || 0, behavior: reduce ? 'auto' : 'smooth' }); }
+    function pause() { pauseUntil = Date.now() + 12000; }
+
+    c.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); }, { passive: true });
+    ['pointerdown', 'touchstart', 'wheel', 'mouseenter', 'focusin'].forEach(function (ev) { c.addEventListener(ev, pause, { passive: true }); });
+    window.addEventListener('resize', function () { clearTimeout(c._t); c._t = setTimeout(layout, 150); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.5 }).observe(c);
+    }
+    layout();
+    if (!reduce) {
+      setInterval(function () {
+        if (!visible || !stops.length || Date.now() < pauseUntil || document.hidden) return;
+        var k = current();
+        go(k + 1 < stops.length ? k + 1 : 0);
+      }, 4500);
+    }
+  });
 })();
