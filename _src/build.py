@@ -9,9 +9,9 @@ CSS = open(os.path.join(ROOT, '_src', 'style.css'), encoding='utf-8').read()
 JS = open(os.path.join(ROOT, '_src', 'app.js'), encoding='utf-8').read()
 
 SITE = dict(
-    # Numéro de suivi Twilio (pas le 06 direct) : les appels sont transférés à Tonio
+    # Numéro de suivi Zadarma (pas le 06 direct) : les appels sont transférés à Tonio
     # et tracés dans l'espace client Potentieel. Changer ici = changer les 4 pages.
-    name="Tonio Rénov'", phone="04 15 87 02 42", tel="+33415870242",
+    name="Tonio Rénov'", phone="05 25 68 01 58", tel="+33525680158",
     email="contact@toniorenov.fr", gtm="GTM-5VBQJ4RZ",
     # Canonical : toniorenov.fr est le domaine principal utilisé par les Google Ads V3.
     # Le sous-domaine nettoyage-toiture.toniorenov.fr sert la même build mais pointe toniorenov.fr via canonical.

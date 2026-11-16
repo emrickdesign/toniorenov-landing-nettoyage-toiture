@@ -104,7 +104,7 @@
      --------------------------------------------------------------- */
 
   /* Destination des demandes : espace client Potentieel (table form_submissions).
-     Le lead apparaît dans la fiche du client, à côté des appels Twilio. */
+     Le lead apparaît dans la fiche du client, à côté des appels du numéro de suivi. */
   var LEAD = {
     url: 'https://ktzegmikprmltuelxsgi.supabase.co/rest/v1/form_submissions',
     key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0emVnbWlrcHJtbHR1ZWx4c2dpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjExMzEsImV4cCI6MjEwOTI5NzEzMX0.yg0-RZgekOcy8GNKpdg3OUpxp6vp5jZu2iIFJK21TAk',
