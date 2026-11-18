@@ -415,13 +415,15 @@ PAGES = [
   # n°1 du marché est « résultat invisible, traces de mousse restées, aucune protection appliquée » ; « sans karcher »
   # est déjà pris par 5 concurrents (accroche interdite), le prix du devis est déjà l'angle de /ravalement/.
   title="Nettoyage de façade à Bayonne, Anglet, Biarritz : démoussage, traitement · Tonio Rénov'",
-  desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
+  desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
-  h1="Nettoyage de façade&nbsp;:<br><mark>photos avant/après</mark><br>de votre mur.",
+  h1="Nettoyage de façade&nbsp;:<br><mark>−30&nbsp;% sur le devis</mark><br>ce mois-ci.",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
-  proof=[("layers", "Adapté au support"), ("shield-check", "Reprise gratuite"), ("phone", "Pas de vendeur")],
+  proof=[("image", "Photos avant/après"), ("check", "Prix du devis tenu"), ("layers", "Adapté au support"), ("shield-check", "Reprise gratuite"), ("phone", "Pas de vendeur"), ("shield", "Décennale + RC Pro")],
+  offre_mois=True,
+  ring=[("img/ring/facade-nettoyage.jpg", "Tonio nettoie une façade blanche à l'échelle"), ("img/ring/facade-avant.jpg", "Façade encrassée et écaillée avant l'intervention de Tonio"), ("img/ring/facade-basque.jpg", "Façade basque blanche entretenue par Tonio"), ("img/ring/facade-apres.jpg", "La même façade après l'intervention de Tonio")],
   band=[("image", "Photos avant/après", "vous voyez la différence"), ("layers", "Adapté au support", "enduit, crépi ou pierre"),
         ("check", "Prix du devis tenu", "rien en plus sans votre accord"), ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"),
         ("shield", "Décennale + RC Pro", "artisan assuré"), ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -443,26 +445,27 @@ PAGES = [
     "Un défaut sur la zone traitée ? Tonio revient le reprendre gratuitement",
     "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même"]),
   reviews=['g_ml', 'g_vp', 'g_m'],
-  form=dict(t="Décrivez votre besoin", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?",
+  form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?",
     etapes=[('probleme', "Que voulez-vous faire ?", [("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
             ('toiture', "Quel est le revêtement de votre façade ?", [("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")]),
             ('delai', Q_DELAI, O_DELAI)],
     o1=[("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
     q2="Quel est le revêtement de votre façade ?", o2=[("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")],
     q3="Surface approximative de la façade ?", o3=OPT_SURF),
-  faq=[("Les photos avant/après, c'est pour de vrai ?", "Oui. Tonio prend votre façade en photo avant de commencer et une fois le nettoyage fini, puis vous envoie les photos avant/après. Vous voyez ce qui a été retiré, sans avoir à le croire sur parole."),
+  faq=[("Comment marchent les −30 % ?", "Pour toute demande faite avant la fin du mois, Tonio retire 30 % du montant de son devis. Le prix remisé est écrit noir sur blanc sur le devis, et c'est celui que vous payez."),
+       ("Les photos avant/après, c'est pour de vrai ?", "Oui. Tonio prend votre façade en photo avant de commencer et une fois le nettoyage fini, puis vous envoie les photos avant/après. Vous voyez ce qui a été retiré, sans avoir à le croire sur parole."),
        ("Le nettoyage risque-t-il d'abîmer mon enduit ?", "Tonio regarde d'abord le support (enduit, crépi, pierre apparente) et choisit un nettoyage adapté : basse pression, produits professionnels, sans abîmer l'enduit. Si le mur est trop fragile pour un nettoyage, il vous le dit."),
        ("Vous nettoyez aussi les façades en pierre ?", "Oui, Tonio nettoie les façades en enduit, en crépi et en pierre. La pierre apparente ne se traite pas comme un enduit : il adapte le nettoyage au support."),
        ("La mousse va-t-elle revenir ?", "Une façade exposée au nord, à l'humidité ou aux embruns se salit plus vite qu'une autre. Un traitement anti-mousse et hydrofuge limite le retour, mais il ne le supprime pas toujours. Tonio vous dit franchement à quoi vous attendre sur votre mur."),
        ("Faut-il forcément un traitement hydrofuge ?", "Non. Selon l'état du mur, un nettoyage peut suffire. Tonio vous dit si un traitement anti-mousse ou hydrofuge est utile sur votre façade, et c'est vous qui décidez."),
        ("Quelle différence entre nettoyage et ravalement ?", "Le nettoyage retire mousse, traces et pollution. Le ravalement reprend l'enduit, les fissures et la peinture. Si votre façade est fissurée ou à repeindre, Tonio vous le dit et fait aussi le ravalement."),
        ("Le prix du devis peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois sur la façade, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
-       ("Combien coûte un nettoyage de façade ?", "Ça dépend de la surface, de la hauteur, du support et de l'état d'encrassement. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
+       ("Combien coûte un nettoyage de façade ?", "Ça dépend de la surface, de la hauteur, du support et de l'état d'encrassement. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer, avec les 30 % de remise du mois déjà déduits. Ce prix est celui que vous payez."),
        ("Vous êtes artisan ou vous sous-traitez ?", "Tonio travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui regarde votre façade et fait le devis est celui qui travaille dessus."),
        ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur les travaux, plus la reprise gratuite si un défaut apparaît sur la zone traitée."),
        FAQ_ZONE],
-  cta=dict(t="Une façade propre, et la preuve en photos", p="Tonio regarde, prend les photos avant et après, et vous donne <strong>un devis dont le prix est le prix payé</strong>."),
+  cta=dict(t="−30 % sur le nettoyage de votre façade, ce mois-ci", p="Tonio regarde, prend les photos avant et après, et vous donne <strong>un devis dont le prix est le prix payé</strong>."),
   # Sections de contenu sous la zone : une par famille de mots-clés du groupe « nettoyage Facade » (score de qualité).
   seo=[
    dict(t="Nettoyage de façade à Bayonne, Anglet, Biarritz et Boucau",
@@ -881,7 +884,7 @@ def render(p):
         ph = [(('' if s.startswith('/') else '/') + s, alt) for s, alt in p['ring']]
         cols = ''.join(
             f'<div class="ring3d-col" style="--a:{c * 30}deg">'
-            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c * 2 + k) % len(ph)][0]}" alt="{ph[(c * 2 + k) % len(ph)][1]}" decoding="async" draggable="false"></div>' for k in (0, 1))
+            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c + 6 * k) % len(ph)][0]}" alt="{ph[(c + 6 * k) % len(ph)][1]}" decoding="async" draggable="false"></div>' for k in (0, 1))
             + '</div>' for c in range(6))
         band_html = f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio"><div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div></section>'
     # Offre limitée au mois en cours : date de fin écrite par app.js (dernier jour du mois).
