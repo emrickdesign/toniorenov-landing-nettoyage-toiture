@@ -340,6 +340,7 @@ PAGES = [
   title="Ravalement de façade à Bayonne, Anglet, Biarritz : devis, nettoyage, peinture · Tonio Rénov'",
   desc="Ravalement de façade, nettoyage, fissures et peinture à Bayonne, Anglet, Biarritz et Saint-Jean-de-Luz : −30 % sur le devis ce mois-ci. Le prix du devis est le prix payé, photos avant/après, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov' sur la Côte Basque",
+  fond='marine',  # 18/11 : toit de l'image derrière le titre = brouillon, l'image est carrée donc impossible à descendre
   h1="<span class='h1-l'>Ravalement de façade</span><span class='h1-sub'>Enduit, crépi, peinture, fissures</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   h1_label="Ravalement de façade, enduit, crépi, peinture et fissures : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
@@ -434,7 +435,7 @@ PAGES = [
   desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
   h1="<span class='h1-l'>Nettoyage de façade</span><span class='h1-sub'>Démoussage + traitement hydrofuge</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
-  fond='blanc', form_bleu=True,  # TEST 18/11 : fond uni à la place de la photo, cartes de formulaire en bleu
+  fond='marine',  # 18/11 : la façade derrière le titre faisait brouillon
   h1_label="Nettoyage de façade, démoussage et traitement hydrofuge : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
