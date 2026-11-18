@@ -1048,8 +1048,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-primary btn-stack" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone","btn-ph")}<span class="btn-txt"><b>{s['phone']}</b><small>{p['ghost']}</small></span></a>
       </div>
       <p class="hero-proof fade" style="--d:3">{proof}</p>
-      {ring_hero}
     </div>
+    {ring_hero}
     {devis_haut}
   </div>
 </section>

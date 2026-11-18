@@ -509,7 +509,12 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
    Mobile : pleine largeur (sort du gutter) ; ordinateur : dans la colonne de gauche. --e posé par app.js selon la largeur. */
 .ring-hero{position:relative;margin-top:clamp(14px,2.2vh,22px);padding:calc(34px * var(--e,.4)) 0;overflow:hidden}
 @media(max-width:1059px){.ring-hero{margin-inline:calc(var(--gutter) * -1)}}
-@media(min-width:1060px){.ring-hero{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}}
+/* Ordinateur : l'anneau passe sous le texte ET le formulaire, sur toute la largeur de l'écran (demande Emrick 18/11). */
+@media(min-width:1060px){
+  .hero-copy{grid-row:1}
+  .hero-in>.hero-form{grid-row:1}
+  .ring-hero{grid-column:1/-1;grid-row:2;padding:calc(100px * var(--e,.7)) 0;margin:0 calc(50% - 50vw) calc(clamp(72px,8vh,112px) * -1)}
+}
 /* Titre de l'offre dans la carte du formulaire (option form_titre_carte) */
 .fc-t{margin:0 0 14px;text-align:center;font-size:clamp(1.3rem,1.1rem + .7vw,1.65rem);line-height:1.15;letter-spacing:-.025em;color:var(--nuit)}
 .fc-sub{margin:-6px 0 16px;text-align:center;font-size:.9375rem;color:#5b6b7f}

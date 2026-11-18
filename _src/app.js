@@ -540,7 +540,7 @@
   }
   var e = 1, largeur = window.innerWidth;
   // Anneau dans le hero : l'échelle suit la largeur de son bloc (pleine largeur sur mobile, colonne sur ordinateur).
-  function echelleHero(el) { return Math.max(0.3, Math.min(0.46, el.clientWidth / 1000)); }
+  function echelleHero(el) { return window.innerWidth >= 1060 ? Math.max(0.5, Math.min(0.78, el.clientWidth / 1700)) : Math.max(0.3, Math.min(0.46, el.clientWidth / 1000)); }
   function poserEchelle() {
     e = echelle(window.innerWidth, window.innerHeight);
     document.querySelectorAll('.ring-sec').forEach(function (s) { s.style.setProperty('--e', e); });
