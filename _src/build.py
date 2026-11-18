@@ -111,6 +111,15 @@ def gallery_photos(path):
             ('img/galerie-real-toiture-chantier.jpg', 'Chantier de toiture à Boucau'),
             ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage et zinguerie au Pays Basque'),
         ]
+    if '/devis' in path:
+        return [
+            ('img/galerie-real-refection-toiture.jpg', 'Chantier de toiture au Pays Basque'),
+            ('img/galerie-real-facade-basque.jpg', 'Façade basque, Côte Basque'),
+            ('img/galerie-real-peinture-sejour.jpg', 'Peinture intérieure à Anglet'),
+            ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
+            ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage et zinguerie au Pays Basque'),
+            ('img/galerie-real-peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
+        ]
     # Défaut : couvreur, entretien, urgence, zinguerie, nettoyage-toiture (racine)
     return [
         ('img/galerie-real-refection-toiture.jpg', 'Chantier de couverture au Pays Basque'),
@@ -154,6 +163,8 @@ R = {
  'g_vp':  dict(q="Je souhaitais avoir une meilleure idée de l’état de ma couverture. Tonio RENOV a effectué une inspection des différents éléments de la toiture et m’a donné des explications détaillées. Une intervention claire et professionnelle.", n="V. P.", v="Avis Google", i="VP"),
  'g_ml':  dict(q="J'ai fait appel à Tonio Renov pour nettoyer mon toit et les gouttières ce qui a été fait très sérieusement (il faut attendre quelques jours pour vérifier l'effet du produit utilisé pour les tuiles) Tonio et Michel ont ensuite réparé gracieusement notre portail et sa butée.", n="M. L.", v="Avis Google", i="ML"),
  'g_m':   dict(q="Très satisfait conforme au devis. Je recommande fortement", n="M.", v="Avis Google", i="M"),
+ 'g_lpp': dict(q="Un grand merci à Tonio Renov pour la qualité du travail accompli. Équipe à l'écoute, de bon conseil et très réactive. Les finitions sont soignées et le chantier est resté propre tout au long des travaux. Je referai appel à eux avec plaisir et les recommande vivement.", n="L. P. P.", v="Avis Google", i="LP"),
+ 'g_me':  dict(q="Super conseil, Super artisan Travail rapide et Efficace ! Je suis vraiment contente de son travail. Secteur Bayonne", n="M. E.", v="Avis Google", i="ME"),
  'laurent': dict(q="Suite à une tempête, Tonio est passé le lendemain, tuile remplacée et faîtage sécurisé. Rassurant.", n="Laurent M.", v="Biarritz", i="LM"),
 }
 
@@ -781,6 +792,52 @@ PAGES = [
            ("check", "Devis peinture sans engagement", f"Devis peinture gratuit et sans engagement : 6 questions dans le formulaire, ou un appel au {TEL}.")]),
   ],
  ),
+ dict(
+  out='devis/index.html', path='/devis/',
+  # Page généraliste du 18/11/2026 (Emrick) : cible commune des liens annexes de toute la campagne
+  # « TONIO Hiver 26-27 » (#1 à #6). Pas une prestation : « je veux contacter l'artisan, une visite, un devis ».
+  title="Tonio Rénov' : toiture, façade et peinture à Bayonne, Anglet, Biarritz · devis gratuit",
+  desc="Toiture, façade, peinture : Tonio s'occupe de tout à Bayonne, Anglet, Biarritz et Boucau. Devis gratuit sur place, rappel sous 24 h, prix du devis tenu, offres du moment.",
+  img='/roof.jpg', pos='55% 40%', crop='50% 60%', alt="Toiture en tuiles canal sur la Côte Basque, travaux par Tonio Rénov'",
+  h1="<span class='h1-l'>Tonio s'occupe de tout</span><span class='h1-sub'>Toiture, façade, peinture</span><span class='h1-offre'><mark class='h1-prix'>Offres&nbsp;du&nbsp;moment</mark></span>",
+  h1_label="Tonio s'occupe de tout : toiture, façade, peinture, et vous profitez des offres du moment", ring_hero=True, form_titre_carte=True,
+  sub="",
+  ghost="Appeler Tonio pour qu'il vienne",
+  avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
+  proof=[("check", "Devis gratuit"), ("phone", "Rappel sous 24 h"), ("shield-check", "Prix du devis tenu")],
+  band=[("check", "Devis gratuit", "sur place")],
+  fond='marine',
+  ring=[("img/ring/toiture-refection.jpg", "Réfection de toiture par Tonio"), ("img/ring/facade-basque.jpg", "Façade basque après travaux"),
+        ("img/ring/peinture-sejour.jpg", "Séjour repeint par Tonio"), ("img/ring/toiture-mousse-apres.jpg", "Toiture après démoussage et traitement hydrofuge"),
+        ("img/ring/facade-nettoyage.jpg", "Nettoyage de façade en cours"), ("img/ring/peinture-bleu.jpg", "Peinture intérieure réalisée par Tonio")],
+  signs=dict(t="", p="", items=[]),
+  method_steps=[],
+  real=dict(t="", items=[]),
+  reviews=['g_ml', 'g_lpp', 'g_vp', 'g_me', 'g_m'],
+  form=dict(t="Profitez des offres du moment", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Profitez des offres du moment, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    etapes=[('probleme', "Quel est votre besoin ?", [("Toiture : fuite, réparation, réfection", "Toiture", "home"), ("Nettoyage de toiture ou de façade", "Nettoyage toit ou façade", "sprout"), ("Ravalement de façade", "Ravalement de façade", "layers"), ("Peinture intérieure", "Peinture intérieure", "roller")]),
+            ('delai', Q_DELAI, O_DELAI)],
+    o1=[], q2="", o2=[], q3="", o3=[]),
+  faq=[("Quelles sont les offres du moment ?", "Démoussage + traitement hydrofuge de toiture à 9 € le m² au lieu de 17 € le m². −30 % sur le devis ce mois-ci pour une réfection de toiture, un ravalement, un nettoyage de façade ou une peinture intérieure. Fuite de toiture réparée : si elle revient dans les 2 ans, Tonio revient la reprendre gratuitement."),
+       ("Le devis est-il gratuit ?", "Oui. Tonio vient voir chez vous avant de chiffrer et vous donne le prix sur place, dans un devis gratuit et sans engagement. Vous le signez quand vous voulez."),
+       ("En combien de temps êtes-vous rappelé ?", "Tonio vous rappelle sous 24 h pour caler la visite. Pour une fuite de toiture, il intervient souvent sous 48 h sur Bayonne et la Côte Basque."),
+       ("Le prix peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose sur le chantier, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
+       ("Vous faites vraiment la toiture, la façade et la peinture ?", "Oui : réparation, nettoyage et réfection de toiture, nettoyage et ravalement de façade, peinture intérieure. Un seul artisan et un seul numéro pour tous vos travaux."),
+       ("Vous êtes artisan ou vous sous-traitez ?", "Tonio travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui vient chez vous et fait le devis est celui qui fait les travaux."),
+       ("Vais-je voir des photos des travaux ?", "Oui. Tonio prend le chantier en photo avant de commencer et une fois le travail fini, puis vous les envoie. Vous voyez ce qui a été fait."),
+       ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux."),
+       FAQ_ZONE],
+  cta=dict(t="Tonio s'occupe de tout", p="Devis gratuit, rappel sous 24 h."),
+  seo=[
+   dict(t="Artisan toiture, façade et peinture à Bayonne, Anglet, Biarritz et Boucau",
+    p="Tonio Rénov' est une entreprise basée à Boucau. <strong>C'est Tonio qui se déplace</strong> dans chaque ville, sans sous-traitance, pour chiffrer et faire vos travaux.",
+    items=[("home", "Toiture", "Recherche de fuite et réparation, nettoyage et démoussage, traitement hydrofuge, réfection complète et toiture neuve."),
+           ("layers", "Façade", "Nettoyage de façade, traitement anti-mousse et hydrofuge, fissures, enduit, crépi et peinture de façade."),
+           ("roller", "Peinture intérieure", "Murs, plafonds, pièce seule ou appartement complet, meubles protégés et chantier propre chaque soir."),
+           ("check", "Devis gratuit sur place", f"Remplissez le formulaire ou appelez le {TEL} : Tonio vient voir, vous donne un prix sur place, et ce prix est celui que vous payez.")]),
+  ],
+ ),
 ]
 
 # ----------------------------- Médias : photos d'illustration libres de droits (Unsplash) -----------------------------
@@ -810,6 +867,7 @@ MEDIA = {
  'zinguerie/index.html': dict(mode='slider', b='zinguerie-avant', a='zinguerie-apres', tb='Avant', ta='Après',
                     ab="Gouttière encrassée et bord de toit sale (photo d'illustration — à remplacer par gouttière zinc neuve)", aa="Gouttière propre et bien entretenue (photo d'illustration — à remplacer)",
                     bgm='zinguerie-bg-methode', bgc='zinguerie-bg-cta'),
+ 'devis/index.html': dict(mode='split', b='couvreur-avant', a='couvreur-apres', tb='Avant', ta='Après', ab='', aa='', bgm='couvreur-bg-methode', bgc='couvreur-bg-cta'),
  'peinture-interieure/index.html': dict(mode='slider', b='peinture-avant', a='peinture-apres', tb='Avant', ta='Après',
                     ab="Mur à repeindre (photo d'illustration — à remplacer par chantier peinture intérieure réel)", aa="Mur repeint (photo d'illustration — à remplacer)",
                     bgm='peinture-bg-methode', bgc='peinture-bg-cta'),
