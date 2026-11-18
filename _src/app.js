@@ -575,3 +575,36 @@
   var mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
   els.forEach(function (el) { el.textContent = fin.getDate() + ' ' + mois[fin.getMonth()]; });
 })();
+
+/* H1 « modèle B » : la ligne la plus large du H1 prend exactement la largeur disponible
+   (mobile : toute la largeur, comme le bouton d'appel ; ordinateur : 520 px max), sans dépasser un plafond. */
+(function () {
+  var h1s = document.querySelectorAll('h1.h1-b');
+  if (!h1s.length) return;
+  function caler() {
+    var bureau = window.innerWidth >= 1060;
+    h1s.forEach(function (h) {
+      var hi = h.closest('.hero-in'); if (!hi) return;
+      var cs = getComputedStyle(hi);
+      var dispo = hi.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (bureau) dispo = Math.min(520, parseFloat(cs.gridTemplateColumns) || dispo);
+      h.style.fontSize = '100px';
+      var large = 0;
+      h.querySelectorAll('.h1-l, .h1-sub, .h1-offre').forEach(function (l) { large = Math.max(large, l.getBoundingClientRect().width); });
+      if (!large) { h.style.fontSize = ''; return; }
+      h.style.fontSize = Math.min(bureau ? 46 : 34, Math.floor(100 * dispo / large * 10) / 10) + 'px';
+      // L'offre courte (« 9 €/m² ») grossit jusqu'à la largeur du bloc, sans dépasser 2,2 fois les lignes 1-2.
+      var prix = h.querySelector('.h1-offre mark'), offre = h.querySelector('.h1-offre');
+      if (prix && offre) {
+        prix.style.fontSize = '';
+        var pw = prix.getBoundingClientRect().width, reste = offre.getBoundingClientRect().width - pw;
+        var k = Math.min(2.2 / 1.4, (Math.min(dispo, large * parseFloat(h.style.fontSize) / 100) - reste) / pw * 0.98);
+        if (k > 1.02) prix.style.fontSize = (1.4 * k).toFixed(2) + 'em';
+      }
+    });
+  }
+  caler();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+  var larg = window.innerWidth;
+  window.addEventListener('resize', function () { if (window.innerWidth === larg) return; larg = window.innerWidth; caler(); });
+})();

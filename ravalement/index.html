@@ -569,6 +569,27 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 }
 #zone+#devis-bas{padding-top:clamp(8px,2vw,24px)}
 
+/* ===== H1 « modèle B » v2 (règles Emrick 18/11) =====
+   Lignes 1 (métier) et 2 (prestation) : MÊME taille, une ligne chacune. Ligne 3 : l'offre, seule
+   taille plus grande, jaune avec une lueur ; le prix barré garde la taille des lignes 1-2.
+   --n (calculé par build.py) = caractères de la ligne la plus large : le H1 tient pile dans la largeur du bouton d'appel. */
+.hero h1.h1-b{font-size:min(1.9rem,calc((100vw - 2 * var(--gutter)) / (var(--n) * .54)));line-height:1.14;letter-spacing:-.025em}
+@media(min-width:1060px){.hero h1.h1-b{font-size:min(2.6rem,calc(600px / (var(--n) * .54)))}}
+.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub{display:block;white-space:nowrap;font-size:1em;font-weight:inherit;letter-spacing:inherit;color:#fff;margin:0}
+.hero h1.h1-b .h1-offre{display:block;white-space:nowrap;margin-top:.12em}
+.hero h1.h1-b mark.h1-prix{font-size:1.4em;background:none;padding:0;color:#ffcf4a;text-shadow:0 0 .3em rgba(255,191,71,.55),0 0 .9em rgba(255,176,40,.4)}
+.hero h1.h1-b s.h1-barre{font-size:1em;font-weight:inherit;margin-left:.3em}
+/* Le bouton d'appel prend la largeur du bloc texte (bords alignés sur le H1). */
+.hero-copy:has(h1.h1-b){width:fit-content;max-width:100%;margin-inline:auto}
+@media(min-width:1060px){.hero-copy:has(h1.h1-b){margin-inline:0;justify-self:start}}
+.hero-copy:has(h1.h1-b) .hero-cta .btn{width:100%;justify-content:center}
+/* Badge Google : simple ligne de texte (Google en couleurs, étoiles, note), pas une pilule qui ressemble au bouton. */
+.hero .google-badge{background:none;border:0;padding:0;border-radius:0;margin-top:clamp(12px,2vh,18px);font-size:.9375rem}
+.hero .google-badge+.hero-cta{margin-top:10px}
+/* Chaque ligne prend sa largeur réelle (mesurée par app.js pour caler le H1 sur la largeur du bouton). */
+.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{width:max-content;max-width:none;margin-inline:auto}
+@media(min-width:1060px){.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{margin-inline:0}}
+
 </style>
 </head>
 <body>
@@ -590,11 +611,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-bg"><img src="/facade.jpg" alt="Façade blanche à volets rouges ravalée par Tonio Rénov' sur la Côte Basque" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:50% 42%"></div>
   <div class="hero-in">
     <div class="hero-copy">
-      <h1 aria-label="Ravalement de façade, enduit, crépi, peinture et fissures : −30 % sur le devis ce mois-ci"><span class="w" style="--i:0" aria-hidden="true">Ravalement</span> <span class="w" style="--i:1" aria-hidden="true">de</span> <span class="w" style="--i:2" aria-hidden="true">façade</span><span class='h1-sub'><span class="w" style="--i:3" aria-hidden="true">Enduit,</span> <span class="w" style="--i:4" aria-hidden="true">crépi,</span> <span class="w" style="--i:5" aria-hidden="true">peinture,</span> <span class="w" style="--i:6" aria-hidden="true">fissures</span></span><mark class='h1-prix'><span class="w" style="--i:7" aria-hidden="true">−30&nbsp;%&nbsp;ce&nbsp;mois-ci</span></mark></h1>
-      <a class="google-badge fade" style="--d:1" href="https://www.google.com/search?q=Tonio+Rénov+Boucau+avis" target="_blank" rel="noopener">
+      <h1 class="h1-b" style="--n:33" aria-label="Ravalement de façade, enduit, crépi, peinture et fissures : −30 % sur le devis ce mois-ci"><span class='h1-l'><span class="w" style="--i:0" aria-hidden="true">Ravalement</span> <span class="w" style="--i:1" aria-hidden="true">de</span> <span class="w" style="--i:2" aria-hidden="true">façade</span></span><span class='h1-sub'><span class="w" style="--i:3" aria-hidden="true">Enduit,</span> <span class="w" style="--i:4" aria-hidden="true">crépi,</span> <span class="w" style="--i:5" aria-hidden="true">peinture,</span> <span class="w" style="--i:6" aria-hidden="true">fissures</span></span><span class='h1-offre'><mark class='h1-prix'><span class="w" style="--i:7" aria-hidden="true">−30&nbsp;%&nbsp;ce&nbsp;mois-ci</span></mark></span></h1>
+      <p class="google-badge fade" style="--d:1">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
         <span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><span><b>5/5</b> · <b>7 avis</b></span>
-      </a>
+      </p>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary btn-stack" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic btn-ph" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="btn-txt"><b>05 25 68 01 58</b><small>Appeler Tonio pour qu'il vienne</small></span></a>
       </div>
@@ -1288,6 +1309,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var d = new Date(), fin = new Date(d.getFullYear(), d.getMonth() + 1, 0);
   var mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
   els.forEach(function (el) { el.textContent = fin.getDate() + ' ' + mois[fin.getMonth()]; });
+})();
+
+/* H1 « modèle B » : la ligne la plus large du H1 prend exactement la largeur disponible
+   (mobile : toute la largeur, comme le bouton d'appel ; ordinateur : 520 px max), sans dépasser un plafond. */
+(function () {
+  var h1s = document.querySelectorAll('h1.h1-b');
+  if (!h1s.length) return;
+  function caler() {
+    var bureau = window.innerWidth >= 1060;
+    h1s.forEach(function (h) {
+      var hi = h.closest('.hero-in'); if (!hi) return;
+      var cs = getComputedStyle(hi);
+      var dispo = hi.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (bureau) dispo = Math.min(520, parseFloat(cs.gridTemplateColumns) || dispo);
+      h.style.fontSize = '100px';
+      var large = 0;
+      h.querySelectorAll('.h1-l, .h1-sub, .h1-offre').forEach(function (l) { large = Math.max(large, l.getBoundingClientRect().width); });
+      if (!large) { h.style.fontSize = ''; return; }
+      h.style.fontSize = Math.min(bureau ? 46 : 34, Math.floor(100 * dispo / large * 10) / 10) + 'px';
+      // L'offre courte (« 9 €/m² ») grossit jusqu'à la largeur du bloc, sans dépasser 2,2 fois les lignes 1-2.
+      var prix = h.querySelector('.h1-offre mark'), offre = h.querySelector('.h1-offre');
+      if (prix && offre) {
+        prix.style.fontSize = '';
+        var pw = prix.getBoundingClientRect().width, reste = offre.getBoundingClientRect().width - pw;
+        var k = Math.min(2.2 / 1.4, (Math.min(dispo, large * parseFloat(h.style.fontSize) / 100) - reste) / pw * 0.98);
+        if (k > 1.02) prix.style.fontSize = (1.4 * k).toFixed(2) + 'em';
+      }
+    });
+  }
+  caler();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+  var larg = window.innerWidth;
+  window.addEventListener('resize', function () { if (window.innerWidth === larg) return; larg = window.innerWidth; caler(); });
 })();
 
 </script>

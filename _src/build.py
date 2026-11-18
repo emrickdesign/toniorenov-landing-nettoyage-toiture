@@ -2,7 +2,7 @@
 """Génère les 4 landings à partir d'UN design (style.css) et du contenu ci-dessous.
 Usage : python3 _src/build.py      (depuis la racine du dépôt)
 Pour un nouveau métier : ajouter une entrée dans PAGES, relancer, pousser."""
-import re, os, json
+import re, html, os, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CSS = open(os.path.join(ROOT, '_src', 'style.css'), encoding='utf-8').read()
@@ -205,14 +205,14 @@ PAGES = [
   # 16/11/2026) : photos avant/après de SON toit, prix du devis tenu, reprise si défaut, pas de vendeur.
   # Reçoit les groupes d'annonces « nettoyage Facade », « nettoyage Toiture », « Réfection total toiture ».
   title="Nettoyage de toiture à Bayonne, Anglet, Biarritz : démoussage, hydrofuge, entretien · Tonio Rénov'",
-  desc="Démoussage + traitement hydrofuge de toiture à 10 € le m² à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
+  desc="Démoussage + traitement hydrofuge de toiture à 9 €/m² à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, nettoyage et entretien par Tonio Rénov' sur la Côte Basque",
-  h1="Nettoyage de toiture<span class='h1-sub'>Démoussage + traitement hydrofuge</span><mark class='h1-prix'>10&nbsp;€&nbsp;le&nbsp;m²</mark> <s class='h1-barre' aria-label='au lieu de 17 € le m²'>17&nbsp;€&nbsp;le&nbsp;m²</s>",
+  h1="<span class='h1-l'>Nettoyage de toiture</span><span class='h1-sub'>Démoussage + traitement hydrofuge</span><span class='h1-offre'><mark class='h1-prix'>9&nbsp;€/m²</mark> <s class='h1-barre' aria-label='au lieu de 17 €/m²'>17&nbsp;€/m²</s></span>",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
-  ring_hero=True, form_titre_carte=True, h1_label="Nettoyage de toiture, démoussage + traitement hydrofuge : 10 € le m² au lieu de 17 € le m²",
+  ring_hero=True, form_titre_carte=True, h1_label="Nettoyage de toiture, démoussage + traitement hydrofuge : 9 € le m² au lieu de 17 € le m²",
   ring=[("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio"), ("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
@@ -235,8 +235,8 @@ PAGES = [
     "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
     "Un seul numéro, du devis jusqu'après les travaux"]),
   reviews=['g_ml', 'g_vp', 'g_m'],
-  form=dict(t="Profitez des 10 € le m²", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des 10 € le m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+  form=dict(t="Profitez des 9 €/m²", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Profitez des 9 €/m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     etapes=[('probleme', "Quel est votre besoin ?", [("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")]),
             ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
             ('delai', Q_DELAI, O_DELAI)],
@@ -249,11 +249,11 @@ PAGES = [
        ("Faut-il forcément un traitement hydrofuge ?", "Pas forcément. Sur place, Tonio regarde l'état de vos tuiles et vous dit si un nettoyage suffit ou si le traitement hydrofuge apporte quelque chose. Photos à l'appui, c'est vous qui décidez."),
        ("Vous nettoyez aussi les gouttières ?", "Oui. Les gouttières sont dégagées pendant l'entretien de la toiture, ou seules si c'est tout ce dont vous avez besoin."),
        ("Vous refaites aussi les toitures complètes ?", "Oui, Tonio fait aussi la réfection complète de toiture. Mais si un nettoyage et un traitement suffisent, il vous le dit et vous montre les photos : vous ne payez pas une toiture neuve pour rien."),
-       ("Combien coûte le nettoyage de ma toiture ?", "Le démoussage + traitement hydrofuge est à 10 € le m². Tonio mesure la surface sur place et vous donne le prix total dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
+       ("Combien coûte le nettoyage de ma toiture ?", "Le démoussage + traitement hydrofuge est à 9 € le m². Tonio mesure la surface sur place et vous donne le prix total dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
        ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
        ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux, plus la reprise gratuite si un défaut apparaît sur la zone traitée."),
        FAQ_ZONE],
-  cta=dict(t="Démoussage + hydrofuge à 10 € le m²", p="Tonio monte, mesure, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
+  cta=dict(t="Démoussage + hydrofuge à 9 €/m²", p="Tonio monte, mesure, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
   # Sections de contenu sous la zone : une par famille de mots-clés actifs des groupes
   # « nettoyage Toiture », « nettoyage Facade » et « Réfection total toiture » (score de qualité).
   seo=[
@@ -288,7 +288,7 @@ PAGES = [
     p="<strong>Devis gratuit</strong>, établi sur place après inspection. Le prix annoncé est le prix payé.",
     items=[("search", "Ce qui fait le prix d'un entretien de toiture", "La surface, l'accès au toit, l'état des tuiles et des gouttières, le traitement hydrofuge ou non. Le prix de l'entretien de toiture se fixe sur ce que Tonio voit, pas au téléphone."),
            ("check", "Devis entretien toiture sans engagement", f"Remplissez le formulaire ou appelez le {TEL} : votre devis d'entretien de toiture est gratuit et détaillé. Vous le signez quand vous voulez."),
-           ("shield-check", "Prix du traitement hydrofuge toiture", "Démoussage + traitement hydrofuge : 10 € le m², quand ces deux prestations sont souvent facturées 15 à 20 € le m². La surface est mesurée sur place et le prix total est écrit sur le devis."),
+           ("shield-check", "Prix du traitement hydrofuge toiture", "Démoussage + traitement hydrofuge : 9 € le m², quand ces deux prestations sont souvent facturées 15 à 20 € le m². La surface est mesurée sur place et le prix total est écrit sur le devis."),
            ("pin", "Un artisan toiture à proximité", "Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin, pas une plateforme.")]),
   ],
  ),
@@ -328,7 +328,7 @@ PAGES = [
   title="Ravalement de façade à Bayonne, Anglet, Biarritz : devis, nettoyage, peinture · Tonio Rénov'",
   desc="Ravalement de façade, nettoyage, fissures et peinture à Bayonne, Anglet, Biarritz et Saint-Jean-de-Luz : −30 % sur le devis ce mois-ci. Le prix du devis est le prix payé, photos avant/après, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges ravalée par Tonio Rénov' sur la Côte Basque",
-  h1="Ravalement de façade<span class='h1-sub'>Enduit, crépi, peinture, fissures</span><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark>",
+  h1="<span class='h1-l'>Ravalement de façade</span><span class='h1-sub'>Enduit, crépi, peinture, fissures</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   h1_label="Ravalement de façade, enduit, crépi, peinture et fissures : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
@@ -421,7 +421,7 @@ PAGES = [
   title="Nettoyage de façade à Bayonne, Anglet, Biarritz : démoussage, traitement · Tonio Rénov'",
   desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
-  h1="Nettoyage de façade<span class='h1-sub'>Démoussage + traitement hydrofuge</span><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark>",
+  h1="<span class='h1-l'>Nettoyage de façade</span><span class='h1-sub'>Démoussage + traitement hydrofuge</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   h1_label="Nettoyage de façade, démoussage et traitement hydrofuge : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
@@ -515,7 +515,7 @@ PAGES = [
   title="Couvreur Bayonne, Anglet, Biarritz, Boucau : fuite et réparation de toiture · Tonio Rénov'",
   desc="Couvreur à Boucau pour Bayonne, Anglet et Biarritz : fuite, tuile cassée, gouttière. Si la fuite revient sous 2 ans, Tonio revient gratuitement. Photos avant/après, prix du devis tenu.",
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
-  h1="Fuite de toiture<span class='h1-sub'>Recherche de fuite + réparation</span><mark class='h1-prix'>Reprise gratuite 2&nbsp;ans</mark>",
+  h1="<span class='h1-l'>Fuite de toiture</span><span class='h1-sub'>Recherche de fuite + réparation</span><span class='h1-offre'><mark class='h1-prix'>Reprise gratuite 2&nbsp;ans</mark></span>",
   h1_label="Fuite de toiture, recherche de fuite et réparation : si la fuite revient sous 2 ans, Tonio revient gratuitement", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
@@ -598,7 +598,7 @@ PAGES = [
   title="Réfection de toiture à Bayonne, Anglet, Biarritz : devis · Tonio Rénov'",
   desc="Réfection complète de toiture et toiture neuve à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Le prix du devis est le prix payé, photos du chantier, reprise gratuite si défaut.",
   img='/roof.jpg', pos='58% 40%', crop='50% 60%', alt="Toiture en tuiles canal à refaire, chantier de réfection par Tonio Rénov' sur la Côte Basque",
-  h1="Réfection de toiture<span class='h1-sub'>Toiture refaite ou neuve</span><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark>",
+  h1="<span class='h1-l'>Réfection de toiture</span><span class='h1-sub'>Toiture refaite ou neuve</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   h1_label="Réfection de toiture, toiture refaite ou neuve : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
@@ -875,7 +875,12 @@ def render(p):
     s = SITE
     M = MEDIA[p['out']]
     h1_inner, _ = split_words(p['h1'])
-    h1 = f'<h1 aria-label="{p.get("h1_label") or plain(p["h1"])}">{h1_inner}</h1>'
+    lignes = [html.unescape(plain(x)) for x in re.findall(r"<span class='h1-(?:l|sub)'>(.*?)</span>", p['h1'])]
+    offre = re.findall(r"<span class='h1-offre'>(.*?)</span>", p['h1'])
+    n = max([len(x) for x in lignes] + [len(html.unescape(plain(re.sub(r'<s .*?</s>', '', o)))) * 1.4 for o in offre]) if lignes else 0
+    h1_style = f' style="--n:{n:.0f}"' if n else ''
+    h1_cls = ' class="h1-b"' if lignes else ''
+    h1 = f'<h1{h1_cls}{h1_style} aria-label="{p.get("h1_label") or plain(p["h1"])}">{h1_inner}</h1>'
     trust = [("award", "Plus de 500 chantiers", "sur la Côte Basque"), ("shield-check", "Garantie décennale", "sur tous nos travaux"),
              ("shield", "Assurance RC Pro", "artisan assuré"), ("award", "Certifié RGE", "qualification reconnue"), p.get('last_trust')]
     trust[0] = ("home", trust[0][1], trust[0][2])
@@ -1040,10 +1045,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-in">
     <div class="hero-copy">
       {h1}
-      <a class="google-badge fade" style="--d:1" href="https://www.google.com/search?q=Tonio+Rénov+Boucau+avis" target="_blank" rel="noopener">
+      <p class="google-badge fade" style="--d:1">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
         {stars()}<span><b>5/5</b> · <b>{p.get('avis', '23')} avis</b></span>
-      </a>
+      </p>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary btn-stack" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone","btn-ph")}<span class="btn-txt"><b>{s['phone']}</b><small>{p['ghost']}</small></span></a>
       </div>

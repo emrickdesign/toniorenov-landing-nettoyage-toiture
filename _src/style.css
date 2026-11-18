@@ -532,3 +532,24 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
   .rev-grid[data-carousel] .rev blockquote{font-size:.9375rem;line-height:1.5}
 }
 #zone+#devis-bas{padding-top:clamp(8px,2vw,24px)}
+
+/* ===== H1 « modèle B » v2 (règles Emrick 18/11) =====
+   Lignes 1 (métier) et 2 (prestation) : MÊME taille, une ligne chacune. Ligne 3 : l'offre, seule
+   taille plus grande, jaune avec une lueur ; le prix barré garde la taille des lignes 1-2.
+   --n (calculé par build.py) = caractères de la ligne la plus large : le H1 tient pile dans la largeur du bouton d'appel. */
+.hero h1.h1-b{font-size:min(1.9rem,calc((100vw - 2 * var(--gutter)) / (var(--n) * .54)));line-height:1.14;letter-spacing:-.025em}
+@media(min-width:1060px){.hero h1.h1-b{font-size:min(2.6rem,calc(600px / (var(--n) * .54)))}}
+.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub{display:block;white-space:nowrap;font-size:1em;font-weight:inherit;letter-spacing:inherit;color:#fff;margin:0}
+.hero h1.h1-b .h1-offre{display:block;white-space:nowrap;margin-top:.12em}
+.hero h1.h1-b mark.h1-prix{font-size:1.4em;background:none;padding:0;color:#ffcf4a;text-shadow:0 0 .3em rgba(255,191,71,.55),0 0 .9em rgba(255,176,40,.4)}
+.hero h1.h1-b s.h1-barre{font-size:1em;font-weight:inherit;margin-left:.3em}
+/* Le bouton d'appel prend la largeur du bloc texte (bords alignés sur le H1). */
+.hero-copy:has(h1.h1-b){width:fit-content;max-width:100%;margin-inline:auto}
+@media(min-width:1060px){.hero-copy:has(h1.h1-b){margin-inline:0;justify-self:start}}
+.hero-copy:has(h1.h1-b) .hero-cta .btn{width:100%;justify-content:center}
+/* Badge Google : simple ligne de texte (Google en couleurs, étoiles, note), pas une pilule qui ressemble au bouton. */
+.hero .google-badge{background:none;border:0;padding:0;border-radius:0;margin-top:clamp(12px,2vh,18px);font-size:.9375rem}
+.hero .google-badge+.hero-cta{margin-top:10px}
+/* Chaque ligne prend sa largeur réelle (mesurée par app.js pour caler le H1 sur la largeur du bouton). */
+.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{width:max-content;max-width:none;margin-inline:auto}
+@media(min-width:1060px){.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{margin-inline:0}}
