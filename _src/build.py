@@ -212,6 +212,7 @@ PAGES = [
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
+  fond='marine',  # TEST 18/11 : fond uni à la place de la photo
   ring_hero=True, form_titre_carte=True, h1_label="Nettoyage de toiture, démoussage + traitement hydrofuge : 9 € le m² au lieu de 17 € le m²",
   ring=[("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio"), ("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
@@ -422,6 +423,7 @@ PAGES = [
   desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
   h1="<span class='h1-l'>Nettoyage de façade</span><span class='h1-sub'>Démoussage + traitement hydrofuge</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
+  fond='blanc',  # TEST 18/11 : fond uni à la place de la photo
   h1_label="Nettoyage de façade, démoussage et traitement hydrofuge : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
@@ -1040,8 +1042,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <main id="top">
-<section class="hero">
-  <div class="hero-bg"><img src="{p['img']}" alt="{p['alt']}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p['pos']}"></div>
+<section class="hero{(' fond-uni fond-' + p['fond']) if p.get('fond') else ''}">
+  {'' if p.get('fond') else f'<div class="hero-bg"><img src="{p["img"]}" alt="{p["alt"]}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p["pos"]}"></div>'}
   <div class="hero-in">
     <div class="hero-copy">
       {h1}

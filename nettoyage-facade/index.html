@@ -590,6 +590,20 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 .hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{width:max-content;max-width:none;margin-inline:auto}
 @media(min-width:1060px){.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{margin-inline:0}}
 
+/* ===== TEST 18/11 : hero sur fond uni (option de page fond='marine' | 'blanc'), sans photo derrière ===== */
+.hero.fond-uni::before{display:none}
+.hero.fond-marine{background:var(--marine)}
+.hero.fond-blanc{background:#fff;color:var(--texte)}
+.hero.fond-blanc h1.h1-b .h1-l,.hero.fond-blanc h1.h1-b .h1-sub{color:var(--nuit)}
+.hero.fond-blanc h1.h1-b mark.h1-prix{color:var(--tuile);text-shadow:0 0 .35em rgba(201,64,43,.22)}
+.hero.fond-blanc h1.h1-b s.h1-barre{color:#7a8899}
+.hero.fond-blanc h1.h1-b s.h1-barre::after{background:#7a8899}
+.hero.fond-blanc .google-badge{color:var(--texte)}
+.hero.fond-blanc .hero-proof{color:var(--texte-2)}
+.hero.fond-blanc .hero-proof .ic{color:var(--tuile)}
+.hero.fond-blanc .stars{color:#e8a416}
+.hero.fond-blanc .hero-form .devis-shell{border:1px solid var(--ciel-2);box-shadow:0 30px 60px -36px rgba(21,44,72,.45)}
+
 </style>
 </head>
 <body>
@@ -607,8 +621,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </header>
 
 <main id="top">
-<section class="hero">
-  <div class="hero-bg"><img src="/facade.jpg" alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:50% 42%"></div>
+<section class="hero fond-uni fond-blanc">
+  
   <div class="hero-in">
     <div class="hero-copy">
       <h1 class="h1-b" style="--n:33" aria-label="Nettoyage de façade, démoussage et traitement hydrofuge : −30 % sur le devis ce mois-ci"><span class='h1-l'><span class="w" style="--i:0" aria-hidden="true">Nettoyage</span> <span class="w" style="--i:1" aria-hidden="true">de</span> <span class="w" style="--i:2" aria-hidden="true">façade</span></span><span class='h1-sub'><span class="w" style="--i:3" aria-hidden="true">Démoussage</span> <span class="w" style="--i:4" aria-hidden="true">+</span> <span class="w" style="--i:5" aria-hidden="true">traitement</span> <span class="w" style="--i:6" aria-hidden="true">hydrofuge</span></span><span class='h1-offre'><mark class='h1-prix'><span class="w" style="--i:7" aria-hidden="true">−30&nbsp;%&nbsp;ce&nbsp;mois-ci</span></mark></span></h1>

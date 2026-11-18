@@ -553,3 +553,17 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 /* Chaque ligne prend sa largeur réelle (mesurée par app.js pour caler le H1 sur la largeur du bouton). */
 .hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{width:max-content;max-width:none;margin-inline:auto}
 @media(min-width:1060px){.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{margin-inline:0}}
+
+/* ===== TEST 18/11 : hero sur fond uni (option de page fond='marine' | 'blanc'), sans photo derrière ===== */
+.hero.fond-uni::before{display:none}
+.hero.fond-marine{background:var(--marine)}
+.hero.fond-blanc{background:#fff;color:var(--texte)}
+.hero.fond-blanc h1.h1-b .h1-l,.hero.fond-blanc h1.h1-b .h1-sub{color:var(--nuit)}
+.hero.fond-blanc h1.h1-b mark.h1-prix{color:var(--tuile);text-shadow:0 0 .35em rgba(201,64,43,.22)}
+.hero.fond-blanc h1.h1-b s.h1-barre{color:#7a8899}
+.hero.fond-blanc h1.h1-b s.h1-barre::after{background:#7a8899}
+.hero.fond-blanc .google-badge{color:var(--texte)}
+.hero.fond-blanc .hero-proof{color:var(--texte-2)}
+.hero.fond-blanc .hero-proof .ic{color:var(--tuile)}
+.hero.fond-blanc .stars{color:#e8a416}
+.hero.fond-blanc .hero-form .devis-shell{border:1px solid var(--ciel-2);box-shadow:0 30px 60px -36px rgba(21,44,72,.45)}
