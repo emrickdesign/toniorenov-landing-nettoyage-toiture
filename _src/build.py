@@ -741,6 +741,18 @@ def kw_sections(p):
 ''')
     return ''.join(out)
 
+# Typographie française : espace insécable avant : ? ! ; » et après «, et dans « 24 h »,
+# sur le texte visible seulement (pas dans les balises, <script> ni <style>).
+def typo_fr(html):
+    def fix(s):
+        s = re.sub(r' ([:?!;»])', '\u00a0\\1', s)
+        s = s.replace('« ', '«\u00a0')
+        return re.sub(r'(\d) h\b', '\\1\u00a0h', s)
+    out = []
+    for part in re.split(r'(?s)(<script.*?</script>|<style.*?</style>|<[^>]+>)', html):
+        out.append(part if part.startswith('<') else fix(part))
+    return ''.join(out)
+
 def render(p):
     s = SITE
     M = MEDIA[p['out']]
@@ -975,7 +987,7 @@ if __name__ == '__main__':
     for p in PAGES:
         target = os.path.join(ROOT, p['out'])
         os.makedirs(os.path.dirname(target), exist_ok=True)
-        open(target, 'w', encoding='utf-8').write(render(p))
+        open(target, 'w', encoding='utf-8').write(typo_fr(render(p)))
         print('écrit', p['out'], f'{os.path.getsize(target)//1024} Ko')
     fav = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#fff"/>'
            '<g transform="translate(4 15) scale(.0968)"><g transform="translate(-395 -438)">'
