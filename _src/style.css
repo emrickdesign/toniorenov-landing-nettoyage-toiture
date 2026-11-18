@@ -567,3 +567,22 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 .hero.fond-blanc .hero-proof .ic{color:var(--tuile)}
 .hero.fond-blanc .stars{color:#e8a416}
 .hero.fond-blanc .hero-form .devis-shell{border:1px solid var(--ciel-2);box-shadow:0 30px 60px -36px rgba(21,44,72,.45)}
+
+/* ===== TEST 18/11 : cartes de formulaire en bleu (option de page form_bleu=True, pensée pour le fond blanc).
+   Texte blanc sur la carte, choix et champs en cartes blanches (jamais de ton sur ton). ===== */
+.form-bleu .devis-shell{background:var(--marine);color:#fff;border:0;box-shadow:0 30px 60px -30px rgba(21,44,72,.7)}
+.hero.fond-blanc .form-bleu .devis-shell,.form-bleu .hero.fond-blanc .hero-form .devis-shell{border:0;box-shadow:0 30px 60px -30px rgba(21,44,72,.7)}
+.form-bleu .fc-t{color:#fff}
+.form-bleu .fc-sub,.form-bleu .fhint{color:rgba(255,255,255,.72)}
+.form-bleu .fc-sub strong{color:#fff}
+.form-bleu .progress i{background:rgba(255,255,255,.18)}
+.form-bleu .opt{background:#fff;border-color:#fff}
+.form-bleu .opt:hover{border-color:var(--tuile-clair)}
+.form-bleu .opt.on{background:#fff4f1}
+.form-bleu .field label{color:rgba(255,255,255,.82)}
+.form-bleu .field input{background:#fff;border-color:#fff}
+.form-bleu .btn-next:disabled{background:rgba(255,255,255,.14);color:rgba(255,255,255,.55)}
+.form-bleu .fback{color:rgba(255,255,255,.72)}
+.form-bleu .fback:hover{color:#fff}
+.form-bleu .done p{color:rgba(255,255,255,.75)}
+.form-bleu .done-ic{background:rgba(143,212,172,.16);color:var(--vert-clair)}

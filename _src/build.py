@@ -423,7 +423,7 @@ PAGES = [
   desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
   h1="<span class='h1-l'>Nettoyage de façade</span><span class='h1-sub'>Démoussage + traitement hydrofuge</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
-  fond='blanc',  # TEST 18/11 : fond uni à la place de la photo
+  fond='blanc', form_bleu=True,  # TEST 18/11 : fond uni à la place de la photo, cartes de formulaire en bleu
   h1_label="Nettoyage de façade, démoussage et traitement hydrofuge : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
@@ -1041,7 +1041,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-<main id="top">
+<main id="top"{' class="form-bleu"' if p.get('form_bleu') else ''}>
 <section class="hero{(' fond-uni fond-' + p['fond']) if p.get('fond') else ''}">
   {'' if p.get('fond') else f'<div class="hero-bg"><img src="{p["img"]}" alt="{p["alt"]}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p["pos"]}"></div>'}
   <div class="hero-in">
