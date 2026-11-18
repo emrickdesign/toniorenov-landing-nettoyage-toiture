@@ -505,13 +505,15 @@ PAGES = [
   # Positionnement B de l'analyse de marché du 16/11/2026 (analyses-marche/tonio-renov/RAPPORT.md) :
   # photos avant/après de SON toit, prix du devis tenu, reprise si défaut, pas de vendeur.
   title="Couvreur Bayonne, Anglet, Biarritz, Boucau : fuite et réparation de toiture · Tonio Rénov'",
-  desc="Couvreur à Boucau pour Bayonne, Anglet et Biarritz : fuite, tuile cassée, gouttière. Photos avant/après de votre toit, prix du devis tenu, reprise si défaut.",
+  desc="Couvreur à Boucau pour Bayonne, Anglet et Biarritz : fuite, tuile cassée, gouttière. Si la fuite revient sous 2 ans, Tonio revient gratuitement. Photos avant/après, prix du devis tenu.",
   img='/roof.jpg', pos='60% 40%', crop='40% 70%', alt="Couvreur sur toiture en tuiles canal, intervention Tonio Rénov' sur la Côte Basque",
-  h1="Vous ne voyez pas votre toit ?<br><mark>Tonio vous envoie les photos</mark><br>avant et après.",
+  h1="Fuite de toiture&nbsp;:<br><mark>si elle revient sous 2&nbsp;ans,</mark><br>Tonio revient gratuitement.",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
-  proof=[("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite si défaut"), ("phone", "Pas de vendeur, Tonio en direct")],
+  proof=[("image", "Photos avant/après"), ("check", "Prix du devis tenu"), ("phone", "Tonio en direct"), ("clock", "Rappel sous 24 h"), ("shield", "Décennale + RC Pro"), ("home", "Depuis 2009")],
+  offre_note="Pendant 2&nbsp;ans après l’intervention de Tonio",
+  ring=[("img/ring/toiture-faitage.jpg", "Faîtage et tuiles repris par Tonio"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture de la Côte Basque"), ("img/ring/toiture-refection.jpg", "Tuiles reposées par Tonio sur un écran sous-toiture")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone réparée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
         ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -528,13 +530,13 @@ PAGES = [
   real=dict(t="Ce que Tonio vous promet, noir sur blanc", items=[
     "Les photos avant/après de votre toit, envoyées le jour même",
     "Le prix du devis est le prix que vous payez. Rien en plus sans votre accord écrit",
-    "Un défaut sur la zone réparée ? Tonio revient le reprendre gratuitement",
+    "La fuite revient dans les 2 ans ? Tonio revient la reprendre gratuitement",
     "Pas de vendeur : Tonio vient, chiffre et répare lui-même",
     "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
     "Un seul numéro, du devis jusqu'après les travaux"]),
   reviews=['g_vp', 'g_ml', 'g_m'],
-  form=dict(t="Décrivez votre besoin", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+  form=dict(t="Profitez de la reprise gratuite 2 ans", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Profitez de la reprise gratuite 2 ans, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     etapes=[('probleme', "Quel est votre besoin ?", [("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")]),
             ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
             ('delai', Q_DELAI, O_DELAI)],
@@ -542,14 +544,14 @@ PAGES = [
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Je vais vraiment voir les photos de mon toit ?", "Oui. Tonio prend votre toit en photo avant de commencer et une fois le travail fini, puis vous les envoie par SMS ou WhatsApp. Vous voyez ce qui a été fait sans monter sur l'échelle."),
        ("Le prix peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois sur le toit, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
-       ("Et si la fuite revient ?", "Appelez Tonio. Si le défaut vient de la zone qu'il a réparée, il revient la reprendre gratuitement."),
+       ("Et si la fuite revient ?", "Appelez Tonio. Pendant 2 ans après son intervention, si la fuite qu'il a réparée revient, il revient la reprendre gratuitement."),
        ("Vous intervenez vite en cas de fuite ?", "Oui, les fuites passent en priorité. Tonio vous rappelle sous 24 h et intervient souvent sous 48 h sur Bayonne et la Côte Basque."),
        ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio est couvreur et travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
        ("Vous refaites aussi les toitures complètes ?", "Oui, Tonio fait aussi la réfection complète de toiture. Mais il commence par regarder ce qui peut être réparé : photos à l'appui, vous savez si une réparation suffit avant de parler de toiture neuve."),
        ("Combien coûte une réparation de toiture ?", "Ça dépend de l'accès au toit, du nombre de tuiles à remplacer et de l'état du faîtage et des solins. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer."),
-       ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux, plus la reprise gratuite si un défaut apparaît sur la zone réparée."),
+       ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux, plus la reprise gratuite pendant 2 ans si la fuite réparée revient."),
        FAQ_ZONE],
-  cta=dict(t="Vous voulez savoir ce qui se passe sur votre toit ?", p="Tonio monte, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
+  cta=dict(t="Une fuite réparée, et la reprise gratuite pendant 2 ans", p="Tonio monte, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
   # Sections de contenu sous la zone : une par famille de mots-clés actifs du groupe
   # « Couvreur / urgence » (score de qualité : pertinence de la page de destination).
   seo=[
@@ -879,7 +881,7 @@ def render(p):
         ph = [(('' if s.startswith('/') else '/') + s, alt) for s, alt in p['ring']]
         cols = ''.join(
             f'<div class="ring3d-col" style="--a:{c * 30}deg">'
-            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c * 2 + k) % len(ph)][0]}" alt="{ph[(c * 2 + k) % len(ph)][1]}" loading="lazy" decoding="async" draggable="false"></div>' for k in (0, 1))
+            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c * 2 + k) % len(ph)][0]}" alt="{ph[(c * 2 + k) % len(ph)][1]}" decoding="async" draggable="false"></div>' for k in (0, 1))
             + '</div>' for c in range(6))
         band_html = f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio"><div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div></section>'
     # Offre limitée au mois en cours : date de fin écrite par app.js (dernier jour du mois).
