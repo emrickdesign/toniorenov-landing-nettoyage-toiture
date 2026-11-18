@@ -539,9 +539,12 @@
     return Math.max(0.34, Math.min(0.66, l / 1000, (h - 420) / 650));
   }
   var e = 1, largeur = window.innerWidth;
+  // Anneau dans le hero : l'échelle suit la largeur de son bloc (pleine largeur sur mobile, colonne sur ordinateur).
+  function echelleHero(el) { return Math.max(0.3, Math.min(0.46, el.clientWidth / 1000)); }
   function poserEchelle() {
     e = echelle(window.innerWidth, window.innerHeight);
     document.querySelectorAll('.ring-sec').forEach(function (s) { s.style.setProperty('--e', e); });
+    document.querySelectorAll('.ring-hero').forEach(function (s) { var eh = echelleHero(s); s.style.setProperty('--e', eh); s._e = eh; });
   }
   poserEchelle();
   // Seule la largeur compte : la barre d'adresse iOS qui se replie change la hauteur en plein défilement.
@@ -559,7 +562,7 @@
     }
     requestAnimationFrame(tour);
     rot.addEventListener('pointerdown', function (ev) { x0 = ev.clientX; base = drag; try { rot.setPointerCapture(ev.pointerId); } catch (_) {} });
-    rot.addEventListener('pointermove', function (ev) { if (x0 != null) drag = base + (ev.clientX - x0) * 0.2 / e; });
+    rot.addEventListener('pointermove', function (ev) { if (x0 != null) drag = base + (ev.clientX - x0) * 0.2 / (ring.parentNode._e || e); });
     ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (n) { rot.addEventListener(n, function () { x0 = null; }); });
   });
 })();

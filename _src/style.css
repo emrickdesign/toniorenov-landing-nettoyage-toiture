@@ -504,3 +504,18 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 /* Fin d'offre sous le titre du formulaire */
 .hf-fin{margin-top:6px;font-size:.9375rem;color:#ffbf47;font-weight:600}
 .offre-fin{color:var(--tuile);font-weight:700}
+
+/* ===== Anneau dans le hero (option ring_hero) : entre les arguments et le formulaire.
+   Mobile : pleine largeur (sort du gutter) ; ordinateur : dans la colonne de gauche. --e posé par app.js selon la largeur. */
+.ring-hero{position:relative;margin-top:clamp(14px,2.2vh,22px);padding:calc(34px * var(--e,.4)) 0;overflow:hidden}
+@media(max-width:1059px){.ring-hero{margin-inline:calc(var(--gutter) * -1)}}
+@media(min-width:1060px){.ring-hero{-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}}
+/* Titre de l'offre dans la carte du formulaire (option form_titre_carte) */
+.fc-t{margin:0 0 14px;text-align:center;font-size:clamp(1.3rem,1.1rem + .7vw,1.65rem);line-height:1.15;letter-spacing:-.025em;color:var(--nuit)}
+.fc-sub{margin:-6px 0 16px;text-align:center;font-size:.9375rem;color:#5b6b7f}
+/* H1 sur 3 lignes : métier / prestation / prix (prix barré à côté) */
+.hero h1 .h1-sub{display:block;font-size:.62em;font-weight:700;letter-spacing:-.01em;color:rgba(255,255,255,.88);margin:.2em 0 .1em}
+.hero h1 mark.h1-prix{font-size:1.32em}
+.hero h1 s.h1-barre{position:relative;display:inline-block;font-size:.72em;font-weight:600;color:rgba(255,255,255,.62);text-decoration:none;margin-left:.25em;white-space:nowrap}
+/* Le trait est dessiné à part : text-decoration ne passe pas sur les mots animés (inline-block). */
+.hero h1 s.h1-barre::after{content:"";position:absolute;left:-.06em;right:-.06em;top:52%;height:.09em;border-radius:1px;background:rgba(255,255,255,.8);transform:rotate(-6deg)}

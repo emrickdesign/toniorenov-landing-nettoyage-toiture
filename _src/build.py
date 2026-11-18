@@ -207,12 +207,12 @@ PAGES = [
   title="Nettoyage de toiture à Bayonne, Anglet, Biarritz : démoussage, hydrofuge, entretien · Tonio Rénov'",
   desc="Démoussage + traitement hydrofuge de toiture à 10 € le m² à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, nettoyage et entretien par Tonio Rénov' sur la Côte Basque",
-  h1="Nettoyage de toiture<br>+ traitement hydrofuge&nbsp;:<br><mark>10&nbsp;€ le m²</mark>",
+  h1="Nettoyage de toiture<span class='h1-sub'>Démoussage + traitement hydrofuge</span><mark class='h1-prix'>10&nbsp;€&nbsp;le&nbsp;m²</mark> <s class='h1-barre' aria-label='au lieu de 17 € le m²'>17&nbsp;€&nbsp;le&nbsp;m²</s>",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
-  proof=[("image", "Photos avant/après"), ("check", "Prix du devis tenu"), ("drop", "Tuiles préservées"), ("shield-check", "Reprise gratuite"), ("shield", "Décennale + RC Pro"), ("home", "Depuis 2009")],
-  offre_note="Démoussage + hydrofuge, souvent facturés 15&nbsp;à&nbsp;20&nbsp;€ le m²",
+  proof=[("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
+  ring_hero=True, form_titre_carte=True, h1_label="Nettoyage de toiture, démoussage + traitement hydrofuge : 10 € le m² au lieu de 17 € le m²",
   ring=[("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio"), ("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
@@ -871,7 +871,7 @@ def render(p):
     s = SITE
     M = MEDIA[p['out']]
     h1_inner, _ = split_words(p['h1'])
-    h1 = f'<h1 aria-label="{plain(p["h1"])}">{h1_inner}</h1>'
+    h1 = f'<h1 aria-label="{p.get("h1_label") or plain(p["h1"])}">{h1_inner}</h1>'
     trust = [("award", "Plus de 500 chantiers", "sur la Côte Basque"), ("shield-check", "Garantie décennale", "sur tous nos travaux"),
              ("shield", "Assurance RC Pro", "artisan assuré"), ("award", "Certifié RGE", "qualification reconnue"), p.get('last_trust')]
     trust[0] = ("home", trust[0][1], trust[0][2])
@@ -889,7 +889,9 @@ def render(p):
             f'<div class="ring3d-col" style="--a:{c * 30}deg">'
             + ''.join(f'<div class="ring3d-v"><img src="{ph[(c + 6 * k) % len(ph)][0]}" alt="{ph[(c + 6 * k) % len(ph)][1]}" decoding="async" draggable="false"></div>' for k in (0, 1))
             + '</div>' for c in range(6))
-        band_html = f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio"><div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div></section>'
+        ring_in = f'<div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div>'
+        band_html = '' if p.get('ring_hero') else f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio">{ring_in}</section>'
+    ring_hero = f'<div class="ring-hero fade" style="--d:4" aria-label="Chantiers réalisés par Tonio">{ring_in}</div>' if p.get('ring') and p.get('ring_hero') else ''
     # Offre limitée au mois en cours : date de fin écrite par app.js (dernier jour du mois).
     fin = '<span data-fin-mois>la fin du mois</span>'
     signs = ''.join(f'<li class="sign reveal" style="--d:{k}"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for k, (i, t, d) in enumerate(p['signs']['items']))
@@ -938,13 +940,25 @@ def render(p):
                          for k, (fld, q, o) in enumerate(etapes, 1))
         fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
+        carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
         corps = f'''<div class="devis-shell">
-      <div class="progress" aria-hidden="true">{'<i></i>' * n_et}</div>
+      {carte_t}<div class="progress" aria-hidden="true">{'<i></i>' * n_et}</div>
       <form class="devis-form" data-pos="{pos}" novalidate>
         {fsteps}<div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
       </form>
     </div>'''
+        if hero and p.get('form_titre_carte'):
+            return f'''<div class="hero-form" id="{ident}">
+      {corps}
+    </div>'''
+        if p.get('form_titre_carte'):
+            return f'''<section class="sec sec-light devis" id="{ident}">
+  <div class="wrap">
+    {corps}
+    <p class="alt-call">Vous préférez en parler ? Appelez-nous au <a href="{tel}">{s['phone']}</a></p>
+  </div>
+</section>'''
         if hero:
             return f'''<div class="hero-form" id="{ident}">
       <div class="hf-head"><h2 class="hf-t">{titre}</h2>{f'<p class="hf-fin">Offre valable jusqu’au {fin}</p>' if p.get('offre_mois') else (f'<p class="hf-fin">{p["offre_note"]}</p>' if p.get('offre_note') else '')}</div>
@@ -1030,6 +1044,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-primary btn-stack" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone","btn-ph")}<span class="btn-txt"><b>{s['phone']}</b><small>{p['ghost']}</small></span></a>
       </div>
       <p class="hero-proof fade" style="--d:3">{proof}</p>
+      {ring_hero}
     </div>
     {devis_haut}
   </div>
