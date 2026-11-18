@@ -586,3 +586,6 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 .form-bleu .fback:hover{color:#fff}
 .form-bleu .done p{color:rgba(255,255,255,.75)}
 .form-bleu .done-ic{background:rgba(143,212,172,.16);color:var(--vert-clair)}
+
+/* 4 peurs sous le bouton : 2 + 2 sur ordinateur (18/11) */
+@media(min-width:1060px){.hero-proof:has(span:nth-child(4)){display:grid;grid-template-columns:repeat(2,max-content);gap:10px 22px}}

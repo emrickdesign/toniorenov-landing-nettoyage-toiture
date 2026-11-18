@@ -222,7 +222,7 @@ PAGES = [
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
-  proof=[("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
+  proof=[("shield-check", "Produit DALEP 2100"), ("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
   fond='marine',  # TEST 18/11 : fond uni à la place de la photo
   ring_hero=True, form_titre_carte=True, h1_label="Nettoyage de toiture, démoussage + traitement hydrofuge : 9 € le m² au lieu de 17 € le m²",
   ring=[("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio"), ("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
