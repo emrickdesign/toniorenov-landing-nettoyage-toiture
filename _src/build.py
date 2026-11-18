@@ -204,10 +204,10 @@ PAGES = [
   # Refonte du 18/11/2026 sur le modèle /couvreur/ (positionnement B de l'analyse de marché du
   # 16/11/2026) : photos avant/après de SON toit, prix du devis tenu, reprise si défaut, pas de vendeur.
   # Reçoit les groupes d'annonces « nettoyage Facade », « nettoyage Toiture », « Réfection total toiture ».
-  title="Entretien de toiture à Bayonne, Anglet, Biarritz : hydrofuge et nettoyage · Tonio Rénov'",
-  desc="Entretien de toiture, traitement hydrofuge et nettoyage des tuiles à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
-  img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, entretien par Tonio Rénov' sur la Côte Basque",
-  h1="Entretien de toiture&nbsp;:<br><mark>Tonio vous envoie les photos</mark><br>avant et après.",
+  title="Nettoyage de toiture à Bayonne, Anglet, Biarritz : démoussage, hydrofuge, entretien · Tonio Rénov'",
+  desc="Nettoyage et démoussage de toiture, traitement hydrofuge et entretien à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
+  img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, nettoyage et entretien par Tonio Rénov' sur la Côte Basque",
+  h1="Nettoyage de toiture&nbsp;:<br><mark>Tonio vous envoie les photos</mark><br>avant et après.",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
@@ -235,10 +235,10 @@ PAGES = [
   reviews=['g_ml', 'g_vp', 'g_m'],
   form=dict(t="Décrivez votre besoin", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Décrivez votre besoin, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
-    etapes=[('probleme', "Quel est votre besoin ?", [("Entretien complet de toiture", "Entretien complet", "search"), ("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")]),
+    etapes=[('probleme', "Quel est votre besoin ?", [("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")]),
             ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
             ('delai', Q_DELAI, O_DELAI)],
-    o1=[("Entretien complet de toiture", "Entretien complet", "search"), ("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")],
+    o1=[("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Je vais vraiment voir les photos de mon toit ?", "Oui. Tonio prend votre toit en photo avant de commencer et une fois le travail fini, puis vous les envoie par SMS ou WhatsApp. Vous voyez ce qui a été fait sans monter sur l'échelle."),
        ("Le prix peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois sur le toit, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
