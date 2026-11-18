@@ -61,6 +61,7 @@ def method_tagline(path):
     if '/peinture' in path:     return 'passe dans la pièce'
     if '/ravalement' in path:   return 'examine la façade'
     if '/zinguerie' in path:    return 'regarde les gouttières et la zinguerie'
+    if '/refection' in path:    return 'monte contrôler la couverture et la charpente'
     if '/urgence' in path:      return 'monte localiser la fuite'
     return 'monte sur le toit'  # couvreur, entretien, nettoyage (racine)
 
@@ -75,6 +76,7 @@ def ps_cost(path):
     if '/peinture' in path:     return 'cohabiter avec des murs abîmés un hiver de plus'
     if '/ravalement' in path:   return 'laisser l\'eau entrer par les fissures un hiver de plus, et passer d\'un ravalement à la réparation du mur'
     if '/entretien' in path:    return 'laisser la mousse soulever les tuiles un hiver de plus, et passer de l\'entretien à la réparation'
+    if '/refection' in path:    return 'laisser la couverture s\'abîmer un hiver de plus, et passer d\'une réfection à une charpente à reprendre en plus'
     if '/urgence' in path:      return 'laisser l\'eau fragiliser la charpente — et là ce n\'est plus la tuile, c\'est le toit entier'
     if '/zinguerie' in path:    return 'regarder la gouttière arracher un bout de façade au prochain orage'
     return 'laisser la couverture se fatiguer un hiver de plus — et payer la charpente en plus de la toiture'
@@ -93,6 +95,12 @@ def gallery_photos(path):
             ('img/galerie-real-facade-basque.jpg', 'Ravalement de façade Côte Basque'),
             ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
             ('img/galerie-real-refection-toiture.jpg', 'Chantier complet Pays Basque'),
+        ]
+    if '/refection' in path:
+        return [
+            ('img/galerie-real-refection-toiture.jpg', 'Réfection de toiture au Pays Basque'),
+            ('img/galerie-real-toiture-chantier.jpg', 'Chantier de toiture à Boucau'),
+            ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage et zinguerie au Pays Basque'),
         ]
     # Défaut : couvreur, entretien, urgence, zinguerie, nettoyage-toiture (racine)
     return [
@@ -471,6 +479,94 @@ PAGES = [
            ("pin", "Un couvreur à proximité", "Vous cherchez un couvreur à proximité ? Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan couvreur du coin, pas une plateforme.")]),
   ],
  ),
+ dict(
+  out='refection-toiture/index.html', path='/refection-toiture/',
+  # Nouvelle page du 18/11/2026 : groupe d'annonces « Réfection total toiture ». Tonio fait la réfection complète
+  # et la toiture neuve. Brèche : la peur n°1 des gros chantiers est le devis qui grossit (« tout refaire, même la
+  # charpente ») -> le prix du devis est le prix payé, photos à chaque étape, il vérifie d'abord si une réparation suffit.
+  title="Réfection de toiture à Bayonne, Anglet, Biarritz : devis · Tonio Rénov'",
+  desc="Réfection complète de toiture et toiture neuve à Bayonne, Anglet, Biarritz et Boucau. Le prix du devis est le prix payé, photos du chantier, reprise gratuite si défaut.",
+  img='/roof.jpg', pos='58% 40%', crop='50% 60%', alt="Toiture en tuiles canal à refaire, chantier de réfection par Tonio Rénov' sur la Côte Basque",
+  h1="Réfection de toiture&nbsp;:<br><mark>le prix du devis</mark><br>est le prix payé.",
+  sub="",
+  ghost="Appeler Tonio pour qu'il vienne",
+  avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
+  proof=[("check", "Prix du devis tenu"), ("image", "Photos du chantier"), ("search", "Réparer si ça suffit")],
+  band=[("check", "Prix du devis tenu", "rien en plus sans accord écrit"), ("image", "Photos à chaque étape", "avant, pendant et après"),
+        ("search", "Réparer si ça suffit", "vérifié avant de tout refaire"), ("shield-check", "Reprise gratuite", "si défaut sur la zone refaite"),
+        ("shield", "Décennale + RC Pro", "artisan assuré"), ("home", "Artisan depuis 2009", "basé à Boucau")],
+  signs=dict(t="Réparer ou refaire ? Tonio regarde d'abord",
+    p="Refaire une toiture, c'est le plus gros chantier d'une maison. <strong>Avant de tout déposer, Tonio contrôle la couverture et la charpente</strong>, prend les photos et vous dit si une réparation suffit.",
+    items=[("drop", "Fuites qui reviennent", "Après plusieurs réparations qui ne tiennent pas, la couverture est souvent à bout. Tonio vous montre d'où vient l'eau et si la réfection est vraiment la solution."),
+           ("layers", "Tuiles fatiguées sur tout le toit", "Tuiles poreuses, cassées ou qui glissent un peu partout : réparer tuile par tuile ne suffit plus. Les photos vous montrent l'état de l'ensemble."),
+           ("search", "Charpente à contrôler", "Une couverture ancienne peut cacher une charpente touchée par l'eau. Tonio la contrôle et vous dit si elle doit être reprise, photos à l'appui."),
+           ("home", "Toiture neuve ou extension", "Une construction ou une extension a besoin d'une toiture complète. Tonio chiffre sur plans et sur place, avec un prix qu'il tient.")]),
+  method_steps=[("Vous appelez Tonio", "Vous lui décrivez votre toit et votre projet. Il passe chez vous rapidement, souvent le soir même ou le lendemain."),
+                ("Contrôle, photos et devis", "Tonio monte, contrôle la couverture et prend les photos. Si une réparation suffit, il vous le dit. Sinon, il chiffre la réfection et le prix du devis est le prix que vous payez."),
+                ("Dépose et couverture neuve", "Dépose de l'ancienne couverture, contrôle de la charpente, liteaux, écran sous-toiture, tuiles neuves, faîtage et zinguerie. Les photos du chantier vous sont envoyées."),
+                ("Nettoyage et photos après", "Le chantier est nettoyé avant que Tonio reparte, et les photos après vous sont envoyées. Un défaut sur la zone refaite : il revient gratuitement.")],
+  real=dict(t="Ce que Tonio vous promet, noir sur blanc", items=[
+    "Le prix du devis est le prix que vous payez. Rien en plus sans votre accord écrit",
+    "Les photos de votre toit, avant, pendant et après le chantier",
+    "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
+    "L'état de la charpente contrôlé, et dit franchement s'il faut la reprendre",
+    "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même",
+    "Un défaut sur la zone refaite ? Tonio revient le reprendre gratuitement"]),
+  reviews=['g_vp', 'g_m', 'g_ml'],
+  form=dict(t="Décrivez votre projet", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Décrivez votre projet, Tonio vous rappelle", q1="Quel est votre projet ?", q_coord="Où Tonio peut vous rappeler ?",
+    etapes=[('probleme', "Quel est votre projet ?", [("Refaire toute la toiture", "Toute la toiture", "home"), ("Refaire une partie de la toiture", "Une partie de la toiture", "layers"), ("Toiture neuve (construction, extension)", "Toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
+            ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
+            ('delai', Q_DELAI, O_DELAI)],
+    o1=[("Refaire toute la toiture", "Toute la toiture", "home"), ("Refaire une partie de la toiture", "Une partie de la toiture", "layers"), ("Toiture neuve (construction, extension)", "Toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
+    q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
+  faq=[("Le prix du devis peut-il changer pendant la réfection ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois la couverture déposée, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
+       ("Allez-vous vraiment me dire si une réparation suffit ?", "Oui. Tonio commence par contrôler la couverture. Si une réparation suffit, il vous le dit, photos à l'appui, et vous ne payez pas une toiture neuve pour rien. S'il faut refaire, il vous montre pourquoi."),
+       ("Vais-je voir des photos de ma toiture ?", "Oui. Tonio prend votre toit en photo avant, pendant et après le chantier, et vous les envoie. Vous voyez l'ancienne couverture, l'état de la charpente et le travail fini sans monter sur l'échelle."),
+       ("Faut-il refaire la charpente avec la toiture ?", "Pas forcément. Tonio contrôle l'état de la charpente quand la couverture est déposée et vous dit si elle doit être reprise, photos à l'appui. Rien n'est ajouté au devis sans votre accord écrit."),
+       ("Que comprend une réfection complète de toiture ?", "La dépose de l'ancienne couverture, le contrôle de la charpente, les liteaux, l'écran sous-toiture, les tuiles neuves, le faîtage et la zinguerie, puis le nettoyage du chantier. Le devis détaille ce qui est prévu."),
+       ("Faites-vous aussi les toitures neuves et les constructions ?", "Oui, Tonio construit des toitures complètes : maison neuve, extension, couverture neuve. Il chiffre sur place ou sur plan, et le prix du devis est le prix que vous payez."),
+       ("Combien coûte la réfection d'une toiture ?", "Ça dépend de la surface, de la forme du toit, du type de tuiles et de l'état de la charpente. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
+       ("Combien de temps dure une réfection de toiture ?", "Ça dépend de la surface et de l'état de la charpente. Tonio vous en parle sur place, au moment du devis."),
+       ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio est couvreur et travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
+       ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur les travaux, plus la reprise gratuite si un défaut apparaît sur la zone refaite."),
+       FAQ_ZONE],
+  cta=dict(t="Votre toit se répare-t-il ou se refait-il ?", p="Tonio monte, prend les photos et vous donne <strong>un devis dont le prix est le prix payé</strong>."),
+  # Sections de contenu sous la zone : une par famille de mots-clés du groupe « Réfection total toiture »
+  # (score de qualité : pertinence de la page de destination).
+  seo=[
+   dict(t="Réfection de toiture à Bayonne, Anglet, Biarritz et Boucau",
+    p="Tonio Rénov' est une <strong>entreprise de couverture</strong> basée à Boucau. C'est Tonio, le couvreur, qui se déplace dans chaque ville, sans sous-traitance, pour la réfection de votre toiture.",
+    items=[("pin", "Réfection de toiture à Bayonne", "Couvreur pour la réfection de toiture à Bayonne : contrôle de la couverture, dépose, couverture neuve. Le devis est gratuit, fait sur place, et son prix est celui que vous payez."),
+           ("pin", "Réfection de toiture à Anglet", "Réfection de toiture à Anglet pour maisons et résidences : un artisan sans intermédiaire, qui vous envoie les photos du chantier."),
+           ("pin", "Réfection de toiture à Biarritz et sur la Côte Basque", "Les toitures de Biarritz, Bidart ou Saint-Jean-de-Luz subissent le vent et les embruns. Tonio contrôle l'ensemble de la couverture avant de vous dire s'il faut refaire."),
+           ("home", "Couvreur à Boucau et Tarnos", "Notre base. Un couvreur du quartier, joignable directement, qui connaît les toitures du secteur.")]),
+   dict(t="Refaire sa toiture : les étapes d'une réfection complète",
+    p="<strong>Refaire un toit</strong>, c'est déposer l'ancienne couverture et en poser une neuve. Voici ce que contient une réfection complète de toiture, étape par étape.",
+    items=[("layers", "Dépose de l'ancienne couverture", "Les anciennes tuiles sont déposées. Tonio prend les photos de ce que cache la couverture avant d'aller plus loin."),
+           ("search", "Contrôle de la charpente", "La charpente est contrôlée à nu. Tonio vous dit si elle est saine ou si elle doit être reprise, et vous le montre en photo avant tout ajout au devis."),
+           ("check", "Liteaux, écran sous-toiture et tuiles neuves", "Pose des liteaux, de l'écran sous-toiture, puis des tuiles neuves, rang après rang, avec le faîtage."),
+           ("waves", "Zinguerie et nettoyage du chantier", "Gouttières, rives et solins sont repris pour que l'eau s'écoule bien. Le chantier est nettoyé avant que Tonio reparte.")]),
+   dict(t="Rénovation de toiture, remplacement et changement de couverture",
+    p="<strong>Rénovation de toiture</strong>, remplacement de toiture : Tonio commence par regarder ce qui peut être gardé ou réparé, puis chiffre ce qui doit vraiment être refait.",
+    items=[("search", "Rénovation de toiture : réparer ou refaire", "Avant de parler de rénovation de toiture, Tonio contrôle la couverture. Photos à l'appui, vous savez si une réparation suffit ou si le toit est à refaire."),
+           ("layers", "Remplacement de toiture", "Remplacement de toiture partiel ou complet : tuiles canal, tuiles mécaniques ou ardoises, selon ce qui est posé chez vous."),
+           ("home", "Changer sa toiture", "Vous voulez changer votre toiture parce qu'elle fuit ou qu'elle est fatiguée ? Tonio vous dit franchement si c'est utile, et ce que le changement comprend."),
+           ("shield-check", "Un seul interlocuteur", "Le couvreur qui contrôle votre toit est celui qui signe le devis et qui travaille sur le chantier. Pas de vendeur entre vous et lui.")]),
+   dict(t="Toiture neuve, couverture neuve et construction de toiture",
+    p="Maison neuve, extension, couverture à remplacer : <strong>une toiture neuve</strong> se chiffre sur place ou sur plan, avec un prix que Tonio tient.",
+    items=[("home", "Construction de toiture", "Construction de toiture pour une maison neuve ou une extension : Tonio chiffre la couverture complète, du faîtage à la zinguerie."),
+           ("layers", "Couverture neuve", "Couverture neuve en tuiles : liteaux, écran sous-toiture, tuiles et faîtage posés par Tonio lui-même."),
+           ("tools", "Toiture neuve ou réfection ?", "Sur une maison existante, on parle de réfection : dépose puis couverture neuve. Sur une construction, c'est une toiture neuve. Tonio fait les deux."),
+           ("check", "Un devis détaillé", "Le devis indique ce qui est prévu, poste par poste. Le prix du devis est le prix payé, rien en plus sans votre accord écrit.")]),
+   dict(t="Prix, tarif et devis de réfection de toiture",
+    p="<strong>Devis gratuit</strong>, établi sur place après contrôle de la toiture. Le prix annoncé est le prix payé.",
+    items=[("search", "Ce qui fait le prix d'une réfection de toiture", "La surface, la forme du toit, le type de tuiles, l'accès au chantier et l'état de la charpente. Le prix de la réfection se fixe sur ce que Tonio voit, pas au téléphone."),
+           ("check", "Devis réfection de toiture gratuit", f"Remplissez le formulaire ou appelez le {TEL} : le devis de réfection de toiture est gratuit et sans engagement. Vous le signez quand vous voulez."),
+           ("shield-check", "Un prix qui ne grossit pas", "Le tarif écrit sur le devis est celui que vous payez. Si une surprise apparaît sur le chantier, Tonio vous envoie la photo et vous décidez, par écrit."),
+           ("pin", "Un couvreur à proximité", "Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un couvreur du coin, pas une plateforme.")]),
+  ],
+ ),
  # Groupe 2 — Zinguerie / Faîtage : panier moyen 1500-4000 €, saison pré-hiver + post-tempête.
  dict(
   out='zinguerie/index.html', path='/zinguerie/',
@@ -587,6 +683,9 @@ MEDIA = {
  # Nouvelles pages — photos actuelles sont des copies des sets existants (placeholders), à remplacer par de vraies photos dédiées
  'couvreur/index.html': dict(mode='split', b='couvreur-avant', a='couvreur-apres', tb='Le problème', ta="L'intervention",
                     ab="Plafond abîmé par une infiltration d'eau (photo d'illustration — à remplacer)", aa="Couvreur au travail sur une toiture en tuiles (photo d'illustration — à remplacer)",
+                    bgm='couvreur-bg-methode', bgc='couvreur-bg-cta'),
+ 'refection-toiture/index.html': dict(mode='split', b='couvreur-avant', a='couvreur-apres', tb='Le problème', ta="L'intervention",
+                    ab="Plafond abîmé par une infiltration d'eau (photo d'illustration)", aa="Couvreur au travail sur une toiture en tuiles (photo d'illustration)",
                     bgm='couvreur-bg-methode', bgc='couvreur-bg-cta'),
  'zinguerie/index.html': dict(mode='slider', b='zinguerie-avant', a='zinguerie-apres', tb='Avant', ta='Après',
                     ab="Gouttière encrassée et bord de toit sale (photo d'illustration — à remplacer par gouttière zinc neuve)", aa="Gouttière propre et bien entretenue (photo d'illustration — à remplacer)",
