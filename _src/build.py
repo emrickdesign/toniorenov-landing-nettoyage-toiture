@@ -1056,26 +1056,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 {band_html}
 
-<section class="sec sec-dark has-bg">
-  {bgimg(M["bgm"])}
+<!-- Ordre validé par Emrick (18/11) : hero → avis → photos → zone → formulaire → sections score de qualité (FAQ, mots-clés) tout en bas.
+     Méthode et bloc CTA à texte retirés du flux (pavés de texte). -->
+<section class="sec sec-light" id="avis">
   <div class="wrap">
-    <div class="sec-head center">{method_h2}<p class="lead reveal on-dark" style="--d:1"><strong>Pas de devis par mail. Pas de commercial envoyé par un autre. Pas de prix balancé au téléphone.</strong><br>Tonio décroche, passe chez vous le soir même ou le lendemain, {method_tagline(p['path'])}, puis chiffre devant vous, sur place.</p></div>
-    <ol class="steps">{steps}</ol>
+    <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · {p.get('rev_sum', 'avis vérifiés de clients de la Côte Basque et des Landes')}</span></p></div>
+    <div class="rev-grid"{' data-carousel="all"' if p.get('marquee') else ''}>{''.join(revs)}</div>
   </div>
 </section>
 
-<section class="sec sec-light">
+<section class="sec sec-light" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center">{h2("Nos derniers chantiers sur la Côte Basque")}</div>
     <ul class="gal-grid reveal" style="--d:1"{' data-carousel="all"' if p.get('marquee') else ''}>
 {''.join(f'      <li><img src="/{src}" alt="{alt}" loading="lazy" decoding="async"><figcaption>{alt}</figcaption></li>' + chr(10) for src, alt in gallery_photos(p['path']))}    </ul>
-  </div>
-</section>
-
-<section class="sec sec-light" id="avis" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · {p.get('rev_sum', 'avis vérifiés de clients de la Côte Basque et des Landes')}</span></p></div>
-    <div class="rev-grid"{' data-carousel="all"' if p.get('marquee') else ''}>{''.join(revs)}</div>
   </div>
 </section>
 
@@ -1085,29 +1079,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <ul class="chips reveal" style="--d:2">{zones}</ul>
   </div>
 </section>
-{kw_sections(p)}
+{devis_bas}
+<!-- Sections score de qualité (mots-clés de la campagne) : toujours sous le dernier formulaire. -->
 <section class="sec sec-light" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center">{faq_h2}<p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="{tel}"><strong>{s['phone']}</strong></a>.</p></div>
     <div class="faq-list reveal" style="--d:1">{faq}</div>
   </div>
 </section>
-
-<section class="sec cta has-bg">
-  {bgimg(M["bgc"])}
-  <div class="wrap">
-    {cta_h2}
-    <p class="reveal" style="--d:1">{p['cta']['p']}</p>
-    {rarete}
-    <div class="btns reveal" style="--d:2">
-      <a class="btn btn-primary" href="#devis-bas"><span>Faire venir Tonio chez moi</span>{ic("arrow","arr")}</a>
-      <a class="btn-tel on-dark" href="{tel}">{ic("phone")}<span>ou appeler <b>{s['phone']}</b></span></a>
-    </div>
-    <p class="ps reveal on-dark" style="--d:3"><strong>PS —</strong> Votre {ps_subject(p['path'])} ne va pas s'arranger tout seul. Un diagnostic gratuit maintenant = zéro euro pour savoir. Attendre, c'est {ps_cost(p['path'])}.</p>
-  </div>
-</section>
-{devis_bas}
-</main>
+{kw_sections(p)}</main>
 
 <footer>
   <div class="wrap foot">

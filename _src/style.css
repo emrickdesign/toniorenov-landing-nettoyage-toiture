@@ -120,7 +120,8 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .hero{position:relative;isolation:isolate;display:flex;align-items:center;color:#fff;background:var(--nuit);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%)}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
+/* Voile tamisé bleu nuit sur toute la photo de fond (règle Emrick 18/11) : fait ressortir texte, bouton et formulaire. */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(11,24,39,.45),rgba(11,24,39,.45)),linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
 .hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(40px,7vh,96px) var(--gutter) clamp(40px,7vh,96px);display:grid;gap:clamp(28px,4vw,56px);align-items:center}
 /* Hero centré (demande Emrick 09/11) : plus posé, plus LP de conversion. En desktop quand on passe en split (hero-copy à gauche, formulaire à droite), on revient à text-align:left — un texte centré dans une colonne gauche tombe mal à côté d'un bloc à droite. */
 .hero-copy{text-align:center}
@@ -178,7 +179,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
    Mobile : titre + boutons d'appel d'abord, formulaire directement en dessous. */
 @media(min-width:1060px){
   .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px);padding-block:clamp(72px,8vh,112px)}
-  .hero::before{background:linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
+  .hero::before{background:linear-gradient(rgba(11,24,39,.42),rgba(11,24,39,.42)),linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
   /* Quand hero split (texte à gauche, formulaire à droite), le centrage tombe mal. On revient à gauche. */
   .hero-copy{text-align:left}
   .hero-cta{justify-content:flex-start}
@@ -524,3 +525,10 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 .hero h1 s.h1-barre{position:relative;display:inline-block;font-size:.72em;font-weight:600;color:rgba(255,255,255,.62);text-decoration:none;margin-left:.25em;white-space:nowrap}
 /* Le trait est dessiné à part : text-decoration ne passe pas sur les mots animés (inline-block). */
 .hero h1 s.h1-barre::after{content:"";position:absolute;left:-.06em;right:-.06em;top:52%;height:.09em;border-radius:1px;background:rgba(255,255,255,.8);transform:rotate(-6deg)}
+
+/* Ordre 18/11 : avis plus compacts sur mobile, formulaire du bas collé à la zone (pas de grand vide). */
+@media(max-width:700px){
+  .rev-grid[data-carousel] .rev{padding:20px 18px;gap:14px}
+  .rev-grid[data-carousel] .rev blockquote{font-size:.9375rem;line-height:1.5}
+}
+#zone+#devis-bas{padding-top:clamp(8px,2vw,24px)}
