@@ -526,3 +526,49 @@
     }
   });
 })();
+
+/* Anneau 3D de photos (repris de 2rprenov.fr) : rotation continue (un tour en 40 s), glissement
+   au doigt ou à la souris qui s'ajoute à la rotation, pause hors écran et si l'animation est réduite. */
+(function () {
+  var rings = document.querySelectorAll('.ring3d');
+  if (!rings.length) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function echelle(l, h) {
+    if (l >= 1200) return 1;
+    if (l >= 810) return Math.min(0.92, l / 1280, h / 1100);
+    return Math.max(0.34, Math.min(0.66, l / 1000, (h - 420) / 650));
+  }
+  var e = 1, largeur = window.innerWidth;
+  function poserEchelle() {
+    e = echelle(window.innerWidth, window.innerHeight);
+    document.querySelectorAll('.ring-sec').forEach(function (s) { s.style.setProperty('--e', e); });
+  }
+  poserEchelle();
+  // Seule la largeur compte : la barre d'adresse iOS qui se replie change la hauteur en plein défilement.
+  window.addEventListener('resize', function () { if (window.innerWidth === largeur) return; largeur = window.innerWidth; poserEchelle(); });
+  rings.forEach(function (ring) {
+    var rot = ring.querySelector('.ring3d-rot'), angle = 0, drag = 0, vu = true, prec = null, x0 = null, base = 0;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vu = es[0].isIntersecting; }, { threshold: 0 }).observe(ring);
+    function tour(t) {
+      var dt = prec == null ? 0 : t - prec; prec = t;
+      if (vu || x0 != null) {
+        if (!reduce && !document.hidden && x0 == null) angle = (angle + dt / 40000 * 360) % 360;
+        rot.style.transform = 'rotateY(' + (angle + drag) + 'deg)';
+      }
+      requestAnimationFrame(tour);
+    }
+    requestAnimationFrame(tour);
+    rot.addEventListener('pointerdown', function (ev) { x0 = ev.clientX; base = drag; try { rot.setPointerCapture(ev.pointerId); } catch (_) {} });
+    rot.addEventListener('pointermove', function (ev) { if (x0 != null) drag = base + (ev.clientX - x0) * 0.2 / e; });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (n) { rot.addEventListener(n, function () { x0 = null; }); });
+  });
+})();
+
+/* Fin d'offre : « jusqu'au 30 novembre » = dernier jour du mois en cours, recalculé à chaque visite. */
+(function () {
+  var els = document.querySelectorAll('[data-fin-mois]');
+  if (!els.length) return;
+  var d = new Date(), fin = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+  var mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  els.forEach(function (el) { el.textContent = fin.getDate() + ' ' + mois[fin.getMonth()]; });
+})();

@@ -205,13 +205,15 @@ PAGES = [
   # 16/11/2026) : photos avant/après de SON toit, prix du devis tenu, reprise si défaut, pas de vendeur.
   # Reçoit les groupes d'annonces « nettoyage Facade », « nettoyage Toiture », « Réfection total toiture ».
   title="Nettoyage de toiture à Bayonne, Anglet, Biarritz : démoussage, hydrofuge, entretien · Tonio Rénov'",
-  desc="Nettoyage et démoussage de toiture, traitement hydrofuge et entretien à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
+  desc="Démoussage + traitement hydrofuge de toiture à 10 € le m² à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre toit, prix du devis tenu, reprise gratuite si défaut.",
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, nettoyage et entretien par Tonio Rénov' sur la Côte Basque",
-  h1="Nettoyage de toiture&nbsp;:<br><mark>Tonio vous envoie les photos</mark><br>avant et après.",
+  h1="Nettoyage de toiture<br>+ traitement hydrofuge&nbsp;:<br><mark>10&nbsp;€ le m²</mark>",
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
-  proof=[("drop", "Hydrofuge DALEP 2100"), ("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite si défaut")],
+  proof=[("image", "Photos avant/après"), ("check", "Prix du devis tenu"), ("drop", "Tuiles préservées"), ("shield-check", "Reprise gratuite"), ("shield", "Décennale + RC Pro"), ("home", "Depuis 2009")],
+  offre_note="Démoussage + hydrofuge, souvent facturés 15&nbsp;à&nbsp;20&nbsp;€ le m²",
+  ring=[("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio"), ("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
         ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -233,8 +235,8 @@ PAGES = [
     "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
     "Un seul numéro, du devis jusqu'après les travaux"]),
   reviews=['g_ml', 'g_vp', 'g_m'],
-  form=dict(t="Décrivez votre besoin", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+  form=dict(t="Profitez des 10 € le m²", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Profitez des 10 € le m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     etapes=[('probleme', "Quel est votre besoin ?", [("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")]),
             ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
             ('delai', Q_DELAI, O_DELAI)],
@@ -247,11 +249,11 @@ PAGES = [
        ("Faut-il forcément un traitement hydrofuge ?", "Pas forcément. Sur place, Tonio regarde l'état de vos tuiles et vous dit si un nettoyage suffit ou si le traitement hydrofuge apporte quelque chose. Photos à l'appui, c'est vous qui décidez."),
        ("Vous nettoyez aussi les gouttières ?", "Oui. Les gouttières sont dégagées pendant l'entretien de la toiture, ou seules si c'est tout ce dont vous avez besoin."),
        ("Vous refaites aussi les toitures complètes ?", "Oui, Tonio fait aussi la réfection complète de toiture. Mais si un nettoyage et un traitement suffisent, il vous le dit et vous montre les photos : vous ne payez pas une toiture neuve pour rien."),
-       ("Combien coûte l'entretien d'une toiture ?", "Ça dépend de la surface, de l'accès au toit et de l'état des tuiles. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
+       ("Combien coûte le nettoyage de ma toiture ?", "Le démoussage + traitement hydrofuge est à 10 € le m². Tonio mesure la surface sur place et vous donne le prix total dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
        ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
        ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux, plus la reprise gratuite si un défaut apparaît sur la zone traitée."),
        FAQ_ZONE],
-  cta=dict(t="Vous voulez savoir dans quel état est votre toit ?", p="Tonio monte, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
+  cta=dict(t="Démoussage + hydrofuge à 10 € le m²", p="Tonio monte, mesure, prend les photos et vous donne <strong>un prix qu'il tient</strong>."),
   # Sections de contenu sous la zone : une par famille de mots-clés actifs des groupes
   # « nettoyage Toiture », « nettoyage Facade » et « Réfection total toiture » (score de qualité).
   seo=[
@@ -286,7 +288,7 @@ PAGES = [
     p="<strong>Devis gratuit</strong>, établi sur place après inspection. Le prix annoncé est le prix payé.",
     items=[("search", "Ce qui fait le prix d'un entretien de toiture", "La surface, l'accès au toit, l'état des tuiles et des gouttières, le traitement hydrofuge ou non. Le prix de l'entretien de toiture se fixe sur ce que Tonio voit, pas au téléphone."),
            ("check", "Devis entretien toiture sans engagement", f"Remplissez le formulaire ou appelez le {TEL} : votre devis d'entretien de toiture est gratuit et détaillé. Vous le signez quand vous voulez."),
-           ("shield-check", "Prix du traitement hydrofuge toiture", "Le prix d'un traitement hydrofuge de toiture dépend de la surface et de l'état des tuiles. Il est écrit sur le devis, et ne bouge pas sans votre accord écrit."),
+           ("shield-check", "Prix du traitement hydrofuge toiture", "Démoussage + traitement hydrofuge : 10 € le m², quand ces deux prestations sont souvent facturées 15 à 20 € le m². La surface est mesurée sur place et le prix total est écrit sur le devis."),
            ("pin", "Un artisan toiture à proximité", "Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin, pas une plateforme.")]),
   ],
  ),
@@ -868,6 +870,17 @@ def render(p):
     band = ''.join(f'<li>{ic(i)}<div><b>{a}</b><small>{b}</small></div></li>' for i, a, b in trust)
     band_html = (f'<section class="band marquee" aria-label="Nos garanties"><div class="band-track"><ul>{band}</ul><ul aria-hidden="true">{band}</ul></div></section>'
                  if p.get('marquee') else f'<section class="band" aria-label="Nos garanties"><div class="wrap"><ul>{band}</ul></div></section>')
+    # Anneau de vraies photos de Tonio (prestation de la page) à la place de la bande de garanties.
+    # 12 emplacements (6 colonnes × 2) : les photos tournent en boucle s'il y en a moins.
+    if p.get('ring'):
+        ph = [(('' if s.startswith('/') else '/') + s, alt) for s, alt in p['ring']]
+        cols = ''.join(
+            f'<div class="ring3d-col" style="--a:{c * 30}deg">'
+            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c * 2 + k) % len(ph)][0]}" alt="{ph[(c * 2 + k) % len(ph)][1]}" loading="lazy" decoding="async" draggable="false"></div>' for k in (0, 1))
+            + '</div>' for c in range(6))
+        band_html = f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio"><div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div></section>'
+    # Offre limitée au mois en cours : date de fin écrite par app.js (dernier jour du mois).
+    fin = '<span data-fin-mois>la fin du mois</span>'
     signs = ''.join(f'<li class="sign reveal" style="--d:{k}"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for k, (i, t, d) in enumerate(p['signs']['items']))
     steps = ''.join(f'<li class="step reveal" style="--d:{k}"><span class="step-n">{k+1}</span><h3>{t}</h3><p>{d}</p></li>' for k, (t, d) in enumerate(p['method_steps']))
     real = ''.join(f'<li>{ic("check")}<span>{t}</span></li>' for t in p['real']['items'])
@@ -923,12 +936,12 @@ def render(p):
     </div>'''
         if hero:
             return f'''<div class="hero-form" id="{ident}">
-      <div class="hf-head"><h2 class="hf-t">{titre}</h2></div>
+      <div class="hf-head"><h2 class="hf-t">{titre}</h2>{f'<p class="hf-fin">Offre valable jusqu’au {fin}</p>' if p.get('offre_mois') else (f'<p class="hf-fin">{p["offre_note"]}</p>' if p.get('offre_note') else '')}</div>
       {corps}
     </div>'''
         return f'''<section class="sec sec-light devis" id="{ident}">
   <div class="wrap">
-    <div class="sec-head center">{titre}<p class="lead">{f['sub']}</p></div>
+    <div class="sec-head center">{titre}<p class="lead">{f['sub']}{f'<br><span class="offre-fin">Offre valable jusqu’au {fin}.</span>' if p.get('offre_mois') else ''}</p></div>
     {corps}
     <p class="alt-call">Vous préférez en parler ? Appelez-nous au <a href="{tel}">{s['phone']}</a></p>
   </div>

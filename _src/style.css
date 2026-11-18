@@ -486,3 +486,21 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
   .fback{align-self:center;padding:10px 6px;font-size:.875rem}
   .fback[disabled]{display:none}
 }
+
+/* ===== Anneau 3D de photos (repris de 2rprenov.fr, Ring3D.tsx) — remplace la bande de garanties =====
+   Scène 1200×300, perspective sur le PARENT, 6 colonnes à 30°, 2 vignettes 260×370 à ±90° par colonne,
+   backface-visibility:hidden (c'est ce qui empêche la photo du premier plan d'envahir la page).
+   Toute la géométrie suit --e (échelle calculée en JS selon l'écran). */
+.ring-sec{position:relative;background:var(--nuit);overflow:hidden;padding:calc(110px * var(--e,1)) 0}
+.ring3d{position:relative;height:calc(300px * var(--e,1))}
+.ring3d-scene{position:absolute;left:50%;top:0;width:calc(1200px * var(--e,1));height:100%;transform:translateX(-50%);perspective:calc(700px * var(--e,1));perspective-origin:50% 50%}
+.ring3d-rot{width:100%;height:100%;transform-style:preserve-3d;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.ring3d-rot:active{cursor:grabbing}
+.ring3d-col{position:absolute;left:50%;top:0;width:calc(1400px * var(--e,1));height:100%;display:flex;align-items:center;justify-content:space-between;transform:translateX(-50%) rotateY(var(--a));transform-style:preserve-3d}
+.ring3d-v{flex:none;width:calc(260px * var(--e,1));height:calc(370px * var(--e,1));border-radius:max(8px,calc(18px * var(--e,1)));overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:flat;background:var(--marine)}
+.ring3d-v:first-child{transform:rotateY(90deg)}
+.ring3d-v:last-child{transform:rotateY(-90deg)}
+.ring3d-v img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+/* Fin d'offre sous le titre du formulaire */
+.hf-fin{margin-top:6px;font-size:.9375rem;color:#ffbf47;font-weight:600}
+.offre-fin{color:var(--tuile);font-weight:700}
