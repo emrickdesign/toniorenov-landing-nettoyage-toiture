@@ -59,6 +59,7 @@ def stars(): return '<span class="stars" role="img" aria-label="5 étoiles sur 5
 # vraie (on ne monte pas sur un toit pour peindre un salon).
 def method_tagline(path):
     if '/peinture' in path:     return 'passe dans la pièce'
+    if '/nettoyage-facade' in path: return 'examine la façade et son support'
     if '/ravalement' in path:   return 'examine la façade'
     if '/zinguerie' in path:    return 'regarde les gouttières et la zinguerie'
     if '/refection' in path:    return 'monte contrôler la couverture et la charpente'
@@ -68,12 +69,14 @@ def method_tagline(path):
 # PS final (Sabri : « vendre contre le coût de l'inaction ») — adapté au métier.
 def ps_subject(path):
     if '/peinture' in path:     return 'intérieur'
+    if '/nettoyage-facade' in path: return 'façade'
     if '/ravalement' in path:   return 'façade'
     if '/urgence' in path:      return 'fuite'
     return 'toit'  # couvreur, entretien, nettoyage, zinguerie, racine
 
 def ps_cost(path):
     if '/peinture' in path:     return 'cohabiter avec des murs abîmés un hiver de plus'
+    if '/nettoyage-facade' in path: return 'laisser la mousse et la pollution s\'incruster un hiver de plus, et passer d\'un nettoyage à une façade à reprendre'
     if '/ravalement' in path:   return 'laisser l\'eau entrer par les fissures un hiver de plus, et passer d\'un ravalement à la réparation du mur'
     if '/entretien' in path:    return 'laisser la mousse soulever les tuiles un hiver de plus, et passer de l\'entretien à la réparation'
     if '/refection' in path:    return 'laisser la couverture s\'abîmer un hiver de plus, et passer d\'une réfection à une charpente à reprendre en plus'
@@ -89,6 +92,12 @@ def gallery_photos(path):
             ('img/galerie-real-peinture-sejour.jpg', 'Peinture & moulures à Anglet'),
             ('img/galerie-real-peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
             ('img/galerie-real-peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque'),
+        ]
+    if '/nettoyage-facade' in path:
+        return [
+            ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
+            ('img/galerie-real-facade-basque.jpg', 'Façade basque, Côte Basque'),
+            ('img/galerie-real-toiture-chantier.jpg', 'Maison à façade blanche, chantier à Boucau'),
         ]
     if '/ravalement' in path:
         return [
@@ -397,6 +406,95 @@ PAGES = [
            ("pin", "Un artisan à proximité", "Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin, pas une plateforme.")]),
   ],
  ),
+ dict(
+  out='nettoyage-facade/index.html', path='/nettoyage-facade/',
+  # Nouvelle page du 18/11/2026 : groupe d'annonces « nettoyage Facade ». Différent de /ravalement/ (fissures, enduit,
+  # peinture) : ici nettoyage + traitement anti-mousse / hydrofuge. Brèche choisie = les photos avant/après : la plainte
+  # n°1 du marché est « résultat invisible, traces de mousse restées, aucune protection appliquée » ; « sans karcher »
+  # est déjà pris par 5 concurrents (accroche interdite), le prix du devis est déjà l'angle de /ravalement/.
+  title="Nettoyage de façade à Bayonne, Anglet, Biarritz : démoussage, traitement · Tonio Rénov'",
+  desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
+  img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
+  h1="Nettoyage de façade&nbsp;:<br><mark>photos avant/après</mark><br>de votre mur.",
+  sub="",
+  ghost="Appeler Tonio pour qu'il vienne",
+  avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
+  proof=[("layers", "Adapté au support"), ("shield-check", "Reprise gratuite"), ("phone", "Pas de vendeur")],
+  band=[("image", "Photos avant/après", "vous voyez la différence"), ("layers", "Adapté au support", "enduit, crépi ou pierre"),
+        ("check", "Prix du devis tenu", "rien en plus sans votre accord"), ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"),
+        ("shield", "Décennale + RC Pro", "artisan assuré"), ("home", "Artisan depuis 2009", "basé à Boucau")],
+  signs=dict(t="Ce que la mousse et la pollution font à une façade",
+    p="Mousse, embruns et pollution s'installent sur le mur sans bruit. <strong>Tonio regarde de près votre façade</strong>, prend les photos avant et vous dit ce qu'il faut nettoyer, traiter, ou laisser.",
+    items=[("sprout", "Traces vertes et mousse", "Elles apparaissent côté nord, sous les arbres ou près des gouttières. Un nettoyage de façade les retire avant qu'elles s'incrustent dans l'enduit."),
+           ("alert", "Traces noires ou grises", "Pollution, poussière et embruns encrassent le crépi. Un décrassage redonne sa teinte au mur, et les photos avant/après vous le montrent."),
+           ("layers", "Lichen et taches", "Taches orangées, grises ou blanchâtres sur l'enduit ou la pierre. Tonio regarde le support avant de choisir comment les retirer."),
+           ("drop", "Mur qui reste humide", "Une façade qui boit l'eau reste sombre et se salit plus vite. Tonio vous dit si un traitement hydrofuge est utile sur votre mur.")]),
+  method_steps=[("Vous appelez Tonio", "Vous lui décrivez votre façade. Il se déplace lui-même chez vous, sans commercial ni intermédiaire."),
+                ("Examen, photos avant et devis", "Tonio regarde le support (enduit, crépi, pierre), prend les photos avant et vous remet un devis gratuit. Le prix du devis est le prix que vous payez."),
+                ("Nettoyage, puis traitement si utile", "Nettoyage adapté au support, basse pression et produits professionnels, sans abîmer l'enduit. Traitement anti-mousse et hydrofuge si votre façade en a besoin."),
+                ("Photos après", "Contrôle de la finition, chantier nettoyé, et les photos avant/après de votre façade vous sont envoyées.")],
+  real=dict(t="Ce que Tonio vous promet, noir sur blanc", items=[
+    "Les photos avant/après de votre façade, envoyées : vous voyez ce qui a été retiré",
+    "Un nettoyage adapté au support, sans abîmer l'enduit",
+    "Un traitement anti-mousse ou hydrofuge seulement si votre façade en a besoin",
+    "Le prix du devis est le prix que vous payez. Rien en plus sans votre accord écrit",
+    "Un défaut sur la zone traitée ? Tonio revient le reprendre gratuitement",
+    "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même"]),
+  reviews=['g_ml', 'g_vp', 'g_m'],
+  form=dict(t="Décrivez votre besoin", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Décrivez votre besoin, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?",
+    etapes=[('probleme', "Que voulez-vous faire ?", [("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
+            ('toiture', "Quel est le revêtement de votre façade ?", [("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")]),
+            ('delai', Q_DELAI, O_DELAI)],
+    o1=[("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
+    q2="Quel est le revêtement de votre façade ?", o2=[("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")],
+    q3="Surface approximative de la façade ?", o3=OPT_SURF),
+  faq=[("Les photos avant/après, c'est pour de vrai ?", "Oui. Tonio prend votre façade en photo avant de commencer et une fois le nettoyage fini, puis vous envoie les photos avant/après. Vous voyez ce qui a été retiré, sans avoir à le croire sur parole."),
+       ("Le nettoyage risque-t-il d'abîmer mon enduit ?", "Tonio regarde d'abord le support (enduit, crépi, pierre apparente) et choisit un nettoyage adapté : basse pression, produits professionnels, sans abîmer l'enduit. Si le mur est trop fragile pour un nettoyage, il vous le dit."),
+       ("Vous nettoyez aussi les façades en pierre ?", "Oui, Tonio nettoie les façades en enduit, en crépi et en pierre. La pierre apparente ne se traite pas comme un enduit : il adapte le nettoyage au support."),
+       ("La mousse va-t-elle revenir ?", "Une façade exposée au nord, à l'humidité ou aux embruns se salit plus vite qu'une autre. Un traitement anti-mousse et hydrofuge limite le retour, mais il ne le supprime pas toujours. Tonio vous dit franchement à quoi vous attendre sur votre mur."),
+       ("Faut-il forcément un traitement hydrofuge ?", "Non. Selon l'état du mur, un nettoyage peut suffire. Tonio vous dit si un traitement anti-mousse ou hydrofuge est utile sur votre façade, et c'est vous qui décidez."),
+       ("Quelle différence entre nettoyage et ravalement ?", "Le nettoyage retire mousse, traces et pollution. Le ravalement reprend l'enduit, les fissures et la peinture. Si votre façade est fissurée ou à repeindre, Tonio vous le dit et fait aussi le ravalement."),
+       ("Le prix du devis peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois sur la façade, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
+       ("Combien coûte un nettoyage de façade ?", "Ça dépend de la surface, de la hauteur, du support et de l'état d'encrassement. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer. Ce prix est celui que vous payez."),
+       ("Vous êtes artisan ou vous sous-traitez ?", "Tonio travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui regarde votre façade et fait le devis est celui qui travaille dessus."),
+       ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur les travaux, plus la reprise gratuite si un défaut apparaît sur la zone traitée."),
+       FAQ_ZONE],
+  cta=dict(t="Une façade propre, et la preuve en photos", p="Tonio regarde, prend les photos avant et après, et vous donne <strong>un devis dont le prix est le prix payé</strong>."),
+  # Sections de contenu sous la zone : une par famille de mots-clés du groupe « nettoyage Facade » (score de qualité).
+  seo=[
+   dict(t="Nettoyage de façade à Bayonne, Anglet, Biarritz et Boucau",
+    p="Tonio Rénov' est une <strong>entreprise de nettoyage de façade</strong> basée à Boucau. C'est Tonio qui se déplace dans chaque ville, sans sous-traitance, pour nettoyer la façade de votre maison.",
+    items=[("pin", "Nettoyage de façade à Bayonne", "Entreprise de nettoyage de façade à Bayonne : examen du mur, nettoyage adapté au support, photos avant/après. Le devis est gratuit, fait sur place, et son prix est celui que vous payez."),
+           ("pin", "Nettoyage de façade à Anglet", "Nettoyage de façade à Anglet pour maisons et résidences : un artisan sans intermédiaire, qui vous envoie les photos avant et après."),
+           ("pin", "Nettoyage de façade à Biarritz et sur la Côte Basque", "Les façades de Biarritz, Bidart ou Saint-Jean-de-Luz reçoivent le vent et les embruns. Tonio regarde l'état du mur et vous dit ce qui est utile."),
+           ("home", "Nettoyage de façade à Boucau et Tarnos", "Notre base. Un artisan du quartier, joignable directement, qui connaît les façades du secteur.")]),
+   dict(t="Nettoyage de façade de maison : crépi, enduit et pierre",
+    p="<strong>Nettoyer sa façade</strong> ne se fait pas pareil sur un crépi, un enduit ou de la pierre. Tonio regarde le support avant de choisir comment le nettoyer.",
+    items=[("sprout", "Nettoyage de façade maison", "Nettoyage de façade de maison : les traces vertes, grises ou noires sont retirées, et les photos avant/après vous montrent le résultat."),
+           ("layers", "Nettoyage de façade en crépi", "Le crépi retient la poussière et la mousse dans son grain. Tonio adapte le nettoyage pour le décrasser sans l'abîmer."),
+           ("layers", "Nettoyage de façade en enduit", "Nettoyage de façade sur enduit : un nettoyage adapté, basse pression, sans abîmer la surface du mur."),
+           ("layers", "Nettoyage de façade en pierre", "Nettoyage de façade pierre : la pierre apparente ne se traite pas comme un enduit. Tonio choisit la méthode selon le support.")]),
+   dict(t="Démoussage et décrassage de façade",
+    p="Mousse, lichen, traces noires : le <strong>démoussage de façade</strong> et le décrassage redonnent sa teinte au mur. Voici ce que Tonio retire, et comment il vous le montre.",
+    items=[("sprout", "Démoussage de façade", "Le démoussage de façade retire la mousse et les traces vertes avant qu'elles s'incrustent. Photos avant et après à l'appui."),
+           ("alert", "Décrassage de façade", "Le décrassage de façade retire l'encrassement du mur : pollution, poussière, embruns. Vous voyez la différence sur les photos."),
+           ("search", "Nettoyer ou ravaler ?", "Parfois un nettoyage suffit, parfois la façade est fissurée ou à repeindre. Tonio vous le dit sur place, et fait aussi le ravalement si besoin."),
+           ("check", "Un chantier propre", "Le chantier est nettoyé avant que Tonio reparte, et les photos après vous sont envoyées.")]),
+   dict(t="Traitement de façade : anti-mousse et hydrofuge",
+    p="Après le nettoyage, un <strong>traitement de façade</strong> peut limiter le retour de la mousse et protéger le mur de l'eau. Tonio vous dit s'il est utile chez vous.",
+    items=[("drop", "Traitement hydrofuge de façade", "Le traitement hydrofuge de façade limite l'eau que le mur absorbe. Tonio vous dit si votre enduit ou votre pierre en a besoin."),
+           ("sprout", "Traitement anti-mousse de façade", "Un traitement anti-mousse sur la façade limite le retour des mousses et des traces vertes, surtout sur les murs exposés au nord."),
+           ("layers", "Hydrofuge pour façade : enduit, crépi, pierre", "Le choix du traitement dépend du support. Tonio regarde le mur avant de proposer quoi que ce soit, et vous décidez."),
+           ("shield-check", "Reprise gratuite", "Un défaut apparaît sur la zone traitée ? Tonio revient la reprendre gratuitement.")]),
+   dict(t="Prix, tarif et devis de nettoyage de façade",
+    p="<strong>Devis gratuit</strong>, établi sur place après examen de la façade. Le prix annoncé est le prix payé.",
+    items=[("search", "Ce qui fait le prix d'un nettoyage de façade", "La surface, la hauteur, le support, l'état d'encrassement et le traitement choisi. Le prix se fixe sur ce que Tonio voit, pas au téléphone."),
+           ("check", "Devis nettoyage de façade gratuit", f"Remplissez le formulaire ou appelez le {TEL} : le devis de nettoyage de façade est gratuit et sans engagement. Vous le signez quand vous voulez."),
+           ("shield-check", "Un prix qui ne grossit pas", "Le tarif écrit sur le devis est celui que vous payez. Si Tonio découvre autre chose sur le mur, il vous envoie la photo et vous décidez, par écrit."),
+           ("pin", "Un artisan à proximité", "Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin, pas une plateforme.")]),
+  ],
+ ),
  # ===================== NOUVELLES PAGES (relance Google Ads nov. 2026) =====================
  # Groupe 1 — Couvreur / Fuite / Urgence : LP dédiée avec "couvreur" en H1 et dans tout le corps,
  # pour remonter le score de qualité des mots-clés "couvreur [ville]" (QS 1-2 sur l'ancienne /urgence).
@@ -677,6 +775,9 @@ MEDIA = {
  'urgence/index.html': dict(mode='split', b='urgence-avant', a='urgence-apres', tb='Le problème', ta="L'intervention",
                     ab="Plafond abîmé par une infiltration d'eau (photo d'illustration)", aa="Couvreur au travail sur une toiture en tuiles (photo d'illustration)",
                     bgm='urgence-bg-methode', bgc='urgence-bg-cta'),
+ 'nettoyage-facade/index.html': dict(mode='slider', b='ravalement-avant', a='ravalement-apres', tb='Avant', ta='Après',
+                    ab="Mur dont la peinture s'écaille (photo d'illustration)", aa="Mur blanc propre (photo d'illustration)",
+                    bgm='ravalement-bg-methode', bgc='ravalement-bg-cta'),
  'ravalement/index.html': dict(mode='slider', b='ravalement-avant', a='ravalement-apres', tb='Avant', ta='Après',
                     ab="Mur dont la peinture s'écaille (photo d'illustration)", aa="Mur blanc fraîchement repeint (photo d'illustration)",
                     bgm='ravalement-bg-methode', bgc='ravalement-bg-cta'),
