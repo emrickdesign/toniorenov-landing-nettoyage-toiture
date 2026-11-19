@@ -113,7 +113,7 @@
 
   function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
 
-  function envoyer(reponses, pos) {
+  function envoyer(reponses, pos, form) {
     /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, délai, statut, page et formulaire d'origine. */
     var details = [reponses.toiture, reponses.surface, reponses.delai, reponses.statut].filter(Boolean).join(' · ') || null;
     var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
@@ -122,7 +122,8 @@
       prenom: reponses.nom || null,
       telephone: reponses.tel || null,
       ville: reponses.ville || null,
-      domaine: reponses.probleme || (/peinture/.test(location.pathname) ? 'Peinture intérieure' : null),
+      /* Sans question « besoin » (ex. nettoyage toiture), le métier vient de data-domaine du formulaire (19/11). */
+      domaine: reponses.probleme || (form && form.getAttribute('data-domaine')) || (/peinture/.test(location.pathname) ? 'Peinture intérieure' : null),
       details: details,
       source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
@@ -202,8 +203,8 @@
       reponses.ville = val('ville');
       show(TOTAL + 1);
       /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
-      envoyer(reponses, pos).catch(function () {
-        return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos); });
+      envoyer(reponses, pos, form).catch(function () {
+        return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos, form); });
       }).catch(function (e) {
         console.error('Envoi de la demande impossible', e);
         var d = form.querySelector('.done');

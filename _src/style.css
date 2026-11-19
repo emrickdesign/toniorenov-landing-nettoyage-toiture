@@ -599,3 +599,6 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 .kw-acc summary h3{margin:0;font:inherit;letter-spacing:inherit;color:var(--texte)}
 .kw-acc details p{max-width:none}
 .kw-acc-sec+.kw-acc-sec{padding-top:clamp(8px,2vw,24px)!important}
+
+/* Nombre impair de choix (ravalement : 3) : le dernier prend toute la ligne sur ordinateur (19/11) */
+@media(min-width:560px){.opts .opt:last-child:nth-child(odd){grid-column:1/-1}}

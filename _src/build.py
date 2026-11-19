@@ -249,9 +249,8 @@ PAGES = [
   reviews=['g_ml', 'g_vp', 'g_m'],
   form=dict(t="Profitez des 9 €/m²", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des 9 €/m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
-    etapes=[('probleme', "Quel est votre besoin ?", [("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")]),
-            ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
-            ('delai', Q_DELAI, O_DELAI)],
+    # 19/11 (Emrick) : « Quel est votre besoin ? » et « Quel type de toiture ? » retirés, il reste le délai.
+    etapes=[('delai', Q_DELAI, O_DELAI)], domaine="Nettoyage de toiture",
     o1=[("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Je vais vraiment voir les photos de mon toit ?", "Oui. Tonio prend votre toit en photo avant de commencer et une fois le travail fini, puis vous les envoie par SMS ou WhatsApp. Vous voyez ce qui a été fait sans monter sur l'échelle."),
@@ -372,10 +371,10 @@ PAGES = [
   reviews=['g_ml', 'g_vp', 'g_m'],
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
-    etapes=[('probleme', "Quel est votre besoin ?", [("Ravalement complet de la façade", "Ravalement complet", "home"), ("Nettoyage / décrassage de façade", "Nettoyage, décrassage", "sprout"), ("Fissures à réparer", "Fissures à réparer", "crack"), ("Peinture de façade extérieure", "Peinture de façade", "roller")]),
-            ('toiture', "Quel est le revêtement de votre façade ?", [("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")]),
+    # 19/11 (Emrick) : « Nettoyage, décrassage » (c'est la page nettoyage de façade) et le revêtement retirés.
+    etapes=[('probleme', "Quel est votre besoin ?", [("Ravalement complet de la façade", "Ravalement complet", "home"), ("Fissures à réparer", "Fissures à réparer", "crack"), ("Peinture de façade extérieure", "Peinture de façade", "roller")]),
             ('delai', Q_DELAI, O_DELAI)],
-    o1=[("Ravalement complet de la façade", "Ravalement complet", "home"), ("Nettoyage / décrassage de façade", "Nettoyage, décrassage", "sprout"), ("Fissures à réparer", "Fissures à réparer", "crack"), ("Peinture de façade extérieure", "Peinture de façade", "roller")],
+    o1=[("Ravalement complet de la façade", "Ravalement complet", "home"), ("Fissures à réparer", "Fissures à réparer", "crack"), ("Peinture de façade extérieure", "Peinture de façade", "roller")],
     q2="Quel est le revêtement de votre façade ?", o2=[("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")],
     q3="Surface approximative de la façade ?", o3=OPT_SURF),
   faq=[("Comment marchent les −30 % ?", "Pour toute demande faite avant la fin du mois, Tonio retire 30 % du montant de son devis. Le prix remisé est écrit noir sur blanc sur le devis, et c'est celui que vous payez."),
@@ -434,9 +433,9 @@ PAGES = [
   title="Nettoyage de façade à Bayonne, Anglet, Biarritz : démoussage, traitement · Tonio Rénov'",
   desc="Nettoyage de façade, démoussage et traitement hydrofuge à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Photos avant/après de votre mur, nettoyage adapté au support, reprise gratuite si défaut.",
   img='/facade.jpg', pos='50% 42%', crop='30% 58%', alt="Façade blanche à volets rouges nettoyée par Tonio Rénov' sur la Côte Basque",
-  h1="<span class='h1-l'>Nettoyage de façade</span><span class='h1-sub'>Démoussage + traitement hydrofuge</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
+  h1="<span class='h1-l'>Nettoyage de façade</span><span class='h1-sub'>Traces noires, mousses, salissures</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   fond='marine',  # 18/11 : la façade derrière le titre faisait brouillon
-  h1_label="Nettoyage de façade, démoussage et traitement hydrofuge : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
+  h1_label="Nettoyage de façade : traces noires, mousses et salissures, −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
@@ -466,8 +465,8 @@ PAGES = [
   reviews=['g_ml', 'g_vp', 'g_m'],
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?",
+    # 19/11 (Emrick) : question du revêtement retirée.
     etapes=[('probleme', "Que voulez-vous faire ?", [("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
-            ('toiture', "Quel est le revêtement de votre façade ?", [("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")]),
             ('delai', Q_DELAI, O_DELAI)],
     o1=[("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
     q2="Quel est le revêtement de votre façade ?", o2=[("Enduit ou crépi", "Enduit ou crépi", "home"), ("Pierre apparente", "Pierre apparente", "home"), ("Déjà peinte", "Déjà peinte", "roller"), ("Je ne sais pas", "Je ne sais pas", "help")],
@@ -560,8 +559,8 @@ PAGES = [
   reviews=['g_vp', 'g_ml', 'g_m'],
   form=dict(t="Profitez de la reprise gratuite 2 ans", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez de la reprise gratuite 2 ans, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    # 19/11 (Emrick) : « Quel type de toiture ? » retiré.
     etapes=[('probleme', "Quel est votre besoin ?", [("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")]),
-            ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
             ('delai', Q_DELAI, O_DELAI)],
     o1=[("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -612,8 +611,8 @@ PAGES = [
   title="Réfection de toiture à Bayonne, Anglet, Biarritz : devis · Tonio Rénov'",
   desc="Réfection complète de toiture et toiture neuve à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Le prix du devis est le prix payé, photos du chantier, reprise gratuite si défaut.",
   img='/roof.jpg', pos='58% 40%', crop='50% 60%', alt="Toiture en tuiles canal à refaire, chantier de réfection par Tonio Rénov' sur la Côte Basque",
-  h1="<span class='h1-l'>Réfection de toiture</span><span class='h1-sub'>Toiture refaite ou neuve</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
-  h1_label="Réfection de toiture, toiture refaite ou neuve : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
+  h1="<span class='h1-l'>Votre nouvelle toiture</span><span class='h1-sub'>Toiture refaite ou neuve</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
+  h1_label="Votre nouvelle toiture, refaite ou neuve : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
@@ -643,10 +642,10 @@ PAGES = [
   reviews=['g_vp', 'g_m', 'g_ml'],
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre projet ?", q_coord="Où Tonio peut vous rappeler ?",
-    etapes=[('probleme', "Quel est votre projet ?", [("Refaire toute la toiture", "Toute la toiture", "home"), ("Refaire une partie de la toiture", "Une partie de la toiture", "layers"), ("Toiture neuve (construction, extension)", "Toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
-            ('toiture', "Quel type de toiture avez-vous ?", OPT_TOIT),
+    # 19/11 (Emrick) : refaire tout / refaire une partie / faire à neuf / à évaluer, puis le délai. Type de toiture retiré.
+    etapes=[('probleme', "Quel est votre projet ?", [("Refaire toute la toiture", "Refaire toute la toiture", "home"), ("Refaire une partie de la toiture", "Refaire une partie", "layers"), ("Faire une toiture neuve", "Faire une toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
             ('delai', Q_DELAI, O_DELAI)],
-    o1=[("Refaire toute la toiture", "Toute la toiture", "home"), ("Refaire une partie de la toiture", "Une partie de la toiture", "layers"), ("Toiture neuve (construction, extension)", "Toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
+    o1=[("Refaire toute la toiture", "Refaire toute la toiture", "home"), ("Refaire une partie de la toiture", "Refaire une partie", "layers"), ("Faire une toiture neuve", "Faire une toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
   faq=[("Comment marchent les −30 % ?", "Pour toute demande faite avant la fin du mois, Tonio retire 30 % du montant de son devis. Le prix remisé est écrit noir sur blanc sur le devis, et c'est celui que vous payez."),
        ("Le prix du devis peut-il changer pendant la réfection ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois la couverture déposée, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
@@ -1026,14 +1025,14 @@ def render(p):
             f'<input id="f-ville-{pos}" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div>')
         )
         q_coord = f.get('q_coord', 'Vos coordonnées pour le rappel')
-        fsteps = ''.join(f'<div class="fstep{" active" if k == 1 else ""}" data-step="{k}">{compte(k)}<p class="fq" tabindex="-1" data-focus>{q}</p><span class="fhint">Cliquez sur votre réponse</span>{opts(fld, o)}</div>\n        '
+        fsteps = ''.join(f'<div class="fstep{" active" if k == 1 else ""}" data-step="{k}">{compte(k)}<p class="fq" tabindex="-1" data-focus>{q}</p>{opts(fld, o)}</div>\n        '
                          for k, (fld, q, o) in enumerate(etapes, 1))
         fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
         corps = f'''<div class="devis-shell">
       {carte_t}<div class="progress" aria-hidden="true">{'<i></i>' * n_et}</div>
-      <form class="devis-form" data-pos="{pos}" novalidate>
+      <form class="devis-form" data-pos="{pos}"{(' data-domaine="' + f["domaine"] + '"') if f.get("domaine") else ""} novalidate>
         {fsteps}<div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
       </form>
