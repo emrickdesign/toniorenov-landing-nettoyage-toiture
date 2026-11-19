@@ -34,6 +34,7 @@ sans ville (« nettoyage toiture », « ravalement façade »…) comptent le pl
   vrai (Boucau = la base de Tonio ; les autres : distance, type de maisons de façon générale
   et prudente, mêmes conditions). Une ville absente de la zone d'intervention de la page :
   ne l'écris pas, signale-la dans ton rapport.
+- **Anti-bourrage** (relecture du 19/11) : jamais plus de 3 fois le nom d'une ville dans une même réponse. Quand une ville a beaucoup de variantes (« artisan peintre Boucau », « entreprise peinture Boucau »…), écris-les comme des recherches citées dans une seule phrase (« Que vous ayez cherché un « … », une « … » ou un « … », c'est le même artisan ») au lieu de les enchaîner. Les mots-clés « + ville » visent 2 occurrences, les gros mots-clés sans ville 4.
 - Formes maladroites (« entreprise entretient façade », « nettoyage crepis maison »,
   « peintre d intérieur ») : place-les dans une phrase où elles passent (titre court,
   citation de ce que les gens tapent : « Vous cherchez un “peintre d intérieur autour de
