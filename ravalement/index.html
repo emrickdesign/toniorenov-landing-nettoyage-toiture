@@ -1078,11 +1078,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       meta: Object.assign({}, UTM, meta || {})
     });
     try {
-      if (beacon && navigator.sendBeacon) {
-        /* sendBeacon ne porte pas d'en-tête ; Supabase accepte apikey en query string */
-        navigator.sendBeacon(TRACK.url + '?apikey=' + encodeURIComponent(TRACK.key),
-                             new Blob([corps], { type: 'application/json' }));
-      } else {
+      /* 19/11 : sendBeacon avec un corps JSON est refusé par le navigateur (envoi cross-origin non simple) :
+         page_exit n'arrivait jamais. fetch keepalive survit à la fermeture de l'onglet et garde les en-têtes. */
+      {
         fetch(TRACK.url, {
           method: 'POST',
           keepalive: !!beacon,
