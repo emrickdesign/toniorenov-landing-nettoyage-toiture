@@ -905,9 +905,29 @@ def opts(name, options, first_focus=False):
         out.append(f'<button type="button" class="opt" data-value="{value}" aria-pressed="false">{ic(icon)}<span>{label}</span><span class="tick">{ic("check")}</span></button>')
     return f'<div class="opts" data-field="{name}" role="group">' + ''.join(out) + '</div>'
 
+def seo_json(p):
+    """Sections score de qualité écrites à partir des mots-clés du groupe d'annonces
+    (_src/seo/<page>.json, étape « après les mots-clés » du 19/11/2026)."""
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'seo', p['out'].split('/')[0] + '.json')
+    return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else None
+
 def kw_sections(p):
     """Sections de contenu par famille de mots-clés (score de qualité). Lignes .sign
-    sans .reveal : le texte reste visible même sans défilement ni JavaScript."""
+    sans .reveal : le texte reste visible même sans défilement ni JavaScript.
+    Si _src/seo/<page>.json existe : sections en dépliants (H2 + H3 = mots-clés exacts)."""
+    d = seo_json(p)
+    if d:
+        out = []
+        for b in d['sections']:
+            rows = ''.join(f'<details><summary><h3>{it["q"]}</h3>{ic("plus")}</summary><p>{it["a"]}</p></details>' for it in b['items'])
+            out.append(f'''<section class="sec sec-light kw kw-acc-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center">{h2(b['h2'])}<p class="lead">{b['lead']}</p></div>
+    <div class="kw-acc">{rows}</div>
+  </div>
+</section>
+''')
+        return ''.join(out)
     out = []
     for b in p.get('seo', []):
         rows = ''.join(f'<li class="sign"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for i, t, d in b['items'])
@@ -1175,6 +1195,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 if __name__ == '__main__':
     for p in PAGES:
+        d = seo_json(p)
+        if d and d.get('title'): p['title'] = d['title']
+        if d and d.get('desc'): p['desc'] = d['desc']
         target = os.path.join(ROOT, p['out'])
         os.makedirs(os.path.dirname(target), exist_ok=True)
         open(target, 'w', encoding='utf-8').write(typo_fr(render(p)))
