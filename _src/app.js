@@ -115,6 +115,7 @@
 
   function envoyer(reponses, pos, form) {
     /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, délai, statut, page et formulaire d'origine. */
+    if (!LEAD.client) return Promise.reject(new Error('Fiche CRM du client non branchée'));
     var details = [reponses.toiture, reponses.surface, reponses.delai, reponses.statut].filter(Boolean).join(' · ') || null;
     var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
     var corps = {
@@ -478,6 +479,17 @@
     dots.className = 'carousel-dots';
     c.parentNode.insertBefore(dots, c.nextSibling);
     var stops = [], pauseUntil = 0, visible = false, raf = 0;
+    /* Flèches (ordinateur) : le carrousel est enveloppé pour les poser sur ses bords */
+    var wrap = document.createElement('div'); wrap.className = 'car-wrap';
+    c.parentNode.insertBefore(wrap, c); wrap.appendChild(c);
+    var fl = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    var prev = document.createElement('button'), next = document.createElement('button');
+    prev.type = next.type = 'button'; prev.className = 'car-btn car-prev'; next.className = 'car-btn car-next';
+    prev.setAttribute('aria-label', 'Précédent'); next.setAttribute('aria-label', 'Suivant');
+    prev.innerHTML = next.innerHTML = fl;
+    wrap.appendChild(prev); wrap.appendChild(next);
+    prev.addEventListener('click', function () { pause(); go(Math.max(0, current() - 1)); });
+    next.addEventListener('click', function () { pause(); go(Math.min(stops.length - 1, current() + 1)); });
 
     function pos(i) { return items[i].offsetLeft - items[0].offsetLeft; }
     function layout() {
@@ -505,6 +517,7 @@
     function mark() {
       var k = current();
       [].forEach.call(dots.children, function (b, i) { b.classList.toggle('on', i === k); });
+      prev.disabled = !stops.length || k === 0; next.disabled = !stops.length || k === stops.length - 1;
     }
     function go(i) { c.scrollTo({ left: stops[i] || 0, behavior: reduce ? 'auto' : 'smooth' }); }
     function pause() { pauseUntil = Date.now() + 12000; }
@@ -550,7 +563,7 @@
   window.addEventListener('resize', function () { if (window.innerWidth === largeur) return; largeur = window.innerWidth; poserEchelle(); });
   rings.forEach(function (ring) {
     var rot = ring.querySelector('.ring3d-rot'), angle = 0, drag = 0, vu = true, prec = null, x0 = null, base = 0;
-    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vu = es[0].isIntersecting; }, { threshold: 0 }).observe(ring);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vu = es[0].isIntersecting; }, { threshold: 0, rootMargin: '400px 0px' }).observe(ring);
     function tour(t) {
       var dt = prec == null ? 0 : t - prec; prec = t;
       if (vu || x0 != null) {
@@ -606,4 +619,112 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
   var larg = window.innerWidth;
   window.addEventListener('resize', function () { if (window.innerWidth === larg) return; larg = window.innerWidth; caler(); });
+})();
+
+/* ---------- Avis : « Lire la suite » seulement quand le texte dépasse 6 lignes ---------- */
+(function () {
+  var revs = document.querySelectorAll('.rev');
+  function caler() {
+    revs.forEach(function (r) {
+      var q = r.querySelector('.rev-q'), b = r.querySelector('.rev-more'); if (!q || !b) return;
+      if (r.classList.contains('open')) return;
+      b.hidden = q.scrollHeight <= q.clientHeight + 2;
+    });
+  }
+  revs.forEach(function (r) {
+    var b = r.querySelector('.rev-more'); if (!b) return;
+    b.addEventListener('click', function () { var o = r.classList.toggle('open'); b.textContent = o ? 'Réduire' : 'Lire la suite'; });
+  });
+  caler();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+  window.addEventListener('resize', function () { clearTimeout(caler._t); caler._t = setTimeout(caler, 200); });
+})();
+
+/* ---------- « Chercher ma ville » : accepte fautes de frappe, accents, tirets, espaces, majuscules ---------- */
+(function () {
+  var input = document.getElementById('ville-q'); if (!input) return;
+  var res = document.querySelector('.ville-res'), defile = document.querySelector('.ville-defile');
+  var PRENOM = input.form && input.form.getAttribute('data-prenom') || 'l’artisan';
+  var chips = [].slice.call(document.querySelectorAll('.ville-defile li[data-ville]'));
+  var villes = []; chips.forEach(function (c) { var v = c.getAttribute('data-ville'); if (villes.indexOf(v) < 0) villes.push(v); });
+  function norm(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/\bste?\b\.?/g, function (m) { return m.indexOf('e') > 0 ? 'sainte' : 'saint'; })
+      .replace(/[^a-z]/g, '');
+  }
+  function lev(a, b) {
+    var m = a.length, n = b.length, d = [], i, k;
+    for (i = 0; i <= m; i++) d[i] = [i];
+    for (k = 0; k <= n; k++) d[0][k] = k;
+    for (i = 1; i <= m; i++) for (k = 1; k <= n; k++)
+      d[i][k] = Math.min(d[i - 1][k] + 1, d[i][k - 1] + 1, d[i - 1][k - 1] + (a[i - 1] === b[k - 1] ? 0 : 1));
+    return d[m][n];
+  }
+  var idx = villes.map(function (v) { return { v: v, n: norm(v), court: norm(v.split(/[-\s]sur[-\s]|-/)[0]) }; });
+  function chercher(q) {
+    var n = norm(q); if (n.length < 3) return null;
+    var best = null, bd = Infinity;
+    idx.forEach(function (o) {
+      var d;
+      if (o.n === n || o.court === n) d = 0;
+      else if (o.n.indexOf(n) === 0) d = 0.5;
+      else if (n.length >= 4 && o.n.indexOf(n) > 0) d = 1;
+      else {
+        var tol = n.length <= 5 ? 1 : n.length <= 9 ? 2 : 3;
+        d = Math.min(lev(n, o.n), lev(n, o.court), n.length >= 5 ? lev(n, o.n.slice(0, n.length)) + 0.5 : 99);
+        if (d > tol) d = Infinity; else d += 1;
+      }
+      if (d < bd) { bd = d; best = o.v; }
+    });
+    return best;
+  }
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var tel = document.querySelector('a[href^="tel:"]');
+  function maj() {
+    var q = input.value.trim(), v = chercher(q);
+    chips.forEach(function (c) { c.classList.toggle('hit', !!v && c.getAttribute('data-ville') === v); });
+    if (defile) defile.classList.toggle('pause', !!v);
+    if (!q || norm(q).length < 3) { res.hidden = true; return; }
+    res.hidden = false;
+    if (v) { res.className = 'ville-res ok'; res.innerHTML = '✓ Oui, ' + PRENOM + ' intervient à <b>' + esc(v) + '</b>.'; }
+    else {
+      res.className = 'ville-res';
+      res.innerHTML = '<b>' + esc(q) + '</b> n’est pas dans la liste. Appelez ' + PRENOM + (tel ? ' au <a href="' + tel.getAttribute('href') + '">' + tel.textContent.replace(/[^\d ]/g, '').trim() + '</a>' : '') + ' : on vous dit si on peut venir.';
+    }
+  }
+  input.addEventListener('input', maj);
+  input.form && input.form.addEventListener('submit', function (e) { e.preventDefault(); maj(); input.blur(); });
+})();
+
+/* ---------- Carte des communes : « Voir plus » ouvre la fiche de la ville, un clic à côté la ferme ---------- */
+(function () {
+  var cartes = document.querySelectorAll('.carte'); if (!cartes.length) return;
+  function fermer(c) {
+    c.querySelectorAll('.carte-pop').forEach(function (p) { p.hidden = true; });
+    c.querySelectorAll('.carte-lab').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+  }
+  cartes.forEach(function (c) {
+    c.querySelectorAll('.carte-lab').forEach(function (b) {
+      b.setAttribute('aria-expanded', 'false');
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var p = document.getElementById(b.getAttribute('aria-controls')), ouvert = p && !p.hidden;
+        fermer(c);
+        if (p && !ouvert) { p.hidden = false; b.setAttribute('aria-expanded', 'true'); var x = p.querySelector('.pop-x'); if (x) x.focus({ preventScroll: true }); }
+      });
+    });
+    c.querySelectorAll('.carte-pop').forEach(function (p) {
+      p.addEventListener('click', function (e) { e.stopPropagation(); });
+      var x = p.querySelector('.pop-x'); if (x) x.addEventListener('click', function () { fermer(c); });
+    });
+  });
+  document.addEventListener('click', function () { cartes.forEach(fermer); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cartes.forEach(fermer); });
+})();
+
+/* ---------- FAQ : « Voir les autres questions » (mobile) ---------- */
+(function () {
+  document.querySelectorAll('.faq-plus').forEach(function (b) {
+    b.addEventListener('click', function () { var l = b.previousElementSibling; if (l) l.classList.add('tout'); b.remove(); });
+  });
 })();

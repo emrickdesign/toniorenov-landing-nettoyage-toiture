@@ -8,25 +8,41 @@
    "items": [
     {
      "q": "Toiture qui fuit : par où commencer ?",
-     "a": "Si votre toiture qui fuit tache le plafond ou goutte dans les combles, appelez Tonio ou remplissez le formulaire. Il vous rappelle sous 24 h, monte sur le toit et cherche l'origine : tuile, solin, faîtage ou gouttière."
+     "a": "Si votre toiture qui fuit tache le plafond ou goutte dans les combles, appelez Tonio ou remplissez le formulaire. Il vous rappelle sous 24 h, monte sur le toit et cherche l'origine : tuile, solin, faîtage ou gouttière.",
+     "img": "img/ring/toiture-chantier.jpg",
+     "tag": "Premier geste",
+     "ic": "alert"
     },
     {
      "q": "Recherche de fuite toiture : comment Tonio trouve l'origine",
-     "a": "La recherche de fuite toiture se fait sur place, en contrôlant la couverture tuile par tuile. Tonio prend en photo ce qui laisse passer l'eau et vous le montre. La recherche de fuite sur toiture vient avant le devis, jamais après."
+     "a": "La recherche de fuite toiture se fait sur place, en contrôlant la couverture tuile par tuile. Tonio prend en photo ce qui laisse passer l'eau et vous le montre. La recherche de fuite sur toiture vient avant le devis, jamais après.",
+     "img": "img/ring/toiture-faitage.jpg",
+     "tag": "Recherche de fuite",
+     "ic": "search"
     },
     {
      "q": "Fuite dans le toit ou infiltration par le toit : quelle différence ?",
-     "a": "Fuite au toit, fuite sur le toit ou fuite toit : c'est l'eau que vous voyez couler. Une infiltration toiture est plus lente : humidité, auréole. Toiture infiltration ou fuite dans la toiture, il y a un point précis que Tonio localise avant de réparer."
+     "a": "Fuite au toit, fuite sur le toit ou fuite toit : c'est l'eau que vous voyez couler. Une infiltration toiture est plus lente : humidité, auréole. Toiture infiltration ou fuite dans la toiture, il y a un point précis que Tonio localise avant de réparer.",
+     "img": "img/ring/toiture-refection.jpg",
+     "tag": "Infiltration",
+     "ic": "drop"
     },
     {
      "q": "Fuite sur toiture, fuite du toit, fuite gouttière : d'où vient l'eau ?",
-     "a": "Une fuite sur toiture vient souvent d'une tuile fendue, d'un solin de cheminée ou du faîtage. Une fuite gouttière déborde au pied du mur. La fuite du toit n'est pas toujours là où la tache apparaît."
+     "a": "Une fuite sur toiture vient souvent d'une tuile fendue, d'un solin de cheminée ou du faîtage. Une fuite gouttière déborde au pied du mur. La fuite du toit n'est pas toujours là où la tache apparaît.",
+     "img": "img/galerie-real-zinguerie-faitage.jpg",
+     "tag": "Gouttière",
+     "ic": "waves"
     },
     {
      "q": "Fuite toiture réparation : et si ça revient ?",
-     "a": "Pour toute fuite toiture réparation faite par Tonio, la reprise est gratuite pendant 2 ans si la fuite réparée revient. Un toit qui fuit de nouveau : vous l'appelez, il revient."
+     "a": "Pour toute fuite toiture réparation faite par Tonio, la reprise est gratuite pendant 2 ans si la fuite réparée revient. Un toit qui fuit de nouveau : vous l'appelez, il revient.",
+     "img": "img/galerie-real-toiture-chantier.jpg",
+     "tag": "Reprise gratuite 2 ans",
+     "ic": "shield-check"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Urgence toiture : dépannage toiture et couvreur urgence",
@@ -48,7 +64,8 @@
      "q": "Couvreur urgence : pourquoi appeler directement Tonio",
      "a": "Pour une toiture urgence, un couvreur urgence qui répond lui-même évite les intermédiaires. Pas de sous-traitance : celui qui prend l'appel monte sur la toiture et la répare."
     }
-   ]
+   ],
+   "mode": "sombre"
   },
   {
    "h2": "Réparation toiture : tuile cassée, faîtage, gouttière zinc",
@@ -56,21 +73,34 @@
    "items": [
     {
      "q": "Réparation tuile cassée : une tuile suffit à laisser passer l'eau",
-     "a": "Une tuile cassée laisse passer l'eau. La réparation tuile cassée se fait par remplacement à l'identique, après contrôle du reste du toit. Pour une tuile cassée réparation simple, inutile de refaire toute la toiture."
+     "a": "Une tuile cassée laisse passer l'eau. La réparation tuile cassée se fait par remplacement à l'identique, après contrôle du reste du toit. Pour une tuile cassée réparation simple, inutile de refaire toute la toiture.",
+     "img": "img/ring/toiture-refection.jpg",
+     "tag": "Tuile cassée",
+     "ic": "layers"
     },
     {
      "q": "Réparation faîtage : ce qui est repris",
-     "a": "La réparation faîtage traite le mortier qui s'effrite et les tuiles de faîtage qui bougent. Tonio répare avant que l'eau ne passe dans la charpente, puis chiffre après examen."
+     "a": "La réparation faîtage traite le mortier qui s'effrite et les tuiles de faîtage qui bougent. Tonio répare avant que l'eau ne passe dans la charpente, puis chiffre après examen.",
+     "img": "img/ring/toiture-faitage.jpg",
+     "tag": "Faîtage",
+     "ic": "home"
     },
     {
      "q": "Réparation gouttière zinc, fuite gouttière",
-     "a": "Pour une réparation gouttière en zinc, Tonio est couvreur zingueur : il pose et soude le zinc à l'étain. Réparer une gouttière qui déborde ou fuit évite que l'eau abîme la façade."
+     "a": "Pour une réparation gouttière en zinc, Tonio est couvreur zingueur : il pose et soude le zinc à l'étain. Réparer une gouttière qui déborde ou fuit évite que l'eau abîme la façade.",
+     "img": "img/galerie-real-zinguerie-faitage.jpg",
+     "tag": "Gouttière zinc",
+     "ic": "waves"
     },
     {
      "q": "Toiture qui fuit : réparer une toiture ou la refaire ?",
-     "a": "Pour réparer une toiture qui fuit, Tonio regarde d'abord ce qui est réparable. Réparer toiture suffit si la couverture tient. Sinon, il vous le dit franchement, photos à l'appui."
+     "a": "Pour réparer une toiture qui fuit, Tonio regarde d'abord ce qui est réparable. Réparer toiture suffit si la couverture tient. Sinon, il vous le dit franchement, photos à l'appui.",
+     "img": "img/galerie-real-refection-toiture.jpg",
+     "tag": "Réparer ou refaire",
+     "ic": "tools"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Devis toiture gratuit et coût réparation toiture",
@@ -78,17 +108,27 @@
    "items": [
     {
      "q": "Coût réparation toiture : ce qui fait varier le prix",
-     "a": "Le coût réparation toiture dépend de l'accès au toit, du nombre de tuiles à remplacer, de l'état du faîtage et des solins, et du type de couverture. Aucun chiffre au téléphone : Tonio donne un prix ferme après visite."
+     "a": "Le coût réparation toiture dépend de l'accès au toit, du nombre de tuiles à remplacer, de l'état du faîtage et des solins, et du type de couverture. Aucun chiffre au téléphone : Tonio donne un prix ferme après visite.",
+     "img": "img/ring/toiture-chantier.jpg",
+     "tag": "Prix au cas par cas",
+     "ic": "search"
     },
     {
      "q": "Réparation faîtage toiture prix : comment c'est chiffré",
-     "a": "Vous tapez “réparation faîtage toiture prix” ? Le prix se fixe sur la longueur du faîtage et l'état du mortier, vus sur place. Le devis est gratuit et le prix du devis est celui que vous payez."
+     "a": "Vous tapez “réparation faîtage toiture prix” ? Le prix se fixe sur la longueur du faîtage et l'état du mortier, vus sur place. Le devis est gratuit et le prix du devis est celui que vous payez.",
+     "img": "img/ring/toiture-faitage.jpg",
+     "tag": "Chiffré sur place",
+     "ic": "check"
     },
     {
      "q": "Devis couvreur gratuit et sans engagement",
-     "a": "Pour un devis couvreur, remplissez le formulaire ou appelez Tonio. Le devis est gratuit, fait sur place, sans engagement. Devis toiture Bayonne ou réparation toiture Bayonne : vous le signez quand vous voulez."
+     "a": "Pour un devis couvreur, remplissez le formulaire ou appelez Tonio. Le devis est gratuit, fait sur place, sans engagement. Devis toiture Bayonne ou réparation toiture Bayonne : vous le signez quand vous voulez.",
+     "img": "img/galerie-real-toiture-chantier.jpg",
+     "tag": "Devis gratuit",
+     "ic": "shield-check"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Couvreur Bayonne, Anglet, Biarritz et Boucau",
@@ -114,7 +154,8 @@
      "q": "Couvreur autour de moi : un artisan du coin",
      "a": "Vous cherchez un “couvreur autour de moi” ? Basé à Boucau, Tonio couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : couvreur Anglet ou couvreur Biarritz, c'est le même artisan du coin, pas une plateforme."
     }
-   ]
+   ],
+   "mode": "carte"
   }
  ]
 }

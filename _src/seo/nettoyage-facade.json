@@ -22,7 +22,8 @@
      "q": "Nettoyage façade Boucau",
      "a": "Boucau est la base de Tonio Rénov'. Pour un nettoyage façade Boucau ou un démoussage façade Boucau, vous avez un artisan du quartier, joignable directement, qui vient lui-même."
     }
-   ]
+   ],
+   "mode": "carte"
   },
   {
    "h2": "Nettoyage de façade de maison : crépi, enduit et pierre",
@@ -30,21 +31,34 @@
    "items": [
     {
      "q": "Nettoyage façade maison : que retire-t-on ?",
-     "a": "Le nettoyage façade maison retire les traces vertes, grises ou noires. Tonio prend les photos avant, nettoie avec une méthode adaptée au support, puis envoie les photos après. Vous voyez ce qui a été retiré."
+     "a": "Le nettoyage façade maison retire les traces vertes, grises ou noires. Tonio prend les photos avant, nettoie avec une méthode adaptée au support, puis envoie les photos après. Vous voyez ce qui a été retiré.",
+     "img": "img/ring/facade-nettoyage.jpg",
+     "tag": "Façade de maison",
+     "ic": "home"
     },
     {
      "q": "Nettoyage crépi façade : comment faire sans l'abîmer ?",
-     "a": "Le crépi retient poussière et mousse dans son grain. Pour un nettoyage crépi façade, Tonio travaille à basse pression, avec des produits professionnels, sans abîmer l'enduit. Si le mur est trop fragile pour un nettoyage, il vous le dit."
+     "a": "Le crépi retient poussière et mousse dans son grain. Pour un nettoyage crépi façade, Tonio travaille à basse pression, avec des produits professionnels, sans abîmer l'enduit. Si le mur est trop fragile pour un nettoyage, il vous le dit.",
+     "img": "img/ring/facade-avant.jpg",
+     "tag": "Crépi",
+     "ic": "layers"
     },
     {
      "q": "Nettoyage crépi : mon mur est-il concerné ?",
-     "a": "Si vous cherchez « nettoyage crépis maison », la réponse est la même : tout dépend de l'état du mur. Tonio regarde sur place, vous dit si un nettoyage suffit ou si l'enduit demande autre chose, et c'est vous qui décidez."
+     "a": "Si vous cherchez « nettoyage crépis maison », la réponse est la même : tout dépend de l'état du mur. Tonio regarde sur place, vous dit si un nettoyage suffit ou si l'enduit demande autre chose, et c'est vous qui décidez.",
+     "img": "img/ring/facade-apres.jpg",
+     "tag": "Crépi",
+     "ic": "check"
     },
     {
      "q": "Nettoyage façade pierre",
-     "a": "Pour un nettoyage façade pierre, la pierre apparente ne se traite pas comme un enduit. Tonio adapte le nettoyage au support. Même logique pour un nettoyage crépi ou pour le nettoyage des façades en enduit."
+     "a": "Pour un nettoyage façade pierre, la pierre apparente ne se traite pas comme un enduit. Tonio adapte le nettoyage au support. Même logique pour un nettoyage crépi ou pour le nettoyage des façades en enduit.",
+     "img": "img/galerie-real-facade-basque.jpg",
+     "tag": "Pierre",
+     "ic": "layers"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Démoussage façade et décrassage façade",
@@ -66,7 +80,8 @@
      "q": "Entreprise nettoyage façade : artisan ou sous-traitant ?",
      "a": "Vous cherchez une « entreprise nettoyage façade » ou une « entreprise entretient façade » ? Tonio Rénov' est un artisan, pas une plateforme : celui qui regarde votre mur et fait le devis est celui qui travaille dessus. Pas de commercial, pas de sous-traitance."
     }
-   ]
+   ],
+   "mode": "sombre"
   },
   {
    "h2": "Traitement hydrofuge façade et anti-mousse",
@@ -74,25 +89,41 @@
    "items": [
     {
      "q": "Traitement hydrofuge façade : est-il obligatoire ?",
-     "a": "Non. Selon l'état du mur, un nettoyage peut suffire. Tonio vous dit si un traitement hydrofuge est utile sur votre façade, et c'est vous qui décidez."
+     "a": "Non. Selon l'état du mur, un nettoyage peut suffire. Tonio vous dit si un traitement hydrofuge est utile sur votre façade, et c'est vous qui décidez.",
+     "img": "img/galerie-real-nettoyage-facade.jpg",
+     "tag": "Hydrofuge",
+     "ic": "drop"
     },
     {
      "q": "Hydrofuge façade : enduit, crépi ou pierre",
-     "a": "Le choix du traitement dépend du support. Pour un hydrofuge façade, Tonio regarde le mur avant de proposer quoi que ce soit. Si vous cherchez une « façade hydrofuge », sachez que le traitement ne supprime pas toujours le retour de la mousse : il le limite."
+     "a": "Le choix du traitement dépend du support. Pour un hydrofuge façade, Tonio regarde le mur avant de proposer quoi que ce soit. Si vous cherchez une « façade hydrofuge », sachez que le traitement ne supprime pas toujours le retour de la mousse : il le limite.",
+     "img": "img/ring/facade-basque.jpg",
+     "tag": "Enduit, crépi, pierre",
+     "ic": "layers"
     },
     {
      "q": "Nettoyage hydrofuge : nettoyer, puis protéger",
-     "a": "Le nettoyage hydrofuge se pense en deux temps : on nettoie d'abord, on protège ensuite si le mur en a besoin. Le formulaire de cette page propose d'ailleurs « nettoyer et traiter »."
+     "a": "Le nettoyage hydrofuge se pense en deux temps : on nettoie d'abord, on protège ensuite si le mur en a besoin. Le formulaire de cette page propose d'ailleurs « nettoyer et traiter ».",
+     "img": "img/ring/facade-nettoyage.jpg",
+     "tag": "Nettoyer puis protéger",
+     "ic": "shield"
     },
     {
      "q": "Hydrofugation mur et nettoyage mur extérieur",
-     "a": "Pour une hydrofugation mur comme pour un nettoyage mur extérieur, Tonio regarde d'abord le support. Que vous tapiez « nettoyage murs extérieurs » ou « nettoyage mur extérieur », même travail que sur la façade : examen, méthode adaptée, photos avant et après."
+     "a": "Pour une hydrofugation mur comme pour un nettoyage mur extérieur, Tonio regarde d'abord le support. Que vous tapiez « nettoyage murs extérieurs » ou « nettoyage mur extérieur », même travail que sur la façade : examen, méthode adaptée, photos avant et après.",
+     "img": "img/ring/facade-apres.jpg",
+     "tag": "Mur extérieur",
+     "ic": "home"
     },
     {
      "q": "Traitement façade ou traitement des façades ?",
-     "a": "Les gens tapent « traitement façade » ou « traitement des façades » pour parler de la même chose : protéger le mur contre la mousse et l'eau après un nettoyage. C'est le traitement hydrofuge façade ou anti-mousse. Tonio l'écrit sur le devis et reprend gratuitement un défaut sur la zone traitée."
+     "a": "Les gens tapent « traitement façade » ou « traitement des façades » pour parler de la même chose : protéger le mur contre la mousse et l'eau après un nettoyage. C'est le traitement hydrofuge façade ou anti-mousse. Tonio l'écrit sur le devis et reprend gratuitement un défaut sur la zone traitée.",
+     "img": "img/galerie-real-facade-basque.jpg",
+     "tag": "Traitement",
+     "ic": "shield-check"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Prix nettoyage façade : tarif et devis",
@@ -100,21 +131,34 @@
    "items": [
     {
      "q": "Nettoyage façade prix : ce qui le fait varier",
-     "a": "Vous tapez « nettoyage façade prix » ? Le tarif dépend de la surface, de la hauteur, du support, de l'état d'encrassement et du traitement choisi. Aucun prix au mètre carré n'est affiché : pour un nettoyage façade Bayonne comme ailleurs, le prix ferme est donné après la visite de Tonio."
+     "a": "Vous tapez « nettoyage façade prix » ? Le tarif dépend de la surface, de la hauteur, du support, de l'état d'encrassement et du traitement choisi. Aucun prix au mètre carré n'est affiché : pour un nettoyage façade Bayonne comme ailleurs, le prix ferme est donné après la visite de Tonio.",
+     "img": "img/ring/facade-avant.jpg",
+     "tag": "Ce qui fait le prix",
+     "ic": "search"
     },
     {
      "q": "Prix nettoyage façade : −30 % ce mois-ci",
-     "a": "Pour toute demande faite avant la fin du mois, Tonio retire 30 % du montant de son devis. Le prix nettoyage façade remisé est écrit noir sur blanc sur le devis, et c'est celui que vous payez."
+     "a": "Pour toute demande faite avant la fin du mois, Tonio retire 30 % du montant de son devis. Le prix nettoyage façade remisé est écrit noir sur blanc sur le devis, et c'est celui que vous payez.",
+     "img": "img/ring/facade-apres.jpg",
+     "tag": "−30 % ce mois-ci",
+     "ic": "check"
     },
     {
      "q": "Devis nettoyage de façade gratuit",
-     "a": "Remplissez le formulaire ou appelez Tonio : le devis de nettoyage de façade est gratuit, y compris pour un nettoyage façade Bayonne, et Tonio vous rappelle sous 24 h. Vous le signez quand vous voulez."
+     "a": "Remplissez le formulaire ou appelez Tonio : le devis de nettoyage de façade est gratuit, y compris pour un nettoyage façade Bayonne, et Tonio vous rappelle sous 24 h. Vous le signez quand vous voulez.",
+     "img": "img/galerie-real-nettoyage-facade.jpg",
+     "tag": "Devis gratuit",
+     "ic": "shield-check"
     },
     {
      "q": "Nettoyage façade autour de moi",
-     "a": "Vous cherchez un « nettoyage façade autour de moi » ? Tonio est basé à Boucau et couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin. Même chose pour « façade nettoyage » : c'est lui qui vient."
+     "a": "Vous cherchez un « nettoyage façade autour de moi » ? Tonio est basé à Boucau et couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin. Même chose pour « façade nettoyage » : c'est lui qui vient.",
+     "img": "img/ring/facade-basque.jpg",
+     "tag": "Artisan du coin",
+     "ic": "pin"
     }
-   ]
+   ],
+   "mode": "cartes"
   }
  ]
 }

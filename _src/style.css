@@ -602,3 +602,227 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
 
 /* Nombre impair de choix (ravalement : 3) : le dernier prend toute la ligne sur ordinateur (19/11) */
 @media(min-width:560px){.opts .opt:last-child:nth-child(odd){grid-column:1/-1}}
+/* Réponses aux peurs, sous le bouton d'appel (analyse de marché Sud-Ouest, 19/11/2026) */
+.hero-peurs{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:.9375rem;line-height:1.35;color:rgba(255,255,255,.9)}
+.hero-peurs li{display:flex;align-items:flex-start;gap:.5em;text-align:left}
+.hero-peurs .ic{flex:none;width:1.05em;height:1.05em;margin-top:.15em;color:#ffbf47;stroke-width:3}
+@media(max-width:860px){.hero-peurs{align-items:center;margin-top:14px;font-size:.875rem}.hero-peurs li{max-width:34ch}}
+
+/* =====================================================================
+   Refonte du 20/11/2026 (Emrick) : chaque section tient dans un écran, flèches sur ordinateur,
+   villes qui défilent + recherche, carte des communes, cartes photo, FAQ sur le bleu du haut.
+   ===================================================================== */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Sections plus compactes : du titre au bas de la section, tout tient dans un écran */
+.sec{padding-block:clamp(40px,5.5vw,72px)}
+.sec h2{font-size:clamp(1.55rem,1rem + 2.2vw,2.35rem);line-height:1.12;text-wrap:balance}
+.sec-head .lead{margin-top:12px;font-size:clamp(.98rem,.9rem + .3vw,1.0625rem);line-height:1.5}
+.sec-light+.sec-light{padding-top:0}
+.sec-dark .lead,.sec-nuit .lead{color:rgba(255,255,255,.78)}
+.sec-dark .lead a,.sec-dark .lead strong{color:#fff}
+.sec-nuit{background:#071321;color:#fff}
+
+/* Hero : remonté sur ordinateur pour que l'anneau de photos soit visible dès l'ouverture */
+@media(min-width:1060px){
+  .hero-in{padding-block:clamp(22px,3.5vh,40px) 0}
+  .hero-in .hero-form .devis-shell{padding:24px 28px 22px}
+  .hero-form .fc-t{margin-bottom:12px}
+  .hero-form .progress{margin-bottom:16px}
+  .ring-hero{padding:calc(70px * var(--e,.7)) 0 calc(56px * var(--e,.7));margin:clamp(-8px,-1vh,0px) calc(50% - 50vw) 0}
+}
+/* Arguments sous le bouton : les mots importants en gras */
+.hero-peurs b{color:#fff;font-weight:700}
+
+/* Avis : texte replié sur 6 lignes, « Lire la suite » */
+.rev .rev-q{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.rev.open .rev-q{-webkit-line-clamp:unset;display:block}
+.rev-more{align-self:center;margin-top:-6px;background:none;border:0;padding:4px 8px;font:700 .875rem var(--font);color:var(--tuile);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.rev-grid[data-carousel]{align-items:flex-start}
+@media(min-width:760px){.rev-grid[data-carousel]>.rev{flex-basis:calc((100% - 36px)/3)}}
+
+/* Flèches des carrousels (ordinateur) */
+.car-wrap{position:relative}
+.car-btn{display:none}
+@media(min-width:900px) and (hover:hover){
+  .car-btn{display:grid;place-items:center;position:absolute;top:calc(50% - 26px);z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid var(--ciel-2);background:rgba(255,255,255,.94);color:var(--nuit);box-shadow:0 10px 24px -12px rgba(11,24,39,.45);cursor:pointer;transition:transform .2s,opacity .2s,background .2s}
+  .car-btn:hover{transform:scale(1.07);background:#fff}
+  .car-btn[disabled]{opacity:0;pointer-events:none}
+  .car-btn .ic{width:20px;height:20px}
+  .car-prev{left:-22px}.car-prev .ic{transform:scaleX(-1)}
+  .car-next{right:-22px}
+}
+
+/* Zone : recherche + villes qui défilent sur 2 rangées */
+.ville-cherche{position:relative;max-width:420px;margin:20px auto 0}
+.ville-cherche .vc-ic{position:absolute;left:16px;top:50%;width:19px;height:19px;transform:translateY(-50%);color:var(--texte-2);pointer-events:none}
+.ville-cherche input{width:100%;min-height:52px;padding:0 18px 0 46px;border-radius:999px;border:1.5px solid var(--ciel-2);background:#fff;font:500 16px var(--font);color:var(--texte);box-shadow:0 10px 24px -18px rgba(11,24,39,.35);-webkit-appearance:none;appearance:none}
+.ville-cherche input:focus{outline:none;border-color:var(--marine);box-shadow:0 0 0 4px rgba(21,44,72,.12)}
+.ville-res{max-width:460px;margin:12px auto 0;text-align:center;font-size:.9375rem;line-height:1.45;color:var(--texte-2)}
+.ville-res.ok{color:var(--vert)}
+.ville-res b{color:var(--texte)}
+.ville-res a{color:var(--tuile);font-weight:700}
+.ville-defile{margin-top:22px;display:grid;gap:10px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.vd-track{display:flex;width:max-content;animation:defile 46s linear infinite}
+.vd-d .vd-track{animation-direction:reverse}
+.ville-defile:hover .vd-track,.ville-defile.pause .vd-track{animation-play-state:paused}
+.vd-track .chips{flex-wrap:nowrap;margin:0;padding:0 5px;list-style:none}
+.vd-track .chips li{white-space:nowrap;padding:8px 14px;font-size:.875rem}
+.vd-track .chips li.hit{background:var(--tuile);color:#fff;box-shadow:0 0 0 4px rgba(201,64,43,.22);transform:scale(1.06)}
+.vd-track .chips li.hit .ic{color:#fff}
+@media(prefers-reduced-motion:reduce){.vd-track{animation:none}.ville-defile{overflow-x:auto}}
+
+/* FAQ et dépliants sur le bleu foncé du haut de page */
+.sec-dark{background:var(--marine);color:#fff}
+.sec-dark h2{color:#fff}
+.sec-dark details{border-color:rgba(255,255,255,.14)}
+.sec-dark summary,.sec-dark .kw-acc summary h3{color:#fff}
+.sec-dark summary .ic{color:#ffcf4a}
+.sec-dark details p{color:rgba(255,255,255,.8)}
+.faq-sec .faq-list,.sec-dark .kw-acc{max-width:980px;margin:clamp(20px,3vw,32px) auto 0;text-align:left}
+summary{padding:16px 0;font-size:1.0313rem}
+details p{padding-bottom:18px}
+@media(min-width:1060px){
+  .faq-sec .faq-list{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;align-items:start}
+  .faq-sec .faq-list details:nth-last-child(2){border-bottom:1px solid rgba(255,255,255,.14)}
+}
+
+/* Carte des communes */
+.carte{position:relative;max-width:620px;margin:clamp(16px,2.5vw,28px) auto 0}
+.carte-svg{display:block;width:100%;height:auto;max-height:min(58vh,520px)}
+.carte-svg .commune{fill:#10314f;stroke:#63d2b0;stroke-width:2;stroke-linejoin:round;transition:fill .25s}
+.carte-svg .pt{fill:#ffcf4a}
+.carte-svg .pt-halo{fill:rgba(255,207,74,.22);transform-box:fill-box;transform-origin:center;animation:ptHalo 2.6s ease-out infinite}
+@keyframes ptHalo{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.carte-lab{position:absolute;transform:translate(-50%,14px);display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px 7px;border-radius:12px;border:1px solid rgba(99,210,176,.45);background:rgba(7,19,33,.86);color:#fff;font:600 .875rem/1.2 var(--font);cursor:pointer;white-space:nowrap;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s,transform .2s}
+.carte-lab b{font-weight:700;font-size:.9375rem}
+.carte-lab span{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;color:#63d2b0}
+.carte-lab span .ic{width:12px;height:12px}
+.carte-lab:hover,.carte-lab[aria-expanded="true"]{background:#0f2c47;transform:translate(-50%,12px)}
+.carte-pop{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92%,460px);max-height:88%;overflow:auto;padding:22px 22px 18px;border-radius:18px;background:#fff;color:var(--texte);text-align:left;box-shadow:0 30px 70px -20px rgba(0,0,0,.75);animation:popIn .25s var(--ease)}
+.carte-pop[hidden]{display:none}
+@keyframes popIn{from{opacity:0;transform:translate(-50%,-46%)}to{opacity:1;transform:translate(-50%,-50%)}}
+.carte-pop h3{font-size:1.0625rem;line-height:1.3;margin:14px 0 6px}
+.carte-pop p{margin:0;font-size:.9375rem;line-height:1.55;color:var(--texte-2)}
+.carte-pop .pop-ville{display:flex;align-items:center;gap:6px;margin:0 32px 0 0;font-size:.8125rem;font-weight:700;color:var(--tuile);text-transform:none}
+.carte-pop .pop-ville .ic{width:15px;height:15px}
+.pop-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:var(--ciel);display:grid;place-items:center;cursor:pointer}
+.pop-x .ic{width:18px;height:18px;transform:rotate(45deg);color:var(--texte)}
+
+/* Cartes photo qui défilent (prix, traitements, gouttières…) */
+.cartes{list-style:none;margin:clamp(18px,2.6vw,30px) 0 0;padding:4px 2px 10px;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.cartes::-webkit-scrollbar{display:none}
+.co{flex:0 0 min(300px,82%);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 1px 0 var(--ciel-2),0 22px 40px -28px rgba(21,44,72,.45);transition:transform .35s var(--ease),box-shadow .35s}
+@media(min-width:900px){.co{flex-basis:calc((100% - 54px)/4)}.cartes{padding-inline:2px}}
+@media(hover:hover){.co:hover{transform:translateY(-6px);box-shadow:0 1px 0 var(--ciel-2),0 30px 50px -28px rgba(21,44,72,.55)}.co:hover .co-img img{transform:scale(1.06)}.co:hover .co-go{background:var(--tuile);color:#fff;transform:rotate(-12deg)}}
+.co-img{position:relative;height:clamp(118px,15vh,150px);overflow:hidden;background:var(--ciel-2)}
+.co-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.co-tag{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 20px);padding:5px 10px 5px 8px;border-radius:999px;background:rgba(255,255,255,.95);color:var(--nuit);font-size:.75rem;font-weight:700;box-shadow:0 6px 14px -8px rgba(0,0,0,.5)}
+.co-tag .ic{flex:none;width:14px;height:14px;color:var(--tuile)}
+.co-body{flex:1;padding:14px 16px 8px;text-align:left}
+.co-body h3{margin:0 0 6px;font-size:1rem;line-height:1.3;letter-spacing:-.01em;color:var(--texte)}
+.co-body p{margin:0;font-size:.875rem;line-height:1.5;color:var(--texte-2)}
+.co-foot{display:flex;align-items:center;gap:10px;margin:0 16px;padding:10px 0 12px;border-top:1px solid var(--ciel-2)}
+.co-logo{width:44px;height:auto;flex:none}
+.co-foot span{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2;text-align:left}
+.co-foot b{font-size:.75rem;color:var(--texte)}
+.co-foot small{font-size:.6875rem;color:var(--texte-2)}
+.co-go{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ciel);color:var(--nuit);transition:background .25s,color .25s,transform .3s var(--ease)}
+.co-go .ic{width:16px;height:16px}
+
+/* Mobile : tout centré, sauf le texte des cartes, des fiches et des dépliants */
+@media(max-width:759px){
+  .sec-head.center{text-align:center}
+  .ville-defile{margin-top:18px}
+  summary{font-size:.98rem;padding:14px 0}
+}
+/* Ajustements mobile pour tenir dans un écran (20/11) */
+.opts[data-field="delai"]{grid-template-columns:1fr 1fr}
+.opts[data-field="delai"] .opt{min-height:58px;padding:10px 12px 10px 10px;gap:9px;font-size:.9375rem}
+.faq-plus{display:block;margin:16px auto 0;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:none;color:#fff;font:700 .9375rem var(--font);cursor:pointer}
+.faq-list:not(.tout) details.faq-cache{display:none}
+@media(min-width:1060px){.faq-list details.faq-cache{display:block!important}.faq-plus{display:none}}
+@media(max-width:759px){
+  .sec h2{font-size:clamp(1.35rem,1rem + 2.4vw,1.6rem)}
+  .sec-head .lead{font-size:.9375rem}
+  .co-img{height:108px}
+  .co-body{padding:12px 14px 6px}
+  .co-body h3{font-size:.9688rem}
+  .co-body p{font-size:.84rem;line-height:1.48}
+  .co-foot{margin:0 14px;padding:8px 0 10px}
+  .devis .devis-shell{padding:20px 18px}
+  .devis .fc-t{font-size:1.3rem}
+  .carte{margin-inline:calc(var(--gutter) * -0.5)}
+}
+@media(max-width:759px){
+  .devis .opt{min-height:54px;padding:9px 12px 9px 10px;gap:10px;font-size:.9375rem}
+  .devis .opt .ic{width:30px;height:30px;padding:6px}
+  .devis .alt-call{margin-top:12px}
+  .sec.devis{padding-block:32px}
+}
+/* Ordinateur : carte à côté du titre, cartes photo par 3 (20/11) */
+@media(min-width:900px){
+  .co{flex-basis:calc((100% - 36px)/3)}
+  .co-img{height:136px}
+  .co-body{padding:14px 18px 8px}
+  .co-body p{font-size:.875rem;line-height:1.5}
+}
+@media(min-width:1060px){
+  .kw-carte .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center}
+  .kw-carte .sec-head.center{text-align:left;margin:0}
+  .kw-carte .sec-head.center .lead{margin-inline:0}
+  .kw-carte .carte{margin:0;max-width:none}
+  .carte-svg{max-height:min(74vh,560px)}
+}
+
+/* 20/11/2026 — ordinateur : les sections suivent la hauteur de l'écran (portables 720-820 px de haut) */
+@media(min-width:900px){
+  .sec{padding-block:clamp(34px,6vh,72px)}
+  .car-wrap + .carousel-dots{display:none}
+  .co-img{height:clamp(96px,14vh,136px)}
+  .co-body{padding:12px 18px 6px}
+  .co-body h3{margin-bottom:4px}
+  .co-body p{font-size:.84rem;line-height:1.45}
+  .co-foot{padding:8px 0 10px}
+}
+@media(min-width:900px) and (max-height:760px){
+  .sec h2{font-size:clamp(1.6rem,2.6vw,2.1rem)}
+  .sec-head p{font-size:.95rem}
+}
+
+/* Carte des villes : questions sans ville de la carte (« autour de moi », ville hors carte) en dépliants dessous */
+.carte-reste{grid-column:1/-1;max-width:980px;width:100%;margin:clamp(18px,2.6vw,28px) auto 0;text-align:left}
+.sec-nuit .carte-reste details{border-color:rgba(255,255,255,.14)}
+.sec-nuit .carte-reste summary,.sec-nuit .carte-reste summary h3{color:#fff}
+.sec-nuit .carte-reste summary .ic{color:#ffcf4a}
+.sec-nuit .carte-reste details p{color:rgba(255,255,255,.8)}
+
+/* 20/11/2026 — petits téléphones (360×740 et moins haut) : chaque section tient encore dans l'écran */
+@media(max-width:759px){
+  .co-img{height:96px}
+  .co-body p{font-size:.8125rem;line-height:1.42}
+}
+@media(max-width:759px) and (max-height:780px){
+  .sec{padding-block:26px}
+  .sec h2{font-size:1.3rem;line-height:1.18}
+  .sec-head .lead{font-size:.875rem;line-height:1.45}
+  .faq-sec .faq-list{margin-top:14px}
+  .faq-sec summary,.kw-acc summary{padding-block:11px;font-size:.9375rem}
+  .devis .devis-shell{padding:16px 14px}
+  .devis .fc-t{font-size:1.2rem;margin-bottom:10px}
+  .devis .opt,.devis .opts[data-field="delai"] .opt{min-height:48px;padding-block:7px}
+  .devis .alt-call{margin-top:8px;font-size:.875rem}
+  .sec.devis{padding-block:20px}
+  .cartes{margin-top:14px}
+}
+/* Ordinateur : carte des villes un peu plus basse sur les portables (720 px de haut) */
+@media(min-width:1060px){.carte-svg{max-height:min(64vh,560px)}}
+@media(min-width:1060px){
+  .kw-carte .wrap:has(.carte-reste){grid-template-rows:auto 1fr}
+  .kw-carte .wrap:has(.carte-reste) .sec-head{grid-column:1;grid-row:1;align-self:end}
+  .kw-carte .wrap:has(.carte-reste) .carte{grid-column:2;grid-row:1 / span 2}
+  .kw-carte .carte-reste{grid-column:1;grid-row:2;align-self:start;margin:18px 0 0}
+}
+
+/* Logo Tonio en SVG dans le pied des cartes */
+.co-logo svg{display:block;width:100%;height:auto}
+.co-foot .co-logo{display:block;flex:none;width:40px}

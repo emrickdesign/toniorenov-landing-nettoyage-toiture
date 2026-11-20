@@ -26,7 +26,8 @@
      "q": "Ravalement façade Boucau",
      "a": "Boucau est la base de Tonio, donc le trajet le plus court. Un ravalement façade Boucau suit les mêmes règles que partout ailleurs : un seul artisan, un devis gratuit, un prix tenu."
     }
-   ]
+   ],
+   "mode": "carte"
   },
   {
    "h2": "Entreprise de ravalement et façadier : qui vient chez vous ?",
@@ -48,7 +49,8 @@
      "q": "Entreprise façade : ce que vous avez par écrit",
      "a": "Une entreprise façade sérieuse met tout sur le devis. Ici, rien n'est ajouté sans votre accord écrit, et un défaut sur la zone traitée est repris gratuitement. Un artisan ravalement façade doit pouvoir vous le promettre."
     }
-   ]
+   ],
+   "mode": "sombre"
   },
   {
    "h2": "Prix ravalement façade : ce qui fait le tarif",
@@ -56,25 +58,41 @@
    "items": [
     {
      "q": "Prix ravalement de façade au m² : pourquoi pas de chiffre ?",
-     "a": "Un prix ravalement façade m² donné sans voir le mur ne veut rien dire. La surface, l'état de l'enduit, les fissures et la peinture changent tout. Tonio chiffre après examen, devant votre façade."
+     "a": "Un prix ravalement façade m² donné sans voir le mur ne veut rien dire. La surface, l'état de l'enduit, les fissures et la peinture changent tout. Tonio chiffre après examen, devant votre façade.",
+     "img": "img/galerie-real-facade-basque.jpg",
+     "tag": "Prix au m²",
+     "ic": "layers"
     },
     {
      "q": "Prix ravalement de façade : ce qui le fait varier",
-     "a": "Le prix ravalement de façade dépend de la surface, de l'état de l'enduit, des fissures à reprendre, du nettoyage et de la peinture choisie. Chaque ligne est écrite sur le devis."
+     "a": "Le prix ravalement de façade dépend de la surface, de l'état de l'enduit, des fissures à reprendre, du nettoyage et de la peinture choisie. Chaque ligne est écrite sur le devis.",
+     "img": "img/ring/facade-avant.jpg",
+     "tag": "Ce qui fait le prix",
+     "ic": "search"
     },
     {
      "q": "Ravalement de façade prix : ferme ou estimé ?",
-     "a": "Ferme. Le prix ravalement façade et le tarif ravalement façade sont écrits sur le devis, avec la remise du mois déjà déduite. Si Tonio découvre autre chose sur le mur, il vous envoie la photo et vous décidez."
+     "a": "Ferme. Le prix ravalement façade et le tarif ravalement façade sont écrits sur le devis, avec la remise du mois déjà déduite. Si Tonio découvre autre chose sur le mur, il vous envoie la photo et vous décidez.",
+     "img": "img/ring/facade-apres.jpg",
+     "tag": "Prix du devis tenu",
+     "ic": "check"
     },
     {
      "q": "Devis ravalement façade gratuit",
-     "a": "Le devis ravalement façade est gratuit et fait sur place, sans engagement. Même chose pour un devis peinture façade extérieure : Tonio regarde d'abord le support, puis vous donne le prix."
+     "a": "Le devis ravalement façade est gratuit et fait sur place, sans engagement. Même chose pour un devis peinture façade extérieure : Tonio regarde d'abord le support, puis vous donne le prix.",
+     "img": "img/ring/facade-nettoyage.jpg",
+     "tag": "Devis gratuit",
+     "ic": "shield-check"
     },
     {
      "q": "Prix nettoyage façade maison 100m² : combien ?",
-     "a": "Pas de tarif donné au téléphone. Le support (enduit, crépi, pierre) et l'encrassement comptent autant que les mètres carrés. Tonio regarde la maison et vous remet un prix écrit."
+     "a": "Pas de tarif donné au téléphone. Le support (enduit, crépi, pierre) et l'encrassement comptent autant que les mètres carrés. Tonio regarde la maison et vous remet un prix écrit.",
+     "img": "img/galerie-real-nettoyage-facade.jpg",
+     "tag": "Maison 100 m²",
+     "ic": "home"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Rénovation façade : fissures, enduit et nettoyage",
@@ -82,25 +100,41 @@
    "items": [
     {
      "q": "Rénovation façade maison : par où commencer ?",
-     "a": "Une rénovation façade maison, comme un ravalement façade maison, commence par l'examen : mousse, fissures, peinture qui s'écaille, humidité. Tonio vous montre ce qu'il voit. Parfois un nettoyage suffit, parfois il faut reprendre l'enduit."
+     "a": "Une rénovation façade maison, comme un ravalement façade maison, commence par l'examen : mousse, fissures, peinture qui s'écaille, humidité. Tonio vous montre ce qu'il voit. Parfois un nettoyage suffit, parfois il faut reprendre l'enduit.",
+     "img": "img/ring/facade-avant.jpg",
+     "tag": "Par où commencer",
+     "ic": "search"
     },
     {
      "q": "Façade fissurée : faut-il s'inquiéter ?",
-     "a": "Une façade fissurée laisse entrer l'eau. Une microfissure se traite facilement, une fissure qui traverse l'enduit demande plus. Tonio regarde sur place et vous le montre en photo."
+     "a": "Une façade fissurée laisse entrer l'eau. Une microfissure se traite facilement, une fissure qui traverse l'enduit demande plus. Tonio regarde sur place et vous le montre en photo.",
+     "img": "img/ring/facade-nettoyage.jpg",
+     "tag": "Fissures",
+     "ic": "crack"
     },
     {
      "q": "Réparation fissure façade avant la peinture",
-     "a": "La réparation fissure façade se fait avant la peinture, pas après. Une couche de peinture seule ne règle pas une fissure. Tonio reprend d'abord l'enduit, puis vient la finition."
+     "a": "La réparation fissure façade se fait avant la peinture, pas après. Une couche de peinture seule ne règle pas une fissure. Tonio reprend d'abord l'enduit, puis vient la finition.",
+     "img": "img/ring/facade-basque.jpg",
+     "tag": "Avant la peinture",
+     "ic": "roller"
     },
     {
      "q": "Réfection façade : nettoyage ou enduit ?",
-     "a": "Pour une réfection façade, tout dépend du mur. Selon son état, un nettoyage ou un décrassage peut suffire. Sinon on reprend l'enduit avant de repeindre. C'est vous qui décidez."
+     "a": "Pour une réfection façade, tout dépend du mur. Selon son état, un nettoyage ou un décrassage peut suffire. Sinon on reprend l'enduit avant de repeindre. C'est vous qui décidez.",
+     "img": "img/galerie-real-nettoyage-facade.jpg",
+     "tag": "Nettoyage ou enduit",
+     "ic": "layers"
     },
     {
      "q": "Travaux de façade : quelle durée ?",
-     "a": "Pour des travaux de façade, la durée dépend de la surface et des réparations. Le ravalement des façades d'une maison se discute sur place, au moment du devis, avec Tonio."
+     "a": "Pour des travaux de façade, la durée dépend de la surface et des réparations. Le ravalement des façades d'une maison se discute sur place, au moment du devis, avec Tonio.",
+     "img": "img/ring/facade-apres.jpg",
+     "tag": "Durée des travaux",
+     "ic": "clock"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Peintre façade : peinture de façade extérieure",
@@ -108,13 +142,20 @@
    "items": [
     {
      "q": "Peintre façade ou entreprise peinture façade ?",
-     "a": "Une entreprise peinture façade, un peintre façade : ici c'est la même personne. Tonio nettoie, reprend l'enduit si besoin, puis peint. Vous gardez un seul interlocuteur."
+     "a": "Une entreprise peinture façade, un peintre façade : ici c'est la même personne. Tonio nettoie, reprend l'enduit si besoin, puis peint. Vous gardez un seul interlocuteur.",
+     "img": "img/galerie-real-facade-basque.jpg",
+     "tag": "Peintre façade",
+     "ic": "roller"
     },
     {
      "q": "Peinture façade entreprise : et le rouge basque ?",
-     "a": "Vous tapez « peinture façade entreprise » pour des volets rouge basque ? Tonio conseille la finition et la teinte, et peint aussi les volets et les boiseries. La couleur se choisit avec vous avant de commencer."
+     "a": "Vous tapez « peinture façade entreprise » pour des volets rouge basque ? Tonio conseille la finition et la teinte, et peint aussi les volets et les boiseries. La couleur se choisit avec vous avant de commencer.",
+     "img": "img/ring/facade-basque.jpg",
+     "tag": "Rouge basque",
+     "ic": "image"
     }
-   ]
+   ],
+   "mode": "cartes"
   }
  ]
 }

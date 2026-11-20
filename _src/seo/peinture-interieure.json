@@ -26,7 +26,8 @@
      "q": "Peintre Capbreton : le bout de la zone",
      "a": "Capbreton fait partie de la zone d'intervention, au bout des communes du Sud-Landes. Si vous cherchez un peintre Capbreton, Tonio se déplace aussi. Les conditions sont les mêmes qu'à Bayonne : devis gratuit sur place, prix ferme et rappel sous 24 h après votre demande."
     }
-   ]
+   ],
+   "mode": "carte"
   },
   {
    "h2": "Artisan peintre et entreprise de peinture : qui vient chez vous",
@@ -48,7 +49,8 @@
      "q": "Peintre décorateur : couleurs et moulures",
      "a": "Un peintre décorateur, chez Tonio, c'est la partie couleur du métier : moulures peintes, mur d'accent, teintes choisies selon la lumière de la pièce. Il vous explique sur place la finition qui convient, mate, satinée ou veloutée, et la chiffre dans le même devis."
     }
-   ]
+   ],
+   "mode": "sombre"
   },
   {
    "h2": "Peintre intérieur : murs, plafonds et rénovation peinture",
@@ -56,17 +58,27 @@
    "items": [
     {
      "q": "Peintre intérieur maison : chambres, couloirs, escalier",
-     "a": "Pour un peintre intérieur maison, Tonio peint chambres, couloirs, cage d'escalier et plafonds. Pièce habitée : il protège vos meubles et travaille autour, ou les déplace avec vous. Vous cherchiez un peintre d'intérieur ? Les travaux de peinture se font sans que vous quittiez votre logement."
+     "a": "Pour un peintre intérieur maison, Tonio peint chambres, couloirs, cage d'escalier et plafonds. Pièce habitée : il protège vos meubles et travaille autour, ou les déplace avec vous. Vous cherchiez un peintre d'intérieur ? Les travaux de peinture se font sans que vous quittiez votre logement.",
+     "img": "img/ring/peinture-chambre-apres.jpg",
+     "tag": "Chambres et couloirs",
+     "ic": "home"
     },
     {
      "q": "Un peintre d'intérieur autour de moi, pour quelles pièces ?",
-     "a": "Vous cherchez un “peintre d'intérieur autour de moi” ? Salon, chambre, appartement complet avant une vente, une location ou un emménagement : Tonio annonce le planning à l'avance. Pièce seule ou logement entier, il s'adapte à votre présence et à vos dates."
+     "a": "Vous cherchez un “peintre d'intérieur autour de moi” ? Salon, chambre, appartement complet avant une vente, une location ou un emménagement : Tonio annonce le planning à l'avance. Pièce seule ou logement entier, il s'adapte à votre présence et à vos dates.",
+     "img": "img/galerie-real-peinture-bleu.jpg",
+     "tag": "Pièce par pièce",
+     "ic": "roller"
     },
     {
      "q": "Rénovation peinture : murs jaunis, fissures, peinture qui s'écaille",
-     "a": "Une rénovation peinture commence par la préparation : reboucher, poncer, passer une sous-couche, puis deux couches de finition. Pour une rénovation peinture Bayonne comme ailleurs, Tonio vous montre un mur plus abîmé que prévu avant de décider avec vous. Rien n'est ajouté sans votre accord écrit."
+     "a": "Une rénovation peinture commence par la préparation : reboucher, poncer, passer une sous-couche, puis deux couches de finition. Pour une rénovation peinture Bayonne comme ailleurs, Tonio vous montre un mur plus abîmé que prévu avant de décider avec vous. Rien n'est ajouté sans votre accord écrit.",
+     "img": "img/ring/peinture-chambre-avant.jpg",
+     "tag": "Rénovation",
+     "ic": "crack"
     }
-   ]
+   ],
+   "mode": "cartes"
   },
   {
    "h2": "Prix peintre m², tarif et devis peinture",
@@ -74,21 +86,34 @@
    "items": [
     {
      "q": "Prix peintre m² : de quoi dépend-il ?",
-     "a": "Vous tapez “prix du peintre au m²”, “prix peinture au m²”, “prix au m² pour un peintre” ou “coût peintre au m²” ? La réponse dépend de l'état des murs, du nombre de couches, de la hauteur sous plafond et de la finition. Tonio vient voir, puis chiffre un prix total."
+     "a": "Vous tapez “prix du peintre au m²”, “prix peinture au m²”, “prix au m² pour un peintre” ou “coût peintre au m²” ? La réponse dépend de l'état des murs, du nombre de couches, de la hauteur sous plafond et de la finition. Tonio vient voir, puis chiffre un prix total.",
+     "img": "img/galerie-real-peinture-sejour.jpg",
+     "tag": "Prix au m²",
+     "ic": "layers"
     },
     {
      "q": "Tarif peinture m² et tarif peintre au m²",
-     "a": "Pour le prix peintre m² comme pour le tarif peintre au m², le tarif peinture m² ou le peintre tarif m², votre devis indique la surface à peindre et le prix des travaux. Il est écrit avant le chantier. Le prix du devis est celui que vous payez."
+     "a": "Pour le prix peintre m² comme pour le tarif peintre au m², le tarif peinture m² ou le peintre tarif m², votre devis indique la surface à peindre et le prix des travaux. Il est écrit avant le chantier. Le prix du devis est celui que vous payez.",
+     "img": "img/ring/peinture-dressing.jpg",
+     "tag": "Tarif au m²",
+     "ic": "search"
     },
     {
      "q": "Tarif peintre plafond : peintre plafond prix",
-     "a": "Pour un tarif peintre plafond ou un peintre plafond prix, Tonio tient compte de la protection complète des lieux, du travail en hauteur et des deux couches. Un plafond se peint plus lentement qu'un mur. Le prix est fixé sur place, dans le devis gratuit."
+     "a": "Pour un tarif peintre plafond ou un peintre plafond prix, Tonio tient compte de la protection complète des lieux, du travail en hauteur et des deux couches. Un plafond se peint plus lentement qu'un mur. Le prix est fixé sur place, dans le devis gratuit.",
+     "img": "img/ring/peinture-sejour.jpg",
+     "tag": "Plafond",
+     "ic": "home"
     },
     {
      "q": "Devis peinture intérieure, devis peintre : comment ça marche",
-     "a": "Un devis peinture est gratuit et fait sur place. Un devis peinture intérieure ou un peintre devis sans engagement : 6 questions dans le formulaire, ou un appel. Pour des travaux peinture devis demandés avant la fin du mois, Tonio retire 30 % du montant, écrit noir sur blanc."
+     "a": "Un devis peinture est gratuit et fait sur place. Un devis peinture intérieure ou un peintre devis sans engagement : 6 questions dans le formulaire, ou un appel. Pour des travaux peinture devis demandés avant la fin du mois, Tonio retire 30 % du montant, écrit noir sur blanc.",
+     "img": "img/galerie-real-peinture-dressing.jpg",
+     "tag": "Devis gratuit",
+     "ic": "shield-check"
     }
-   ]
+   ],
+   "mode": "cartes"
   }
  ]
 }

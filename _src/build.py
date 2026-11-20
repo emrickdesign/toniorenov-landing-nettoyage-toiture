@@ -87,45 +87,22 @@ def ps_cost(path):
 # Galerie photos : vraies réalisations Tonio récupérées sur toniorenov.fr,
 # adaptées au métier de la LP. Alt descriptifs géolocalisés (SEO + crédibilité).
 def gallery_photos(path):
-    if '/peinture' in path:
-        return [
-            ('img/galerie-real-peinture-sejour.jpg', 'Peinture & moulures à Anglet'),
-            ('img/galerie-real-peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
-            ('img/galerie-real-peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque'),
-        ]
-    if '/nettoyage-facade' in path:
-        return [
-            ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
-            ('img/galerie-real-facade-basque.jpg', 'Façade basque, Côte Basque'),
-            ('img/galerie-real-toiture-chantier.jpg', 'Maison à façade blanche, chantier à Boucau'),
-        ]
-    if '/ravalement' in path:
-        return [
-            ('img/galerie-real-facade-basque.jpg', 'Ravalement de façade Côte Basque'),
-            ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
-            ('img/galerie-real-refection-toiture.jpg', 'Chantier complet Pays Basque'),
-        ]
-    if '/refection' in path:
-        return [
-            ('img/galerie-real-refection-toiture.jpg', 'Réfection de toiture au Pays Basque'),
-            ('img/galerie-real-toiture-chantier.jpg', 'Chantier de toiture à Boucau'),
-            ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage et zinguerie au Pays Basque'),
-        ]
-    if '/devis' in path:
-        return [
-            ('img/galerie-real-refection-toiture.jpg', 'Chantier de toiture au Pays Basque'),
-            ('img/galerie-real-facade-basque.jpg', 'Façade basque, Côte Basque'),
-            ('img/galerie-real-peinture-sejour.jpg', 'Peinture intérieure à Anglet'),
-            ('img/galerie-real-nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
-            ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage et zinguerie au Pays Basque'),
-            ('img/galerie-real-peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
-        ]
-    # Défaut : couvreur, entretien, urgence, zinguerie, nettoyage-toiture (racine)
-    return [
-        ('img/galerie-real-refection-toiture.jpg', 'Chantier de couverture au Pays Basque'),
-        ('img/galerie-real-zinguerie-faitage.jpg', 'Faîtage & zinguerie au Pays Basque'),
-        ('img/galerie-real-toiture-chantier.jpg', 'Entretien de toiture à Boucau'),
-    ]
+    """Galerie : uniquement les vraies photos de chantier de Tonio, le plus possible par prestation (20/11/2026)."""
+    R, G = 'img/ring/', 'img/galerie-real-'
+    toit = [(G + 'refection-toiture.jpg', 'Réfection de toiture au Pays Basque'), (R + 'toiture-mousse-apres.jpg', 'Toiture démoussée et traitée par Tonio'),
+            (G + 'zinguerie-faitage.jpg', 'Faîtage et zinguerie au Pays Basque'), (R + 'toiture-mousse-avant.jpg', 'Toiture couverte de mousse avant le démoussage'),
+            (G + 'toiture-chantier.jpg', 'Chantier de toiture à Boucau'), (R + 'toiture-faitage.jpg', 'Faîtage et tuiles repris par Tonio'),
+            (R + 'toiture-refection.jpg', 'Tuiles reposées sur écran sous-toiture')]
+    facade = [(G + 'facade-basque.jpg', 'Façade basque, Côte Basque'), (R + 'facade-avant.jpg', 'Façade encrassée avant les travaux'),
+              (R + 'facade-apres.jpg', 'La même façade après Tonio'), (G + 'nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
+              (R + 'facade-nettoyage.jpg', 'Nettoyage de façade en cours')]
+    peinture = [(G + 'peinture-sejour.jpg', 'Peinture & moulures à Anglet'), (R + 'peinture-chambre-avant.jpg', 'Chambre avant la peinture'),
+                (R + 'peinture-chambre-apres.jpg', 'La même chambre repeinte'), (G + 'peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
+                (G + 'peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque')]
+    if '/peinture' in path: return peinture
+    if '/nettoyage-facade' in path or '/ravalement' in path: return facade
+    if '/devis' in path: return [x for t in zip(toit, facade, peinture) for x in t] + toit[5:]
+    return toit
 
 # Repère de marque (chevrons du logo) — version claire pour fonds sombres
 def mark(light=True):
@@ -159,15 +136,21 @@ R = {
  # Avis complémentaires pour les 3 nouvelles pages — À VALIDER AVEC TONIO AVANT PUBLICATION PUBLIQUE
  'camille': dict(q="Chambre et séjour complètement transformés. Mobilier protégé, chantier propre chaque soir, finitions nickel.", n="Camille R.", v="Bayonne", i="CR"),
  'julien':  dict(q="Pose de gouttières zinc avant l'hiver, travail soigné et prix tenu. On a aussi fait reprendre le faîtage.", n="Julien P.", v="Anglet", i="JP"),
- # Avis Google réels de Tonio (relevés le 16/11/2026, texte exact, auteur réduit aux initiales)
- 'g_vp':  dict(q="Je souhaitais avoir une meilleure idée de l’état de ma couverture. Tonio RENOV a effectué une inspection des différents éléments de la toiture et m’a donné des explications détaillées. Une intervention claire et professionnelle.", n="V. P.", v="Avis Google", i="VP"),
- 'g_ml':  dict(q="J'ai fait appel à Tonio Renov pour nettoyer mon toit et les gouttières ce qui a été fait très sérieusement (il faut attendre quelques jours pour vérifier l'effet du produit utilisé pour les tuiles) Tonio et Michel ont ensuite réparé gracieusement notre portail et sa butée.", n="M. L.", v="Avis Google", i="ML"),
- 'g_m':   dict(q="Très satisfait conforme au devis. Je recommande fortement", n="M.", v="Avis Google", i="M"),
- 'g_lpp': dict(q="Un grand merci à Tonio Renov pour la qualité du travail accompli. Équipe à l'écoute, de bon conseil et très réactive. Les finitions sont soignées et le chantier est resté propre tout au long des travaux. Je referai appel à eux avec plaisir et les recommande vivement.", n="L. P. P.", v="Avis Google", i="LP"),
- 'g_me':  dict(q="Super conseil, Super artisan Travail rapide et Efficace ! Je suis vraiment contente de son travail. Secteur Bayonne", n="M. E.", v="Avis Google", i="ME"),
+ # Avis Google réels de Tonio : les 7 de sa fiche, relevés sur Google Maps le 20/11/2026 (texte exact, prénom + initiale)
+ 'g_ml':  dict(q="J'ai fait appel à Tonio Renov pour nettoyer mon toit et les gouttières ce qui a été fait très sérieusement (il faut attendre quelques jours pour vérifier l'effet du produit utilisé pour les tuiles) Tonio et Michel ont ensuite réparé gracieusement notre portail et sa butée. Ils se sont montrés très sympathiques pour la durée de ces travaux. Nous recommandons cette entreprise pour ce type de travaux", n="Michel L.", v="Avis Google", i="ML"),
+ 'g_mf':  dict(q="Super expérience avec l'entreprise Tonio RENOV pour nos travaux de ravalement de façade ! Une équipe très professionelle, le chantier de rénovation est complet, finition impeccable. Tout s'est super bien passé. Nous sommes du côté de Bayonne et je recommande cet artisan les yeux fermés. Vraiment. Merci beaucoup", n="Mathias F.", v="Avis Google", i="MF"),
+ 'g_vp':  dict(q="Je souhaitais avoir une meilleure idée de l’état de ma couverture. Tonio RENOV a effectué une inspection des différents éléments de la toiture et m’a donné des explications détaillées. Une intervention claire et professionnelle.", n="Victor P.", v="Avis Google", i="VP"),
+ 'g_mj':  dict(q="Je recommande vivement l'entreprise Tonio Rénov. Travail sérieux, soigné et professionnel pour le traitement hydrofuge de ma toiture. Le résultat est impeccable et je suis très satisfait de la prestation. Merci pour votre efficacité !", n="Mike J.", v="Avis Google", i="MJ"),
+ 'g_lpp': dict(q="Un grand merci à Tonio Renov pour la qualité du travail accompli. Équipe à l'écoute, de bon conseil et très réactive. Les finitions sont soignées et le chantier est resté propre tout au long des travaux. Je referai appel à eux avec plaisir et les recommande vivement.", n="Les Pierres Précieuses", v="Avis Google", i="LP"),
+ 'g_me':  dict(q="Super conseil, Super artisan Travail rapide et Efficace ! Je suis vraiment contente de son travail. Secteur Bayonne", n="Marie E.", v="Avis Google", i="ME"),
+ 'g_m':   dict(q="Très satisfait conforme au devis. Je recommande fortement", n="Manu", v="Avis Google", i="M"),
  'laurent': dict(q="Suite à une tempête, Tonio est passé le lendemain, tuile remplacée et faîtage sécurisé. Rassurant.", n="Laurent M.", v="Biarritz", i="LM"),
 }
 
+AVIS_GOOGLE = ['g_ml', 'g_mf', 'g_vp', 'g_mj', 'g_lpp', 'g_me', 'g_m']   # ordre de la fiche Google
+def tous_avis(*prio):
+    """Tous les avis Google : ceux de `prio` d'abord (les plus proches de la prestation de la page), puis les autres."""
+    return list(prio) + [k for k in AVIS_GOOGLE if k not in prio]
 OPT_TOIT = [("Tuiles", "Tuiles", "layers"), ("Ardoise", "Ardoise", "layers"), ("Zinc / bac acier", "Zinc / bac acier", "layers"), ("Je ne sais pas", "Je ne sais pas", "help")]
 OPT_SURF = [("Moins de 80 m²", "Moins de 80 m²", "home"), ("80 à 150 m²", "80 à 150 m²", "home"), ("Plus de 150 m²", "Plus de 150 m²", "home"), ("Je ne sais pas", "Je ne sais pas", "help")]
 FAQ_ZONE = ("Quelles villes couvrez-vous ?", "Boucau, Bayonne, Anglet, Biarritz, Bidart, Guéthary, Saint-Jean-de-Luz, Hendaye et les communes du Sud-Landes jusqu'à Capbreton.")
@@ -246,7 +229,7 @@ PAGES = [
     "Pas de vendeur : Tonio vient, chiffre et travaille lui-même",
     "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
     "Un seul numéro, du devis jusqu'après les travaux"]),
-  reviews=['g_ml', 'g_vp', 'g_m'],
+  reviews=tous_avis('g_mj', 'g_ml', 'g_vp'), gal_t="Nos derniers démoussages",
   form=dict(t="Profitez des 9 €/m²", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des 9 €/m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     # 19/11 (Emrick) : « Quel est votre besoin ? » et « Quel type de toiture ? » retirés, il reste le délai.
@@ -368,7 +351,7 @@ PAGES = [
     "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même",
     "Un seul numéro, du devis jusqu'après les travaux",
     "Un chantier propre, nettoyé avant que Tonio reparte"]),
-  reviews=['g_ml', 'g_vp', 'g_m'],
+  reviews=tous_avis('g_mf', 'g_lpp', 'g_me'), gal_t="Nos derniers ravalements de façade",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     # 19/11 (Emrick) : « Nettoyage, décrassage » (c'est la page nettoyage de façade) et le revêtement retirés.
@@ -462,7 +445,7 @@ PAGES = [
     "Le prix du devis est le prix que vous payez. Rien en plus sans votre accord écrit",
     "Un défaut sur la zone traitée ? Tonio revient le reprendre gratuitement",
     "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même"]),
-  reviews=['g_ml', 'g_vp', 'g_m'],
+  reviews=tous_avis('g_mf', 'g_ml', 'g_lpp'), gal_t="Nos derniers nettoyages de façade",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?",
     # 19/11 (Emrick) : question du revêtement retirée.
@@ -556,7 +539,7 @@ PAGES = [
     "Pas de vendeur : Tonio vient, chiffre et répare lui-même",
     "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
     "Un seul numéro, du devis jusqu'après les travaux"]),
-  reviews=['g_vp', 'g_ml', 'g_m'],
+  reviews=tous_avis('g_vp', 'g_ml', 'g_m'), gal_t="Nos dernières réparations de toiture",
   form=dict(t="Profitez de la reprise gratuite 2 ans", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez de la reprise gratuite 2 ans, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     # 19/11 (Emrick) : « Quel type de toiture ? » retiré.
@@ -639,7 +622,7 @@ PAGES = [
     "L'état de la charpente contrôlé, et dit franchement s'il faut la reprendre",
     "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même",
     "Un défaut sur la zone refaite ? Tonio revient le reprendre gratuitement"]),
-  reviews=['g_vp', 'g_m', 'g_ml'],
+  reviews=tous_avis('g_vp', 'g_lpp', 'g_m'), gal_t="Nos dernières toitures refaites",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre projet ?", q_coord="Où Tonio peut vous rappeler ?",
     # 19/11 (Emrick) : refaire tout / refaire une partie / faire à neuf / à évaluer, puis le délai. Type de toiture retiré.
@@ -730,41 +713,43 @@ PAGES = [
  # Groupe 3 — Peinture intérieure : panier 1500-5000 €, saison 100% hiver (chantier intérieur).
  dict(
   out='peinture-interieure/index.html', path='/peinture-interieure/',
+  # 20/11/2026 : les retouches faites à la main dans peinture-interieure/index.html (hero modèle B, formulaire,
+  # FAQ) sont reportées ici : la page est de nouveau générée comme les autres (plus besoin de peinture_main.py).
   title="Peintre à Bayonne, Anglet, Biarritz — peinture intérieure · Tonio Rénov'",
   desc="Artisan peintre à Bayonne, Anglet, Biarritz et Boucau : peinture intérieure de salon, chambre, appartement et maison. Entreprise de peinture, devis peintre gratuit, garantie décennale.",
-  img='/img/peinture-apres.jpg', pos='50% 50%', crop='30% 58%', alt="Intérieur de maison fraîchement peint par Tonio Rénov'",
-  h1="Peintre intérieur :<br><mark>chantier propre chaque soir,</mark><br>sur toute la Côte Basque.",
-  sub="<strong>Salon, chambre, appartement complet, maison.</strong> Protection intégrale du mobilier, finitions soignées, on repart propre chaque fin de journée. Entreprise de peinture Côte Basque et Sud-Landes, garantie décennale.",
-  ghost="Appeler Tonio pour qu'il vienne", last_trust=("clock", "Devis rénovation", "chantier planifié"),
-  signs=dict(t="Une bonne peinture, c'est 20 % de produit et 80 % de préparation",
-    p="Le résultat ne tient pas à la couleur, il tient à ce qu'on fait <strong>avant</strong> de la poser. Dégraissage, rebouchage, ponçage, sous-couche : la peinture Tollens vient en dernier.",
-    items=[("roller", "Préparation complète des supports", "Rebouchage des fissures, ponçage des zones écaillées, dégraissage : la peinture tient parce qu'elle accroche sur un support propre."),
-           ("shield", "Protection du mobilier et des sols", "Bâches sur meubles, adhésifs sur plinthes et interrupteurs, protection des sols — on peint autour de la vie, pas à la place."),
-           ("layers", "Peintures professionnelles Tollens", "Pas de peinture bricomarché. Produits pro, pouvoir couvrant élevé, teintes stables dans le temps, finition qui ne jaunit pas."),
-           ("check", "Chantier propre chaque soir", "On nettoie et on range chaque fin de journée. Vous pouvez vivre dans la pièce voisine sans tomber sur un chantier.")]),
-  method_steps=[("Vous nous appelez", "Décrivez votre projet — pièce, surface, couleur — on cale une visite gratuite rapidement."),
-    ("Diagnostic & devis", "On regarde l'état des murs et plafonds, on vous propose teintes et finition, devis détaillé sous 24h."),
-    ("Préparation & peinture", "Protection, rebouchage, sous-couche, 2 couches de finition Tollens, moulures sur demande."),
-    ("Contrôle final", "On vérifie chaque angle, chaque raccord, on nettoie avant de repartir.")],
-  real=dict(t="Peinture intérieure soignée, pas bâclée", items=["Préparation complète : rebouchage, ponçage, sous-couche", "Peintures professionnelles Tollens, finition mate ou satinée", "Rénovation peinture d'une pièce, d'un appartement ou d'une maison entière", "Entreprise de peinture artisanale, pas de sous-traitance", "Protection intégrale du mobilier et des sols", "Chantier couvert par la garantie décennale"]),
-  reviews=['sofia', 'camille', 'amadou'],
-  form=dict(t="Votre devis peinture en 6 questions", sub="<strong>30 secondes</strong>, sans engagement — on vous rappelle <strong>sous 24h</strong>",
-    t2="Recevez votre devis peinture intérieure", q1="Qu'est-ce que vous voulez repeindre ?",
-    o1=[("Un salon / séjour", "Salon / séjour", "home"), ("Une ou plusieurs chambres", "Chambre(s)", "home"), ("Un appartement complet", "Appartement complet", "home"), ("Autre pièce / détail", "Autre / à préciser", "help")],
-    q2="Dans quel état sont les murs ?", o2=[("Peinture ancienne à refaire", "Peinture ancienne", "roller"), ("Murs abîmés, fissures à reboucher", "Murs abîmés", "crack"), ("Support neuf (plâtre, enduit frais)", "Support neuf", "layers"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")],
-    q3="Surface approximative à peindre ?", o3=[("Moins de 20 m²", "Moins de 20 m²", "home"), ("20 à 50 m²", "20 à 50 m²", "home"), ("50 à 100 m²", "50 à 100 m²", "home"), ("Plus de 100 m²", "Plus de 100 m²", "home")]),
-  faq=[("Vous travaillez pièce par pièce ou appartement complet ?", "Les deux. Pièce seule (chambre, salon) ou chantier complet avant emménagement. On s'adapte à votre présence sur place et à vos contraintes de date."),
+  img='/img/galerie-real-peinture-sejour.jpg', pos='50% 30%', crop='30% 58%', alt="Séjour aux moulures repeint par Tonio Rénov'",
+  h1="<span class='h1-l'>Peinture intérieure</span><span class='h1-sub'>Murs, plafonds, pièces entières</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
+  h1_label="Peinture intérieure, murs, plafonds et pièces entières : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
+  sub="",
+  ghost="Appeler Tonio pour qu'il vienne",
+  avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
+  proof=[("roller", "Tonio peint lui-même"), ("shield", "Meubles protégés"), ("check", "Propre chaque soir")],
+  offre_mois=True,
+  ring=[("img/ring/peinture-sejour-apres.jpg", "Séjour repeint par Tonio, après"), ("img/ring/peinture-sejour-avant.jpg", "Séjour avant les travaux de peinture"),
+        ("img/ring/peinture-bleu.jpg", "Tonio peint une chambre en bleu clair"), ("img/ring/peinture-chambre-avant.jpg", "Chambre avant les travaux de peinture"),
+        ("img/ring/peinture-dressing.jpg", "Dressing et murs repeints par Tonio"), ("img/ring/peinture-chambre-apres.jpg", "La même chambre repeinte par Tonio"),
+        ("img/ring/peinture-sejour.jpg", "Salon à moulures repeint par Tonio")],
+  band=[("check", "Devis gratuit", "sur place")],
+  signs=dict(t="", p="", items=[]),
+  method_steps=[],
+  real=dict(t="", items=[]),
+  reviews=tous_avis('g_lpp', 'g_me', 'g_m'), gal_t="Nos derniers chantiers de peinture",
+  form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
+    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Dans quel état sont les murs ?", q_coord="Où Tonio peut vous rappeler ?",
+    etapes=[('toiture', "Dans quel état sont les murs ?", [("Peinture ancienne à refaire", "Peinture ancienne", "roller"), ("Murs abîmés, fissures à reboucher", "Murs abîmés", "crack"), ("Support neuf (plâtre, enduit frais)", "Support neuf", "layers"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")]),
+            ('delai', Q_DELAI, O_DELAI)], domaine="Peinture intérieure",
+    o1=[], q2="", o2=[], q3="", o3=[]),
+  faq=[("Comment marchent les −30 % ?", "Pour toute demande faite avant la fin du mois, Tonio retire 30 % du montant de son devis. Le prix remisé est écrit noir sur blanc sur le devis, et c'est celui que vous payez."),
+       ("Le prix peut-il changer pendant les travaux ?", "Le prix du devis est celui que vous payez. Si Tonio découvre un mur plus abîmé que prévu, il vous le montre et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
+       ("Et si une finition ne me plaît pas ?", "Vous le dites à Tonio. Un défaut de finition (trace, coulure, reprise visible) est repris gratuitement."),
+       ("Vous travaillez pièce par pièce ou appartement complet ?", "Les deux. Pièce seule (chambre, salon) ou chantier complet avant emménagement. On s'adapte à votre présence sur place et à vos contraintes de date."),
        ("Combien de couches posez-vous ?", "Sur un support préparé : une sous-couche + deux couches de finition. C'est ce qui donne un rendu uniforme qui tient dans le temps, pas une seule couche qu'on repose dans 2 ans."),
        ("Vous bougez les meubles ?", "Pour une pièce vide, on prépare tout. Pour une pièce habitée, on protège les meubles sur place et on travaille autour — ou on les déplace ensemble si vous préférez."),
        ("Quelles peintures utilisez-vous ?", "Peintures professionnelles Tollens, en finition mate, satinée ou veloutée selon la pièce. On vous explique sur place laquelle convient à l'exposition et à l'usage."),
-       ("Combien coûte la peinture d'une pièce ?", "Ça dépend de la surface, de l'état des murs et de la finition. Tonio passe voir la pièce et vous donne le prix dans un devis peinture gratuit, avant les travaux."),
-       FAQ_GARANTIE,
+       ("Combien coûte la peinture d'une pièce ?", "Ça dépend de la surface, de l'état des murs et de la finition. Tonio passe voir la pièce et vous donne le prix dans un devis peinture gratuit, avant les travaux, avec les 30 % de remise du mois déjà déduits."),
+       ("Quelles garanties proposez-vous ?", "Garantie décennale et assurance RC Pro sur tous les travaux, plus la reprise gratuite des défauts de finition."),
        FAQ_ZONE],
   cta=dict(t="Un intérieur refait, c'est l'hiver qui change", p="<strong>Devis gratuit sous 24h</strong>, aucun engagement."),
-  # Sections de contenu sous la zone : une par famille de mots-clés actifs du groupe
-  # « Peinture intérieure ». ATTENTION : peinture-interieure/index.html contient des
-  # retouches faites à la main (hero, formulaire, CSS des options) absentes de ce fichier ;
-  # ne pas régénérer cette page sans les reporter ici.
   seo=[
    dict(t="Peintre à Bayonne, Anglet, Biarritz et Boucau",
     p="Tonio Rénov' est une <strong>entreprise de peinture</strong> basée à Boucau. Le même artisan peintre vient chiffrer, puis peindre chez vous.",
@@ -813,7 +798,7 @@ PAGES = [
   signs=dict(t="", p="", items=[]),
   method_steps=[],
   real=dict(t="", items=[]),
-  reviews=['g_ml', 'g_lpp', 'g_vp', 'g_me', 'g_m'],
+  reviews=tous_avis('g_ml', 'g_mf', 'g_lpp', 'g_vp', 'g_mj'),
   form=dict(t="Profitez des offres du moment", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des offres du moment, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
     etapes=[('probleme', "Quel est votre besoin ?", [("Toiture : fuite, réparation, réfection", "Toiture", "home"), ("Nettoyage de toiture ou de façade", "Nettoyage toit ou façade", "sprout"), ("Ravalement de façade", "Ravalement de façade", "layers"), ("Peinture intérieure", "Peinture intérieure", "roller")]),
@@ -832,10 +817,10 @@ PAGES = [
   seo=[
    dict(t="Artisan toiture, façade et peinture à Bayonne, Anglet, Biarritz et Boucau",
     p="Tonio Rénov' est une entreprise basée à Boucau. <strong>C'est Tonio qui se déplace</strong> dans chaque ville, sans sous-traitance, pour chiffrer et faire vos travaux.",
-    items=[("home", "Toiture", "Recherche de fuite et réparation, nettoyage et démoussage, traitement hydrofuge, réfection complète et toiture neuve."),
-           ("layers", "Façade", "Nettoyage de façade, traitement anti-mousse et hydrofuge, fissures, enduit, crépi et peinture de façade."),
-           ("roller", "Peinture intérieure", "Murs, plafonds, pièce seule ou appartement complet, meubles protégés et chantier propre chaque soir."),
-           ("check", "Devis gratuit sur place", f"Remplissez le formulaire ou appelez le {TEL} : Tonio vient voir, vous donne un prix sur place, et ce prix est celui que vous payez.")]),
+    items=[("home", "Toiture", "Recherche de fuite et réparation, nettoyage et démoussage, traitement hydrofuge, réfection complète et toiture neuve.", "img/galerie-real-refection-toiture.jpg"),
+           ("layers", "Façade", "Nettoyage de façade, traitement anti-mousse et hydrofuge, fissures, enduit, crépi et peinture de façade.", "img/galerie-real-facade-basque.jpg"),
+           ("roller", "Peinture intérieure", "Murs, plafonds, pièce seule ou appartement complet, meubles protégés et chantier propre chaque soir.", "img/galerie-real-peinture-sejour.jpg"),
+           ("check", "Devis gratuit sur place", f"Remplissez le formulaire ou appelez le {TEL} : Tonio vient voir, vous donne un prix sur place, et ce prix est celui que vous payez.", "img/ring/toiture-chantier.jpg")]),
   ],
  ),
 ]
@@ -910,16 +895,81 @@ def seo_json(p):
     f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'seo', p['out'].split('/')[0] + '.json')
     return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else None
 
+CARTE = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'geo', 'communes.json'), encoding='utf-8'))
+
+def _ville_de(it):
+    """Ville d'un dépliant de la section carte : clé "ville" du JSON, sinon la ville citée dans la question, sinon None (dépliant sous la carte)."""
+    if it.get('ville'): return it['ville']
+    for v in CARTE['villes']:
+        if v['nom'].lower() in it['q'].lower(): return v['nom']
+    return None
+
+def _sec_carte(b, k):
+    """Carte des communes (vrais contours IGN via geo.api.gouv.fr, projection simple), un point par ville,
+    « Voir plus » ouvre la fiche de la ville (les textes score de qualité, présents dans la page)."""
+    W, H = CARTE['w'], CARTE['h']
+    paths = ''.join(f'<path class="commune" d="{v["d"]}"/>' for v in CARTE['villes'])
+    pts = ''.join(f'<circle class="pt-halo" cx="{v["cx"]}" cy="{v["cy"]}" r="13"/><circle class="pt" cx="{v["cx"]}" cy="{v["cy"]}" r="6"/>' for v in CARTE['villes'])
+    labs, pops = '', ''
+    for j, v in enumerate(CARTE['villes']):
+        its = [it for it in b['items'] if _ville_de(it) == v['nom']]
+        if not its: continue
+        pid = f'pop-{k}-{j}'
+        labs += (f'<button type="button" class="carte-lab" style="left:{v["cx"] / W * 100:.2f}%;top:{v["cy"] / H * 100:.2f}%" '
+                 f'aria-haspopup="dialog" aria-controls="{pid}"><b>{v["nom"]}</b><span>Voir plus {ic("arrow")}</span></button>')
+        corps = ''.join(f'<h3>{it["q"]}</h3><p>{it["a"]}</p>' for it in its)
+        pops += (f'<div class="carte-pop" id="{pid}" role="dialog" aria-label="{v["nom_complet"]}" hidden>'
+                 f'<button type="button" class="pop-x" aria-label="Fermer">{ic("plus")}</button>'
+                 f'<p class="pop-ville">{ic("pin")}{v["nom_complet"]} · {str(v["surface_km2"]).replace(".", ",")} km²</p>{corps}</div>')
+    # Questions qui ne citent aucune ville de la carte (« autour de moi », ville hors carte) : dépliants sous la carte
+    hors = [it for it in b['items'] if _ville_de(it) is None]
+    reste = ('<div class="kw-acc carte-reste">' + ''.join(f'<details><summary><h3>{it["q"]}</h3>{ic("plus")}</summary><p>{it["a"]}</p></details>' for it in hors) + '</div>') if hors else ''
+    return f'''<section class="sec sec-nuit kw kw-carte">
+  <div class="wrap">
+    <div class="sec-head center">{h2(b['h2'])}<p class="lead">{b['lead']}</p></div>
+    <div class="carte">
+      <svg class="carte-svg" viewBox="0 0 {W} {H}" role="img" aria-label="Carte des communes : {', '.join(v['nom_complet'] for v in CARTE['villes'])}">{paths}{pts}</svg>
+      {labs}
+      {pops}
+    </div>
+    {reste}
+  </div>
+</section>
+'''
+
+def _sec_cartes(b):
+    """Cartes à faire défiler : photo en haut avec une étiquette, le dépliant (H3 + texte) dessous, pied avec le logo."""
+    tel = f'tel:{SITE["tel"]}'
+    lis = ''
+    for it in b['items']:
+        img = f'<img src="/{it["img"]}" alt="{it.get("alt", plain(it["q"]))}" loading="lazy" decoding="async">' if it.get('img') else ''
+        tag = f'<span class="co-tag">{ic(it.get("ic", "check"))}{it["tag"]}</span>' if it.get('tag') else ''
+        lis += (f'<li class="co"><div class="co-img">{img}{tag}</div><div class="co-body"><h3>{it["q"]}</h3><p>{it["a"]}</p></div>'
+                f'<div class="co-foot"><span class="co-logo">{mark(False)}</span>'
+                f'<span><b>{SITE["name"]}</b><small>{it.get("foot", "Devis gratuit sur place")}</small></span>'
+                f'<a class="co-go" href="{tel}" aria-label="Appeler Tonio au {SITE["phone"]}">{ic("phone")}</a></div></li>')
+    return f'''<section class="sec sec-light kw kw-cartes">
+  <div class="wrap">
+    <div class="sec-head center">{h2(b['h2'])}<p class="lead">{b['lead']}</p></div>
+    <ul class="cartes" data-carousel="all">{lis}</ul>
+  </div>
+</section>
+'''
+
 def kw_sections(p):
-    """Sections de contenu par famille de mots-clés (score de qualité). Lignes .sign
-    sans .reveal : le texte reste visible même sans défilement ni JavaScript.
-    Si _src/seo/<page>.json existe : sections en dépliants (H2 + H3 = mots-clés exacts)."""
+    """Sections score de qualité, écrites à partir des mots-clés du groupe d'annonces (_src/seo/<page>.json).
+    Chaque section choisit son affichage avec "mode" : "carte" (carte des villes + fiches), "cartes" (cartes photo
+    qui défilent), "sombre" (dépliants sur le bleu du haut de page), sinon dépliants clairs. H2/H3 = mots-clés exacts."""
     d = seo_json(p)
     if d:
         out = []
-        for b in d['sections']:
+        for k, b in enumerate(d['sections']):
+            mode = b.get('mode')
+            if mode == 'carte': out.append(_sec_carte(b, k)); continue
+            if mode == 'cartes': out.append(_sec_cartes(b)); continue
             rows = ''.join(f'<details><summary><h3>{it["q"]}</h3>{ic("plus")}</summary><p>{it["a"]}</p></details>' for it in b['items'])
-            out.append(f'''<section class="sec sec-light kw kw-acc-sec" style="padding-top:0">
+            fond = 'sec-dark' if mode == 'sombre' else 'sec-light'
+            out.append(f'''<section class="sec {fond} kw kw-acc-sec">
   <div class="wrap">
     <div class="sec-head center">{h2(b['h2'])}<p class="lead">{b['lead']}</p></div>
     <div class="kw-acc">{rows}</div>
@@ -929,8 +979,11 @@ def kw_sections(p):
         return ''.join(out)
     out = []
     for b in p.get('seo', []):
+        if all(len(x) == 4 for x in b['items']):   # (icône, titre, texte, photo) : cartes photo qui défilent
+            out.append(_sec_cartes(dict(h2=b['t'], lead=b['p'], items=[dict(q=t, a=d, ic=i, img=im, tag=plain(t)) for i, t, d, im in b['items']])))
+            continue
         rows = ''.join(f'<li class="sign"><span class="sign-ic">{ic(i)}</span><div><h3>{t}</h3><p>{d}</p></div></li>' for i, t, d in b['items'])
-        out.append(f'''<section class="sec sec-light kw" style="padding-top:0">
+        out.append(f'''<section class="sec sec-light kw">
   <div class="wrap">
     <div class="sec-head center">{h2(b['t'])}<p class="lead">{b['p']}</p></div>
     <ul class="kw-list">{rows}</ul>
@@ -989,11 +1042,18 @@ def render(p):
     revs = []
     for k, key in enumerate(p['reviews']):
         r = R[key]; big = ' big' if k == 0 and not p.get('marquee') else ''
-        revs.append(f'<figure class="rev{big} reveal" style="--d:{k}">{stars()}<blockquote>« {r["q"]} »</blockquote><figcaption class="rev-who"><span class="rev-av">{r["i"]}</span><span><b>{r["n"]}</b><small>{r["v"]}</small></span></figcaption></figure>')
+        revs.append(f'<figure class="rev{big}">{stars()}<blockquote class="rev-q">« {r["q"]} »</blockquote><button type="button" class="rev-more" hidden>Lire la suite</button><figcaption class="rev-who"><span class="rev-av">{r["i"]}</span><span><b>{r["n"]}</b><small>{r["v"]}</small></span></figcaption></figure>')
     f = p['form']
     prog = '<i></i>' * 6
-    faq = ''.join(f'<details><summary>{q}{ic("plus")}</summary><p>{a}</p></details>' for q, a in p['faq'])
+    # Mobile : 7 questions visibles, les autres derrière « Voir les autres questions » (la section tient dans un écran)
+    faq = ''.join(('<details class="faq-cache">' if k >= 7 else '<details>') + f'<summary>{q}{ic("plus")}</summary><p>{a}</p></details>' for k, (q, a) in enumerate(p['faq']))
+    faq_plus = f'<button type="button" class="faq-plus">Voir les {len(p["faq"]) - 7} autres questions</button>' if len(p['faq']) > 7 else ''
     zones = ''.join(f'<li class="{"base" if z=="Boucau" else ""}">{ic("pin")}{z}</li>' for z in ZONES)
+    def rangee(villes, sens):
+        lis = ''.join(f'<li class="{"base" if z == "Boucau" else ""}" data-ville="{z}">{ic("pin")}{z}</li>' for z in villes)
+        return f'<div class="vd-row vd-{sens}"><div class="vd-track"><ul class="chips">{lis}</ul><ul class="chips" aria-hidden="true">{lis}</ul></div></div>'
+    moitie = (len(ZONES) + 1) // 2
+    zones_defile = rangee(ZONES[:moitie], 'g') + rangee(ZONES[moitie:], 'd')
     tel = f'tel:{s["tel"]}'
     sig_h2 = h2(p['signs']['t'])
     method_h2 = h2("Tonio vient voir avant de chiffrer", 'on-dark')
@@ -1152,24 +1212,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="sec sec-light" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head center">{h2("Nos derniers chantiers sur la Côte Basque")}</div>
+    <div class="sec-head center">{h2(p.get("gal_t", "Nos derniers chantiers sur la Côte Basque"))}</div>
     <ul class="gal-grid reveal" style="--d:1"{' data-carousel="all"' if p.get('marquee') else ''}>
 {''.join(f'      <li><img src="/{src}" alt="{alt}" loading="lazy" decoding="async"><figcaption>{alt}</figcaption></li>' + chr(10) for src, alt in gallery_photos(p['path']))}    </ul>
   </div>
 </section>
 
-<section class="sec sec-light" id="zone" style="padding-top:0">
+<section class="sec sec-light zone-sec" id="zone" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head center">{zone_h2}<p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
-    <ul class="chips reveal" style="--d:2">{zones}</ul>
+    <div class="sec-head center">{zone_h2}<p class="lead"><strong>Artisan local</strong> : pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
+    <form class="ville-cherche" data-prenom="Tonio" role="search" action="#" autocomplete="off">
+      <label class="sr-only" for="ville-q">Chercher ma ville</label>
+      {ic("search", "vc-ic")}<input id="ville-q" type="search" placeholder="Chercher ma ville" enterkeyhint="search" spellcheck="false">
+    </form>
+    <p class="ville-res" aria-live="polite" hidden></p>
   </div>
+  <div class="ville-defile" aria-label="Communes où Tonio intervient">{zones_defile}</div>
 </section>
 {devis_bas}
 <!-- Sections score de qualité (mots-clés de la campagne) : toujours sous le dernier formulaire. -->
-<section class="sec sec-light" style="padding-top:0">
+<section class="sec sec-dark faq-sec">
   <div class="wrap">
     <div class="sec-head center">{faq_h2}<p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="{tel}"><strong>{s['phone']}</strong></a>.</p></div>
-    <div class="faq-list reveal" style="--d:1">{faq}</div>
+    <div class="faq-list">{faq}</div>{faq_plus}
   </div>
 </section>
 {kw_sections(p)}</main>
