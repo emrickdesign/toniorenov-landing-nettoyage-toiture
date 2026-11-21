@@ -93,7 +93,7 @@
     },
     {
      "q": "Tarif peinture m² et tarif peintre au m²",
-     "a": "Pour le prix peintre m² comme pour le tarif peintre au m², le tarif peinture m² ou le peintre tarif m², votre devis indique la surface à peindre et le prix des travaux. Il est écrit avant le chantier. Le prix du devis est celui que vous payez.",
+     "a": "Pour le prix peintre m² comme pour le tarif peintre au m², le tarif peinture m² ou le peintre tarif m², votre devis indique la surface à peindre et le prix des travaux. Il est écrit avant le chantier. Le prix du devis est celui que vous payez. Même réponse pour le prix travaux de peinture au m² : la surface et le travail sont détaillés ligne par ligne.",
      "img": "img/ring/peinture-dressing.jpg",
      "tag": "Tarif au m²",
      "ic": "search"

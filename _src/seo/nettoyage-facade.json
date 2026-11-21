@@ -131,7 +131,7 @@
    "items": [
     {
      "q": "Nettoyage façade prix : ce qui le fait varier",
-     "a": "Vous tapez « nettoyage façade prix » ? Le tarif dépend de la surface, de la hauteur, du support, de l'état d'encrassement et du traitement choisi. Aucun prix au mètre carré n'est affiché : pour un nettoyage façade Bayonne comme ailleurs, le prix ferme est donné après la visite de Tonio.",
+     "a": "Vous tapez « nettoyage façade prix » ? Le tarif dépend de la surface, de la hauteur, du support, de l'état d'encrassement et du traitement choisi. Aucun prix au mètre carré n'est affiché : pour un nettoyage façade Bayonne comme ailleurs, le prix ferme est donné après la visite de Tonio. Vous cherchez un « prix nettoyage façade maison 100m2 » ? Même règle : Tonio mesure sur place, et l'offre du mois retire 30 % du devis.",
      "img": "img/ring/facade-avant.jpg",
      "tag": "Ce qui fait le prix",
      "ic": "search"
@@ -144,8 +144,8 @@
      "ic": "check"
     },
     {
-     "q": "Devis nettoyage de façade gratuit",
-     "a": "Remplissez le formulaire ou appelez Tonio : le devis de nettoyage de façade est gratuit, y compris pour un nettoyage façade Bayonne, et Tonio vous rappelle sous 24 h. Vous le signez quand vous voulez.",
+     "q": "Devis nettoyage façade gratuit",
+     "a": "Remplissez le formulaire ou appelez Tonio : le devis nettoyage façade est gratuit, y compris pour un nettoyage façade Bayonne, et Tonio vous rappelle sous 24 h. Il vient voir le mur, puis vous remet un devis de nettoyage de façade écrit. Vous le signez quand vous voulez.",
      "img": "img/galerie-real-nettoyage-facade.jpg",
      "tag": "Devis gratuit",
      "ic": "shield-check"
