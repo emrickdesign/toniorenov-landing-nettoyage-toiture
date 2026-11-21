@@ -231,7 +231,7 @@ PAGES = [
     "Un seul numéro, du devis jusqu'après les travaux"]),
   reviews=tous_avis('g_mj', 'g_ml', 'g_vp'), gal_t="Nos derniers démoussages",
   form=dict(t="Profitez des 9 €/m²", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des 9 €/m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez des 9 €/m², Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?", rappel="de l’offre <mark>démoussage + hydrofuge à 9&nbsp;€/m²</mark>",
     # 19/11 (Emrick) : « Quel est votre besoin ? » et « Quel type de toiture ? » retirés, il reste le délai.
     etapes=[('delai', Q_DELAI, O_DELAI)], domaine="Nettoyage de toiture",
     o1=[("Nettoyage / démoussage des tuiles", "Nettoyage des tuiles", "sprout"), ("Entretien complet de toiture", "Entretien complet", "search"), ("Traitement hydrofuge", "Traitement hydrofuge", "drop"), ("Nettoyage des gouttières", "Nettoyage gouttières", "waves")],
@@ -353,7 +353,7 @@ PAGES = [
     "Un chantier propre, nettoyé avant que Tonio reparte"]),
   reviews=tous_avis('g_mf', 'g_lpp', 'g_me'), gal_t="Nos derniers ravalements de façade",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?", rappel="des <mark>−30&nbsp;% sur le devis</mark>",
     # 19/11 (Emrick) : « Nettoyage, décrassage » (c'est la page nettoyage de façade) et le revêtement retirés.
     etapes=[('probleme', "Quel est votre besoin ?", [("Ravalement complet de la façade", "Ravalement complet", "home"), ("Fissures à réparer", "Fissures à réparer", "crack"), ("Peinture de façade extérieure", "Peinture de façade", "roller")]),
             ('delai', Q_DELAI, O_DELAI)],
@@ -447,7 +447,7 @@ PAGES = [
     "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même"]),
   reviews=tous_avis('g_mf', 'g_ml', 'g_lpp'), gal_t="Nos derniers nettoyages de façade",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Que voulez-vous faire ?", q_coord="Où Tonio peut vous rappeler ?", rappel="des <mark>−30&nbsp;% sur le devis</mark>",
     # 19/11 (Emrick) : question du revêtement retirée.
     etapes=[('probleme', "Que voulez-vous faire ?", [("Nettoyer la façade", "Nettoyer la façade", "sprout"), ("Nettoyer et traiter (anti-mousse, hydrofuge)", "Nettoyer et traiter", "drop"), ("Nettoyer puis repeindre", "Nettoyer, puis peindre", "roller"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
             ('delai', Q_DELAI, O_DELAI)],
@@ -541,7 +541,7 @@ PAGES = [
     "Un seul numéro, du devis jusqu'après les travaux"]),
   reviews=tous_avis('g_vp', 'g_ml', 'g_m'), gal_t="Nos dernières réparations de toiture",
   form=dict(t="Profitez de la reprise gratuite 2 ans", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez de la reprise gratuite 2 ans, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez de la reprise gratuite 2 ans, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?", rappel="de la <mark>reprise gratuite 2&nbsp;ans</mark>",
     # 19/11 (Emrick) : « Quel type de toiture ? » retiré.
     etapes=[('probleme', "Quel est votre besoin ?", [("Fuite active / infiltration", "Fuite / infiltration", "drop"), ("Tuiles déplacées / cassées", "Tuiles déplacées / cassées", "layers"), ("Faîtage ou solins à reprendre", "Faîtage / solins", "waves"), ("Contrôle complet de toiture", "Contrôle complet", "search")]),
             ('delai', Q_DELAI, O_DELAI)],
@@ -624,7 +624,7 @@ PAGES = [
     "Un défaut sur la zone refaite ? Tonio revient le reprendre gratuitement"]),
   reviews=tous_avis('g_vp', 'g_lpp', 'g_m'), gal_t="Nos dernières toitures refaites",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre projet ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre projet ?", q_coord="Où Tonio peut vous rappeler ?", rappel="des <mark>−30&nbsp;% sur le devis</mark>",
     # 19/11 (Emrick) : refaire tout / refaire une partie / faire à neuf / à évaluer, puis le délai. Type de toiture retiré.
     etapes=[('probleme', "Quel est votre projet ?", [("Refaire toute la toiture", "Refaire toute la toiture", "home"), ("Refaire une partie de la toiture", "Refaire une partie", "layers"), ("Faire une toiture neuve", "Faire une toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
             ('delai', Q_DELAI, O_DELAI)],
@@ -735,7 +735,7 @@ PAGES = [
   real=dict(t="", items=[]),
   reviews=tous_avis('g_lpp', 'g_me', 'g_m'), gal_t="Nos derniers chantiers de peinture",
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Dans quel état sont les murs ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Dans quel état sont les murs ?", q_coord="Où Tonio peut vous rappeler ?", rappel="des <mark>−30&nbsp;% sur le devis</mark>",
     etapes=[('toiture', "Dans quel état sont les murs ?", [("Peinture ancienne à refaire", "Peinture ancienne", "roller"), ("Murs abîmés, fissures à reboucher", "Murs abîmés", "crack"), ("Support neuf (plâtre, enduit frais)", "Support neuf", "layers"), ("Je ne sais pas, à évaluer", "À évaluer sur place", "help")]),
             ('delai', Q_DELAI, O_DELAI)], domaine="Peinture intérieure",
     o1=[], q2="", o2=[], q3="", o3=[]),
@@ -800,7 +800,7 @@ PAGES = [
   real=dict(t="", items=[]),
   reviews=tous_avis('g_ml', 'g_mf', 'g_lpp', 'g_vp', 'g_mj'),
   form=dict(t="Profitez des offres du moment", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
-    t2="Profitez des offres du moment, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?",
+    t2="Profitez des offres du moment, Tonio vous rappelle", q1="Quel est votre besoin ?", q_coord="Où Tonio peut vous rappeler ?", rappel="des <mark>offres du moment</mark>",
     etapes=[('probleme', "Quel est votre besoin ?", [("Toiture : fuite, réparation, réfection", "Toiture", "home"), ("Nettoyage de toiture ou de façade", "Nettoyage toit ou façade", "sprout"), ("Ravalement de façade", "Ravalement de façade", "layers"), ("Peinture intérieure", "Peinture intérieure", "roller")]),
             ('delai', Q_DELAI, O_DELAI)],
     o1=[], q2="", o2=[], q3="", o3=[]),
@@ -1087,7 +1087,13 @@ def render(p):
         q_coord = f.get('q_coord', 'Vos coordonnées pour le rappel')
         fsteps = ''.join(f'<div class="fstep{" active" if k == 1 else ""}" data-step="{k}">{compte(k)}<p class="fq" tabindex="-1" data-focus>{q}</p>{opts(fld, o)}</div>\n        '
                          for k, (fld, q, o) in enumerate(etapes, 1))
-        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
+        # 21/11/2026 (Emrick) : à l'étape prénom + téléphone, rappel en gros de l'offre et de qui rappelle (Tonio lui-même).
+        rappel = ''
+        if f.get('rappel'):
+            q_coord = 'Votre prénom et votre numéro'
+            rappel = (f'<div class="f-rappel"><p class="f-rappel-t">Être rappelé par Tonio pour profiter {f["rappel"]}</p>'
+                      f'<p class="f-rappel-s">C’est Tonio, l’artisan, qui vous appelle lui-même sous 24&nbsp;h.</p></div>')
+        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
         corps = f'''<div class="devis-shell">

@@ -826,3 +826,10 @@ details p{padding-bottom:18px}
 /* Logo Tonio en SVG dans le pied des cartes */
 .co-logo svg{display:block;width:100%;height:auto}
 .co-foot .co-logo{display:block;flex:none;width:40px}
+
+/* 21/11/2026 : rappel de l'offre au-dessus de prénom + téléphone */
+.f-rappel{background:var(--marine);color:#fff;border-radius:14px;padding:14px 16px;margin:0 0 14px;text-align:center}
+.f-rappel-t{margin:0;font-weight:800;font-size:clamp(1.08rem,.95rem + .6vw,1.3rem);line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
+.f-rappel-t mark{background:none;color:var(--jaune);white-space:nowrap}
+.f-rappel-s{margin:6px 0 0;font-size:.875rem;line-height:1.35;color:rgba(255,255,255,.82)}
+.form-bleu .f-rappel{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
