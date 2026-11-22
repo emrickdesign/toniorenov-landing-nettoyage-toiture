@@ -849,3 +849,9 @@ html{scroll-padding-top:16px}
 @media(min-width:1060px){
   .hero-in{padding-block:clamp(16px,2.5vh,28px) 0}
 }
+
+/* ===== 22/11/2026 (Emrick) : bouton d'appel = l'action en gros (« Appeler X pour qu'il vienne »), le numéro en petit dessous. ===== */
+.btn-stack .btn-txt b{font-size:1.125rem;letter-spacing:-.01em;font-variant-numeric:normal;white-space:nowrap}
+.btn-stack .btn-txt small{font-size:.875rem;font-weight:600;opacity:.9;letter-spacing:.02em;font-variant-numeric:tabular-nums;margin-top:3px}
+@media(max-width:560px){.btn-stack .btn-txt b{font-size:1.0625rem}.btn-stack .btn-txt small{font-size:.8125rem}}
+@media(max-width:360px){.btn-stack .btn-txt b{font-size:.96875rem}}
