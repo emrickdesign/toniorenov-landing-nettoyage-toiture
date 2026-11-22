@@ -833,3 +833,19 @@ details p{padding-bottom:18px}
 .f-rappel-t mark{background:none;color:var(--jaune);white-space:nowrap}
 .f-rappel-s{margin:6px 0 0;font-size:.875rem;line-height:1.35;color:rgba(255,255,255,.82)}
 .form-bleu .f-rappel{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
+
+/* ===== 22/11/2026 (Emrick) : plus de barre du haut. Le H1 colle au haut de l'écran
+   et tout le hero remonte, pour que le formulaire soit visible plus tôt. ===== */
+html{scroll-padding-top:16px}
+.hero-in{padding-top:clamp(18px,3vh,40px)}
+.hero .google-badge{margin-top:10px}
+.hero-proof{margin-top:10px}
+.ring-hero{margin-top:8px}
+@media(max-width:1059px){.hero-form{margin-top:12px}}
+@media(max-width:560px){
+  .hero-in{padding:14px var(--gutter) 20px}
+  .hero .google-badge+.hero-cta{margin-top:8px}
+}
+@media(min-width:1060px){
+  .hero-in{padding-block:clamp(16px,2.5vh,28px) 0}
+}

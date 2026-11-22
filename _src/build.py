@@ -1178,12 +1178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="skip" href="#devis">Aller au formulaire de devis</a>
 
-<header class="bar">
-  <div class="bar-in">
-    <a class="brand" href="#top" aria-label="{s['name']} — haut de page">{mark()}<span><b>{s['name']}</b><small>Toiture &amp; peinture · Boucau</small></span></a>
-    <a class="bar-tel-link" href="{tel}" aria-label="Appeler {s['name']} au {s['phone']}">{ic("phone")}<span class="bar-tel-num">{s['phone']}</span></a>
-  </div>
-</header>
+<!-- Barre du haut retirée le 22/11/2026 (Emrick) : le H1 et le formulaire remontent. -->
 
 <main id="top"{' class="form-bleu"' if p.get('form_bleu') else ''}>
 <section class="hero{(' fond-uni fond-' + p['fond']) if p.get('fond') else ''}">
