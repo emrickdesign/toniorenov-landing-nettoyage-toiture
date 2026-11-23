@@ -100,7 +100,18 @@ def gallery_photos(path):
                 (R + 'peinture-chambre-apres.jpg', 'La même chambre repeinte'), (G + 'peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
                 (G + 'peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque')]
     if '/peinture' in path: return peinture
-    if '/nettoyage-facade' in path or '/ravalement' in path: return facade
+    # Ravalement (23/11, Emrick) : la paire avant / après côte à côte, étiquetée, puis les chantiers de ravalement.
+    # 3e élément facultatif = étiquette posée sur la photo (« Avant » / « Après »).
+    ravalement = [('PAIRE', [(R + 'facade-avant.jpg', 'Façade encrassée avant le ravalement', 'Avant'),
+                            (R + 'facade-apres.jpg', 'La même façade ravalée par Tonio', 'Après')],
+                   'La même façade, avant et après Tonio'),
+                  (G + 'ravalement-maison-ville.jpg', 'Maison de ville : enduit et volets refaits'),
+                  (G + 'ravalement-maison-jaune.jpg', 'Enduit et soubassement refaits'),
+                  (G + 'ravalement-enduit-blanc.jpg', 'Façades enduites en blanc cassé'),
+                  (G + 'facade-basque.jpg', 'Façade basque, Côte Basque'),
+                  (G + 'nettoyage-facade.jpg', 'Préparation de façade à Bayonne')]
+    if '/ravalement' in path: return ravalement
+    if '/nettoyage-facade' in path: return facade
     if '/devis' in path: return [x for t in zip(toit, facade, peinture) for x in t] + toit[5:]
     return toit
 
@@ -330,7 +341,11 @@ PAGES = [
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite")],
   offre_mois=True,
-  ring=[("img/ring/facade-avant.jpg", "Façade encrassée et écaillée avant le ravalement de Tonio"), ("img/ring/facade-basque.jpg", "Façade basque blanche refaite par Tonio"), ("img/ring/facade-apres.jpg", "La même façade après le ravalement de Tonio"), ("img/ring/facade-nettoyage.jpg", "Tonio prépare une façade à l'échelle")],
+  # 23/11 : avant / après voisins et étiquetés, + 3 chantiers de ravalement envoyés par Emrick.
+  ring=[("img/ring/facade-apres.jpg", "La même façade après le ravalement de Tonio", "Après"), ("img/ring/facade-avant.jpg", "Façade encrassée et écaillée avant le ravalement de Tonio", "Avant"),
+        ("img/ring/ravalement-maison-ville.jpg", "Maison de ville : enduit et volets refaits"), ("img/ring/facade-basque.jpg", "Façade basque blanche refaite par Tonio"),
+        ("img/ring/ravalement-maison-jaune.jpg", "Enduit et soubassement refaits"), ("img/ring/ravalement-enduit-blanc.jpg", "Façades enduites en blanc cassé"),
+        ("img/ring/facade-nettoyage.jpg", "Tonio prépare une façade à l'échelle")],
   band=[("check", "Prix du devis tenu", "rien en plus sans votre accord"), ("image", "Photos avant/après", "envoyées à la fin du chantier"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
         ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -1004,6 +1019,14 @@ def typo_fr(html):
         out.append(part if part.startswith('<') else fix(part))
     return ''.join(out)
 
+def gal_li(g):
+    """Une carte de la galerie. ('PAIRE', [(src, alt, étiquette) × 2], légende) = avant / après côte à côte."""
+    if g[0] == 'PAIRE':
+        moities = ''.join(f'<div class="gal-moitie"><img src="/{src}" alt="{alt}" loading="lazy" decoding="async"><span class="ba-tag">{tag}</span></div>' for src, alt, tag in g[1])
+        return f'      <li class="gal-pair">{moities}<figcaption>{g[2]}</figcaption></li>' + chr(10)
+    tag = f'<span class="ba-tag">{g[2]}</span>' if len(g) > 2 else ''
+    return f'      <li><img src="/{g[0]}" alt="{g[1]}" loading="lazy" decoding="async">{tag}<figcaption>{g[1]}</figcaption></li>' + chr(10)
+
 def render(p):
     s = SITE
     M = MEDIA[p['out']]
@@ -1026,10 +1049,10 @@ def render(p):
     # Anneau de vraies photos de Tonio (prestation de la page) à la place de la bande de garanties.
     # 12 emplacements (6 colonnes × 2) : les photos tournent en boucle s'il y en a moins.
     if p.get('ring'):
-        ph = [(('' if s.startswith('/') else '/') + s, alt) for s, alt in p['ring']]
+        ph = [(('' if r[0].startswith('/') else '/') + r[0], r[1], r[2] if len(r) > 2 else '') for r in p['ring']]
         cols = ''.join(
             f'<div class="ring3d-col" style="--a:{c * 30}deg">'
-            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c + 6 * k) % len(ph)][0]}" alt="{ph[(c + 6 * k) % len(ph)][1]}" decoding="async" draggable="false"></div>' for k in (0, 1))
+            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c + 6 * k) % len(ph)][0]}" alt="{ph[(c + 6 * k) % len(ph)][1]}" decoding="async" draggable="false">' + (f'<span class="ba-tag">{ph[(c + 6 * k) % len(ph)][2]}</span>' if ph[(c + 6 * k) % len(ph)][2] else '') + '</div>' for k in (0, 1))
             + '</div>' for c in range(6))
         ring_in = f'<div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div>'
         band_html = '' if p.get('ring_hero') else f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio">{ring_in}</section>'
@@ -1215,7 +1238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap">
     <div class="sec-head center">{h2(p.get("gal_t", "Nos derniers chantiers sur la Côte Basque"))}</div>
     <ul class="gal-grid reveal" style="--d:1"{' data-carousel="all"' if p.get('marquee') else ''}>
-{''.join(f'      <li><img src="/{src}" alt="{alt}" loading="lazy" decoding="async"><figcaption>{alt}</figcaption></li>' + chr(10) for src, alt in gallery_photos(p['path']))}    </ul>
+{''.join(gal_li(g) for g in gallery_photos(p['path']))}    </ul>
   </div>
 </section>
 

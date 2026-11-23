@@ -855,3 +855,13 @@ html{scroll-padding-top:16px}
 .btn-stack .btn-txt small{font-size:.875rem;font-weight:600;opacity:.9;letter-spacing:.02em;font-variant-numeric:tabular-nums;margin-top:3px}
 @media(max-width:560px){.btn-stack .btn-txt b{font-size:1.0625rem}.btn-stack .btn-txt small{font-size:.8125rem}}
 @media(max-width:360px){.btn-stack .btn-txt b{font-size:.96875rem}}
+
+/* Étiquette Avant / Après posée sur une photo (anneau + galerie, 23/11) */
+.ring3d-v,.gal-grid li{position:relative}
+.ba-tag{position:absolute;top:10px;left:10px;z-index:2;padding:5px 12px;border-radius:999px;background:rgba(11,24,39,.82);color:#fff;font:700 .8125rem/1 var(--font);letter-spacing:.01em;box-shadow:0 4px 12px -4px rgba(0,0,0,.4);pointer-events:none}
+.ring3d-v .ba-tag{top:10px;left:10px;font-size:1rem;padding:6px 13px}
+.gal-grid li.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:#fff}
+.gal-pair .gal-moitie{position:relative;overflow:hidden;min-width:0}
+.gal-pair .gal-moitie img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.gal-grid li.gal-pair:hover img{transform:scale(1.04)}
+.gal-grid li .ba-tag + figcaption{font-weight:600}
