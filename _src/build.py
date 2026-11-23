@@ -664,8 +664,9 @@ PAGES = [
   title="Réfection de toiture à Bayonne, Anglet, Biarritz : devis · Tonio Rénov'",
   desc="Réfection complète de toiture et toiture neuve à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Le prix du devis est le prix payé, photos du chantier, reprise gratuite si défaut.",
   img='/roof.jpg', pos='58% 40%', crop='50% 60%', alt="Toiture en tuiles canal à refaire, chantier de réfection par Tonio Rénov' sur la Côte Basque",
-  h1="<span class='h1-l'>Réfection de toiture</span><span class='h1-sub'>De la charpente à la couverture</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
-  h1_label="Réfection de toiture ou toiture neuve, de la charpente à la couverture : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
+  h1="<span class='h1-l'>Artisan couvreur</span><span class='h1-sub'>De la charpente à la couverture</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
+  # 23/11 (Emrick) : « Artisan couvreur » en 1re ligne, pour les gens venus de « couvreur… » ou « toiture neuve ».
+  h1_label="Artisan couvreur, réfection de toiture ou toiture neuve, de la charpente à la couverture : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
