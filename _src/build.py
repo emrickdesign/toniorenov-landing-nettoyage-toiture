@@ -145,7 +145,17 @@ def gallery_photos(path):
                 (R + 'toiture-faitage.jpg', 'Faîtage repris sur une toiture en tuiles neuves'),
                 (G + 'toiture-refaite-rives.jpg', 'Toiture refaite : tuiles, faîtage et rives'),
                 (G + 'toiture-chantier.jpg', 'Tonio sur une toiture de la Côte Basque')]
-    if '/nettoyage-facade' in path: return facade
+    # Nettoyage façade (23/11, Emrick) : galerie = anneau. Gardées : la paire avant / après et Tonio au nettoyeur ;
+    # façade basque retirée ; + 4 nettoyages envoyés par Emrick.
+    if '/nettoyage-facade' in path:
+        return [('PAIRE', [(R + 'facade-avant.jpg', 'Façade encrassée avant le nettoyage', 'Avant'),
+                           (R + 'facade-apres.jpg', 'La même façade après Tonio', 'Après')],
+                 'La même façade, avant et après Tonio'),
+                (G + 'nettoyage-facade.jpg', 'Nettoyage de façade en cours'),
+                (G + 'facade-nettoyage-avant-apres.jpg', 'Façade avant et après le nettoyage'),
+                (G + 'facade-nettoyage-enduit.jpg', 'Enduit : à gauche avant, à droite après le nettoyage'),
+                (G + 'facade-nettoyage-echelle.jpg', 'Mur en cours de nettoyage : la partie propre à droite'),
+                (G + 'facade-nettoyage-echafaudage.jpg', 'Nettoyage de façade en cours, sous échafaudage')]
     if '/devis' in path: return [x for t in zip(toit, facade, peinture) for x in t] + toit[5:]
     return toit
 
@@ -477,7 +487,11 @@ PAGES = [
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("layers", "Adapté au support"), ("check", "Prix du devis tenu")],
   offre_mois=True,
-  ring=[("img/ring/facade-nettoyage.jpg", "Tonio nettoie une façade blanche à l'échelle"), ("img/ring/facade-avant.jpg", "Façade encrassée et écaillée avant l'intervention de Tonio"), ("img/ring/facade-basque.jpg", "Façade basque blanche entretenue par Tonio"), ("img/ring/facade-apres.jpg", "La même façade après l'intervention de Tonio")],
+  # 23/11 : mêmes photos que la galerie ; avant / après voisins et étiquetés (« Après » en premier : l'anneau défile de droite à gauche).
+  ring=[("img/ring/facade-apres.jpg", "La même façade après le nettoyage de Tonio", "Après"), ("img/ring/facade-avant.jpg", "Façade encrassée avant l'intervention de Tonio", "Avant"),
+        ("img/ring/facade-nettoyage.jpg", "Tonio nettoie une façade blanche à l'échelle"), ("img/ring/facade-nettoyage-avant-apres.jpg", "Façade avant et après le nettoyage"),
+        ("img/ring/facade-nettoyage-enduit.jpg", "Enduit : à gauche avant, à droite après le nettoyage"), ("img/ring/facade-nettoyage-echelle.jpg", "Mur en cours de nettoyage : la partie propre à droite"),
+        ("img/ring/facade-nettoyage-echafaudage.jpg", "Nettoyage de façade en cours, sous échafaudage")],
   band=[("image", "Photos avant/après", "vous voyez la différence"), ("layers", "Adapté au support", "enduit, crépi ou pierre"),
         ("check", "Prix du devis tenu", "rien en plus sans votre accord"), ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"),
         ("shield", "Décennale + RC Pro", "artisan assuré"), ("home", "Artisan depuis 2009", "basé à Boucau")],

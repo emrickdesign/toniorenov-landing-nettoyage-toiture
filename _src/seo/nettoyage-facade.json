@@ -53,7 +53,7 @@
     {
      "q": "Nettoyage façade pierre",
      "a": "Pour un nettoyage façade pierre, la pierre apparente ne se traite pas comme un enduit. Tonio adapte le nettoyage au support. Même logique pour un nettoyage crépi ou pour le nettoyage des façades en enduit.",
-     "img": "img/galerie-real-facade-basque.jpg",
+     "img": "img/galerie-real-facade-nettoyage-enduit.jpg",
      "tag": "Pierre",
      "ic": "layers"
     }
@@ -97,7 +97,7 @@
     {
      "q": "Hydrofuge façade : enduit, crépi ou pierre",
      "a": "Le choix du traitement dépend du support. Pour un hydrofuge façade, Tonio regarde le mur avant de proposer quoi que ce soit. Si vous cherchez une « façade hydrofuge », sachez que le traitement ne supprime pas toujours le retour de la mousse : il le limite.",
-     "img": "img/ring/facade-basque.jpg",
+     "img": "img/galerie-real-facade-nettoyage-echafaudage.jpg",
      "tag": "Enduit, crépi, pierre",
      "ic": "layers"
     },
@@ -118,7 +118,7 @@
     {
      "q": "Traitement façade ou traitement des façades ?",
      "a": "Les gens tapent « traitement façade » ou « traitement des façades » pour parler de la même chose : protéger le mur contre la mousse et l'eau après un nettoyage. C'est le traitement hydrofuge façade ou anti-mousse. Tonio l'écrit sur le devis et reprend gratuitement un défaut sur la zone traitée.",
-     "img": "img/galerie-real-facade-basque.jpg",
+     "img": "img/galerie-real-facade-nettoyage-echafaudage.jpg",
      "tag": "Traitement",
      "ic": "shield-check"
     }
@@ -153,7 +153,7 @@
     {
      "q": "Nettoyage façade autour de moi",
      "a": "Vous cherchez un « nettoyage façade autour de moi » ? Tonio est basé à Boucau et couvre Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et le Sud-Landes : un artisan du coin. Même chose pour « façade nettoyage » : c'est lui qui vient.",
-     "img": "img/ring/facade-basque.jpg",
+     "img": "img/galerie-real-facade-nettoyage-enduit.jpg",
      "tag": "Artisan du coin",
      "ic": "pin"
     }
