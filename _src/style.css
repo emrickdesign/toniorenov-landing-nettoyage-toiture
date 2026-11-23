@@ -736,8 +736,8 @@ details p{padding-bottom:18px}
   summary{font-size:.98rem;padding:14px 0}
 }
 /* Ajustements mobile pour tenir dans un écran (20/11) */
-.opts[data-field="delai"]{grid-template-columns:1fr 1fr}
-.opts[data-field="delai"] .opt{min-height:58px;padding:10px 12px 10px 10px;gap:9px;font-size:.9375rem}
+/* 23/11 : la question du délai n'est plus forcée sur 2 colonnes au téléphone (texte coupé mot par mot,
+   « Dès / que / possi / ble ») : une colonne comme les autres questions, 2 colonnes à partir de 560 px. */
 .faq-plus{display:block;margin:16px auto 0;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:none;color:#fff;font:700 .9375rem var(--font);cursor:pointer}
 .faq-list:not(.tout) details.faq-cache{display:none}
 @media(min-width:1060px){.faq-list details.faq-cache{display:block!important}.faq-plus{display:none}}

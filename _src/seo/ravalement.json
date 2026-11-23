@@ -20,7 +20,7 @@
     },
     {
      "q": "Ravalement façade Saint-Jean-de-Luz",
-     "a": "Pour un ravalement façade Saint-Jean-de-Luz, Tonio se déplace aussi. Façade en enduit, en crépi ou en pierre, volets rouge basque : il examine le support avant de proposer quoi que ce soit."
+     "a": "Pour un ravalement façade Saint-Jean-de-Luz, Tonio se déplace aussi. Façade en enduit, en crépi ou en pierre : il examine le support avant de proposer quoi que ce soit."
     },
     {
      "q": "Ravalement façade Boucau",
@@ -138,7 +138,7 @@
   },
   {
    "h2": "Peintre façade : peinture de façade extérieure",
-   "lead": "Un <strong>peintre façade</strong> prépare le mur avant de peindre. Tonio utilise des peintures professionnelles Tollens pour les façades, les volets et les boiseries.",
+   "lead": "Un <strong>peintre façade</strong> prépare le mur avant de peindre. Tonio utilise des peintures professionnelles Tollens pour les façades.",
    "items": [
     {
      "q": "Peintre façade ou entreprise peinture façade ?",
@@ -149,7 +149,7 @@
     },
     {
      "q": "Peinture façade entreprise : et le rouge basque ?",
-     "a": "Vous tapez « peinture façade entreprise » pour des volets rouge basque ? Tonio conseille la finition et la teinte, et peint aussi les volets et les boiseries. La couleur se choisit avec vous avant de commencer.",
+     "a": "Vous tapez « peinture façade entreprise » ? Tonio conseille la finition et la teinte du mur, et prépare le support avant de peindre. La couleur se choisit avec vous avant de commencer.",
      "img": "img/ring/facade-basque.jpg",
      "tag": "Rouge basque",
      "ic": "image"

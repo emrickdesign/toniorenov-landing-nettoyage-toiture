@@ -105,12 +105,23 @@ def gallery_photos(path):
     ravalement = [('PAIRE', [(R + 'facade-avant.jpg', 'Façade encrassée avant le ravalement', 'Avant'),
                             (R + 'facade-apres.jpg', 'La même façade ravalée par Tonio', 'Après')],
                    'La même façade, avant et après Tonio'),
-                  (G + 'ravalement-maison-ville.jpg', 'Maison de ville : enduit et volets refaits'),
+                  (G + 'ravalement-maison-ville.jpg', 'Façade de maison de ville refaite'),
                   (G + 'ravalement-maison-jaune.jpg', 'Enduit et soubassement refaits'),
                   (G + 'ravalement-enduit-blanc.jpg', 'Façades enduites en blanc cassé'),
                   (G + 'facade-basque.jpg', 'Façade basque, Côte Basque'),
                   (G + 'nettoyage-facade.jpg', 'Préparation de façade à Bayonne')]
     if '/ravalement' in path: return ravalement
+    # Nettoyage toiture (23/11, Emrick) : la galerie reprend EXACTEMENT les photos de l'anneau du haut
+    # (démoussage uniquement, jamais de réfection), avec la paire avant / après côte à côte.
+    entretien = [('PAIRE', [(R + 'toiture-mousse-avant.jpg', 'Toiture couverte de mousse avant le passage de Tonio', 'Avant'),
+                            (R + 'toiture-mousse-apres.jpg', 'La même toiture après démoussage et traitement hydrofuge', 'Après')],
+                  'La même toiture, avant et après le démoussage'),
+                 (G + 'toiture-ardoise-demoussage.jpg', 'Ardoises : à gauche avant, à droite après le démoussage'),
+                 (G + 'toiture-velux-avant-apres.jpg', 'Tuiles et Velux, avant et après le nettoyage'),
+                 (G + 'toiture-tuiles-plates-demoussage.jpg', 'Tuiles plates : à gauche avant, à droite après'),
+                 (G + 'toiture-tuiles-nettoyees.jpg', 'Tuiles mécaniques après le nettoyage'),
+                 (G + 'toiture-chantier.jpg', 'Tonio sur une toiture à nettoyer')]
+    if '/entretien' in path: return entretien
     if '/nettoyage-facade' in path: return facade
     if '/devis' in path: return [x for t in zip(toit, facade, peinture) for x in t] + toit[5:]
     return toit
@@ -219,7 +230,11 @@ PAGES = [
   proof=[("shield-check", "Produit DALEP 2100"), ("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
   fond='marine',  # TEST 18/11 : fond uni à la place de la photo
   ring_hero=True, form_titre_carte=True, h1_label="Nettoyage de toiture, démoussage + traitement hydrofuge : 9 € le m² au lieu de 17 € le m²",
-  ring=[("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio"), ("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
+  # 23/11 : avant / après voisins et étiquetés (« Après » en premier : l'anneau défile de droite à gauche), + 4 démoussages.
+  ring=[("img/ring/toiture-mousse-apres.jpg", "La même toiture après démoussage et traitement hydrofuge", "Après"), ("img/ring/toiture-mousse-avant.jpg", "Toiture couverte de mousse avant le passage de Tonio", "Avant"),
+        ("img/ring/toiture-ardoise-demoussage.jpg", "Ardoises : à gauche avant, à droite après le démoussage"), ("img/ring/toiture-velux-avant-apres.jpg", "Tuiles et Velux, avant et après le nettoyage"),
+        ("img/ring/toiture-tuiles-plates-demoussage.jpg", "Tuiles plates : à gauche avant, à droite après"), ("img/ring/toiture-tuiles-nettoyees.jpg", "Tuiles mécaniques après le nettoyage"),
+        ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture à nettoyer")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone traitée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
         ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -343,7 +358,7 @@ PAGES = [
   offre_mois=True,
   # 23/11 : avant / après voisins et étiquetés, + 3 chantiers de ravalement envoyés par Emrick.
   ring=[("img/ring/facade-apres.jpg", "La même façade après le ravalement de Tonio", "Après"), ("img/ring/facade-avant.jpg", "Façade encrassée et écaillée avant le ravalement de Tonio", "Avant"),
-        ("img/ring/ravalement-maison-ville.jpg", "Maison de ville : enduit et volets refaits"), ("img/ring/facade-basque.jpg", "Façade basque blanche refaite par Tonio"),
+        ("img/ring/ravalement-maison-ville.jpg", "Façade de maison de ville refaite"), ("img/ring/facade-basque.jpg", "Façade basque blanche refaite par Tonio"),
         ("img/ring/ravalement-maison-jaune.jpg", "Enduit et soubassement refaits"), ("img/ring/ravalement-enduit-blanc.jpg", "Façades enduites en blanc cassé"),
         ("img/ring/facade-nettoyage.jpg", "Tonio prépare une façade à l'échelle")],
   band=[("check", "Prix du devis tenu", "rien en plus sans votre accord"), ("image", "Photos avant/après", "envoyées à la fin du chantier"),
@@ -381,7 +396,7 @@ PAGES = [
        ("Mes fissures sont-elles graves ?", "Une microfissure se traite facilement. Une fissure qui traverse l'enduit laisse l'eau entrer dans le mur. Tonio regarde sur place, vous montre en photo et vous dit franchement ce qu'il faut faire, et ce qui peut attendre."),
        ("Faut-il forcément repeindre toute la façade ?", "Pas forcément. Selon l'état du mur, un nettoyage ou un décrassage peut suffire, ou il faut reprendre l'enduit avant de repeindre. Sur place, Tonio vous dit ce qui est utile, et c'est vous qui décidez."),
        ("Vous nettoyez aussi les façades en pierre ?", "Oui, Tonio nettoie les façades, y compris en pierre. Il regarde d'abord le support (enduit, crépi, pierre apparente) pour choisir un nettoyage adapté, sans abîmer le mur."),
-       ("Quelles peintures utilisez-vous ?", "Des peintures professionnelles Tollens, pour les façades, les volets et les boiseries. Tonio vous conseille la finition et la teinte, rouge basque comprise."),
+       ("Quelles peintures utilisez-vous ?", "Des peintures professionnelles Tollens, pour les façades. Tonio vous conseille la finition et la teinte avant de commencer."),
        ("Combien coûte un ravalement de façade ?", "Ça dépend de la surface, de l'état de l'enduit, des réparations à faire et de la peinture choisie. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer, avec les 30 % de remise du mois déjà déduits. Ce prix est celui que vous payez."),
        ("Combien de temps dure un chantier de façade ?", "Ça dépend de la surface et des réparations à faire. Tonio vous en parle sur place, au moment du devis."),
        ("Vous êtes artisan ou vous sous-traitez ?", "Tonio travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui regarde votre façade et fait le devis est celui qui travaille dessus."),
@@ -412,7 +427,7 @@ PAGES = [
     p="<strong>Peinture de façade extérieure</strong> par un peintre façade qui prépare le mur avant de peindre, avec des peintures professionnelles Tollens.",
     items=[("roller", "Peinture façade extérieure", "Peinture de façade extérieure sur enduit, crépi ou ancienne peinture : préparation du support, puis finition adaptée à l'exposition."),
            ("home", "Peintre façade à Bayonne", "Entreprise de peinture de façade à Bayonne, Anglet, Biarritz : un seul interlocuteur, du devis jusqu'à la fin du chantier."),
-           ("check", "Rouge basque, volets et boiseries", "Tonio peint aussi les volets et les boiseries, rouge basque compris. La teinte se choisit avec vous avant de commencer."),
+           ("check", "Teinte choisie avec vous", "La teinte et la finition de la façade se choisissent avec vous avant de commencer."),
            ("shield-check", "Chantier propre", "Le chantier est nettoyé avant que Tonio reparte, et les photos après vous sont envoyées.")]),
    dict(t="Prix, tarif et devis de ravalement de façade",
     p="<strong>Devis gratuit</strong>, établi sur place après examen de la façade. Le prix annoncé est le prix payé.",
