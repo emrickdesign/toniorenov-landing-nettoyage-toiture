@@ -122,6 +122,20 @@ def gallery_photos(path):
                  (G + 'toiture-tuiles-nettoyees.jpg', 'Tuiles mécaniques après le nettoyage'),
                  (G + 'toiture-chantier.jpg', 'Tonio sur une toiture à nettoyer')]
     if '/entretien' in path: return entretien
+    # Fuite / réparation (23/11, Emrick) : galerie = photos de l'anneau, réparations seulement (jamais de démoussage).
+    # Versions img/ring/ pour faîtage et réfection : celles de la galerie gardaient le badge « Travaux réalisés par ».
+    couvreur = [(G + 'toiture-noue-zinc.jpg', 'Noue en zinc et tuiles reprises par Tonio'),
+                (G + 'toiture-reparation-ecran.jpg', 'Réparation en cours : écran sous-toiture et liteaux neufs'),
+                (R + 'toiture-faitage.jpg', 'Faîtage et tuiles repris par Tonio'),
+                (G + 'toiture-reparation-egout.jpg', "Tuiles déposées pour reprendre l'écran sous-toiture"),
+                (R + 'toiture-refection.jpg', 'Tuiles reposées sur écran sous-toiture'),
+                (G + 'toiture-chantier.jpg', 'Tonio sur une toiture de la Côte Basque')]
+    if '/couvreur' in path: return couvreur
+    # Réfection : même règle, les photos de l'anneau (aucune photo de démoussage).
+    if '/refection-toiture' in path:
+        return [(R + 'toiture-refection.jpg', 'Réfection en cours : écran sous-toiture, liteaux et tuiles neuves'),
+                (R + 'toiture-faitage.jpg', 'Faîtage repris sur une toiture en tuiles neuves'),
+                (G + 'toiture-chantier.jpg', 'Tonio sur une toiture de la Côte Basque')]
     if '/nettoyage-facade' in path: return facade
     if '/devis' in path: return [x for t in zip(toit, facade, peinture) for x in t] + toit[5:]
     return toit
@@ -548,7 +562,10 @@ PAGES = [
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("clock", "Rappel sous 24 h"), ("check", "Prix du devis tenu")],
   offre_note="Pendant 2&nbsp;ans après l’intervention de Tonio",
-  ring=[("img/ring/toiture-faitage.jpg", "Faîtage et tuiles repris par Tonio"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture de la Côte Basque"), ("img/ring/toiture-refection.jpg", "Tuiles reposées par Tonio sur un écran sous-toiture")],
+  # 23/11 : réparations uniquement, + 3 photos envoyées par Emrick (noue zinc, écran sous-toiture refait).
+  ring=[("img/ring/toiture-noue-zinc.jpg", "Noue en zinc et tuiles reprises par Tonio"), ("img/ring/toiture-reparation-ecran.jpg", "Réparation en cours : écran sous-toiture et liteaux neufs"),
+        ("img/ring/toiture-faitage.jpg", "Faîtage et tuiles repris par Tonio"), ("img/ring/toiture-reparation-egout.jpg", "Tuiles déposées pour reprendre l'écran sous-toiture"),
+        ("img/ring/toiture-refection.jpg", "Tuiles reposées par Tonio sur un écran sous-toiture"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture de la Côte Basque")],
   band=[("image", "Photos avant/après", "envoyées le jour même"), ("check", "Prix du devis tenu", "rien en plus sans votre accord"),
         ("shield-check", "Reprise gratuite", "si défaut sur la zone réparée"), ("shield", "Décennale + RC Pro", "artisan assuré"),
         ("home", "Artisan depuis 2009", "basé à Boucau")],
