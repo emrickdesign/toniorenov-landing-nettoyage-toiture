@@ -1,10 +1,10 @@
 {
- "title": "Réfection toiture à Bayonne, Anglet, Biarritz, Boucau · Tonio Rénov'",
- "desc": "Réfection toiture à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Devis gratuit sur place, le prix du devis est le prix payé.",
+ "title": "Réfection toiture, charpente : Bayonne, Anglet, Biarritz · Tonio Rénov'",
+ "desc": "Réfection toiture à Bayonne, Anglet, Biarritz et Boucau : charpente, couverture ou toiture complète. −30 % sur le devis ce mois-ci, prix du devis tenu.",
  "sections": [
   {
    "h2": "Réfection toiture à Bayonne, Anglet, Biarritz et Boucau",
-   "lead": "Tonio Rénov' est une <strong>entreprise de couverture</strong> basée à Boucau. Pour votre <strong>réfection toiture</strong>, c'est Tonio qui se déplace dans chaque ville, sans sous-traitance.",
+   "lead": "Tonio Rénov' est une <strong>entreprise de couverture</strong> et de charpente basée à Boucau. Pour votre <strong>réfection toiture</strong>, c'est Tonio qui se déplace dans chaque ville, sans sous-traitance.",
    "items": [
     {
      "q": "Réfection toiture Bayonne",
@@ -32,7 +32,7 @@
     {
      "q": "Refaire une toiture : que comprend le chantier ?",
      "a": "Pour refaire une toiture, Tonio dépose l'ancienne couverture, contrôle la charpente, pose les liteaux, l'écran sous-toiture, les tuiles neuves, le faîtage et la zinguerie, puis nettoie le chantier. Le devis détaille ce qui est prévu, poste par poste.",
-     "img": "img/galerie-real-refection-toiture.jpg",
+     "img": "img/galerie-real-toiture-pose-tuiles-neuves.jpg",
      "tag": "Le chantier",
      "ic": "home"
     },
@@ -45,8 +45,8 @@
     },
     {
      "q": "Refaire sa toiture : et la charpente ?",
-     "a": "Pour refaire sa toiture, la charpente est contrôlée une fois la couverture déposée. Tonio vous dit si elle doit être reprise, photos à l'appui. Rien n'est ajouté au devis sans votre accord écrit.",
-     "img": "img/ring/toiture-chantier.jpg",
+     "a": "Pour refaire sa toiture, la charpente est contrôlée une fois la couverture déposée. Tonio vous dit si elle doit être reprise, photos à l'appui. S'il faut la reprendre, Tonio le fait lui-même : il fait la charpente comme la couverture. Rien n'est ajouté au devis sans votre accord écrit.",
+     "img": "img/galerie-real-charpente-interieure.jpg",
      "tag": "Charpente",
      "ic": "tools"
     },
@@ -67,7 +67,7 @@
     {
      "q": "Prix refaire toiture : combien ça coûte ?",
      "a": "Le prix pour refaire une toiture dépend de la surface, de la forme du toit, du type de tuiles et de l'état de la charpente. Tonio vous donne le prix sur place, dans un devis gratuit, avec les 30 % de remise du mois déjà déduits. Ce prix est celui que vous payez.",
-     "img": "img/galerie-real-refection-toiture.jpg",
+     "img": "img/galerie-real-toiture-couverture-neuve.jpg",
      "tag": "−30 % ce mois-ci",
      "ic": "check"
     },
@@ -101,7 +101,7 @@
    "items": [
     {
      "q": "Couvreur toiture : qui monte sur votre toit ?",
-     "a": "Tonio est artisan couvreur depuis 2009, basé à Boucau. Pas de commercial, pas de sous-traitance : le couvreur toiture qui vous répond est celui qui monte sur votre toit. Il fait tous les types de toiture."
+     "a": "Tonio est artisan couvreur depuis 2009, basé à Boucau. Pas de commercial, pas de sous-traitance : le couvreur toiture qui vous répond est celui qui monte sur votre toit. Il fait tous les types de toiture, charpente comprise."
     },
     {
      "q": "Couvreur autour de moi, couvreur à proximité",
@@ -120,7 +120,7 @@
   },
   {
    "h2": "Charpentier et couvreur : la charpente et la rénovation complète toiture",
-   "lead": "Vous cherchez un <strong>charpentier</strong> parce que la toiture est à refaire ? Chez Tonio Rénov', c'est le même artisan qui s'occupe de la couverture et qui contrôle la charpente.",
+   "lead": "Vous cherchez un <strong>charpentier</strong> ? Chez Tonio Rénov', le même artisan fait la charpente et la couverture : la charpente seule, la couverture seule, ou la toiture complète de la charpente à la couverture.",
    "items": [
     {
      "q": "Charpentier Bayonne, charpentier Anglet : qui vient chez vous ?",

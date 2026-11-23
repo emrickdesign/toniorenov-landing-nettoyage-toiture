@@ -96,9 +96,12 @@ def gallery_photos(path):
     facade = [(G + 'facade-basque.jpg', 'Façade basque, Côte Basque'), (R + 'facade-avant.jpg', 'Façade encrassée avant les travaux'),
               (R + 'facade-apres.jpg', 'La même façade après Tonio'), (G + 'nettoyage-facade.jpg', 'Nettoyage de façade à Bayonne'),
               (R + 'facade-nettoyage.jpg', 'Nettoyage de façade en cours')]
-    peinture = [(G + 'peinture-sejour.jpg', 'Peinture & moulures à Anglet'), (R + 'peinture-chambre-avant.jpg', 'Chambre avant la peinture'),
-                (R + 'peinture-chambre-apres.jpg', 'La même chambre repeinte'), (G + 'peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
-                (G + 'peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque')]
+    # 23/11 : les mêmes photos que l'anneau du haut (3 gardées + 7 nouveaux chantiers).
+    peinture = [(G + 'peinture-cheminee.jpg', 'Mur de cheminée peint en anthracite'), (G + 'peinture-sejour.jpg', 'Peinture & moulures à Anglet'),
+                (G + 'peinture-soubassement-vert.jpg', 'Soubassement, porte et escalier peints en vert'), (G + 'peinture-bleu.jpg', 'Peinture intérieure à Bayonne'),
+                (G + 'peinture-appartement-blanc.jpg', 'Appartement entièrement repeint en blanc'), (G + 'peinture-mur-vert.jpg', 'Mur de salon repeint en vert sauge'),
+                (G + 'peinture-dressing.jpg', 'Peinture sur-mesure Côte Basque'), (G + 'peinture-couloir-bleu.jpg', 'Couloir avec un mur bleu canard'),
+                (G + 'peinture-salle-de-bain.jpg', 'Salle de bain, mur repeint en terracotta'), (G + 'peinture-salon-creme.jpg', 'Salon repeint en crème')]
     if '/peinture' in path: return peinture
     # Ravalement (23/11, Emrick) : la paire avant / après côte à côte, étiquetée, puis les chantiers de ravalement.
     # 3e élément facultatif = étiquette posée sur la photo (« Avant » / « Après »).
@@ -133,8 +136,14 @@ def gallery_photos(path):
     if '/couvreur' in path: return couvreur
     # Réfection : même règle, les photos de l'anneau (aucune photo de démoussage).
     if '/refection-toiture' in path:
-        return [(R + 'toiture-refection.jpg', 'Réfection en cours : écran sous-toiture, liteaux et tuiles neuves'),
+        # 23/11 : + charpente (Tonio fait la charpente seule, la couverture seule ou la toiture complète).
+        return [(G + 'charpente-interieure.jpg', 'Charpente bois neuve, vue de l\'intérieur'),
+                (G + 'toiture-couverture-neuve.jpg', 'Couverture neuve en tuiles et faîtage'),
+                (R + 'toiture-refection.jpg', 'Réfection en cours : écran sous-toiture, liteaux et tuiles neuves'),
+                (G + 'charpente-preau.jpg', 'Charpente bois d\'une construction neuve'),
+                (G + 'toiture-pose-tuiles-neuves.jpg', 'Pose de tuiles neuves sur liteaux et écran'),
                 (R + 'toiture-faitage.jpg', 'Faîtage repris sur une toiture en tuiles neuves'),
+                (G + 'toiture-refaite-rives.jpg', 'Toiture refaite : tuiles, faîtage et rives'),
                 (G + 'toiture-chantier.jpg', 'Tonio sur une toiture de la Côte Basque')]
     if '/nettoyage-facade' in path: return facade
     if '/devis' in path: return [x for t in zip(toit, facade, peinture) for x in t] + toit[5:]
@@ -641,14 +650,18 @@ PAGES = [
   title="Réfection de toiture à Bayonne, Anglet, Biarritz : devis · Tonio Rénov'",
   desc="Réfection complète de toiture et toiture neuve à Bayonne, Anglet, Biarritz et Boucau : −30 % sur le devis ce mois-ci. Le prix du devis est le prix payé, photos du chantier, reprise gratuite si défaut.",
   img='/roof.jpg', pos='58% 40%', crop='50% 60%', alt="Toiture en tuiles canal à refaire, chantier de réfection par Tonio Rénov' sur la Côte Basque",
-  h1="<span class='h1-l'>Réfection de toiture</span><span class='h1-sub'>Rénovation ou toiture neuve</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
-  h1_label="Réfection de toiture : rénovation ou toiture neuve, −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
+  h1="<span class='h1-l'>Réfection de toiture</span><span class='h1-sub'>De la charpente à la couverture</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
+  h1_label="Réfection de toiture ou toiture neuve, de la charpente à la couverture : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
   ghost="Appeler Tonio pour qu'il vienne",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
-  proof=[("check", "Prix du devis tenu"), ("image", "Photos du chantier"), ("search", "Réparer si ça suffit")],
+  proof=[("tools", "Charpente et couverture"), ("check", "Prix du devis tenu"), ("image", "Photos du chantier"), ("search", "Réparer si ça suffit")],
   offre_mois=True,
-  ring=[("img/ring/toiture-refection.jpg", "Réfection de toiture en cours par Tonio : écran sous-toiture, liteaux et tuiles neuves"), ("img/ring/toiture-faitage.jpg", "Faîtage repris sur une toiture en tuiles neuves"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture de la Côte Basque")],
+  # 23/11 : mêmes photos que la galerie du bas, charpente comprise.
+  ring=[("img/ring/charpente-interieure.jpg", "Charpente bois neuve, vue de l'intérieur"), ("img/ring/toiture-couverture-neuve.jpg", "Couverture neuve en tuiles et faîtage"),
+        ("img/ring/toiture-refection.jpg", "Réfection de toiture en cours par Tonio : écran sous-toiture, liteaux et tuiles neuves"), ("img/ring/charpente-preau.jpg", "Charpente bois d'une construction neuve"),
+        ("img/ring/toiture-pose-tuiles-neuves.jpg", "Pose de tuiles neuves sur liteaux et écran"), ("img/ring/toiture-faitage.jpg", "Faîtage repris sur une toiture en tuiles neuves"),
+        ("img/ring/toiture-refaite-rives.jpg", "Toiture refaite : tuiles, faîtage et rives"), ("img/ring/toiture-chantier.jpg", "Tonio sur une toiture de la Côte Basque")],
   band=[("check", "Prix du devis tenu", "rien en plus sans accord écrit"), ("image", "Photos à chaque étape", "avant, pendant et après"),
         ("search", "Réparer si ça suffit", "vérifié avant de tout refaire"), ("shield-check", "Reprise gratuite", "si défaut sur la zone refaite"),
         ("shield", "Décennale + RC Pro", "artisan assuré"), ("home", "Artisan depuis 2009", "basé à Boucau")],
@@ -666,6 +679,7 @@ PAGES = [
     "Le prix du devis est le prix que vous payez. Rien en plus sans votre accord écrit",
     "Les photos de votre toit, avant, pendant et après le chantier",
     "Une réparation suffit ? Il vous le dit, photos à l'appui, au lieu de vous vendre une toiture neuve",
+    "Charpente seule, couverture seule ou toiture complète de la charpente à la couverture : Tonio fait les deux",
     "L'état de la charpente contrôlé, et dit franchement s'il faut la reprendre",
     "Pas de vendeur, pas de sous-traitance : Tonio vient, chiffre et travaille lui-même",
     "Un défaut sur la zone refaite ? Tonio revient le reprendre gratuitement"]),
@@ -673,7 +687,8 @@ PAGES = [
   form=dict(t="Profitez des −30&nbsp;%", sub="<strong>30 secondes</strong>, sans engagement. Tonio vous rappelle <strong>sous 24h</strong>",
     t2="Profitez des −30&nbsp;%, Tonio vous rappelle", q1="Quel est votre projet ?", q_coord="Où Tonio peut vous rappeler ?", rappel="des <mark>−30&nbsp;% sur le devis</mark>",
     # 19/11 (Emrick) : refaire tout / refaire une partie / faire à neuf / à évaluer, puis le délai. Type de toiture retiré.
-    etapes=[('probleme', "Quel est votre projet ?", [("Refaire toute la toiture", "Refaire toute la toiture", "home"), ("Refaire une partie de la toiture", "Refaire une partie", "layers"), ("Faire une toiture neuve", "Faire une toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
+    # 23/11 : + « Charpente seule » (Tonio fait aussi la charpente).
+    etapes=[('probleme', "Quel est votre projet ?", [("Refaire toute la toiture", "Refaire toute la toiture", "home"), ("Refaire une partie de la toiture", "Refaire une partie", "layers"), ("Faire une toiture neuve", "Faire une toiture neuve", "tools"), ("Charpente seule", "Charpente seule", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")]),
             ('delai', Q_DELAI, O_DELAI)],
     o1=[("Refaire toute la toiture", "Refaire toute la toiture", "home"), ("Refaire une partie de la toiture", "Refaire une partie", "layers"), ("Faire une toiture neuve", "Faire une toiture neuve", "tools"), ("À évaluer, je ne sais pas encore", "À évaluer", "search")],
     q2="Quel type de toiture avez-vous ?", o2=OPT_TOIT, q3="Surface approximative de la toiture ?", o3=OPT_SURF),
@@ -681,12 +696,13 @@ PAGES = [
        ("Le prix du devis peut-il changer pendant la réfection ?", "Le prix du devis est celui que vous payez. Si Tonio découvre autre chose une fois la couverture déposée, il vous envoie la photo et vous décidez. Rien n'est fait en plus sans votre accord écrit."),
        ("Allez-vous vraiment me dire si une réparation suffit ?", "Oui. Tonio commence par contrôler la couverture. Si une réparation suffit, il vous le dit, photos à l'appui, et vous ne payez pas une toiture neuve pour rien. S'il faut refaire, il vous montre pourquoi."),
        ("Vais-je voir des photos de ma toiture ?", "Oui. Tonio prend votre toit en photo avant, pendant et après le chantier, et vous les envoie. Vous voyez l'ancienne couverture, l'état de la charpente et le travail fini sans monter sur l'échelle."),
-       ("Faut-il refaire la charpente avec la toiture ?", "Pas forcément. Tonio contrôle l'état de la charpente quand la couverture est déposée et vous dit si elle doit être reprise, photos à l'appui. Rien n'est ajouté au devis sans votre accord écrit."),
+       ("Faites-vous aussi la charpente ?", "Oui. Tonio fait la charpente seule, la couverture seule, ou la toiture complète, de la charpente à la couverture. Un seul artisan et un seul devis pour tout le toit."),
+       ("Faut-il refaire la charpente avec la toiture ?", "Pas forcément. Tonio contrôle l'état de la charpente quand la couverture est déposée et vous dit si elle doit être reprise, photos à l'appui. S'il faut la reprendre, il le fait lui-même. Rien n'est ajouté au devis sans votre accord écrit."),
        ("Que comprend une réfection complète de toiture ?", "La dépose de l'ancienne couverture, le contrôle de la charpente, les liteaux, l'écran sous-toiture, les tuiles neuves, le faîtage et la zinguerie, puis le nettoyage du chantier. Le devis détaille ce qui est prévu."),
-       ("Faites-vous aussi les toitures neuves et les constructions ?", "Oui, Tonio construit des toitures complètes : maison neuve, extension, couverture neuve. Il chiffre sur place ou sur plan, et le prix du devis est le prix que vous payez."),
+       ("Faites-vous aussi les toitures neuves et les constructions ?", "Oui, Tonio construit des toitures complètes, de la charpente à la couverture : maison neuve, extension, préau, couverture neuve. Il chiffre sur place ou sur plan, et le prix du devis est le prix que vous payez."),
        ("Combien coûte la réfection d'une toiture ?", "Ça dépend de la surface, de la forme du toit, du type de tuiles et de l'état de la charpente. Tonio vous donne le prix sur place, dans un devis gratuit, avant de commencer, avec les 30 % de remise du mois déjà déduits. Ce prix est celui que vous payez."),
        ("Combien de temps dure une réfection de toiture ?", "Ça dépend de la surface et de l'état de la charpente. Tonio vous en parle sur place, au moment du devis."),
-       ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio est couvreur et travaille lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
+       ("Vous êtes couvreur ou vous sous-traitez ?", "Tonio fait la charpente et la couverture lui-même. Pas de commercial, pas de sous-traitance : celui qui monte sur votre toit est celui qui a fait le devis."),
        ("Quelles garanties avez-vous ?", "Garantie décennale et assurance RC Pro sur les travaux, plus la reprise gratuite si un défaut apparaît sur la zone refaite."),
        FAQ_ZONE],
   cta=dict(t="−30 % sur votre devis de toiture, ce mois-ci", p="Tonio monte, prend les photos et vous donne <strong>un devis dont le prix est le prix payé</strong>."),
@@ -772,10 +788,12 @@ PAGES = [
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("roller", "Tonio peint lui-même"), ("shield", "Meubles protégés"), ("check", "Propre chaque soir")],
   offre_mois=True,
-  ring=[("img/ring/peinture-sejour-apres.jpg", "Séjour repeint par Tonio, après"), ("img/ring/peinture-sejour-avant.jpg", "Séjour avant les travaux de peinture"),
-        ("img/ring/peinture-bleu.jpg", "Tonio peint une chambre en bleu clair"), ("img/ring/peinture-chambre-avant.jpg", "Chambre avant les travaux de peinture"),
-        ("img/ring/peinture-dressing.jpg", "Dressing et murs repeints par Tonio"), ("img/ring/peinture-chambre-apres.jpg", "La même chambre repeinte par Tonio"),
-        ("img/ring/peinture-sejour.jpg", "Salon à moulures repeint par Tonio")],
+  # 23/11 (Emrick) : gardées salon à moulures, dressing, chambre bleu clair ; retirées séjour et chambre avant/après ; + 7 chantiers.
+  ring=[("img/ring/peinture-cheminee.jpg", "Mur de cheminée peint en anthracite"), ("img/ring/peinture-sejour.jpg", "Salon à moulures repeint par Tonio"),
+        ("img/ring/peinture-soubassement-vert.jpg", "Soubassement, porte et escalier peints en vert"), ("img/ring/peinture-bleu.jpg", "Tonio peint une chambre en bleu clair"),
+        ("img/ring/peinture-appartement-blanc.jpg", "Appartement entièrement repeint en blanc"), ("img/ring/peinture-mur-vert.jpg", "Mur de salon repeint en vert sauge"),
+        ("img/ring/peinture-dressing.jpg", "Dressing et murs repeints par Tonio"), ("img/ring/peinture-couloir-bleu.jpg", "Couloir avec un mur bleu canard"),
+        ("img/ring/peinture-salle-de-bain.jpg", "Salle de bain, mur repeint en terracotta"), ("img/ring/peinture-salon-creme.jpg", "Salon repeint en crème")],
   band=[("check", "Devis gratuit", "sur place")],
   signs=dict(t="", p="", items=[]),
   method_steps=[],
