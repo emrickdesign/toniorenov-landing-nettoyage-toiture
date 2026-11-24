@@ -16,6 +16,10 @@ SITE = dict(
     # Canonical : toniorenov.fr est le domaine principal utilisé par les Google Ads V3.
     # Le sous-domaine nettoyage-toiture.toniorenov.fr sert la même build mais pointe toniorenov.fr via canonical.
     base="https://toniorenov.fr",
+    # Identité légale (attestation RNE du 16/06/2026 + avis Sirene du 10/06/2026).
+    legal_nom="Tonio VIS", legal_forme="entrepreneur individuel (EI)",
+    siren="511 400 814", siret="511 400 814 00030",
+    adresse="17 allée des Platanes, 64340 Boucau",
 )
 ZONES = ["Boucau", "Bayonne", "Anglet", "Biarritz", "Bidart", "Guéthary", "Saint-Jean-de-Luz",
          "Hendaye", "Urrugne", "Arbonne", "Arcangues", "Tarnos", "Ondres",
@@ -1181,7 +1185,7 @@ def render(p):
             q_coord = 'Votre prénom et votre numéro'
             rappel = (f'<div class="f-rappel"><p class="f-rappel-t">Être rappelé par Tonio pour profiter {f["rappel"]}</p>'
                       f'<p class="f-rappel-s">C’est Tonio, l’artisan, qui vous appelle lui-même sous 24&nbsp;h.</p></div>')
-        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
+        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}<p class="f-rgpd">Vos coordonnées servent uniquement à vous rappeler pour ce devis. <a href="/confidentialite/">Confidentialité</a></p></div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
         corps = f'''<div class="devis-shell">
@@ -1336,7 +1340,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div><h4>Contact</h4><ul><li><a class="tel-foot" href="{tel}">{s['phone']}</a></li><li><a href="mailto:{s['email']}">{s['email']}</a></li><li>Boucau (64), Pays basque</li></ul></div>
     <div><h4>Prestations</h4><ul><li>Démoussage de toiture</li><li>Traitement hydrofuge</li><li>Entretien de toiture</li><li>Ravalement &amp; peinture de façade</li></ul></div>
   </div>
-  <div class="wrap foot-bottom"><span>© 2026 {s['name']} — Tous droits réservés</span><a href="https://toniorenov.fr">toniorenov.fr</a></div>
+  <div class="wrap foot-bottom"><span>© 2026 {s['name']} — Tous droits réservés</span><span class="foot-legal"><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><a href="https://toniorenov.fr">toniorenov.fr</a></span><span class="foot-id">{s['legal_nom']}, {s['legal_forme']} · SIRET {s['siret'].replace(' ', '&nbsp;')} · {s['adresse']}</span></div>
 </footer>
 
 <a class="fab" href="{tel}" aria-label="Appeler {s['name']} au {s['phone']}"><span class="fab-pulse" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true">{ICONS["phone"]}</svg><span>Appeler</span></a>
@@ -1348,6 +1352,93 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </html>
 '''
 
+_TAILLES = {}
+def avec_dims(page):
+    """Ajoute width/height à chaque <img> local qui n'en a pas (évite que la page saute au chargement sur mobile)."""
+    def fix(m):
+        tag = m.group(0)
+        if ' width=' in tag: return tag
+        src = re.search(r'src="(/[^"]+)"', tag)
+        if not src: return tag
+        f = os.path.join(ROOT, src.group(1).lstrip('/'))
+        if f not in _TAILLES:
+            try:
+                from PIL import Image
+                with Image.open(f) as im: _TAILLES[f] = im.size
+            except Exception:
+                _TAILLES[f] = None
+        if not _TAILLES[f]: return tag
+        w, h = _TAILLES[f]
+        return tag[:-1].rstrip('/').rstrip() + f' width="{w}" height="{h}">'
+    return re.sub(r'<img\b[^>]*>', fix, page)
+
+def page_legale(titre, corps):
+    s = SITE
+    return f'''<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{titre} · {s['name']}</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0b1827">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+{CSS}
+</style>
+</head>
+<body>
+<header class="legal-top"><div class="wrap"><a class="brand" href="/">{mark()}<span><b>{s['name']}</b><small>Toiture &amp; façade · Boucau</small></span></a></div></header>
+<main class="wrap legal">
+<h1>{titre}</h1>
+{corps}
+</main>
+<footer><div class="wrap foot-bottom"><span>© 2026 {s['name']}</span><span class="foot-legal"><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a></span><span class="foot-id">{s['legal_nom']}, {s['legal_forme']} · SIRET {s['siret'].replace(' ', '&nbsp;')} · {s['adresse']}</span></div></footer>
+</body>
+</html>
+'''
+
+def legales():
+    s = SITE
+    tel = f'<a href="tel:{s["tel"]}">{s["phone"]}</a>'
+    mail = f'<a href="mailto:{s["email"]}">{s["email"]}</a>'
+    mentions = f'''<p>Mise à jour : 24 novembre 2026.</p>
+<h2>Éditeur du site</h2>
+<p>{s['name']} est le nom commercial de {s['legal_nom']}, {s['legal_forme']}.<br>
+Adresse : {s['adresse']}<br>
+SIREN : {s['siren']} · SIRET : {s['siret']}<br>
+Immatriculé au Registre national des entreprises (RNE) le 03/03/2026.<br>
+Téléphone : {tel} · E-mail : {mail}</p>
+<p>Directeur de la publication : {s['legal_nom']}.</p>
+<h2>Hébergement</h2>
+<p>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis · vercel.com</p>
+<h2>Photos et contenus</h2>
+<p>Les photos de chantiers sont celles de {s['name']}. Les photos marquées « illustration » proviennent d’Unsplash. Les textes et photos de ce site ne peuvent pas être repris sans autorisation.</p>
+<h2>Données personnelles</h2>
+<p>Voir la page <a href="/confidentialite/">Confidentialité</a>.</p>'''
+    confid = f'''<p>Mise à jour : 24 novembre 2026.</p>
+<h2>Qui est responsable de vos données ?</h2>
+<p>{s['legal_nom']}, {s['legal_forme']} ({s['name']}), {s['adresse']}. Contact : {mail} ou {tel}.</p>
+<h2>Ce que nous recueillons et pourquoi</h2>
+<ul>
+<li><b>Le formulaire de devis</b> : vos réponses aux questions, votre prénom ou nom, votre téléphone et, si vous la donnez, votre ville. Ces informations servent uniquement à vous rappeler et à préparer votre devis, à votre demande.</li>
+<li><b>Les appels</b> : le numéro affiché sur ce site renvoie les appels vers Tonio. Les appels peuvent être enregistrés pour suivre les demandes et améliorer le service.</li>
+<li><b>La mesure des visites</b> : nous savons de quelle annonce ou de quel site vous venez et quelles actions vous faites sur la page (appel, formulaire), pour savoir quelles annonces sont utiles.</li>
+</ul>
+<h2>Qui y a accès ?</h2>
+<p>Tonio, et le prestataire technique qui gère le formulaire, le numéro d’appel et le suivi des demandes pour son compte. Vos données ne sont jamais vendues.</p>
+<h2>Combien de temps ?</h2>
+<p>3 ans après notre dernier échange, sauf si vous devenez client : elles sont alors gardées le temps nécessaire au chantier, à la facturation et aux garanties.</p>
+<h2>Cookies et publicité Google</h2>
+<p>Ce site utilise la balise Google Ads pour mesurer les demandes venues des annonces (clic sur une annonce, appel, formulaire). Google peut déposer des cookies à cette fin. Vous pouvez les refuser dans les réglages de votre navigateur et gérer la publicité personnalisée sur adssettings.google.com.</p>
+<h2>Vos droits</h2>
+<p>Vous pouvez demander à consulter, corriger ou supprimer vos données, ou vous opposer à leur utilisation, en écrivant à {mail}. Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la CNIL (cnil.fr).</p>'''
+    for dossier, titre, corps in (('mentions-legales', 'Mentions légales', mentions), ('confidentialite', 'Confidentialité', confid)):
+        target = os.path.join(ROOT, dossier, 'index.html')
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        open(target, 'w', encoding='utf-8').write(typo_fr(page_legale(titre, corps)))
+        print('écrit', dossier + '/index.html')
+
 if __name__ == '__main__':
     for p in PAGES:
         d = seo_json(p)
@@ -1355,10 +1446,11 @@ if __name__ == '__main__':
         if d and d.get('desc'): p['desc'] = d['desc']
         target = os.path.join(ROOT, p['out'])
         os.makedirs(os.path.dirname(target), exist_ok=True)
-        open(target, 'w', encoding='utf-8').write(typo_fr(render(p)))
+        open(target, 'w', encoding='utf-8').write(avec_dims(typo_fr(render(p))))
         print('écrit', p['out'], f'{os.path.getsize(target)//1024} Ko')
     fav = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#fff"/>'
            '<g transform="translate(4 15) scale(.0968)"><g transform="translate(-395 -438)">'
            '<polygon fill="#152c48" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/>'
            '<polygon fill="#8c1c2c" points="704,532 901,695 869,695 704,562 539,695 507,695"/></g></g></svg>')
     open(os.path.join(ROOT, 'favicon.svg'), 'w', encoding='utf-8').write(fav)
+    legales()

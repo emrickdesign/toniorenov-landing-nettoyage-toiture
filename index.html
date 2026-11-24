@@ -67,7 +67,7 @@ gtag('config', 'AW-18220615555');
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--ciel);color:var(--texte);font-family:var(--font);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-optical-sizing:auto}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 h1,h2,h3,p,ul,ol,figure,blockquote{margin:0}
 ul,ol{padding:0;list-style:none}
 a{color:inherit}
@@ -156,7 +156,8 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .hero{position:relative;isolation:isolate;display:flex;align-items:center;color:#fff;background:var(--nuit);overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,62% 42%)}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
+/* Voile tamisé bleu nuit sur toute la photo de fond (règle Emrick 18/11) : fait ressortir texte, bouton et formulaire. */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(11,24,39,.45),rgba(11,24,39,.45)),linear-gradient(180deg,rgba(11,24,39,.5) 0%,rgba(11,24,39,.12) 26%,rgba(11,24,39,.66) 62%,rgba(11,24,39,.96) 100%),linear-gradient(90deg,rgba(11,24,39,.7) 0%,rgba(11,24,39,.22) 58%,rgba(11,24,39,0) 100%)}
 .hero-in{width:100%;max-width:var(--max);margin-inline:auto;padding:clamp(40px,7vh,96px) var(--gutter) clamp(40px,7vh,96px);display:grid;gap:clamp(28px,4vw,56px);align-items:center}
 /* Hero centré (demande Emrick 09/11) : plus posé, plus LP de conversion. En desktop quand on passe en split (hero-copy à gauche, formulaire à droite), on revient à text-align:left — un texte centré dans une colonne gauche tombe mal à côté d'un bloc à droite. */
 .hero-copy{text-align:center}
@@ -214,7 +215,7 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
    Mobile : titre + boutons d'appel d'abord, formulaire directement en dessous. */
 @media(min-width:1060px){
   .hero-in{grid-template-columns:minmax(0,1fr) minmax(392px,452px);padding-block:clamp(72px,8vh,112px)}
-  .hero::before{background:linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
+  .hero::before{background:linear-gradient(rgba(11,24,39,.42),rgba(11,24,39,.42)),linear-gradient(90deg,rgba(11,24,39,.92) 0%,rgba(11,24,39,.72) 46%,rgba(11,24,39,.5) 100%),linear-gradient(180deg,rgba(11,24,39,.35) 0%,rgba(11,24,39,.2) 40%,rgba(11,24,39,.6) 100%)}
   /* Quand hero split (texte à gauche, formulaire à droite), le centrage tombe mal. On revient à gauche. */
   .hero-copy{text-align:left}
   .hero-cta{justify-content:flex-start}
@@ -380,9 +381,11 @@ body.scrolled .bar{box-shadow:0 12px 30px -18px rgba(0,0,0,.7)}
 .fcount{display:inline-block;font-size:.8125rem;letter-spacing:.02em;color:var(--tuile-fonce);font-weight:700;margin-bottom:10px;padding:4px 10px;border-radius:999px;background:rgba(201,64,43,.09)}
 .fq{font-size:clamp(1.2rem,1rem + .8vw,1.45rem);font-weight:700;letter-spacing:-.025em;line-height:1.25;margin-bottom:8px;text-wrap:balance}
 .fhint{display:block;font-size:.9375rem;color:var(--texte-2);margin-bottom:18px}
-.opts{display:grid;gap:10px}
-@media(min-width:560px){.opts{grid-template-columns:1fr 1fr}}
-.opt{position:relative;display:flex;align-items:center;gap:13px;width:100%;min-height:66px;padding:13px 15px 13px 13px;text-align:left;font:600 1rem/1.25 var(--font);color:var(--texte);background:var(--ciel);border:1.5px solid var(--ciel-2);border-radius:12px;cursor:pointer;transition:transform .2s var(--ease),border-color .18s,background .18s,box-shadow .18s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.opts{display:grid;gap:10px;min-width:0}
+@media(min-width:560px){.opts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.opt > span:not(.tick){flex:1 1 auto;min-width:0;overflow-wrap:break-word}
+@media(min-width:560px){.opts .opt{gap:10px;padding:12px 26px 12px 11px}.opts .opt > .ic{padding:7px}.opts .opt .tick{position:absolute;top:7px;right:7px;width:17px;height:17px}.opts .opt .tick .ic{width:10px;height:10px}}
+.opt{position:relative;display:flex;align-items:center;gap:13px;width:100%;min-width:0;min-height:66px;padding:13px 15px 13px 13px;text-align:left;font:600 1rem/1.25 var(--font);color:var(--texte);background:var(--ciel);border:1.5px solid var(--ciel-2);border-radius:12px;cursor:pointer;transition:transform .2s var(--ease),border-color .18s,background .18s,box-shadow .18s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .opt > .ic{flex:none;width:22px;height:22px;padding:9px;color:var(--tuile);background:rgba(201,64,43,.09);border:1.5px solid rgba(201,64,43,.18);border-radius:50%;box-sizing:content-box;transition:background .18s,border-color .18s,color .18s,transform .18s}
 .opt:hover{border-color:var(--tuile);background:#fff;transform:translateY(-2px);box-shadow:0 10px 22px -14px rgba(11,24,39,.55)}
 .opt:hover > .ic{background:rgba(201,64,43,.18);border-color:rgba(201,64,43,.45);transform:scale(1.05)}
@@ -460,6 +463,20 @@ footer a:hover{color:#fff;text-decoration:underline}
 footer .brand{margin-bottom:16px}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-block:20px;font-size:.875rem;color:rgba(255,255,255,.5);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
 .tel-foot{font-variant-numeric:tabular-nums}
+.foot-legal{display:flex;flex-wrap:wrap;gap:6px 16px}
+.foot-legal a{color:rgba(255,255,255,.72);text-decoration:underline}
+.foot-id{flex-basis:100%;font-size:.8125rem;color:rgba(255,255,255,.45)}
+.f-rgpd{margin:4px 0 0;font-size:.8125rem;line-height:1.45;color:var(--texte-2)}
+.f-rgpd a{color:inherit;text-decoration:underline}
+/* pages mentions légales / confidentialité */
+.legal{padding-block:clamp(40px,6vw,72px);max-width:760px}
+.legal h1{font-size:clamp(1.75rem,4vw,2.25rem);margin:0 0 8px;color:var(--texte)}
+.legal h2{font-size:1.1875rem;margin:32px 0 8px;color:var(--texte)}
+.legal p,.legal li{color:var(--texte-2);line-height:1.6;margin:0 0 10px}
+.legal ul{list-style:disc;padding-left:1.25em;display:block}
+.legal a{color:var(--tuile-fonce)}
+.legal-top{background:var(--nuit);padding-block:16px}
+.legal-top .brand b,.legal-top .brand small{color:#fff}
 
 /* bouton d'appel flottant, présent tout le long de la page */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:55;display:inline-flex;align-items:center;gap:.6em;min-height:58px;padding:0 1.5rem 0 1.25rem;border-radius:999px;background:var(--tuile);color:#fff;font:700 1.0625rem/1 var(--font);text-decoration:none;box-shadow:0 18px 34px -12px rgba(11,24,39,.7),0 0 0 3px rgba(255,255,255,.9);transition:transform .4s var(--ease),opacity .3s,visibility 0s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -476,6 +493,440 @@ body.fab-off .fab{opacity:0;visibility:hidden;transform:translateY(14px);transit
   .ring{animation:none}
 }
 
+/* ===== Nov. 2026 : bande fine qui défile, carrousels, formulaire court (modèle Sud-Ouest Couverture) ===== */
+/* Bande de garanties : une seule ligne qui défile en continu (2 copies de la liste, pause au survol) */
+.band.marquee{overflow:hidden;padding:12px 0}
+.band.marquee .band-track{display:flex;width:max-content;animation:defile 36s linear infinite}
+.band.marquee:hover .band-track{animation-play-state:paused}
+.band.marquee ul{display:flex;flex:none;grid-template-columns:none}
+.band.marquee li{padding:0 26px;gap:9px;white-space:nowrap;border:0;border-left:1px solid rgba(255,255,255,.16);justify-content:flex-start;grid-column:auto}
+.band.marquee li div{display:flex;align-items:baseline;gap:6px}
+.band.marquee .ic{width:18px;height:18px;flex:none}
+.band.marquee b{display:inline;font-size:.9375rem}
+.band.marquee small{display:inline;margin:0;font-size:.875rem}
+@keyframes defile{to{transform:translateX(-50%)}}
+@media(max-width:560px){.band.marquee{padding:10px 0}.band.marquee li{padding:0 18px}.band.marquee b{font-size:.875rem}.band.marquee small{font-size:.8125rem}}
+@media(prefers-reduced-motion:reduce){.band.marquee .band-track{animation:none}}
+
+/* Carrousels (glisser au doigt + défilement auto) : chantiers et avis */
+[hidden]{display:none!important}
+.carousel-dots{display:flex;justify-content:center;gap:4px;margin-top:16px}
+.carousel-dots button{width:26px;height:26px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.carousel-dots button::before{content:"";width:8px;height:8px;border-radius:99px;background:#c9d2dc;transition:width .3s,background .3s}
+.carousel-dots button.on::before{width:24px;background:var(--tuile)}
+.gal-grid[data-carousel],.rev-grid[data-carousel]{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 10px}
+.gal-grid[data-carousel]::-webkit-scrollbar,.rev-grid[data-carousel]::-webkit-scrollbar{display:none}
+.gal-grid[data-carousel]>li,.rev-grid[data-carousel]>.rev{flex:0 0 calc((100% - 36px)/3);scroll-snap-align:start}
+.rev-grid[data-carousel]{margin-top:clamp(24px,3vw,36px)}
+@media(max-width:759px){
+  .gal-grid[data-carousel],.rev-grid[data-carousel]{margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding:0 var(--gutter)}
+  .gal-grid[data-carousel]>li,.rev-grid[data-carousel]>.rev{flex-basis:84%;scroll-snap-align:center}
+  .rev-grid[data-carousel] .rev{text-align:center;align-items:center}
+  .rev-sum{justify-content:center}
+}
+
+/* Formulaire court : pas de « Étape X sur N », question sur une seule ligne */
+.devis-form{container-type:inline-size}
+.devis-form .fq{white-space:nowrap;font-size:min(1.45rem,5.6cqw)}
+.factions{flex-wrap:nowrap}
+.factions .btn-next{flex:0 1 auto;min-width:0;white-space:nowrap}
+@media(max-width:560px){
+  /* bouton pleine largeur, « Précédent » en dessous : « Envoyer ma demande » ne déborde plus */
+  .factions{flex-direction:column-reverse;align-items:stretch;gap:4px;margin-top:22px}
+  .factions .btn-next{width:100%;justify-content:center;padding-inline:1rem}
+  .fback{align-self:center;padding:10px 6px;font-size:.875rem}
+  .fback[disabled]{display:none}
+}
+
+/* ===== Anneau 3D de photos (repris de 2rprenov.fr, Ring3D.tsx) — remplace la bande de garanties =====
+   Scène 1200×300, perspective sur le PARENT, 6 colonnes à 30°, 2 vignettes 260×370 à ±90° par colonne,
+   backface-visibility:hidden (c'est ce qui empêche la photo du premier plan d'envahir la page).
+   Toute la géométrie suit --e (échelle calculée en JS selon l'écran). */
+.ring-sec{position:relative;background:var(--nuit);overflow:hidden;padding:calc(110px * var(--e,1)) 0}
+.ring3d{position:relative;height:calc(300px * var(--e,1))}
+.ring3d-scene{position:absolute;left:50%;top:0;width:calc(1200px * var(--e,1));height:100%;transform:translateX(-50%);perspective:calc(700px * var(--e,1));perspective-origin:50% 50%}
+.ring3d-rot{width:100%;height:100%;transform-style:preserve-3d;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.ring3d-rot:active{cursor:grabbing}
+.ring3d-col{position:absolute;left:50%;top:0;width:calc(1400px * var(--e,1));height:100%;display:flex;align-items:center;justify-content:space-between;transform:translateX(-50%) rotateY(var(--a));transform-style:preserve-3d}
+.ring3d-v{flex:none;width:calc(260px * var(--e,1));height:calc(370px * var(--e,1));border-radius:max(8px,calc(18px * var(--e,1)));overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:flat;background:var(--marine)}
+.ring3d-v:first-child{transform:rotateY(90deg)}
+.ring3d-v:last-child{transform:rotateY(-90deg)}
+.ring3d-v img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+/* Fin d'offre sous le titre du formulaire */
+.hf-fin{margin-top:6px;font-size:.9375rem;color:#ffbf47;font-weight:600}
+.offre-fin{color:var(--tuile);font-weight:700}
+
+/* ===== Anneau dans le hero (option ring_hero) : entre les arguments et le formulaire.
+   Mobile : pleine largeur (sort du gutter) ; ordinateur : dans la colonne de gauche. --e posé par app.js selon la largeur. */
+.ring-hero{position:relative;margin-top:clamp(14px,2.2vh,22px);padding:calc(34px * var(--e,.4)) 0;overflow:hidden}
+@media(max-width:1059px){.ring-hero{margin-inline:calc(var(--gutter) * -1)}}
+/* Ordinateur : l'anneau passe sous le texte ET le formulaire, sur toute la largeur de l'écran (demande Emrick 18/11). */
+@media(min-width:1060px){
+  .hero-copy{grid-row:1}
+  .hero-in>.hero-form{grid-row:1}
+  .ring-hero{grid-column:1/-1;grid-row:2;padding:calc(100px * var(--e,.7)) 0;margin:0 calc(50% - 50vw) calc(clamp(72px,8vh,112px) * -1)}
+}
+/* Titre de l'offre dans la carte du formulaire (option form_titre_carte) */
+.fc-t{margin:0 0 14px;text-align:center;font-size:clamp(1.3rem,1.1rem + .7vw,1.65rem);line-height:1.15;letter-spacing:-.025em;color:var(--nuit)}
+.fc-sub{margin:-6px 0 16px;text-align:center;font-size:.9375rem;color:#5b6b7f}
+/* H1 sur 3 lignes : métier / prestation / prix (prix barré à côté) */
+.hero h1 .h1-sub{display:block;font-size:.62em;font-weight:700;letter-spacing:-.01em;color:rgba(255,255,255,.88);margin:.2em 0 .1em}
+.hero h1 mark.h1-prix{font-size:1.32em}
+.hero h1 s.h1-barre{position:relative;display:inline-block;font-size:.72em;font-weight:600;color:rgba(255,255,255,.62);text-decoration:none;margin-left:.25em;white-space:nowrap}
+/* Le trait est dessiné à part : text-decoration ne passe pas sur les mots animés (inline-block). */
+.hero h1 s.h1-barre::after{content:"";position:absolute;left:-.06em;right:-.06em;top:52%;height:.09em;border-radius:1px;background:rgba(255,255,255,.8);transform:rotate(-6deg)}
+
+/* Ordre 18/11 : avis plus compacts sur mobile, formulaire du bas collé à la zone (pas de grand vide). */
+@media(max-width:700px){
+  .rev-grid[data-carousel] .rev{padding:20px 18px;gap:14px}
+  .rev-grid[data-carousel] .rev blockquote{font-size:.9375rem;line-height:1.5}
+}
+#zone+#devis-bas{padding-top:clamp(8px,2vw,24px)}
+
+/* ===== H1 « modèle B » v2 (règles Emrick 18/11) =====
+   Lignes 1 (métier) et 2 (prestation) : MÊME taille, une ligne chacune. Ligne 3 : l'offre, seule
+   taille plus grande, jaune avec une lueur ; le prix barré garde la taille des lignes 1-2.
+   --n (calculé par build.py) = caractères de la ligne la plus large : le H1 tient pile dans la largeur du bouton d'appel. */
+.hero h1.h1-b{font-size:min(1.9rem,calc((100vw - 2 * var(--gutter)) / (var(--n) * .54)));line-height:1.14;letter-spacing:-.025em}
+@media(min-width:1060px){.hero h1.h1-b{font-size:min(2.6rem,calc(600px / (var(--n) * .54)))}}
+.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub{display:block;white-space:nowrap;font-size:1em;font-weight:inherit;letter-spacing:inherit;color:#fff;margin:0}
+.hero h1.h1-b .h1-offre{display:block;white-space:nowrap;margin-top:.12em}
+.hero h1.h1-b mark.h1-prix{font-size:1.4em;background:none;padding:0;color:#ffcf4a;text-shadow:0 0 .3em rgba(255,191,71,.55),0 0 .9em rgba(255,176,40,.4)}
+.hero h1.h1-b s.h1-barre{font-size:1em;font-weight:inherit;margin-left:.3em}
+/* Le bouton d'appel prend la largeur du bloc texte (bords alignés sur le H1). */
+.hero-copy:has(h1.h1-b){width:fit-content;max-width:100%;margin-inline:auto}
+@media(min-width:1060px){.hero-copy:has(h1.h1-b){margin-inline:0;justify-self:start}}
+.hero-copy:has(h1.h1-b) .hero-cta .btn{width:100%;justify-content:center}
+/* Badge Google : simple ligne de texte (Google en couleurs, étoiles, note), pas une pilule qui ressemble au bouton. */
+.hero .google-badge{background:none;border:0;padding:0;border-radius:0;margin-top:clamp(12px,2vh,18px);font-size:.9375rem}
+.hero .google-badge+.hero-cta{margin-top:10px}
+/* Chaque ligne prend sa largeur réelle (mesurée par app.js pour caler le H1 sur la largeur du bouton). */
+.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{width:max-content;max-width:none;margin-inline:auto}
+@media(min-width:1060px){.hero h1.h1-b .h1-l,.hero h1.h1-b .h1-sub,.hero h1.h1-b .h1-offre{margin-inline:0}}
+
+/* ===== TEST 18/11 : hero sur fond uni (option de page fond='marine' | 'blanc'), sans photo derrière ===== */
+.hero.fond-uni::before{display:none}
+.hero.fond-marine{background:var(--marine)}
+.hero.fond-blanc{background:#fff;color:var(--texte)}
+.hero.fond-blanc h1.h1-b .h1-l,.hero.fond-blanc h1.h1-b .h1-sub{color:var(--nuit)}
+.hero.fond-blanc h1.h1-b mark.h1-prix{color:var(--tuile);text-shadow:0 0 .35em rgba(201,64,43,.22)}
+.hero.fond-blanc h1.h1-b s.h1-barre{color:#7a8899}
+.hero.fond-blanc h1.h1-b s.h1-barre::after{background:#7a8899}
+.hero.fond-blanc .google-badge{color:var(--texte)}
+.hero.fond-blanc .hero-proof{color:var(--texte-2)}
+.hero.fond-blanc .hero-proof .ic{color:var(--tuile)}
+.hero.fond-blanc .stars{color:#e8a416}
+.hero.fond-blanc .hero-form .devis-shell{border:1px solid var(--ciel-2);box-shadow:0 30px 60px -36px rgba(21,44,72,.45)}
+
+/* ===== TEST 18/11 : cartes de formulaire en bleu (option de page form_bleu=True, pensée pour le fond blanc).
+   Texte blanc sur la carte, choix et champs en cartes blanches (jamais de ton sur ton). ===== */
+.form-bleu .devis-shell{background:var(--marine);color:#fff;border:0;box-shadow:0 30px 60px -30px rgba(21,44,72,.7)}
+.hero.fond-blanc .form-bleu .devis-shell,.form-bleu .hero.fond-blanc .hero-form .devis-shell{border:0;box-shadow:0 30px 60px -30px rgba(21,44,72,.7)}
+.form-bleu .fc-t{color:#fff}
+.form-bleu .fc-sub,.form-bleu .fhint{color:rgba(255,255,255,.72)}
+.form-bleu .fc-sub strong{color:#fff}
+.form-bleu .progress i{background:rgba(255,255,255,.18)}
+.form-bleu .opt{background:#fff;border-color:#fff}
+.form-bleu .opt:hover{border-color:var(--tuile-clair)}
+.form-bleu .opt.on{background:#fff4f1}
+.form-bleu .field label{color:rgba(255,255,255,.82)}
+.form-bleu .field input{background:#fff;border-color:#fff}
+.form-bleu .btn-next:disabled{background:rgba(255,255,255,.14);color:rgba(255,255,255,.55)}
+.form-bleu .fback{color:rgba(255,255,255,.72)}
+.form-bleu .fback:hover{color:#fff}
+.form-bleu .done p{color:rgba(255,255,255,.75)}
+.form-bleu .done-ic{background:rgba(143,212,172,.16);color:var(--vert-clair)}
+
+/* 4 peurs sous le bouton : 2 + 2 sur ordinateur (18/11) */
+@media(min-width:1060px){.hero-proof:has(span:nth-child(4)){display:grid;grid-template-columns:repeat(2,max-content);gap:10px 22px}}
+
+/* Choix du formulaire blanc plus marqués que le fond de la carte (18/11) */
+.opt{background:#e8eef5;border-color:#cbd6e3;box-shadow:0 1px 0 rgba(21,44,72,.08)}
+.opt .tick{box-shadow:inset 0 0 0 2px #c3cfdd}
+
+/* Sections score de qualité en dépliants (19/11) : H3 = mot-clé exact, texte lisible par Google dans le DOM */
+.kw-acc{max-width:760px;margin:clamp(24px,4vw,40px) auto 0;text-align:left}
+.kw-acc summary h3{margin:0;font:inherit;letter-spacing:inherit;color:var(--texte)}
+.kw-acc details p{max-width:none}
+.kw-acc-sec+.kw-acc-sec{padding-top:clamp(8px,2vw,24px)!important}
+
+/* Nombre impair de choix (ravalement : 3) : le dernier prend toute la ligne sur ordinateur (19/11) */
+@media(min-width:560px){.opts .opt:last-child:nth-child(odd){grid-column:1/-1}}
+/* Réponses aux peurs, sous le bouton d'appel (analyse de marché Sud-Ouest, 19/11/2026) */
+.hero-peurs{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:.9375rem;line-height:1.35;color:rgba(255,255,255,.9)}
+.hero-peurs li{display:flex;align-items:flex-start;gap:.5em;text-align:left}
+.hero-peurs .ic{flex:none;width:1.05em;height:1.05em;margin-top:.15em;color:#ffbf47;stroke-width:3}
+@media(max-width:860px){.hero-peurs{align-items:center;margin-top:14px;font-size:.875rem}.hero-peurs li{max-width:34ch}}
+
+/* =====================================================================
+   Refonte du 20/11/2026 (Emrick) : chaque section tient dans un écran, flèches sur ordinateur,
+   villes qui défilent + recherche, carte des communes, cartes photo, FAQ sur le bleu du haut.
+   ===================================================================== */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* Sections plus compactes : du titre au bas de la section, tout tient dans un écran */
+.sec{padding-block:clamp(40px,5.5vw,72px)}
+.sec h2{font-size:clamp(1.55rem,1rem + 2.2vw,2.35rem);line-height:1.12;text-wrap:balance}
+.sec-head .lead{margin-top:12px;font-size:clamp(.98rem,.9rem + .3vw,1.0625rem);line-height:1.5}
+.sec-light+.sec-light{padding-top:0}
+.sec-dark .lead,.sec-nuit .lead{color:rgba(255,255,255,.78)}
+.sec-dark .lead a,.sec-dark .lead strong{color:#fff}
+.sec-nuit{background:#071321;color:#fff}
+
+/* Hero : remonté sur ordinateur pour que l'anneau de photos soit visible dès l'ouverture */
+@media(min-width:1060px){
+  .hero-in{padding-block:clamp(22px,3.5vh,40px) 0}
+  .hero-in .hero-form .devis-shell{padding:24px 28px 22px}
+  .hero-form .fc-t{margin-bottom:12px}
+  .hero-form .progress{margin-bottom:16px}
+  .ring-hero{padding:calc(70px * var(--e,.7)) 0 calc(56px * var(--e,.7));margin:clamp(-8px,-1vh,0px) calc(50% - 50vw) 0}
+}
+/* Arguments sous le bouton : les mots importants en gras */
+.hero-peurs b{color:#fff;font-weight:700}
+
+/* Avis : texte replié sur 6 lignes, « Lire la suite » */
+.rev .rev-q{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.rev.open .rev-q{-webkit-line-clamp:unset;display:block}
+.rev-more{align-self:center;margin-top:-6px;background:none;border:0;padding:4px 8px;font:700 .875rem var(--font);color:var(--tuile);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.rev-grid[data-carousel]{align-items:flex-start}
+@media(min-width:760px){.rev-grid[data-carousel]>.rev{flex-basis:calc((100% - 36px)/3)}}
+
+/* Flèches des carrousels (ordinateur) */
+.car-wrap{position:relative}
+.car-btn{display:none}
+@media(min-width:900px) and (hover:hover){
+  .car-btn{display:grid;place-items:center;position:absolute;top:calc(50% - 26px);z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid var(--ciel-2);background:rgba(255,255,255,.94);color:var(--nuit);box-shadow:0 10px 24px -12px rgba(11,24,39,.45);cursor:pointer;transition:transform .2s,opacity .2s,background .2s}
+  .car-btn:hover{transform:scale(1.07);background:#fff}
+  .car-btn[disabled]{opacity:0;pointer-events:none}
+  .car-btn .ic{width:20px;height:20px}
+  .car-prev{left:-22px}.car-prev .ic{transform:scaleX(-1)}
+  .car-next{right:-22px}
+}
+
+/* Zone : recherche + villes qui défilent sur 2 rangées */
+.ville-cherche{position:relative;max-width:420px;margin:20px auto 0}
+.ville-cherche .vc-ic{position:absolute;left:16px;top:50%;width:19px;height:19px;transform:translateY(-50%);color:var(--texte-2);pointer-events:none}
+.ville-cherche input{width:100%;min-height:52px;padding:0 18px 0 46px;border-radius:999px;border:1.5px solid var(--ciel-2);background:#fff;font:500 16px var(--font);color:var(--texte);box-shadow:0 10px 24px -18px rgba(11,24,39,.35);-webkit-appearance:none;appearance:none}
+.ville-cherche input:focus{outline:none;border-color:var(--marine);box-shadow:0 0 0 4px rgba(21,44,72,.12)}
+.ville-res{max-width:460px;margin:12px auto 0;text-align:center;font-size:.9375rem;line-height:1.45;color:var(--texte-2)}
+.ville-res.ok{color:var(--vert)}
+.ville-res b{color:var(--texte)}
+.ville-res a{color:var(--tuile);font-weight:700}
+.ville-defile{margin-top:22px;display:grid;gap:10px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.vd-track{display:flex;width:max-content;animation:defile 46s linear infinite}
+.vd-d .vd-track{animation-direction:reverse}
+.ville-defile:hover .vd-track,.ville-defile.pause .vd-track{animation-play-state:paused}
+.vd-track .chips{flex-wrap:nowrap;margin:0;padding:0 5px;list-style:none}
+.vd-track .chips li{white-space:nowrap;padding:8px 14px;font-size:.875rem}
+.vd-track .chips li.hit{background:var(--tuile);color:#fff;box-shadow:0 0 0 4px rgba(201,64,43,.22);transform:scale(1.06)}
+.vd-track .chips li.hit .ic{color:#fff}
+@media(prefers-reduced-motion:reduce){.vd-track{animation:none}.ville-defile{overflow-x:auto}}
+
+/* FAQ et dépliants sur le bleu foncé du haut de page */
+.sec-dark{background:var(--marine);color:#fff}
+.sec-dark h2{color:#fff}
+.sec-dark details{border-color:rgba(255,255,255,.14)}
+.sec-dark summary,.sec-dark .kw-acc summary h3{color:#fff}
+.sec-dark summary .ic{color:#ffcf4a}
+.sec-dark details p{color:rgba(255,255,255,.8)}
+.faq-sec .faq-list,.sec-dark .kw-acc{max-width:980px;margin:clamp(20px,3vw,32px) auto 0;text-align:left}
+summary{padding:16px 0;font-size:1.0313rem}
+details p{padding-bottom:18px}
+@media(min-width:1060px){
+  .faq-sec .faq-list{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;align-items:start}
+  .faq-sec .faq-list details:nth-last-child(2){border-bottom:1px solid rgba(255,255,255,.14)}
+}
+
+/* Carte des communes */
+.carte{position:relative;max-width:620px;margin:clamp(16px,2.5vw,28px) auto 0}
+.carte-svg{display:block;width:100%;height:auto;max-height:min(58vh,520px)}
+.carte-svg .commune{fill:#10314f;stroke:#63d2b0;stroke-width:2;stroke-linejoin:round;transition:fill .25s}
+.carte-svg .pt{fill:#ffcf4a}
+.carte-svg .pt-halo{fill:rgba(255,207,74,.22);transform-box:fill-box;transform-origin:center;animation:ptHalo 2.6s ease-out infinite}
+@keyframes ptHalo{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.carte-lab{position:absolute;transform:translate(-50%,14px);display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px 7px;border-radius:12px;border:1px solid rgba(99,210,176,.45);background:rgba(7,19,33,.86);color:#fff;font:600 .875rem/1.2 var(--font);cursor:pointer;white-space:nowrap;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s,transform .2s}
+.carte-lab b{font-weight:700;font-size:.9375rem}
+.carte-lab span{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;color:#63d2b0}
+.carte-lab span .ic{width:12px;height:12px}
+.carte-lab:hover,.carte-lab[aria-expanded="true"]{background:#0f2c47;transform:translate(-50%,12px)}
+.carte-pop{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92%,460px);max-height:88%;overflow:auto;padding:22px 22px 18px;border-radius:18px;background:#fff;color:var(--texte);text-align:left;box-shadow:0 30px 70px -20px rgba(0,0,0,.75);animation:popIn .25s var(--ease)}
+.carte-pop[hidden]{display:none}
+@keyframes popIn{from{opacity:0;transform:translate(-50%,-46%)}to{opacity:1;transform:translate(-50%,-50%)}}
+.carte-pop h3{font-size:1.0625rem;line-height:1.3;margin:14px 0 6px}
+.carte-pop p{margin:0;font-size:.9375rem;line-height:1.55;color:var(--texte-2)}
+.carte-pop .pop-ville{display:flex;align-items:center;gap:6px;margin:0 32px 0 0;font-size:.8125rem;font-weight:700;color:var(--tuile);text-transform:none}
+.carte-pop .pop-ville .ic{width:15px;height:15px}
+.pop-x{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:0;background:var(--ciel);display:grid;place-items:center;cursor:pointer}
+.pop-x .ic{width:18px;height:18px;transform:rotate(45deg);color:var(--texte)}
+
+/* Cartes photo qui défilent (prix, traitements, gouttières…) */
+.cartes{list-style:none;margin:clamp(18px,2.6vw,30px) 0 0;padding:4px 2px 10px;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.cartes::-webkit-scrollbar{display:none}
+.co{flex:0 0 min(300px,82%);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 1px 0 var(--ciel-2),0 22px 40px -28px rgba(21,44,72,.45);transition:transform .35s var(--ease),box-shadow .35s}
+@media(min-width:900px){.co{flex-basis:calc((100% - 54px)/4)}.cartes{padding-inline:2px}}
+@media(hover:hover){.co:hover{transform:translateY(-6px);box-shadow:0 1px 0 var(--ciel-2),0 30px 50px -28px rgba(21,44,72,.55)}.co:hover .co-img img{transform:scale(1.06)}.co:hover .co-go{background:var(--tuile);color:#fff;transform:rotate(-12deg)}}
+.co-img{position:relative;height:clamp(118px,15vh,150px);overflow:hidden;background:var(--ciel-2)}
+.co-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+.co-tag{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:6px;max-width:calc(100% - 20px);padding:5px 10px 5px 8px;border-radius:999px;background:rgba(255,255,255,.95);color:var(--nuit);font-size:.75rem;font-weight:700;box-shadow:0 6px 14px -8px rgba(0,0,0,.5)}
+.co-tag .ic{flex:none;width:14px;height:14px;color:var(--tuile)}
+.co-body{flex:1;padding:14px 16px 8px;text-align:left}
+.co-body h3{margin:0 0 6px;font-size:1rem;line-height:1.3;letter-spacing:-.01em;color:var(--texte)}
+.co-body p{margin:0;font-size:.875rem;line-height:1.5;color:var(--texte-2)}
+.co-foot{display:flex;align-items:center;gap:10px;margin:0 16px;padding:10px 0 12px;border-top:1px solid var(--ciel-2)}
+.co-logo{width:44px;height:auto;flex:none}
+.co-foot span{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2;text-align:left}
+.co-foot b{font-size:.75rem;color:var(--texte)}
+.co-foot small{font-size:.6875rem;color:var(--texte-2)}
+.co-go{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--ciel);color:var(--nuit);transition:background .25s,color .25s,transform .3s var(--ease)}
+.co-go .ic{width:16px;height:16px}
+
+/* Mobile : tout centré, sauf le texte des cartes, des fiches et des dépliants */
+@media(max-width:759px){
+  .sec-head.center{text-align:center}
+  .ville-defile{margin-top:18px}
+  summary{font-size:.98rem;padding:14px 0}
+}
+/* Ajustements mobile pour tenir dans un écran (20/11) */
+/* 23/11 : la question du délai n'est plus forcée sur 2 colonnes au téléphone (texte coupé mot par mot,
+   « Dès / que / possi / ble ») : une colonne comme les autres questions, 2 colonnes à partir de 560 px. */
+.faq-plus{display:block;margin:16px auto 0;padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:none;color:#fff;font:700 .9375rem var(--font);cursor:pointer}
+.faq-list:not(.tout) details.faq-cache{display:none}
+@media(min-width:1060px){.faq-list details.faq-cache{display:block!important}.faq-plus{display:none}}
+@media(max-width:759px){
+  .sec h2{font-size:clamp(1.35rem,1rem + 2.4vw,1.6rem)}
+  .sec-head .lead{font-size:.9375rem}
+  .co-img{height:108px}
+  .co-body{padding:12px 14px 6px}
+  .co-body h3{font-size:.9688rem}
+  .co-body p{font-size:.84rem;line-height:1.48}
+  .co-foot{margin:0 14px;padding:8px 0 10px}
+  .devis .devis-shell{padding:20px 18px}
+  .devis .fc-t{font-size:1.3rem}
+  .carte{margin-inline:calc(var(--gutter) * -0.5)}
+}
+@media(max-width:759px){
+  .devis .opt{min-height:54px;padding:9px 12px 9px 10px;gap:10px;font-size:.9375rem}
+  .devis .opt .ic{width:30px;height:30px;padding:6px}
+  .devis .alt-call{margin-top:12px}
+  .sec.devis{padding-block:32px}
+}
+/* Ordinateur : carte à côté du titre, cartes photo par 3 (20/11) */
+@media(min-width:900px){
+  .co{flex-basis:calc((100% - 36px)/3)}
+  .co-img{height:136px}
+  .co-body{padding:14px 18px 8px}
+  .co-body p{font-size:.875rem;line-height:1.5}
+}
+@media(min-width:1060px){
+  .kw-carte .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center}
+  .kw-carte .sec-head.center{text-align:left;margin:0}
+  .kw-carte .sec-head.center .lead{margin-inline:0}
+  .kw-carte .carte{margin:0;max-width:none}
+  .carte-svg{max-height:min(74vh,560px)}
+}
+
+/* 20/11/2026 — ordinateur : les sections suivent la hauteur de l'écran (portables 720-820 px de haut) */
+@media(min-width:900px){
+  .sec{padding-block:clamp(34px,6vh,72px)}
+  .car-wrap + .carousel-dots{display:none}
+  .co-img{height:clamp(96px,14vh,136px)}
+  .co-body{padding:12px 18px 6px}
+  .co-body h3{margin-bottom:4px}
+  .co-body p{font-size:.84rem;line-height:1.45}
+  .co-foot{padding:8px 0 10px}
+}
+@media(min-width:900px) and (max-height:760px){
+  .sec h2{font-size:clamp(1.6rem,2.6vw,2.1rem)}
+  .sec-head p{font-size:.95rem}
+}
+
+/* Carte des villes : questions sans ville de la carte (« autour de moi », ville hors carte) en dépliants dessous */
+.carte-reste{grid-column:1/-1;max-width:980px;width:100%;margin:clamp(18px,2.6vw,28px) auto 0;text-align:left}
+.sec-nuit .carte-reste details{border-color:rgba(255,255,255,.14)}
+.sec-nuit .carte-reste summary,.sec-nuit .carte-reste summary h3{color:#fff}
+.sec-nuit .carte-reste summary .ic{color:#ffcf4a}
+.sec-nuit .carte-reste details p{color:rgba(255,255,255,.8)}
+
+/* 20/11/2026 — petits téléphones (360×740 et moins haut) : chaque section tient encore dans l'écran */
+@media(max-width:759px){
+  .co-img{height:96px}
+  .co-body p{font-size:.8125rem;line-height:1.42}
+}
+@media(max-width:759px) and (max-height:780px){
+  .sec{padding-block:26px}
+  .sec h2{font-size:1.3rem;line-height:1.18}
+  .sec-head .lead{font-size:.875rem;line-height:1.45}
+  .faq-sec .faq-list{margin-top:14px}
+  .faq-sec summary,.kw-acc summary{padding-block:11px;font-size:.9375rem}
+  .devis .devis-shell{padding:16px 14px}
+  .devis .fc-t{font-size:1.2rem;margin-bottom:10px}
+  .devis .opt,.devis .opts[data-field="delai"] .opt{min-height:48px;padding-block:7px}
+  .devis .alt-call{margin-top:8px;font-size:.875rem}
+  .sec.devis{padding-block:20px}
+  .cartes{margin-top:14px}
+}
+/* Ordinateur : carte des villes un peu plus basse sur les portables (720 px de haut) */
+@media(min-width:1060px){.carte-svg{max-height:min(64vh,560px)}}
+@media(min-width:1060px){
+  .kw-carte .wrap:has(.carte-reste){grid-template-rows:auto 1fr}
+  .kw-carte .wrap:has(.carte-reste) .sec-head{grid-column:1;grid-row:1;align-self:end}
+  .kw-carte .wrap:has(.carte-reste) .carte{grid-column:2;grid-row:1 / span 2}
+  .kw-carte .carte-reste{grid-column:1;grid-row:2;align-self:start;margin:18px 0 0}
+}
+
+/* Logo Tonio en SVG dans le pied des cartes */
+.co-logo svg{display:block;width:100%;height:auto}
+.co-foot .co-logo{display:block;flex:none;width:40px}
+
+/* 21/11/2026 : rappel de l'offre au-dessus de prénom + téléphone */
+.f-rappel{background:var(--marine);color:#fff;border-radius:14px;padding:14px 16px;margin:0 0 14px;text-align:center}
+.f-rappel-t{margin:0;font-weight:800;font-size:clamp(1.08rem,.95rem + .6vw,1.3rem);line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
+.f-rappel-t mark{background:none;color:var(--jaune);white-space:nowrap}
+.f-rappel-s{margin:6px 0 0;font-size:.875rem;line-height:1.35;color:rgba(255,255,255,.82)}
+.form-bleu .f-rappel{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}
+
+/* ===== 22/11/2026 (Emrick) : plus de barre du haut. Le H1 colle au haut de l'écran
+   et tout le hero remonte, pour que le formulaire soit visible plus tôt. ===== */
+html{scroll-padding-top:16px}
+.hero-in{padding-top:clamp(18px,3vh,40px)}
+.hero .google-badge{margin-top:10px}
+.hero-proof{margin-top:10px}
+.ring-hero{margin-top:8px}
+@media(max-width:1059px){.hero-form{margin-top:12px}}
+@media(max-width:560px){
+  .hero-in{padding:14px var(--gutter) 20px}
+  .hero .google-badge+.hero-cta{margin-top:8px}
+}
+@media(min-width:1060px){
+  .hero-in{padding-block:clamp(16px,2.5vh,28px) 0}
+}
+
+/* ===== 22/11/2026 (Emrick) : bouton d'appel = l'action en gros (« Appeler X pour qu'il vienne »), le numéro en petit dessous. ===== */
+.btn-stack .btn-txt b{font-size:1.125rem;letter-spacing:-.01em;font-variant-numeric:normal;white-space:nowrap}
+.btn-stack .btn-txt small{font-size:.875rem;font-weight:600;opacity:.9;letter-spacing:.02em;font-variant-numeric:tabular-nums;margin-top:3px}
+@media(max-width:560px){.btn-stack .btn-txt b{font-size:1.0625rem}.btn-stack .btn-txt small{font-size:.8125rem}}
+@media(max-width:360px){.btn-stack .btn-txt b{font-size:.96875rem}}
+
+/* Étiquette Avant / Après posée sur une photo (anneau + galerie, 23/11) */
+.ring3d-v,.gal-grid li{position:relative}
+.ba-tag{position:absolute;top:10px;left:10px;z-index:2;padding:5px 12px;border-radius:999px;background:rgba(11,24,39,.82);color:#fff;font:700 .8125rem/1 var(--font);letter-spacing:.01em;box-shadow:0 4px 12px -4px rgba(0,0,0,.4);pointer-events:none}
+.ring3d-v .ba-tag{top:10px;left:10px;font-size:1rem;padding:6px 13px}
+.gal-grid li.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:#fff}
+.gal-pair .gal-moitie{position:relative;overflow:hidden;min-width:0}
+.gal-pair .gal-moitie img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.gal-grid li.gal-pair:hover img{transform:scale(1.04)}
+.gal-grid li .ba-tag + figcaption{font-weight:600}
+
+/* ===== 24/11/2026 (Emrick) : logo + nom de l'entreprise en tête du hero, pour rassurer tout de suite ===== */
+.hero-brand{display:inline-flex;margin:0 0 clamp(12px,2vh,18px)}
+.hero-brand svg{width:46px}
+.hero-brand b{font-size:1.125rem}
+.hero-brand span{text-align:left}
+.hero-brand small{display:block;color:rgba(255,255,255,.75)}
+.hero.fond-blanc .hero-brand{color:var(--nuit)}
+@media(max-width:560px){.hero-brand{margin-bottom:10px}.hero-brand svg{width:40px}.hero-brand small{display:block}}
+/* Flèches des carrousels : jamais quand tout tient (le JS met hidden et .car-fixe) */
+.car-btn[hidden],.car-fixe>.car-btn{display:none!important}
+
 </style>
 </head>
 <body>
@@ -485,40 +936,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <a class="skip" href="#devis">Aller au formulaire de devis</a>
 
-<header class="bar">
-  <div class="bar-in">
-    <a class="brand" href="#top" aria-label="Tonio Rénov' — haut de page"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Toiture &amp; peinture · Boucau</small></span></a>
-    <a class="bar-tel-link" href="tel:+33525680158" aria-label="Appeler Tonio Rénov' au 05 25 68 01 58"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="bar-tel-num">05 25 68 01 58</span></a>
-  </div>
-</header>
+<!-- Barre du haut retirée le 22/11/2026 (Emrick) : le H1 et le formulaire remontent. -->
 
 <main id="top">
 <section class="hero">
   <div class="hero-bg"><img src="/roof.jpg" alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:60% 38%"></div>
   <div class="hero-in">
     <div class="hero-copy">
+      <!-- 24/11/2026 (Emrick) : l'entreprise en tête de page, pour rassurer tout de suite (logo + nom, sans barre collante). -->
+      <a class="brand hero-brand fade" href="#top" aria-label="Tonio Rénov', artisan à Boucau depuis 2009"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Artisan à Boucau depuis 2009</small></span></a>
       <h1 aria-label="Mousse sur votre toiture ? Tonio Rénov' la nettoie."><span class="w" style="--i:0" aria-hidden="true">Mousse</span> <span class="w" style="--i:1" aria-hidden="true">sur</span> <span class="w" style="--i:2" aria-hidden="true">votre</span> <span class="w" style="--i:3" aria-hidden="true">toiture</span> <span class="w" style="--i:4" aria-hidden="true">?</span><br><mark><span class="w" style="--i:5" aria-hidden="true">Tonio</span> <span class="w" style="--i:6" aria-hidden="true">Rénov'</span> <span class="w" style="--i:7" aria-hidden="true">la</span> <span class="w" style="--i:8" aria-hidden="true">nettoie.</span></mark></h1>
-      <a class="google-badge fade" style="--d:1" href="https://www.google.com/search?q=Tonio+Rénov+Boucau+avis" target="_blank" rel="noopener">
+      <p class="google-badge fade" style="--d:1">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
         <span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><span><b>5/5</b> · <b>23 avis</b></span>
-      </a>
+      </p>
       <div class="hero-cta fade" style="--d:2">
-        <a class="btn btn-primary btn-stack" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic btn-ph" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="btn-txt"><b>05 25 68 01 58</b><small>Appeler Tonio pour qu'il vienne</small></span></a>
+        <a class="btn btn-primary btn-stack" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic btn-ph" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span class="btn-txt"><b>Appeler Tonio pour qu'il vienne</b><small>05 25 68 01 58</small></span></a>
       </div>
       <p class="hero-proof fade" style="--d:3"><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Visite gratuite</span><span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>Sans engagement</span></p>
     </div>
+    
     <div class="hero-form" id="devis">
       <div class="hf-head"><h2 class="hf-t">Votre devis en 6 questions</h2></div>
       <div class="devis-shell">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="haut" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 6</span><p class="fq" tabindex="-1" data-focus>Qu'observez-vous sur votre toiture ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Mousse / lichen visible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg><span>Mousse / lichen visible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles cassées ou déplacées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles cassées / déplacées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Fuite ou infiltration" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite / infiltration</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Entretien préventif" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Entretien préventif</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 6</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 6</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 6</span><p class="fq" tabindex="-1" data-focus>Quand voulez-vous faire les travaux ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="delai" role="group"><button type="button" class="opt" data-value="Dès que possible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dès que possible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans le mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans le mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans les 3 mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans les 3 mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je me renseigne" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je me renseigne</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="5"><span class="fcount">Étape 5 sur 6</span><p class="fq" tabindex="-1" data-focus>Vous êtes :</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="statut" role="group"><button type="button" class="opt" data-value="Propriétaire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Propriétaire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Locataire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Locataire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Syndic" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Syndic</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="6"><span class="fcount">Étape 6 sur 6</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p><div class="field"><label for="f-nom-haut">Nom</label><input id="f-nom-haut" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div><div class="field"><label for="f-tel-haut">Téléphone</label><input id="f-tel-haut" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div><div class="field"><label for="f-ville-haut">Ville</label><input id="f-ville-haut" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div></div>
-        <div class="fstep" data-step="7" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 05 25 68 01 58</span></a></div></div>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 6</span><p class="fq" tabindex="-1" data-focus>Qu'observez-vous sur votre toiture ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Mousse / lichen visible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg><span>Mousse / lichen visible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles cassées ou déplacées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles cassées / déplacées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Fuite ou infiltration" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite / infiltration</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Entretien préventif" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Entretien préventif</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 6</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 6</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 6</span><p class="fq" tabindex="-1" data-focus>Quand voulez-vous faire les travaux ?</p><div class="opts" data-field="delai" role="group"><button type="button" class="opt" data-value="Dès que possible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dès que possible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans le mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans le mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans les 3 mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans les 3 mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je me renseigne" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je me renseigne</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="5"><span class="fcount">Étape 5 sur 6</span><p class="fq" tabindex="-1" data-focus>Vous êtes :</p><div class="opts" data-field="statut" role="group"><button type="button" class="opt" data-value="Propriétaire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Propriétaire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Locataire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Locataire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Syndic" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Syndic</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="6"><span class="fcount">Étape 6 sur 6</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p><div class="field"><label for="f-nom-haut">Nom</label><input id="f-nom-haut" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div><div class="field"><label for="f-tel-haut">Téléphone</label><input id="f-tel-haut" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div><div class="field"><label for="f-ville-haut">Ville</label><input id="f-ville-haut" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div><p class="f-rgpd">Vos coordonnées servent uniquement à vous rappeler pour ce devis. <a href="/confidentialite/">Confidentialité</a></p></div>
+        <div class="fstep" data-step="7" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 05 25 68 01 58</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
       </form>
     </div>
@@ -528,58 +977,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section class="band" aria-label="Nos garanties"><div class="wrap"><ul><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><div><b>Plus de 500 chantiers</b><small>sur la Côte Basque</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Garantie décennale</b><small>sur tous nos travaux</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg><div><b>Assurance RC Pro</b><small>artisan assuré</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg><div><b>Certifié RGE</b><small>qualification reconnue</small></div></li><li><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><div><b>Réponse sous 24h</b><small>on vous rappelle</small></div></li></ul></div></section>
 
-<section class="sec sec-dark has-bg">
-  <img class="sec-bg" src="/img/demoussage-bg-methode.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1300" height="886">
-  <div class="wrap">
-    <div class="sec-head center"><h2 class="split on-dark" aria-label="Tonio vient voir avant de chiffrer"><span class="w" style="--i:0" aria-hidden="true">Tonio</span> <span class="w" style="--i:1" aria-hidden="true">vient</span> <span class="w" style="--i:2" aria-hidden="true">voir</span> <span class="w" style="--i:3" aria-hidden="true">avant</span> <span class="w" style="--i:4" aria-hidden="true">de</span> <span class="w" style="--i:5" aria-hidden="true">chiffrer</span></h2><p class="lead reveal on-dark" style="--d:1"><strong>Pas de devis par mail. Pas de commercial envoyé par un autre. Pas de prix balancé au téléphone.</strong><br>Tonio décroche, passe chez vous le soir même ou le lendemain, monte sur le toit, puis chiffre devant vous, sur place.</p></div>
-    <ol class="steps"><li class="step reveal" style="--d:0"><span class="step-n">1</span><h3>Vous nous appelez</h3><p>Décrivez l'état de votre toiture, on cale une visite gratuite rapidement.</p></li><li class="step reveal" style="--d:1"><span class="step-n">2</span><h3>Diagnostic & devis</h3><p>On évalue l'ampleur de la mousse et l'état des tuiles, devis détaillé sous 24h.</p></li><li class="step reveal" style="--d:2"><span class="step-n">3</span><h3>Intervention</h3><p>Nettoyage basse pression, traitement hydrofuge sans chlore, produits DALEP 2100.</p></li><li class="step reveal" style="--d:3"><span class="step-n">4</span><h3>Contrôle final</h3><p>Vérification tuile par tuile et nettoyage du chantier avant de repartir.</p></li></ol>
-  </div>
-</section>
-
-<section class="sec sec-light">
-  <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Nos derniers chantiers sur la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Nos</span> <span class="w" style="--i:1" aria-hidden="true">derniers</span> <span class="w" style="--i:2" aria-hidden="true">chantiers</span> <span class="w" style="--i:3" aria-hidden="true">sur</span> <span class="w" style="--i:4" aria-hidden="true">la</span> <span class="w" style="--i:5" aria-hidden="true">Côte</span> <span class="w" style="--i:6" aria-hidden="true">Basque</span></h2></div>
-    <ul class="gal-grid reveal" style="--d:1">
-      <li><img src="/img/galerie-real-refection-toiture.jpg" alt="Réfection de couverture au Pays Basque" loading="lazy" decoding="async"><figcaption>Réfection de couverture au Pays Basque</figcaption></li>
-      <li><img src="/img/galerie-real-zinguerie-faitage.jpg" alt="Faîtage & zinguerie au Pays Basque" loading="lazy" decoding="async"><figcaption>Faîtage & zinguerie au Pays Basque</figcaption></li>
-      <li><img src="/img/galerie-real-toiture-chantier.jpg" alt="Entretien de toiture à Boucau" loading="lazy" decoding="async"><figcaption>Entretien de toiture à Boucau</figcaption></li>
-    </ul>
-  </div>
-</section>
-
-<section class="sec sec-light" id="avis" style="padding-top:0">
+<!-- Ordre validé par Emrick (18/11) : hero → avis → photos → zone → formulaire → sections score de qualité (FAQ, mots-clés) tout en bas.
+     Méthode et bloc CTA à texte retirés du flux (pavés de texte). -->
+<section class="sec sec-light" id="avis">
   <div class="wrap">
     <div class="sec-head center"><h2 class="split " aria-label="Ce que disent nos clients sur la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Ce</span> <span class="w" style="--i:1" aria-hidden="true">que</span> <span class="w" style="--i:2" aria-hidden="true">disent</span> <span class="w" style="--i:3" aria-hidden="true">nos</span> <span class="w" style="--i:4" aria-hidden="true">clients</span> <span class="w" style="--i:5" aria-hidden="true">sur</span> <span class="w" style="--i:6" aria-hidden="true">la</span> <span class="w" style="--i:7" aria-hidden="true">Côte</span> <span class="w" style="--i:8" aria-hidden="true">Basque</span></h2><p class="rev-sum reveal"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><span><b>5/5</b> · avis vérifiés de clients de la Côte Basque et des Landes</span></p></div>
-    <div class="rev-grid"><figure class="rev big reveal" style="--d:0"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>« Un travail remarquable sur notre toiture. Le démoussage a redonné vie à notre toit, résultat impeccable ! »</blockquote><figcaption class="rev-who"><span class="rev-av">ML</span><span><b>Marie L.</b><small>Anglet</small></span></figcaption></figure><figure class="rev reveal" style="--d:1"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>« Intervention rapide pour une fuite sur le toit. Problème réglé en une journée, prix très correct. »</blockquote><figcaption class="rev-who"><span class="rev-av">PK</span><span><b>Pierre K.</b><small>Hendaye</small></span></figcaption></figure><figure class="rev reveal" style="--d:2"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote>« Le traitement hydrofuge a transformé notre toiture. Après 2 ans, elle est toujours comme neuve. »</blockquote><figcaption class="rev-who"><span class="rev-av">FB</span><span><b>Fatima B.</b><small>Saint-Jean-de-Luz</small></span></figcaption></figure></div>
-  </div>
-</section>
-
-<section class="sec sec-light" id="zone" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Basés à Boucau, on se déplace sur toute la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Basés</span> <span class="w" style="--i:1" aria-hidden="true">à</span> <span class="w" style="--i:2" aria-hidden="true">Boucau,</span> <span class="w" style="--i:3" aria-hidden="true">on</span> <span class="w" style="--i:4" aria-hidden="true">se</span> <span class="w" style="--i:5" aria-hidden="true">déplace</span> <span class="w" style="--i:6" aria-hidden="true">sur</span> <span class="w" style="--i:7" aria-hidden="true">toute</span> <span class="w" style="--i:8" aria-hidden="true">la</span> <span class="w" style="--i:9" aria-hidden="true">Côte</span> <span class="w" style="--i:10" aria-hidden="true">Basque</span></h2><p class="lead reveal" style="--d:1"><strong>Artisan local</strong> — pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
-    <ul class="chips reveal" style="--d:2"><li class="base"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Boucau</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bayonne</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Anglet</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Biarritz</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bidart</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Guéthary</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Jean-de-Luz</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Hendaye</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Urrugne</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Arbonne</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Arcangues</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Tarnos</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Ondres</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Martin-de-Seignanx</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Labenne</li><li class=""><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Capbreton</li></ul>
+    <div class="rev-grid"><figure class="rev big"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote class="rev-q">« Un travail remarquable sur notre toiture. Le démoussage a redonné vie à notre toit, résultat impeccable ! »</blockquote><button type="button" class="rev-more" hidden>Lire la suite</button><figcaption class="rev-who"><span class="rev-av">ML</span><span><b>Marie L.</b><small>Anglet</small></span></figcaption></figure><figure class="rev"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote class="rev-q">« Intervention rapide pour une fuite sur le toit. Problème réglé en une journée, prix très correct. »</blockquote><button type="button" class="rev-more" hidden>Lire la suite</button><figcaption class="rev-who"><span class="rev-av">PK</span><span><b>Pierre K.</b><small>Hendaye</small></span></figcaption></figure><figure class="rev"><span class="stars" role="img" aria-label="5 étoiles sur 5"><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg><svg class="ic ic-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></span><blockquote class="rev-q">« Le traitement hydrofuge a transformé notre toiture. Après 2 ans, elle est toujours comme neuve. »</blockquote><button type="button" class="rev-more" hidden>Lire la suite</button><figcaption class="rev-who"><span class="rev-av">FB</span><span><b>Fatima B.</b><small>Saint-Jean-de-Luz</small></span></figcaption></figure></div>
   </div>
 </section>
 
 <section class="sec sec-light" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head center"><h2 class="split " aria-label="Vos questions avant de nous appeler"><span class="w" style="--i:0" aria-hidden="true">Vos</span> <span class="w" style="--i:1" aria-hidden="true">questions</span> <span class="w" style="--i:2" aria-hidden="true">avant</span> <span class="w" style="--i:3" aria-hidden="true">de</span> <span class="w" style="--i:4" aria-hidden="true">nous</span> <span class="w" style="--i:5" aria-hidden="true">appeler</span></h2><p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="tel:+33525680158"><strong>05 25 68 01 58</strong></a>.</p></div>
-    <div class="faq-list reveal" style="--d:1"><details><summary>J'ai de la mousse sur mon toit, c'est urgent ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Tant qu'elle est en surface, un démoussage suffit. Dès qu'elle soulève les tuiles ou que des taches apparaissent au plafond, l'eau passe déjà — et là, chaque mois compte.</p></details><details><summary>Intervenez-vous en urgence pour une fuite ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Oui, on priorise les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque.</p></details><details><summary>Quelles garanties proposez-vous ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Tous nos chantiers sont couverts par notre garantie décennale et notre assurance RC Pro. Nous sommes artisan certifié RGE.</p></details><details><summary>Le démoussage abîme-t-il les tuiles ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Non — on travaille en basse pression avec des produits biocides sans chlore, spécifiquement pour préserver l'étanchéité et la couleur des tuiles.</p></details><details><summary>Quelles villes couvrez-vous ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Boucau, Bayonne, Anglet, Biarritz, Bidart, Guéthary, Saint-Jean-de-Luz, Hendaye et les communes du Sud-Landes jusqu'à Capbreton.</p></details></div>
+    <div class="sec-head center"><h2 class="split " aria-label="Nos derniers chantiers sur la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Nos</span> <span class="w" style="--i:1" aria-hidden="true">derniers</span> <span class="w" style="--i:2" aria-hidden="true">chantiers</span> <span class="w" style="--i:3" aria-hidden="true">sur</span> <span class="w" style="--i:4" aria-hidden="true">la</span> <span class="w" style="--i:5" aria-hidden="true">Côte</span> <span class="w" style="--i:6" aria-hidden="true">Basque</span></h2></div>
+    <ul class="gal-grid reveal" style="--d:1">
+      <li><img src="/img/galerie-real-refection-toiture.jpg" alt="Réfection de toiture au Pays Basque" loading="lazy" decoding="async" width="683" height="1215"><figcaption>Réfection de toiture au Pays Basque</figcaption></li>
+      <li><img src="/img/ring/toiture-mousse-apres.jpg" alt="Toiture démoussée et traitée par Tonio" loading="lazy" decoding="async" width="352" height="719"><figcaption>Toiture démoussée et traitée par Tonio</figcaption></li>
+      <li><img src="/img/galerie-real-zinguerie-faitage.jpg" alt="Faîtage et zinguerie au Pays Basque" loading="lazy" decoding="async" width="724" height="1287"><figcaption>Faîtage et zinguerie au Pays Basque</figcaption></li>
+      <li><img src="/img/ring/toiture-mousse-avant.jpg" alt="Toiture couverte de mousse avant le démoussage" loading="lazy" decoding="async" width="352" height="505"><figcaption>Toiture couverte de mousse avant le démoussage</figcaption></li>
+      <li><img src="/img/galerie-real-toiture-chantier.jpg" alt="Chantier de toiture à Boucau" loading="lazy" decoding="async" width="1000" height="1778"><figcaption>Chantier de toiture à Boucau</figcaption></li>
+      <li><img src="/img/ring/toiture-faitage.jpg" alt="Faîtage et tuiles repris par Tonio" loading="lazy" decoding="async" width="520" height="500"><figcaption>Faîtage et tuiles repris par Tonio</figcaption></li>
+      <li><img src="/img/ring/toiture-refection.jpg" alt="Tuiles reposées sur écran sous-toiture" loading="lazy" decoding="async" width="520" height="550"><figcaption>Tuiles reposées sur écran sous-toiture</figcaption></li>
+    </ul>
   </div>
 </section>
 
-<section class="sec cta has-bg">
-  <img class="sec-bg" src="/img/demoussage-bg-cta.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="1300" height="862">
+<section class="sec sec-light zone-sec" id="zone" style="padding-top:0">
   <div class="wrap">
-    <h2 class="split " aria-label="Une toiture entretenue, c'est une toiture qui dure"><span class="w" style="--i:0" aria-hidden="true">Une</span> <span class="w" style="--i:1" aria-hidden="true">toiture</span> <span class="w" style="--i:2" aria-hidden="true">entretenue,</span> <span class="w" style="--i:3" aria-hidden="true">c'est</span> <span class="w" style="--i:4" aria-hidden="true">une</span> <span class="w" style="--i:5" aria-hidden="true">toiture</span> <span class="w" style="--i:6" aria-hidden="true">qui</span> <span class="w" style="--i:7" aria-hidden="true">dure</span></h2>
-    <p class="reveal" style="--d:1"><strong>Devis gratuit sous 24h</strong>, aucun engagement.</p>
-    <p class="rarete reveal on-dark" style="--d:1.5"><em>Tonio prend 6 à 8 nouveaux chantiers par mois pour garder la qualité, pas à la chaîne.</em></p>
-    <div class="btns reveal" style="--d:2">
-      <a class="btn btn-primary" href="#devis-bas"><span>Faire venir Tonio chez moi</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-      <a class="btn-tel on-dark" href="tel:+33525680158"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>ou appeler <b>05 25 68 01 58</b></span></a>
-    </div>
-    <p class="ps reveal on-dark" style="--d:3"><strong>PS —</strong> Votre toit ne va pas s'arranger tout seul. Un diagnostic gratuit maintenant = zéro euro pour savoir. Attendre, c'est laisser la couverture se fatiguer un hiver de plus — et payer la charpente en plus de la toiture.</p>
+    <div class="sec-head center"><h2 class="split " aria-label="Basés à Boucau, on se déplace sur toute la Côte Basque"><span class="w" style="--i:0" aria-hidden="true">Basés</span> <span class="w" style="--i:1" aria-hidden="true">à</span> <span class="w" style="--i:2" aria-hidden="true">Boucau,</span> <span class="w" style="--i:3" aria-hidden="true">on</span> <span class="w" style="--i:4" aria-hidden="true">se</span> <span class="w" style="--i:5" aria-hidden="true">déplace</span> <span class="w" style="--i:6" aria-hidden="true">sur</span> <span class="w" style="--i:7" aria-hidden="true">toute</span> <span class="w" style="--i:8" aria-hidden="true">la</span> <span class="w" style="--i:9" aria-hidden="true">Côte</span> <span class="w" style="--i:10" aria-hidden="true">Basque</span></h2><p class="lead"><strong>Artisan local</strong> : pas d'intermédiaire, pas de sous-traitance. On connaît les toitures et les façades du secteur, exposées au vent et aux embruns.</p></div>
+    <form class="ville-cherche" data-prenom="Tonio" role="search" action="#" autocomplete="off">
+      <label class="sr-only" for="ville-q">Chercher ma ville</label>
+      <svg class="ic vc-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="ville-q" type="search" placeholder="Chercher ma ville" enterkeyhint="search" spellcheck="false">
+    </form>
+    <p class="ville-res" aria-live="polite" hidden></p>
   </div>
+  <div class="ville-defile" aria-label="Communes où Tonio intervient"><div class="vd-row vd-g"><div class="vd-track"><ul class="chips"><li class="base" data-ville="Boucau"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Boucau</li><li class="" data-ville="Bayonne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bayonne</li><li class="" data-ville="Anglet"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Anglet</li><li class="" data-ville="Biarritz"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Biarritz</li><li class="" data-ville="Bidart"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bidart</li><li class="" data-ville="Guéthary"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Guéthary</li><li class="" data-ville="Saint-Jean-de-Luz"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Jean-de-Luz</li><li class="" data-ville="Hendaye"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Hendaye</li></ul><ul class="chips" aria-hidden="true"><li class="base" data-ville="Boucau"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Boucau</li><li class="" data-ville="Bayonne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bayonne</li><li class="" data-ville="Anglet"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Anglet</li><li class="" data-ville="Biarritz"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Biarritz</li><li class="" data-ville="Bidart"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Bidart</li><li class="" data-ville="Guéthary"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Guéthary</li><li class="" data-ville="Saint-Jean-de-Luz"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Jean-de-Luz</li><li class="" data-ville="Hendaye"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Hendaye</li></ul></div></div><div class="vd-row vd-d"><div class="vd-track"><ul class="chips"><li class="" data-ville="Urrugne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Urrugne</li><li class="" data-ville="Arbonne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Arbonne</li><li class="" data-ville="Arcangues"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Arcangues</li><li class="" data-ville="Tarnos"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Tarnos</li><li class="" data-ville="Ondres"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Ondres</li><li class="" data-ville="Saint-Martin-de-Seignanx"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Martin-de-Seignanx</li><li class="" data-ville="Labenne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Labenne</li><li class="" data-ville="Capbreton"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Capbreton</li></ul><ul class="chips" aria-hidden="true"><li class="" data-ville="Urrugne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Urrugne</li><li class="" data-ville="Arbonne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Arbonne</li><li class="" data-ville="Arcangues"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Arcangues</li><li class="" data-ville="Tarnos"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Tarnos</li><li class="" data-ville="Ondres"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Ondres</li><li class="" data-ville="Saint-Martin-de-Seignanx"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Martin-de-Seignanx</li><li class="" data-ville="Labenne"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Labenne</li><li class="" data-ville="Capbreton"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Capbreton</li></ul></div></div></div>
 </section>
 <section class="sec sec-light devis" id="devis-bas">
   <div class="wrap">
@@ -587,17 +1018,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="devis-shell">
       <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <form class="devis-form" data-pos="bas" novalidate>
-        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 6</span><p class="fq" tabindex="-1" data-focus>Qu'observez-vous sur votre toiture ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Mousse / lichen visible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg><span>Mousse / lichen visible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles cassées ou déplacées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles cassées / déplacées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Fuite ou infiltration" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite / infiltration</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Entretien préventif" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Entretien préventif</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 6</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 6</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 6</span><p class="fq" tabindex="-1" data-focus>Quand voulez-vous faire les travaux ?</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="delai" role="group"><button type="button" class="opt" data-value="Dès que possible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dès que possible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans le mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans le mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans les 3 mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans les 3 mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je me renseigne" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je me renseigne</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="5"><span class="fcount">Étape 5 sur 6</span><p class="fq" tabindex="-1" data-focus>Vous êtes :</p><span class="fhint">Cliquez sur votre réponse</span><div class="opts" data-field="statut" role="group"><button type="button" class="opt" data-value="Propriétaire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Propriétaire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Locataire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Locataire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Syndic" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Syndic</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
-        <div class="fstep" data-step="6"><span class="fcount">Étape 6 sur 6</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p><div class="field"><label for="f-nom-bas">Nom</label><input id="f-nom-bas" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div><div class="field"><label for="f-tel-bas">Téléphone</label><input id="f-tel-bas" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div><div class="field"><label for="f-ville-bas">Ville</label><input id="f-ville-bas" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div></div>
-        <div class="fstep" data-step="7" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 05 25 68 01 58</span></a></div></div>
+        <div class="fstep active" data-step="1"><span class="fcount">Étape 1 sur 6</span><p class="fq" tabindex="-1" data-focus>Qu'observez-vous sur votre toiture ?</p><div class="opts" data-field="probleme" role="group"><button type="button" class="opt" data-value="Mousse / lichen visible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg><span>Mousse / lichen visible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Tuiles cassées ou déplacées" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles cassées / déplacées</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Fuite ou infiltration" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg><span>Fuite / infiltration</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Entretien préventif" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Entretien préventif</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="2"><span class="fcount">Étape 2 sur 6</span><p class="fq" tabindex="-1" data-focus>Quel type de toiture avez-vous ?</p><div class="opts" data-field="toiture" role="group"><button type="button" class="opt" data-value="Tuiles" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Tuiles</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Ardoise" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Ardoise</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Zinc / bac acier" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg><span>Zinc / bac acier</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="3"><span class="fcount">Étape 3 sur 6</span><p class="fq" tabindex="-1" data-focus>Surface approximative de la toiture ?</p><div class="opts" data-field="surface" role="group"><button type="button" class="opt" data-value="Moins de 80 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Moins de 80 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="80 à 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>80 à 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Plus de 150 m²" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Plus de 150 m²</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je ne sais pas" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je ne sais pas</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="4"><span class="fcount">Étape 4 sur 6</span><p class="fq" tabindex="-1" data-focus>Quand voulez-vous faire les travaux ?</p><div class="opts" data-field="delai" role="group"><button type="button" class="opt" data-value="Dès que possible" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dès que possible</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans le mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans le mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Dans les 3 mois" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Dans les 3 mois</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Je me renseigne" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg><span>Je me renseigne</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="5"><span class="fcount">Étape 5 sur 6</span><p class="fq" tabindex="-1" data-focus>Vous êtes :</p><div class="opts" data-field="statut" role="group"><button type="button" class="opt" data-value="Propriétaire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Propriétaire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Locataire" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Locataire</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button><button type="button" class="opt" data-value="Syndic" aria-pressed="false"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg><span>Syndic</span><span class="tick"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button></div></div>
+        <div class="fstep" data-step="6"><span class="fcount">Étape 6 sur 6</span><p class="fq" tabindex="-1" data-focus>Vos coordonnées pour le rappel</p><div class="field"><label for="f-nom-bas">Nom</label><input id="f-nom-bas" data-champ="nom" type="text" placeholder="Votre nom" autocomplete="name"></div><div class="field"><label for="f-tel-bas">Téléphone</label><input id="f-tel-bas" data-champ="tel" type="tel" inputmode="tel" placeholder="06 12 34 56 78" autocomplete="tel"></div><div class="field"><label for="f-ville-bas">Ville</label><input id="f-ville-bas" data-champ="ville" type="text" placeholder="Bayonne, Anglet, Biarritz…" autocomplete="address-level2"></div><p class="f-rgpd">Vos coordonnées servent uniquement à vous rappeler pour ce devis. <a href="/confidentialite/">Confidentialité</a></p></div>
+        <div class="fstep" data-step="7" aria-live="polite"><div class="done"><div class="done-ic"><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan Tonio Rénov' vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="tel:+33525680158"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Ou appelez le 05 25 68 01 58</span></a></div></div>
         <div class="factions"><button type="button" class="fback" disabled><svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>Précédent</button><button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span><svg class="ic arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
       </form>
     </div>
-    <p class="alt-call">Vous préférez en parler ? Appelez-nous au <a href="tel:+33525680158">05 25 68 01 58</a></p>
+    <p class="alt-call">Vous préférez en parler ? Appelez-nous au <a href="tel:+33525680158">05 25 68 01 58</a></p>
+  </div>
+</section>
+<!-- Sections score de qualité (mots-clés de la campagne) : toujours sous le dernier formulaire. -->
+<section class="sec sec-dark faq-sec">
+  <div class="wrap">
+    <div class="sec-head center"><h2 class="split " aria-label="Vos questions avant de nous appeler"><span class="w" style="--i:0" aria-hidden="true">Vos</span> <span class="w" style="--i:1" aria-hidden="true">questions</span> <span class="w" style="--i:2" aria-hidden="true">avant</span> <span class="w" style="--i:3" aria-hidden="true">de</span> <span class="w" style="--i:4" aria-hidden="true">nous</span> <span class="w" style="--i:5" aria-hidden="true">appeler</span></h2><p class="lead reveal" style="--d:1">Une autre question ? Appelez-nous au <a href="tel:+33525680158"><strong>05 25 68 01 58</strong></a>.</p></div>
+    <div class="faq-list"><details><summary>J'ai de la mousse sur mon toit, c'est urgent ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Tant qu'elle est en surface, un démoussage suffit. Dès qu'elle soulève les tuiles ou que des taches apparaissent au plafond, l'eau passe déjà — et là, chaque mois compte.</p></details><details><summary>Intervenez-vous en urgence pour une fuite ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Oui, on priorise les urgences (fuite, infiltration) et on peut souvent intervenir sous 48h sur le secteur Bayonne / Côte Basque.</p></details><details><summary>Quelles garanties proposez-vous ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Tous nos chantiers sont couverts par notre garantie décennale et notre assurance RC Pro. Nous sommes artisan certifié RGE.</p></details><details><summary>Le démoussage abîme-t-il les tuiles ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Non — on travaille en basse pression avec des produits biocides sans chlore, spécifiquement pour préserver l'étanchéité et la couleur des tuiles.</p></details><details><summary>Quelles villes couvrez-vous ?<svg class="ic " viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary><p>Boucau, Bayonne, Anglet, Biarritz, Bidart, Guéthary, Saint-Jean-de-Luz, Hendaye et les communes du Sud-Landes jusqu'à Capbreton.</p></details></div>
   </div>
 </section>
 </main>
@@ -605,10 +1043,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="wrap foot">
     <div><a class="brand" href="#top"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Toiture &amp; façade · Boucau</small></span></a><p>Artisan basé à Boucau, spécialisé en entretien de toiture et en peinture, intervenant sur Bayonne, la Côte Basque et les Sud-Landes. Intervention rapide, devis gratuit, garantie décennale.</p></div>
-    <div><h4>Contact</h4><ul><li><a class="tel-foot" href="tel:+33525680158">+33 6 34 12 23 31</a></li><li><a href="mailto:contact@toniorenov.fr">contact@toniorenov.fr</a></li><li>Boucau (64), Pays basque</li></ul></div>
+    <div><h4>Contact</h4><ul><li><a class="tel-foot" href="tel:+33525680158">05 25 68 01 58</a></li><li><a href="mailto:contact@toniorenov.fr">contact@toniorenov.fr</a></li><li>Boucau (64), Pays basque</li></ul></div>
     <div><h4>Prestations</h4><ul><li>Démoussage de toiture</li><li>Traitement hydrofuge</li><li>Entretien de toiture</li><li>Ravalement &amp; peinture de façade</li></ul></div>
   </div>
-  <div class="wrap foot-bottom"><span>© 2026 Tonio Rénov' — Tous droits réservés</span><a href="https://toniorenov.fr">toniorenov.fr</a></div>
+  <div class="wrap foot-bottom"><span>© 2026 Tonio Rénov' — Tous droits réservés</span><span class="foot-legal"><a href="/mentions-legales/">Mentions légales</a><a href="/confidentialite/">Confidentialité</a><a href="https://toniorenov.fr">toniorenov.fr</a></span><span class="foot-id">Tonio VIS, entrepreneur individuel (EI) · SIRET 511&nbsp;400&nbsp;814&nbsp;00030 · 17 allée des Platanes, 64340 Boucau</span></div>
 </footer>
 
 <a class="fab" href="tel:+33525680158" aria-label="Appeler Tonio Rénov' au 05 25 68 01 58"><span class="fab-pulse" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Appeler</span></a>
@@ -720,7 +1158,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      --------------------------------------------------------------- */
 
   /* Destination des demandes : espace client Potentieel (table form_submissions).
-     Le lead apparaît dans la fiche du client, à côté des appels Twilio. */
+     Le lead apparaît dans la fiche du client, à côté des appels du numéro de suivi. */
   var LEAD = {
     url: 'https://ktzegmikprmltuelxsgi.supabase.co/rest/v1/form_submissions',
     key: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt0emVnbWlrcHJtbHR1ZWx4c2dpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MjExMzEsImV4cCI6MjEwOTI5NzEzMX0.yg0-RZgekOcy8GNKpdg3OUpxp6vp5jZu2iIFJK21TAk',
@@ -729,8 +1167,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function param(n) { try { return new URLSearchParams(location.search).get(n) || null; } catch (e) { return null; } }
 
-  function envoyer(reponses, pos) {
+  function envoyer(reponses, pos, form) {
     /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, délai, statut, page et formulaire d'origine. */
+    if (!LEAD.client) return Promise.reject(new Error('Fiche CRM du client non branchée'));
     var details = [reponses.toiture, reponses.surface, reponses.delai, reponses.statut].filter(Boolean).join(' · ') || null;
     var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
     var corps = {
@@ -738,7 +1177,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       prenom: reponses.nom || null,
       telephone: reponses.tel || null,
       ville: reponses.ville || null,
-      domaine: reponses.probleme || null,
+      /* Sans question « besoin » (ex. nettoyage toiture), le métier vient de data-domaine du formulaire (19/11). */
+      domaine: reponses.probleme || (form && form.getAttribute('data-domaine')) || (/peinture/.test(location.pathname) ? 'Peinture intérieure' : null),
       details: details,
       source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
@@ -762,7 +1202,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var back = form.querySelector('.fback');
     var actions = form.querySelector('.factions');
     var lbl = next.querySelector('.lbl');
-    var TOTAL = 6; /* étapes avec réponse ; l'étape TOTAL + 1 = demande envoyée */
+    var TOTAL = steps.length - 1; /* étapes avec réponse (coordonnées incluses) ; l'étape TOTAL + 1 = demande envoyée */
     var cur = 1;
     var reponses = {};
     var envoye = false;
@@ -818,8 +1258,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       reponses.ville = val('ville');
       show(TOTAL + 1);
       /* Si l'envoi échoue (réseau coupé), on réessaie une fois, puis on invite à appeler. */
-      envoyer(reponses, pos).catch(function () {
-        return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos); });
+      envoyer(reponses, pos, form).catch(function () {
+        return new Promise(function (ok) { setTimeout(ok, 1500); }).then(function () { return envoyer(reponses, pos, form); });
       }).catch(function (e) {
         console.error('Envoi de la demande impossible', e);
         var d = form.querySelector('.done');
@@ -913,11 +1353,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       meta: Object.assign({}, UTM, meta || {})
     });
     try {
-      if (beacon && navigator.sendBeacon) {
-        /* sendBeacon ne porte pas d'en-tête ; Supabase accepte apikey en query string */
-        navigator.sendBeacon(TRACK.url + '?apikey=' + encodeURIComponent(TRACK.key),
-                             new Blob([corps], { type: 'application/json' }));
-      } else {
+      /* 19/11 : sendBeacon avec un corps JSON est refusé par le navigateur (envoi cross-origin non simple) :
+         page_exit n'arrivait jamais. fetch keepalive survit à la fermeture de l'onglet et garde les en-têtes. */
+      {
         fetch(TRACK.url, {
           method: 'POST',
           keepalive: !!beacon,
@@ -1084,6 +1522,269 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.addEventListener('visibilitychange', function () { if (document.hidden) partir('hidden'); });
   window.addEventListener('pagehide', function () { partir('pagehide'); });
   window.addEventListener('beforeunload', function () { partir('beforeunload'); });
+})();
+
+/* ---------- Carrousels : glisser au doigt, points, défilement auto (pause dès que le visiteur touche) ---------- */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  [].forEach.call(document.querySelectorAll('[data-carousel]'), function (c) {
+    var items = [].slice.call(c.children);
+    var dots = document.createElement('div');
+    dots.className = 'carousel-dots';
+    c.parentNode.insertBefore(dots, c.nextSibling);
+    var stops = [], pauseUntil = 0, visible = false, raf = 0;
+    /* Flèches (ordinateur) : le carrousel est enveloppé pour les poser sur ses bords */
+    var wrap = document.createElement('div'); wrap.className = 'car-wrap';
+    c.parentNode.insertBefore(wrap, c); wrap.appendChild(c);
+    var fl = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+    var prev = document.createElement('button'), next = document.createElement('button');
+    prev.type = next.type = 'button'; prev.className = 'car-btn car-prev'; next.className = 'car-btn car-next';
+    prev.setAttribute('aria-label', 'Précédent'); next.setAttribute('aria-label', 'Suivant');
+    prev.innerHTML = next.innerHTML = fl;
+    wrap.appendChild(prev); wrap.appendChild(next);
+    prev.addEventListener('click', function () { pause(); go(Math.max(0, current() - 1)); });
+    next.addEventListener('click', function () { pause(); go(Math.min(stops.length - 1, current() + 1)); });
+
+    function pos(i) { return items[i].offsetLeft - items[0].offsetLeft; }
+    function layout() {
+      var scrollable = c.scrollWidth > c.clientWidth + 4;
+      dots.hidden = !scrollable;
+      /* 24/11/2026 : pas de flèches quand toutes les cartes tiennent à l'écran */
+      wrap.classList.toggle('car-fixe', !scrollable);
+      prev.hidden = next.hidden = !scrollable;
+      if (!scrollable) { stops = []; dots.innerHTML = ''; prev.disabled = next.disabled = true; return; }
+      var max = c.scrollWidth - c.clientWidth;
+      stops = [];
+      for (var i = 0; i < items.length; i++) { var p = Math.min(pos(i), max); if (!stops.length || p - stops[stops.length - 1] > 4) stops.push(p); }
+      dots.innerHTML = '';
+      stops.forEach(function (p, i) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Aller à l’élément ' + (i + 1));
+        b.addEventListener('click', function () { pause(); go(i); });
+        dots.appendChild(b);
+      });
+      mark();
+    }
+    function current() {
+      var l = c.scrollLeft, best = 0, bd = Infinity;
+      stops.forEach(function (p, i) { var d = Math.abs(p - l); if (d < bd) { bd = d; best = i; } });
+      return best;
+    }
+    function mark() {
+      var k = current();
+      [].forEach.call(dots.children, function (b, i) { b.classList.toggle('on', i === k); });
+      prev.disabled = !stops.length || k === 0; next.disabled = !stops.length || k === stops.length - 1;
+    }
+    function go(i) { c.scrollTo({ left: stops[i] || 0, behavior: reduce ? 'auto' : 'smooth' }); }
+    function pause() { pauseUntil = Date.now() + 12000; }
+
+    c.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); }, { passive: true });
+    ['pointerdown', 'touchstart', 'wheel', 'mouseenter', 'focusin'].forEach(function (ev) { c.addEventListener(ev, pause, { passive: true }); });
+    window.addEventListener('resize', function () { clearTimeout(c._t); c._t = setTimeout(layout, 150); });
+    window.addEventListener('load', layout);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.5 }).observe(c);
+    }
+    layout();
+    if (!reduce) {
+      setInterval(function () {
+        if (!visible || !stops.length || Date.now() < pauseUntil || document.hidden) return;
+        var k = current();
+        go(k + 1 < stops.length ? k + 1 : 0);
+      }, 4500);
+    }
+  });
+})();
+
+/* Anneau 3D de photos (repris de 2rprenov.fr) : rotation continue (un tour en 40 s), glissement
+   au doigt ou à la souris qui s'ajoute à la rotation, pause hors écran et si l'animation est réduite. */
+(function () {
+  var rings = document.querySelectorAll('.ring3d');
+  if (!rings.length) return;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function echelle(l, h) {
+    if (l >= 1200) return 1;
+    if (l >= 810) return Math.min(0.92, l / 1280, h / 1100);
+    return Math.max(0.34, Math.min(0.66, l / 1000, (h - 420) / 650));
+  }
+  var e = 1, largeur = window.innerWidth;
+  // Anneau dans le hero : l'échelle suit la largeur de son bloc (pleine largeur sur mobile, colonne sur ordinateur).
+  function echelleHero(el) { return window.innerWidth >= 1060 ? Math.max(0.5, Math.min(0.78, el.clientWidth / 1700)) : Math.max(0.3, Math.min(0.46, el.clientWidth / 1000)); }
+  function poserEchelle() {
+    e = echelle(window.innerWidth, window.innerHeight);
+    document.querySelectorAll('.ring-sec').forEach(function (s) { s.style.setProperty('--e', e); });
+    document.querySelectorAll('.ring-hero').forEach(function (s) { var eh = echelleHero(s); s.style.setProperty('--e', eh); s._e = eh; });
+  }
+  poserEchelle();
+  // Seule la largeur compte : la barre d'adresse iOS qui se replie change la hauteur en plein défilement.
+  window.addEventListener('resize', function () { if (window.innerWidth === largeur) return; largeur = window.innerWidth; poserEchelle(); });
+  rings.forEach(function (ring) {
+    var rot = ring.querySelector('.ring3d-rot'), angle = 0, drag = 0, vu = true, prec = null, x0 = null, base = 0;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vu = es[0].isIntersecting; }, { threshold: 0, rootMargin: '400px 0px' }).observe(ring);
+    function tour(t) {
+      var dt = prec == null ? 0 : t - prec; prec = t;
+      if (vu || x0 != null) {
+        if (!reduce && !document.hidden && x0 == null) angle = (angle + dt / 40000 * 360) % 360;
+        rot.style.transform = 'rotateY(' + (angle + drag) + 'deg)';
+      }
+      requestAnimationFrame(tour);
+    }
+    requestAnimationFrame(tour);
+    rot.addEventListener('pointerdown', function (ev) { x0 = ev.clientX; base = drag; try { rot.setPointerCapture(ev.pointerId); } catch (_) {} });
+    rot.addEventListener('pointermove', function (ev) { if (x0 != null) drag = base + (ev.clientX - x0) * 0.2 / (ring.parentNode._e || e); });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (n) { rot.addEventListener(n, function () { x0 = null; }); });
+  });
+})();
+
+/* Fin d'offre : « jusqu'au 30 novembre » = dernier jour du mois en cours, recalculé à chaque visite. */
+(function () {
+  var els = document.querySelectorAll('[data-fin-mois]');
+  if (!els.length) return;
+  var d = new Date(), fin = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+  var mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  els.forEach(function (el) { el.textContent = fin.getDate() + ' ' + mois[fin.getMonth()]; });
+})();
+
+/* H1 « modèle B » : la ligne la plus large du H1 prend exactement la largeur disponible
+   (mobile : toute la largeur, comme le bouton d'appel ; ordinateur : 520 px max), sans dépasser un plafond. */
+(function () {
+  var h1s = document.querySelectorAll('h1.h1-b');
+  if (!h1s.length) return;
+  function caler() {
+    var bureau = window.innerWidth >= 1060;
+    h1s.forEach(function (h) {
+      var hi = h.closest('.hero-in'); if (!hi) return;
+      var cs = getComputedStyle(hi);
+      var dispo = hi.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (bureau) dispo = Math.min(520, parseFloat(cs.gridTemplateColumns) || dispo);
+      h.style.fontSize = '100px';
+      var large = 0;
+      h.querySelectorAll('.h1-l, .h1-sub, .h1-offre').forEach(function (l) { large = Math.max(large, l.getBoundingClientRect().width); });
+      if (!large) { h.style.fontSize = ''; return; }
+      h.style.fontSize = Math.min(bureau ? 46 : 34, Math.floor(100 * dispo / large * 10) / 10) + 'px';
+      // L'offre courte (« 9 €/m² ») grossit jusqu'à la largeur du bloc, sans dépasser 2,2 fois les lignes 1-2.
+      var prix = h.querySelector('.h1-offre mark'), offre = h.querySelector('.h1-offre');
+      if (prix && offre) {
+        prix.style.fontSize = '';
+        var pw = prix.getBoundingClientRect().width, reste = offre.getBoundingClientRect().width - pw;
+        var k = Math.min(2.2 / 1.4, (Math.min(dispo, large * parseFloat(h.style.fontSize) / 100) - reste) / pw * 0.98);
+        if (k > 1.02) prix.style.fontSize = (1.4 * k).toFixed(2) + 'em';
+      }
+    });
+  }
+  caler();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+  var larg = window.innerWidth;
+  window.addEventListener('resize', function () { if (window.innerWidth === larg) return; larg = window.innerWidth; caler(); });
+})();
+
+/* ---------- Avis : « Lire la suite » seulement quand le texte dépasse 6 lignes ---------- */
+(function () {
+  var revs = document.querySelectorAll('.rev');
+  function caler() {
+    revs.forEach(function (r) {
+      var q = r.querySelector('.rev-q'), b = r.querySelector('.rev-more'); if (!q || !b) return;
+      if (r.classList.contains('open')) return;
+      b.hidden = q.scrollHeight <= q.clientHeight + 2;
+    });
+  }
+  revs.forEach(function (r) {
+    var b = r.querySelector('.rev-more'); if (!b) return;
+    b.addEventListener('click', function () { var o = r.classList.toggle('open'); b.textContent = o ? 'Réduire' : 'Lire la suite'; });
+  });
+  caler();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(caler);
+  window.addEventListener('resize', function () { clearTimeout(caler._t); caler._t = setTimeout(caler, 200); });
+})();
+
+/* ---------- « Chercher ma ville » : accepte fautes de frappe, accents, tirets, espaces, majuscules ---------- */
+(function () {
+  var input = document.getElementById('ville-q'); if (!input) return;
+  var res = document.querySelector('.ville-res'), defile = document.querySelector('.ville-defile');
+  var PRENOM = input.form && input.form.getAttribute('data-prenom') || 'l’artisan';
+  var chips = [].slice.call(document.querySelectorAll('.ville-defile li[data-ville]'));
+  var villes = []; chips.forEach(function (c) { var v = c.getAttribute('data-ville'); if (villes.indexOf(v) < 0) villes.push(v); });
+  function norm(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/\bste?\b\.?/g, function (m) { return m.indexOf('e') > 0 ? 'sainte' : 'saint'; })
+      .replace(/[^a-z]/g, '');
+  }
+  function lev(a, b) {
+    var m = a.length, n = b.length, d = [], i, k;
+    for (i = 0; i <= m; i++) d[i] = [i];
+    for (k = 0; k <= n; k++) d[0][k] = k;
+    for (i = 1; i <= m; i++) for (k = 1; k <= n; k++)
+      d[i][k] = Math.min(d[i - 1][k] + 1, d[i][k - 1] + 1, d[i - 1][k - 1] + (a[i - 1] === b[k - 1] ? 0 : 1));
+    return d[m][n];
+  }
+  var idx = villes.map(function (v) { return { v: v, n: norm(v), court: norm(v.split(/[-\s]sur[-\s]|-/)[0]) }; });
+  function chercher(q) {
+    var n = norm(q); if (n.length < 3) return null;
+    var best = null, bd = Infinity;
+    idx.forEach(function (o) {
+      var d;
+      if (o.n === n || o.court === n) d = 0;
+      else if (o.n.indexOf(n) === 0) d = 0.5;
+      else if (n.length >= 4 && o.n.indexOf(n) > 0) d = 1;
+      else {
+        var tol = n.length <= 5 ? 1 : n.length <= 9 ? 2 : 3;
+        d = Math.min(lev(n, o.n), lev(n, o.court), n.length >= 5 ? lev(n, o.n.slice(0, n.length)) + 0.5 : 99);
+        if (d > tol) d = Infinity; else d += 1;
+      }
+      if (d < bd) { bd = d; best = o.v; }
+    });
+    return best;
+  }
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var tel = document.querySelector('a[href^="tel:"]');
+  function maj() {
+    var q = input.value.trim(), v = chercher(q);
+    chips.forEach(function (c) { c.classList.toggle('hit', !!v && c.getAttribute('data-ville') === v); });
+    if (defile) defile.classList.toggle('pause', !!v);
+    if (!q || norm(q).length < 3) { res.hidden = true; return; }
+    res.hidden = false;
+    if (v) { res.className = 'ville-res ok'; res.innerHTML = '✓ Oui, ' + PRENOM + ' intervient à <b>' + esc(v) + '</b>.'; }
+    else {
+      res.className = 'ville-res';
+      res.innerHTML = '<b>' + esc(q) + '</b> n’est pas dans la liste. Appelez ' + PRENOM + (tel ? ' au <a href="' + tel.getAttribute('href') + '">' + tel.textContent.replace(/[^\d ]/g, '').trim() + '</a>' : '') + ' : on vous dit si on peut venir.';
+    }
+  }
+  input.addEventListener('input', maj);
+  input.form && input.form.addEventListener('submit', function (e) { e.preventDefault(); maj(); input.blur(); });
+})();
+
+/* ---------- Carte des communes : « Voir plus » ouvre la fiche de la ville, un clic à côté la ferme ---------- */
+(function () {
+  var cartes = document.querySelectorAll('.carte'); if (!cartes.length) return;
+  function fermer(c) {
+    c.querySelectorAll('.carte-pop').forEach(function (p) { p.hidden = true; });
+    c.querySelectorAll('.carte-lab').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+  }
+  cartes.forEach(function (c) {
+    c.querySelectorAll('.carte-lab').forEach(function (b) {
+      b.setAttribute('aria-expanded', 'false');
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var p = document.getElementById(b.getAttribute('aria-controls')), ouvert = p && !p.hidden;
+        fermer(c);
+        if (p && !ouvert) { p.hidden = false; b.setAttribute('aria-expanded', 'true'); var x = p.querySelector('.pop-x'); if (x) x.focus({ preventScroll: true }); }
+      });
+    });
+    c.querySelectorAll('.carte-pop').forEach(function (p) {
+      p.addEventListener('click', function (e) { e.stopPropagation(); });
+      var x = p.querySelector('.pop-x'); if (x) x.addEventListener('click', function () { fermer(c); });
+    });
+  });
+  document.addEventListener('click', function () { cartes.forEach(fermer); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cartes.forEach(fermer); });
+})();
+
+/* ---------- FAQ : « Voir les autres questions » (mobile) ---------- */
+(function () {
+  document.querySelectorAll('.faq-plus').forEach(function (b) {
+    b.addEventListener('click', function () { var l = b.previousElementSibling; if (l) l.classList.add('tout'); b.remove(); });
+  });
 })();
 
 </script>
