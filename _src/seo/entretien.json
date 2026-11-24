@@ -26,40 +26,40 @@
    "mode": "carte"
   },
   {
-   "h2": "Prix nettoyage toiture m² : démoussage et hydrofuge à 9 €",
-   "lead": "Le démoussage avec traitement hydrofuge est à <strong>9 € le m²</strong>, au lieu de 17 € le m².",
+   "h2": "Prix nettoyage toiture m² : 9 € avec l'hydrofuge",
+   "lead": "Le démoussage avec traitement hydrofuge est à <strong>9 € le m²</strong>, au lieu de 17 € le m². Tonio mesure la surface chez vous et écrit le total sur le devis.",
    "items": [
     {
-     "q": "Prix nettoyage toiture m² : combien ça coûte ?",
-     "a": "Le prix nettoyage toiture m² est de 9 € pour le démoussage avec traitement hydrofuge. Tonio mesure la surface sur place et écrit le prix total sur un devis gratuit. Ce prix est celui que vous payez : rien n'est ajouté sans votre accord écrit.",
+     "q": "Combien coûte le nettoyage de la toiture ?",
+     "a": "Vous avez cherché « prix nettoyage toiture m2 » ? La réponse tient en un chiffre : 9 € le m² pour le démoussage avec traitement hydrofuge. Tonio mesure votre toit sur place et écrit le prix total sur un devis gratuit. C'est ce prix que vous payez : rien n'est ajouté sans votre accord écrit.",
      "img": "img/ring/toiture-mousse-apres.jpg",
      "tag": "Devis gratuit",
      "ic": "check"
     },
     {
-     "q": "Prix démoussage toiture : qu'est-ce qui est compris ?",
-     "a": "Pour ce prix démoussage toiture, Tonio nettoie en basse pression avec un biocide sans chlore, puis applique le traitement hydrofuge avec les produits DALEP 2100. Les photos avant et après de votre toit vous sont envoyées. Le tarif démoussage toiture au m² de l'offre est de 9 €/m², traitement hydrofuge compris.",
+     "q": "Prix démoussage toiture : ce qui est compris",
+     "a": "Tonio applique un seul tarif : démoussage toiture au m², 9 € avec l'hydrofuge. Dans le prix : démoussage toiture en basse pression avec un biocide sans chlore, puis traitement hydrofuge avec les produits DALEP 2100. Les photos avant et après de votre toit vous arrivent le jour même.",
      "img": "img/ring/toiture-mousse-avant.jpg",
      "tag": "Tout compris",
      "ic": "shield-check"
     },
     {
-     "q": "Prix nettoyage toiture au m² et surface du toit",
-     "a": "Le prix nettoyage toiture au m² est de 9 €. Ce qui change, c'est la surface, que Tonio mesure sur place. Le prix démoussage toiture m² multiplié par vos mètres carrés donne le total.",
+     "q": "Nettoyage toiture : prix m² et surface du toit",
+     "a": "Le prix pour nettoyer une toiture dépend surtout de sa surface. Tonio la mesure sur place, et le devis tient en une ligne : prix démoussage toiture, m² mesurés, total. Vous comparez les prix ? Nettoyage toiture au m², hydrofuge compris : 9 € ici, au lieu de 17 €.",
      "img": "img/ring/toiture-chantier.jpg",
      "tag": "Surface mesurée sur place",
      "ic": "search"
     },
     {
-     "q": "Nettoyage toiture prix : qu'est-ce qui le fait varier ?",
-     "a": "La surface d'abord, puis l'état des tuiles et le traitement hydrofuge ou non. Le prix pour nettoyer une toiture se fixe sur ce que Tonio voit, pas au téléphone. Prix démoussage toiture, prix nettoyage toiture m² ou entretien toiture prix : le total est écrit avant les travaux. Nettoyage toiture prix m², démoussage toiture prix m² : 9 €.",
+     "q": "Prix nettoyage toiture m² : ce qui fait varier le total",
+     "a": "Vous avez tapé « démoussage toiture prix m2 » ? C'est 9 €, et le total dépend d'abord de la surface, puis de l'état des tuiles et du traitement hydrofuge ou non. Sur le devis, chaque ligne a son prix : nettoyage toiture, m² mesurés, hydrofuge. Tonio fixe tout sur ce qu'il voit, pas au téléphone.",
      "img": "img/ring/toiture-faitage.jpg",
      "tag": "Prix fixe au m²",
      "ic": "check"
     },
     {
-     "q": "Traitement hydrofuge toiture prix",
-     "a": "Le traitement hydrofuge toiture prix est compris dans les 9 € le m² quand il accompagne le démoussage. Si votre toit n'en a pas besoin, Tonio vous le dit sur place, photos à l'appui, et vous donne un prix ferme après visite.",
+     "q": "Traitement hydrofuge toiture : prix compris dans les 9 €",
+     "a": "Les 9 € le m² comprennent le démoussage puis le traitement hydrofuge. Toiture en bon état, tuiles qui ne boivent pas ? Tonio vous dit sur place si vous pouvez vous en passer, photos à l'appui, et vous donne un prix ferme après la visite.",
      "img": "img/ring/toiture-mousse-apres.jpg",
      "tag": "Hydrofuge compris",
      "ic": "drop"
@@ -68,33 +68,33 @@
    "mode": "cartes"
   },
   {
-   "h2": "Traitement hydrofuge toiture, anti mousse et imperméabilisant",
-   "lead": "Le <strong>traitement hydrofuge toiture</strong> limite l'eau qui pénètre dans la tuile. Tonio l'applique après le nettoyage, seulement si votre toit en a besoin.",
+   "h2": "Traitement hydrofuge toiture : protéger les tuiles",
+   "lead": "Le <strong>traitement hydrofuge</strong> limite l'eau qui pénètre dans la tuile. Tonio l'applique après le nettoyage, seulement si votre toit en a besoin.",
    "items": [
     {
-     "q": "Traitement anti mousse toiture",
-     "a": "Le traitement anti mousse toiture se fait avec un biocide sans chlore, après un nettoyage en basse pression. Il vise la mousse et le lichen. Ce traitement toiture est fait par Tonio lui-même, pas par un sous-traitant.",
+     "q": "Comment se fait l'anti-mousse ?",
+     "a": "La mousse garde l'humidité sur les tuiles et finit par les soulever. Pour le traitement anti-mousse, toiture et faîtage sont d'abord nettoyés en basse pression. Tonio applique ensuite un biocide sans chlore, qui vise la mousse et le lichen. C'est lui qui le fait, pas un sous-traitant.",
      "img": "img/ring/toiture-mousse-avant.jpg",
      "tag": "Anti-mousse",
      "ic": "sprout"
     },
     {
      "q": "Hydrofuge toiture : à quoi ça sert ?",
-     "a": "Un hydrofuge toiture limite l'eau qui s'infiltre dans la tuile. Tonio utilise les produits professionnels DALEP 2100, appliqués sur des tuiles propres. Le traitement hydrofuge toiture n'est pas obligatoire : il vous dit s'il apporte quelque chose sur votre toit.",
+     "a": "Un hydrofuge limite l'eau qui s'infiltre dans la tuile. Tonio utilise les produits professionnels DALEP 2100, appliqués sur des tuiles propres. Faut-il un traitement hydrofuge ? Toiture neuve ou ancienne, la réponse dépend de l'état des tuiles, et Tonio vous la donne sur place.",
      "img": "img/ring/toiture-mousse-apres.jpg",
      "tag": "Hydrofuge",
      "ic": "drop"
     },
     {
-     "q": "Traitement imperméabilisant toiture",
-     "a": "Le traitement imperméabilisant toiture et l'hydrofuge visent le même but : réduire l'eau qui entre dans la tuile. Sur place, Tonio regarde l'état de vos tuiles et vous dit si un traitement est utile ou si un simple nettoyage suffit.",
+     "q": "Imperméabilisant ou hydrofuge ?",
+     "a": "Vous avez lu « traitement imperméabilisant toiture » ? Il vise le même but que l'hydrofuge : réduire l'eau qui entre dans la tuile. Sur place, Tonio regarde l'état de vos tuiles et vous dit si un traitement est utile ou si un simple nettoyage suffit.",
      "img": "img/ring/toiture-refection.jpg",
      "tag": "Tuiles protégées",
      "ic": "shield"
     },
     {
-     "q": "Nettoyage tuiles sans les abîmer",
-     "a": "Pour un nettoyage toiture tuiles, pas de karcher à pleine puissance : il use la surface de la tuile. Tonio travaille en basse pression et contrôle tuile par tuile. Le traitement des toitures vient ensuite, si le toit le demande.",
+     "q": "Nettoyage toiture : tuiles préservées",
+     "a": "Pas de karcher à pleine puissance : il use la surface de la tuile. Tonio travaille en basse pression et contrôle tuile par tuile. Le traitement des toitures vient ensuite, seulement si le toit le demande. Quel que soit le traitement, toiture et gouttières sont vérifiées avant les photos après.",
      "img": "img/ring/toiture-chantier.jpg",
      "tag": "Produit DALEP 2100",
      "ic": "shield-check"
@@ -103,56 +103,56 @@
    "mode": "cartes"
   },
   {
-   "h2": "Entretien toiture avec un artisan : préventif, contrat et devis",
-   "lead": "Un <strong>entretien toiture</strong> régulier évite d'attendre la fuite. Tonio contrôle la couverture, nettoie et traite si besoin.",
+   "h2": "Entretien toiture avec un artisan de Boucau",
+   "lead": "Un <strong>entretien de toiture</strong> régulier évite d'attendre la fuite. Tonio contrôle la couverture, nettoie et traite si besoin.",
    "items": [
     {
-     "q": "Entreprise nettoyage toiture : qui vient chez vous ?",
-     "a": "Tonio Rénov' est une entreprise créée en 2009, basée à Boucau. Que vous cherchiez une entreprise démoussage toiture ou une entreprise entretien toiture, c'est Tonio qui chiffre et qui travaille lui-même."
+     "q": "Qui vient chez vous ?",
+     "a": "Vous cherchez une entreprise ? Nettoyage toiture, démoussage ou entretien, chez Tonio Rénov' c'est la même personne qui chiffre et qui monte sur le toit. L'entreprise a été créée en 2009 à Boucau. Pas de commercial, pas de sous-traitant : celui qui fait le devis fait le travail."
     },
     {
-     "q": "Entretien préventif toiture : tous les combien ?",
-     "a": "En général tous les 2 à 3 ans : contrôle complet de la couverture, nettoyage, hydrofuge si besoin. L'entretien préventif toiture dépend de l'exposition : vent, embruns, arbres proches. L'entretien de toiture peut attendre ? Tonio vous le dit franchement."
+     "q": "Entretien préventif : tous les combien ?",
+     "a": "En général tous les 2 à 3 ans : contrôle complet de la couverture, nettoyage, hydrofuge si besoin. Quel rythme pour un entretien préventif ? Toiture par toiture, ça dépend de l'exposition au vent, aux embruns et aux arbres proches. Si l'entretien de toiture peut attendre, Tonio vous le dit franchement."
     },
     {
-     "q": "Contrat entretien toiture",
-     "a": "Vous cherchez un contrat entretien toiture ? Le plus utile est de fixer le rythme : un passage tous les 2 à 3 ans en général. Tonio regarde votre toit et vous dit quel rythme lui convient. Les conditions se voient avec lui."
+     "q": "Un contrat d'entretien ?",
+     "a": "Vous cherchez un « contrat entretien toiture » ? Le plus utile est de fixer le rythme, un passage tous les 2 à 3 ans en général. Tonio regarde votre toit et vous dit lequel lui convient. À chaque passage, vous retrouvez la même entreprise : entretien toiture et devis faits par Tonio lui-même."
     },
     {
-     "q": "Devis entretien toiture",
-     "a": "Le devis entretien toiture est gratuit, sans engagement, et fait sur place avec photos. Le prix du devis est le prix que vous payez."
+     "q": "Entretien toiture : prix et devis gratuit",
+     "a": "Le prix se fixe sur place, selon la surface, l'accès au toit et l'état des tuiles. Tout est écrit sur le devis : entretien toiture, démoussage, hydrofuge, avec la surface et le total. Le nettoyage des tuiles a son propre prix : démoussage toiture et hydrofuge à 9 € le m². Le devis est gratuit, sans engagement, et le prix écrit est celui que vous payez."
     }
    ],
    "mode": "sombre"
   },
   {
-   "h2": "Nettoyage toit et nettoyage des gouttières",
-   "lead": "Le <strong>nettoyage toit</strong> et le <strong>nettoyage des gouttières</strong> se font dans le même déplacement, ou séparément selon votre besoin.",
+   "h2": "Nettoyage toit et gouttières dans le même passage",
+   "lead": "Le <strong>nettoyage du toit</strong> et le <strong>nettoyage des gouttières</strong> se font dans le même déplacement, ou séparément selon votre besoin.",
    "items": [
     {
-     "q": "Nettoyage gouttières toiture : ensemble ou seul ?",
-     "a": "Les gouttières sont dégagées pendant l'entretien de la toiture, ou seules si c'est tout ce qu'il vous faut. Nettoyage gouttière : feuilles et débris retirés, l'eau ne déborde plus sur la façade.",
+     "q": "Nettoyage gouttière : ce qui est retiré",
+     "a": "Vous avez tapé « nettoyage gouttières toiture » ? Les deux se font dans le même passage, ou les gouttières seules si c'est tout ce qu'il vous faut. Pas besoin d'une deuxième entreprise : démoussage toiture et gouttières sont faits par Tonio. Feuilles, mousse et débris sont retirés, et l'eau ne déborde plus sur la façade.",
      "img": "img/galerie-real-zinguerie-faitage.jpg",
      "tag": "Gouttières",
      "ic": "waves"
     },
     {
-     "q": "Nettoyage du toit : comment ça se passe ?",
-     "a": "Tonio prend votre toit en photo, nettoie en basse pression, puis traite si besoin. Le nettoyage toit se finit par un contrôle tuile par tuile, et les photos après vous sont envoyées.",
+     "q": "Comment se passe le nettoyage ?",
+     "a": "Tonio monte, prend les photos et vous donne le prix sur place, avant de commencer. Le jour des travaux, il photographie d'abord votre toiture. Nettoyage en basse pression ensuite, puis traitement si besoin. Après le démoussage, toit et gouttières sont contrôlés, et les photos après vous arrivent le jour même.",
      "img": "img/ring/toiture-chantier.jpg",
      "tag": "Sur place",
      "ic": "home"
     },
     {
-     "q": "Nettoyage de la toiture ou démoussage toit : quelle différence ?",
-     "a": "Le nettoyage de la toiture enlève la mousse et le lichen : c'est le démoussage toiture. Que vous tapiez « toiture nettoyage », « toiture démoussage » ou « nettoyage des toitures », Tonio répond de la même façon : il regarde, il photographie, il chiffre.",
+     "q": "Démoussage toiture ou nettoyage : quelle différence ?",
+     "a": "Le nettoyage de la toiture enlève la mousse et le lichen : c'est ce qu'on appelle le démoussage. Pour le nettoyage : toit en tuiles ou en ardoise, Tonio reste en basse pression avec un biocide sans chlore. Près de la côte, le nettoyage des toitures exposées au vent et aux embruns mérite un passage régulier.",
      "img": "img/ring/toiture-mousse-avant.jpg",
      "tag": "Démoussage",
      "ic": "sprout"
     },
     {
      "q": "Nettoyage toit : quand s'en occuper ?",
-     "a": "Quand la mousse s'installe, ou avant, au rythme d'un passage tous les 2 à 3 ans. Un nettoyage toit à temps évite que la mousse garde l'humidité sur les tuiles. Pour un démoussage de toiture, appelez Tonio.",
+     "a": "Quand la mousse s'installe, ou avant, au rythme d'un passage tous les 2 à 3 ans. La mousse garde l'humidité sur les tuiles et finit par les soulever. Avant le nettoyage, toit et gouttières sont pris en photo, pour que vous voyiez la différence après.",
      "img": "img/ring/toiture-mousse-apres.jpg",
      "tag": "Avant l'hiver",
      "ic": "clock"

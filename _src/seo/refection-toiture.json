@@ -26,33 +26,33 @@
    "mode": "carte"
   },
   {
-   "h2": "Refaire toiture : les étapes pour refaire une toiture",
-   "lead": "<strong>Refaire sa toiture</strong> est le plus gros chantier d'une maison. Tonio commence par contrôler, puis chiffre seulement ce qui doit vraiment être refait.",
+   "h2": "Refaire sa toiture : les étapes du chantier",
+   "lead": "<strong>Refaire une toiture</strong>, c'est le plus gros chantier d'une maison. Tonio commence par contrôler le toit, puis il chiffre seulement ce qui doit vraiment être refait.",
    "items": [
     {
      "q": "Refaire une toiture : que comprend le chantier ?",
-     "a": "Pour refaire une toiture, Tonio dépose l'ancienne couverture, contrôle la charpente, pose les liteaux, l'écran sous-toiture, les tuiles neuves, le faîtage et la zinguerie, puis nettoie le chantier. Le devis détaille ce qui est prévu, poste par poste.",
+     "a": "Tonio dépose l'ancienne couverture et contrôle la charpente. Ensuite il pose les liteaux, l'écran sous-toiture, les tuiles neuves, le faîtage et la zinguerie, puis il nettoie le chantier avant de partir. Le devis détaille chaque poste, pour que vous sachiez ce que vous payez.",
      "img": "img/galerie-real-toiture-pose-tuiles-neuves.jpg",
      "tag": "Le chantier",
      "ic": "home"
     },
     {
-     "q": "Refaire le toit ou réparer ?",
-     "a": "Avant la réfection du toit, Tonio contrôle la couverture. Si une réparation suffit, il vous le dit, photos à l'appui, et vous ne payez pas une toiture neuve pour rien. S'il faut refaire le toit, il vous montre pourquoi.",
+     "q": "Faut-il refaire le toit ou réparer ?",
+     "a": "Avant toute réfection du toit, Tonio contrôle la couverture. Si une réparation suffit, il vous le dit, photos à l'appui, et vous ne payez pas une toiture neuve pour rien. S'il faut vraiment tout refaire, il vous montre pourquoi sur les photos.",
      "img": "img/ring/toiture-refection.jpg",
      "tag": "Réparer ou refaire",
      "ic": "search"
     },
     {
-     "q": "Refaire sa toiture : et la charpente ?",
-     "a": "Pour refaire sa toiture, la charpente est contrôlée une fois la couverture déposée. Tonio vous dit si elle doit être reprise, photos à l'appui. S'il faut la reprendre, Tonio le fait lui-même : il fait la charpente comme la couverture. Rien n'est ajouté au devis sans votre accord écrit.",
+     "q": "Et la charpente, faut-il la reprendre ?",
+     "a": "La charpente se contrôle une fois la couverture déposée. Tonio vous dit si elle doit être reprise et vous envoie les photos. S'il faut la reprendre, il le fait lui-même, puisqu'il fait la charpente comme la couverture. Rien n'est ajouté au devis sans votre accord écrit.",
      "img": "img/galerie-real-charpente-interieure.jpg",
      "tag": "Charpente",
      "ic": "tools"
     },
     {
-     "q": "Rénover une toiture : la rénovation toiture ancienne",
-     "a": "Vous voulez rénover une toiture de maison ancienne ? Pour une rénovation toiture ancienne, Tonio regarde d'abord ce qui peut être gardé, puis chiffre le reste. Une rénovation de toiture se prépare sur place, quel que soit le type de toiture.",
+     "q": "Rénovation toiture ancienne : ce qui peut être gardé",
+     "a": "Vous voulez rénover une toiture sur une maison ancienne ? Tonio regarde d'abord ce qui peut être gardé, puis il chiffre seulement le reste. Une rénovation de toiture se prépare toujours sur place, quel que soit le type de toit.",
      "img": "img/ring/toiture-faitage.jpg",
      "tag": "Toiture ancienne",
      "ic": "layers"
@@ -61,33 +61,33 @@
    "mode": "cartes"
   },
   {
-   "h2": "Prix refaire toiture : ce qui fait le tarif et l'offre du mois",
-   "lead": "Le <strong>prix refaire toiture</strong> n'est pas affiché ici, car il se donne après visite. <strong>Ce mois-ci, −30 % sur le devis.</strong>",
+   "h2": "Prix refaire toiture : ce qui fait le tarif",
+   "lead": "Le prix se donne après une visite, c'est pour ça qu'il n'est pas affiché ici. <strong>Ce mois-ci, −30 % sur le devis.</strong>",
    "items": [
     {
-     "q": "Prix refaire toiture : combien ça coûte ?",
-     "a": "Le prix pour refaire une toiture dépend de la surface, de la forme du toit, du type de tuiles et de l'état de la charpente. Tonio vous donne le prix sur place, dans un devis gratuit, avec les 30 % de remise du mois déjà déduits. Ce prix est celui que vous payez.",
+     "q": "Quel prix pour refaire une toiture ?",
+     "a": "Vous avez tapé « prix refaire toiture » ? Le prix dépend de la surface, de la forme du toit, du type de tuiles et de l'état de la charpente. Tonio vous le donne sur place, dans un devis gratuit, avec les 30 % de remise du mois déjà déduits. Ce prix est celui que vous payez.",
      "img": "img/galerie-real-toiture-couverture-neuve.jpg",
      "tag": "−30 % ce mois-ci",
      "ic": "check"
     },
     {
-     "q": "Refaire toiture prix : pourquoi une visite d'abord ?",
-     "a": "Deux toits qui se ressemblent n'ont pas le même prix : l'état de la couverture et de la charpente ne se voit qu'en montant. Tonio contrôle, prend les photos, puis donne un prix ferme. Pour toute demande avant la fin du mois, il retire 30 % de son devis.",
+     "q": "Prix refaire toiture : pourquoi une visite d'abord ?",
+     "a": "Deux toits qui se ressemblent n'ont pas le même prix, car l'état de la couverture et de la charpente ne se voit qu'en montant. C'est pour ça qu'une recherche « refaire toiture prix » ne vous donne jamais un chiffre fiable. Tonio contrôle, prend les photos, puis donne un prix ferme, avec 30 % retirés pour toute demande avant la fin du mois.",
      "img": "img/ring/toiture-chantier.jpg",
      "tag": "Visite gratuite",
      "ic": "search"
     },
     {
-     "q": "Prix réfection toiture : le devis gratuit",
-     "a": "Le prix réfection toiture est écrit sur le devis, gratuit et sans engagement. Remplissez le formulaire pour le recevoir. Si une surprise apparaît sur le chantier, Tonio vous envoie la photo et vous décidez, par écrit. Le prix refaire toiture ne grossit pas dans votre dos.",
+     "q": "Prix refaire toiture : et s'il y a une surprise ?",
+     "a": "Vous cherchez un « prix réfection toiture » qui ne bouge pas en cours de route ? Le prix écrit sur le devis gratuit est celui que vous payez. Si une surprise apparaît une fois la couverture déposée, Tonio vous envoie la photo et vous décidez, par écrit.",
      "img": "img/ring/toiture-refection.jpg",
      "tag": "Devis gratuit",
      "ic": "shield-check"
     },
     {
-     "q": "Réfection toiture prix m² et rénovation toiture prix m²",
-     "a": "Un prix au m² donné sans voir le toit ne dit rien de votre maison. Le chiffrage varie avec le type de tuiles, la pente, l'accès et la charpente. Tonio vous donne un prix ferme après visite, gratuit et sans engagement.",
+     "q": "Rénovation toiture, prix m² : pourquoi pas de tarif en ligne ?",
+     "a": "Si vous avez cherché « réfection toiture prix m² », sachez qu'un prix au m² donné sans voir le toit ne dit rien de votre maison. Le chiffrage change avec le type de tuiles, la pente, l'accès et l'état de la charpente. Tonio vous donne un prix ferme après sa visite, gratuite et sans engagement.",
      "img": "img/galerie-real-toiture-chantier.jpg",
      "tag": "Prix au m²",
      "ic": "layers"
@@ -96,47 +96,47 @@
    "mode": "cartes"
   },
   {
-   "h2": "Couvreur toiture : artisan couvreur et entreprise rénovation toiture",
-   "lead": "Un <strong>couvreur toiture</strong> qui vient lui-même : celui qui contrôle votre toit est celui qui signe le devis et qui travaille sur le chantier.",
+   "h2": "Couvreur, toiture et charpente : un seul artisan",
+   "lead": "Vous cherchez un <strong>couvreur</strong> ? Toiture, charpente ou zinguerie : celui qui contrôle votre toit est celui qui signe le devis et qui fait le chantier.",
    "items": [
     {
-     "q": "Couvreur toiture : qui monte sur votre toit ?",
-     "a": "Tonio est artisan couvreur depuis 2009, basé à Boucau. Pas de commercial, pas de sous-traitance : le couvreur toiture qui vous répond est celui qui monte sur votre toit. Il fait tous les types de toiture, charpente comprise."
+     "q": "Qui monte sur votre toit ?",
+     "a": "Depuis 2009, Tonio est artisan couvreur. Toiture neuve, réfection complète ou charpente seule, il fait le travail lui-même depuis Boucau. Pas de commercial ni de sous-traitance : la personne qui vous répond au téléphone est celle qui monte sur votre toit."
     },
     {
-     "q": "Couvreur autour de moi, couvreur à proximité",
-     "a": "Vous cherchez un couvreur autour de moi, un couvreur à proximité ? Basé à Boucau, Tonio intervient à Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et jusqu'à Capbreton : un artisan du coin, pas une plateforme."
+     "q": "Un couvreur à proximité de chez vous",
+     "a": "Vous avez tapé « couvreur autour de moi » ? Tonio est basé à Boucau et intervient à Bayonne, Anglet, Biarritz, Bidart, Saint-Jean-de-Luz et jusqu'à Capbreton. C'est un artisan du coin qui se déplace lui-même, pas une plateforme. Il passe voir votre toit et fait le devis gratuit sur place."
     },
     {
-     "q": "Couvreur réparation toiture et entreprise réparation toiture",
-     "a": "Une fuite ou des tuiles cassées ? Que vous cherchiez un couvreur réparation toiture ou une entreprise réparation toiture, Tonio répare quand une réparation suffit et ne propose la réfection que si elle est nécessaire. Devis gratuit sur place."
+     "q": "Une fuite ou des tuiles cassées : réparer d'abord ?",
+     "a": "Vous avez cherché une « entreprise réparation toiture » ? Tonio est aussi votre couvreur : réparation, toiture complète ou charpente seule. Quand une réparation suffit, il répare, et il ne propose la réfection que si elle est vraiment nécessaire, photos à l'appui. Le devis est gratuit et fait sur place."
     },
     {
-     "q": "Entreprise rénovation toiture : comment choisir parmi les entreprises toitures ?",
-     "a": "Parmi les entreprises toitures, demandez trois choses : qui monte sur le toit, si le prix du devis est le prix payé, si vous recevez des photos. Chez Tonio, c'est lui, oui, oui. Si vous tapez « toiture entreprise », jugez sur ces trois points."
+     "q": "Entreprise rénovation toiture : comment choisir ?",
+     "a": "Pour comparer les « entreprises toitures » de votre secteur, posez trois questions : qui monte sur le toit, est-ce que le prix du devis est le prix payé, est-ce que vous recevez des photos. Chez Tonio, la réponse est lui, oui et oui."
     }
    ],
    "mode": "sombre"
   },
   {
-   "h2": "Charpentier et couvreur : la charpente et la rénovation complète toiture",
-   "lead": "Vous cherchez un <strong>charpentier</strong> ? Chez Tonio Rénov', le même artisan fait la charpente et la couverture : la charpente seule, la couverture seule, ou la toiture complète de la charpente à la couverture.",
+   "h2": "Charpentier et couvreur : de la charpente à la couverture",
+   "lead": "Vous cherchez un <strong>charpentier</strong> ? Chez Tonio Rénov', le même artisan est charpentier et couvreur. Toiture complète, charpente seule ou couverture seule : un seul interlocuteur pour tout le toit.",
    "items": [
     {
-     "q": "Charpentier Bayonne, charpentier Anglet : qui vient chez vous ?",
-     "a": "Que vous ayez cherché un « charpentier Bayonne » ou un « charpentier Anglet », c'est Tonio qui vient, depuis Boucau. Il regarde la toiture et la charpente, vous montre les photos et vous dit ce qui doit être repris. Pas de sous-traitance : la personne qui fait le devis est celle qui fait le chantier."
+     "q": "Charpentier Bayonne et Anglet : qui vient chez vous ?",
+     "a": "Il vous faut un charpentier ? Anglet, Bayonne ou Biarritz, c'est Tonio qui vient lui-même depuis Boucau. Il regarde la charpente et la couverture, vous montre les photos et vous dit ce qui doit être repris sur la toiture. Entreprise créée en 2009, Tonio Rénov' ne sous-traite pas : celui qui fait le devis fait le chantier."
     },
     {
-     "q": "Un charpentier autour de moi pour refaire la toiture ?",
+     "q": "Un charpentier près de chez vous pour refaire la toiture ?",
      "a": "Si vous tapez « charpentier autour de moi », c'est souvent que la toiture fuit, s'affaisse ou doit être refaite. Tonio intervient autour de Boucau, à Bayonne, Anglet, Biarritz et dans les communes proches. Il passe voir le toit gratuitement avant de chiffrer quoi que ce soit."
     },
     {
-     "q": "Rénovation complète toiture : couverture et charpente en un seul devis",
-     "a": "Une rénovation complète toiture, c'est la dépose de l'ancienne couverture, le contrôle de la charpente puis la pose de la nouvelle toiture. Tonio met tout sur un seul devis. Si une pièce de charpente doit être changée, il vous envoie la photo et rien n'est ajouté sans votre accord écrit."
+     "q": "Une rénovation complète : toiture et charpente sur un seul devis",
+     "a": "Pour une rénovation complète, Tonio dépose l'ancienne couverture, contrôle la charpente puis pose la nouvelle toiture. Tout tient sur un seul devis. Si une pièce de charpente doit être changée, il vous envoie la photo, et rien n'est ajouté sans votre accord écrit."
     },
     {
-     "q": "Devis réfection toiture et devis rénovation toiture : comment ça se passe ?",
-     "a": "Le devis réfection toiture est gratuit et fait sur place : Tonio monte voir le toit, mesure, puis vous remet un devis rénovation toiture écrit. Le prix du devis est le prix payé, et l'offre du mois retire 30 % du devis. Remplissez le formulaire, Tonio vous rappelle."
+     "q": "Devis réfection toiture : comment ça se passe ?",
+     "a": "Le devis est gratuit et se fait sur place : Tonio monte voir le toit, mesure, puis vous remet un devis écrit. Que vous ayez demandé un « devis rénovation toiture » ou une simple visite, le prix écrit est le prix payé, et l'offre du mois retire 30 % du devis. Remplissez le formulaire, Tonio vous rappelle sous 24 h."
     }
    ]
   }

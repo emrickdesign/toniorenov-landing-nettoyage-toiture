@@ -902,6 +902,17 @@ html{scroll-padding-top:16px}
 .gal-grid li.gal-pair:hover img{transform:scale(1.04)}
 .gal-grid li .ba-tag + figcaption{font-weight:600}
 
+/* ===== 24/11/2026 (Emrick) : logo + nom de l'entreprise en tête du hero, pour rassurer tout de suite ===== */
+.hero-brand{display:inline-flex;margin:0 0 clamp(12px,2vh,18px)}
+.hero-brand svg{width:46px}
+.hero-brand b{font-size:1.125rem}
+.hero-brand span{text-align:left}
+.hero-brand small{display:block;color:rgba(255,255,255,.75)}
+.hero.fond-blanc .hero-brand{color:var(--nuit)}
+@media(max-width:560px){.hero-brand{margin-bottom:10px}.hero-brand svg{width:40px}.hero-brand small{display:block}}
+/* Flèches des carrousels : jamais quand tout tient (le JS met hidden et .car-fixe) */
+.car-btn[hidden],.car-fixe>.car-btn{display:none!important}
+
 </style>
 </head>
 <body>
@@ -918,6 +929,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   <div class="hero-in">
     <div class="hero-copy">
+      <!-- 24/11/2026 (Emrick) : l'entreprise en tête de page, pour rassurer tout de suite (logo + nom, sans barre collante). -->
+      <a class="brand hero-brand fade" href="#top" aria-label="Tonio Rénov', artisan à Boucau depuis 2009"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Artisan à Boucau depuis 2009</small></span></a>
       <h1 class="h1-b" style="--n:25" aria-label="Tonio s'occupe de tout : toiture, façade, peinture, et vous profitez des offres du moment"><span class='h1-l'><span class="w" style="--i:0" aria-hidden="true">Tonio</span> <span class="w" style="--i:1" aria-hidden="true">s'occupe</span> <span class="w" style="--i:2" aria-hidden="true">de</span> <span class="w" style="--i:3" aria-hidden="true">tout</span></span><span class='h1-sub'><span class="w" style="--i:4" aria-hidden="true">Toiture,</span> <span class="w" style="--i:5" aria-hidden="true">façade,</span> <span class="w" style="--i:6" aria-hidden="true">peinture</span></span><span class='h1-offre'><mark class='h1-prix'><span class="w" style="--i:7" aria-hidden="true">Offres&nbsp;du&nbsp;moment</span></mark></span></h1>
       <p class="google-badge fade" style="--d:1">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
@@ -1024,7 +1037,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="wrap foot">
     <div><a class="brand" href="#top"><svg viewBox="395 438 620 262" aria-hidden="true"><polygon fill="#ffffff" points="704,442 1008,695 934,695 704,505 476,695 400,695 505,607 505,514 562,514 562,558"/><polygon fill="#ff6f58" points="704,532 901,695 869,695 704,562 539,695 507,695"/></svg><span><b>Tonio Rénov'</b><small>Toiture &amp; façade · Boucau</small></span></a><p>Artisan basé à Boucau, spécialisé en entretien de toiture et en peinture, intervenant sur Bayonne, la Côte Basque et les Sud-Landes. Intervention rapide, devis gratuit, garantie décennale.</p></div>
-    <div><h4>Contact</h4><ul><li><a class="tel-foot" href="tel:+33525680158">+33 6 34 12 23 31</a></li><li><a href="mailto:contact@toniorenov.fr">contact@toniorenov.fr</a></li><li>Boucau (64), Pays basque</li></ul></div>
+    <div><h4>Contact</h4><ul><li><a class="tel-foot" href="tel:+33525680158">05 25 68 01 58</a></li><li><a href="mailto:contact@toniorenov.fr">contact@toniorenov.fr</a></li><li>Boucau (64), Pays basque</li></ul></div>
     <div><h4>Prestations</h4><ul><li>Démoussage de toiture</li><li>Traitement hydrofuge</li><li>Entretien de toiture</li><li>Ravalement &amp; peinture de façade</li></ul></div>
   </div>
   <div class="wrap foot-bottom"><span>© 2026 Tonio Rénov' — Tous droits réservés</span><a href="https://toniorenov.fr">toniorenov.fr</a></div>
@@ -1530,7 +1543,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function layout() {
       var scrollable = c.scrollWidth > c.clientWidth + 4;
       dots.hidden = !scrollable;
-      if (!scrollable) { stops = []; dots.innerHTML = ''; return; }
+      /* 24/11/2026 : pas de flèches quand toutes les cartes tiennent à l'écran */
+      wrap.classList.toggle('car-fixe', !scrollable);
+      prev.hidden = next.hidden = !scrollable;
+      if (!scrollable) { stops = []; dots.innerHTML = ''; prev.disabled = next.disabled = true; return; }
       var max = c.scrollWidth - c.clientWidth;
       stops = [];
       for (var i = 0; i < items.length; i++) { var p = Math.min(pos(i), max); if (!stops.length || p - stops[stops.length - 1] > 4) stops.push(p); }
@@ -1560,6 +1576,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     c.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); }, { passive: true });
     ['pointerdown', 'touchstart', 'wheel', 'mouseenter', 'focusin'].forEach(function (ev) { c.addEventListener(ev, pause, { passive: true }); });
     window.addEventListener('resize', function () { clearTimeout(c._t); c._t = setTimeout(layout, 150); });
+    window.addEventListener('load', layout);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.5 }).observe(c);
     }

@@ -1,0 +1,1410 @@
+{
+ "couvreur": {
+  "artisan couvreur boucau": [
+   1,
+   0
+  ],
+  "cout reparation toiture": [
+   3,
+   3
+  ],
+  "couvreur anglet": [
+   4,
+   0
+  ],
+  "couvreur autour de moi": [
+   2,
+   0
+  ],
+  "couvreur bayonne": [
+   7,
+   0
+  ],
+  "couvreur biarritz": [
+   4,
+   0
+  ],
+  "couvreur boucau": [
+   3,
+   0
+  ],
+  "couvreur urgence": [
+   3,
+   3
+  ],
+  "couvreur zingueur bayonne": [
+   1,
+   0
+  ],
+  "coût réparation toiture": [
+   3,
+   3
+  ],
+  "depannage couvreur": [
+   1,
+   1
+  ],
+  "depannage toiture": [
+   3,
+   3
+  ],
+  "devis couvreur": [
+   5,
+   2
+  ],
+  "devis couvreur bayonne": [
+   2,
+   0
+  ],
+  "devis couvreur boucau": [
+   1,
+   0
+  ],
+  "devis toiture": [
+   3,
+   3
+  ],
+  "devis toiture bayonne": [
+   1,
+   1
+  ],
+  "dépannage toiture": [
+   3,
+   3
+  ],
+  "dépannage toiture bayonne": [
+   2,
+   2
+  ],
+  "entreprise 24h toiture": [
+   2,
+   2
+  ],
+  "entreprise urgence fuite de toit": [
+   1,
+   1
+  ],
+  "entreprise urgence toiture": [
+   1,
+   1
+  ],
+  "fuite au toit": [
+   1,
+   1
+  ],
+  "fuite dans la toiture": [
+   1,
+   1
+  ],
+  "fuite dans le toit": [
+   1,
+   1
+  ],
+  "fuite du toit": [
+   2,
+   2
+  ],
+  "fuite gouttière": [
+   3,
+   3
+  ],
+  "fuite sur le toit": [
+   1,
+   1
+  ],
+  "fuite sur toiture": [
+   3,
+   3
+  ],
+  "fuite toit": [
+   1,
+   1
+  ],
+  "fuite toiture": [
+   14,
+   9
+  ],
+  "fuite toiture anglet": [
+   1,
+   0
+  ],
+  "fuite toiture bayonne": [
+   1,
+   0
+  ],
+  "fuite toiture biarritz": [
+   1,
+   0
+  ],
+  "fuite toiture boucau": [
+   1,
+   0
+  ],
+  "fuite toiture reparation": [
+   2,
+   2
+  ],
+  "infiltration par le toit": [
+   1,
+   1
+  ],
+  "infiltration toiture": [
+   2,
+   1
+  ],
+  "infiltration toiture bayonne": [
+   1,
+   0
+  ],
+  "recherche de fuite sur toiture": [
+   1,
+   1
+  ],
+  "recherche de fuite toiture": [
+   5,
+   4
+  ],
+  "reparation gouttière zinc": [
+   1,
+   1
+  ],
+  "reparation toiture": [
+   14,
+   8
+  ],
+  "reparer toiture": [
+   1,
+   1
+  ],
+  "reparer une toiture": [
+   2,
+   2
+  ],
+  "réparation de toiture": [
+   2,
+   0
+  ],
+  "réparation faîtage": [
+   4,
+   4
+  ],
+  "réparation faîtage toiture prix": [
+   2,
+   2
+  ],
+  "réparation gouttière": [
+   2,
+   2
+  ],
+  "réparation gouttière zinc": [
+   1,
+   1
+  ],
+  "réparation toiture": [
+   14,
+   8
+  ],
+  "réparation toiture anglet": [
+   1,
+   0
+  ],
+  "réparation toiture bayonne": [
+   4,
+   3
+  ],
+  "réparation toiture biarritz": [
+   1,
+   0
+  ],
+  "réparation toiture boucau": [
+   1,
+   0
+  ],
+  "réparation tuile cassée": [
+   2,
+   2
+  ],
+  "réparer une gouttière": [
+   1,
+   1
+  ],
+  "toit qui fuit": [
+   1,
+   1
+  ],
+  "toiture fuite": [
+   2,
+   1
+  ],
+  "toiture infiltration": [
+   1,
+   1
+  ],
+  "toiture qui fuit": [
+   5,
+   5
+  ],
+  "toiture réparation": [
+   2,
+   2
+  ],
+  "toiture urgence": [
+   1,
+   1
+  ],
+  "tuile cassee": [
+   6,
+   6
+  ],
+  "tuile cassée": [
+   6,
+   6
+  ],
+  "tuile cassée réparation": [
+   2,
+   2
+  ],
+  "urgence fuite toiture": [
+   1,
+   1
+  ],
+  "urgence toiture": [
+   5,
+   5
+  ],
+  "urgence toiture bayonne": [
+   2,
+   2
+  ],
+  "zingueur bayonne": [
+   2,
+   0
+  ],
+  "__principaux": [
+   "réparation toiture",
+   "fuite toiture",
+   "couvreur bayonne",
+   "couvreur anglet",
+   "couvreur biarritz",
+   "couvreur boucau",
+   "recherche de fuite toiture",
+   "urgence toiture",
+   "toiture qui fuit",
+   "réparation toiture bayonne"
+  ]
+ },
+ "entretien": {
+  "artisan toiture": [
+   2,
+   0
+  ],
+  "artisan toiture côte basque": [
+   1,
+   0
+  ],
+  "contrat entretien toiture": [
+   2,
+   2
+  ],
+  "demoussage de toiture": [
+   2,
+   1
+  ],
+  "demoussage toit": [
+   1,
+   1
+  ],
+  "demoussage toiture": [
+   12,
+   8
+  ],
+  "devis entretien toiture": [
+   2,
+   2
+  ],
+  "démoussage de toiture": [
+   2,
+   1
+  ],
+  "démoussage toit": [
+   1,
+   1
+  ],
+  "démoussage toiture": [
+   12,
+   8
+  ],
+  "démoussage toiture anglet": [
+   1,
+   0
+  ],
+  "démoussage toiture bayonne": [
+   1,
+   0
+  ],
+  "démoussage toiture biarritz": [
+   1,
+   0
+  ],
+  "démoussage toiture boucau": [
+   1,
+   0
+  ],
+  "démoussage toiture prix": [
+   2,
+   2
+  ],
+  "démoussage toiture prix m2": [
+   1,
+   1
+  ],
+  "entreprise démoussage toiture": [
+   1,
+   1
+  ],
+  "entreprise entretien toiture": [
+   1,
+   1
+  ],
+  "entreprise nettoyage toiture": [
+   1,
+   1
+  ],
+  "entretien de toiture": [
+   3,
+   1
+  ],
+  "entretien préventif toiture": [
+   2,
+   2
+  ],
+  "entretien toiture": [
+   10,
+   8
+  ],
+  "entretien toiture anglet": [
+   1,
+   0
+  ],
+  "entretien toiture bayonne": [
+   1,
+   0
+  ],
+  "entretien toiture prix": [
+   1,
+   1
+  ],
+  "hydrofuge toiture": [
+   8,
+   7
+  ],
+  "nettoyage de la toiture": [
+   2,
+   2
+  ],
+  "nettoyage de toiture": [
+   1,
+   0
+  ],
+  "nettoyage des gouttières": [
+   2,
+   2
+  ],
+  "nettoyage des toitures": [
+   1,
+   1
+  ],
+  "nettoyage du toit": [
+   1,
+   1
+  ],
+  "nettoyage gouttiere": [
+   1,
+   1
+  ],
+  "nettoyage gouttières": [
+   1,
+   1
+  ],
+  "nettoyage gouttières toiture": [
+   1,
+   1
+  ],
+  "nettoyage toit": [
+   5,
+   5
+  ],
+  "nettoyage toiture": [
+   24,
+   11
+  ],
+  "nettoyage toiture anglet": [
+   2,
+   0
+  ],
+  "nettoyage toiture bayonne": [
+   5,
+   0
+  ],
+  "nettoyage toiture biarritz": [
+   2,
+   0
+  ],
+  "nettoyage toiture boucau": [
+   2,
+   0
+  ],
+  "nettoyage toiture prix": [
+   2,
+   2
+  ],
+  "nettoyage toiture prix m2": [
+   1,
+   1
+  ],
+  "nettoyage toiture tuiles": [
+   1,
+   1
+  ],
+  "nettoyage tuiles": [
+   2,
+   1
+  ],
+  "prix demoussage toiture": [
+   4,
+   4
+  ],
+  "prix démoussage toiture": [
+   4,
+   4
+  ],
+  "prix démoussage toiture m2": [
+   1,
+   1
+  ],
+  "prix nettoyage toiture": [
+   6,
+   6
+  ],
+  "prix nettoyage toiture au m2": [
+   2,
+   2
+  ],
+  "prix nettoyage toiture m2": [
+   4,
+   4
+  ],
+  "prix pour nettoyer une toiture": [
+   1,
+   1
+  ],
+  "tarif demoussage toiture au m2": [
+   1,
+   1
+  ],
+  "toiture démoussage": [
+   2,
+   1
+  ],
+  "toiture nettoyage": [
+   1,
+   1
+  ],
+  "traitement anti mousse toiture": [
+   2,
+   2
+  ],
+  "traitement des toitures": [
+   1,
+   1
+  ],
+  "traitement hydrofuge toiture": [
+   5,
+   5
+  ],
+  "traitement hydrofuge toiture prix": [
+   2,
+   2
+  ],
+  "traitement imperméabilisant toiture": [
+   2,
+   2
+  ],
+  "traitement toiture": [
+   1,
+   1
+  ],
+  "__principaux": [
+   "nettoyage toiture",
+   "démoussage toiture",
+   "prix nettoyage toiture m2",
+   "prix démoussage toiture",
+   "traitement hydrofuge toiture",
+   "entretien toiture",
+   "nettoyage toit",
+   "nettoyage toiture bayonne"
+  ]
+ },
+ "nettoyage-facade": {
+  "decrassage facade": [
+   4,
+   4
+  ],
+  "demoussage facade": [
+   10,
+   6
+  ],
+  "demoussage facade maison": [
+   2,
+   2
+  ],
+  "devis nettoyage facade": [
+   2,
+   2
+  ],
+  "devis nettoyage façade": [
+   2,
+   2
+  ],
+  "décrassage façade": [
+   4,
+   4
+  ],
+  "démoussage façade": [
+   10,
+   6
+  ],
+  "démoussage façade anglet": [
+   1,
+   0
+  ],
+  "démoussage façade bayonne": [
+   1,
+   0
+  ],
+  "démoussage façade biarritz": [
+   1,
+   0
+  ],
+  "démoussage façade boucau": [
+   1,
+   0
+  ],
+  "démoussage façade maison": [
+   2,
+   2
+  ],
+  "entreprise entretient façade": [
+   1,
+   1
+  ],
+  "entreprise nettoyage façade": [
+   2,
+   2
+  ],
+  "facade hydrofuge": [
+   1,
+   1
+  ],
+  "facade nettoyage": [
+   1,
+   1
+  ],
+  "hydrofugation mur": [
+   2,
+   2
+  ],
+  "hydrofuge facade": [
+   7,
+   6
+  ],
+  "nettoyage crepi facade": [
+   2,
+   2
+  ],
+  "nettoyage crepis maison": [
+   1,
+   1
+  ],
+  "nettoyage crépi": [
+   4,
+   4
+  ],
+  "nettoyage crépi façade": [
+   2,
+   2
+  ],
+  "nettoyage de façade": [
+   8,
+   4
+  ],
+  "nettoyage des façades": [
+   1,
+   1
+  ],
+  "nettoyage facade": [
+   32,
+   19
+  ],
+  "nettoyage facade maison": [
+   3,
+   3
+  ],
+  "nettoyage façade": [
+   32,
+   19
+  ],
+  "nettoyage façade anglet": [
+   2,
+   0
+  ],
+  "nettoyage façade autour de moi": [
+   2,
+   2
+  ],
+  "nettoyage façade bayonne": [
+   5,
+   2
+  ],
+  "nettoyage façade biarritz": [
+   2,
+   0
+  ],
+  "nettoyage façade boucau": [
+   2,
+   0
+  ],
+  "nettoyage façade maison": [
+   3,
+   3
+  ],
+  "nettoyage façade pierre": [
+   2,
+   2
+  ],
+  "nettoyage façade prix": [
+   2,
+   2
+  ],
+  "nettoyage mur exterieur": [
+   3,
+   3
+  ],
+  "nettoyage mur extérieur": [
+   3,
+   3
+  ],
+  "nettoyage murs extérieurs": [
+   1,
+   1
+  ],
+  "prix nettoyage façade": [
+   6,
+   6
+  ],
+  "prix nettoyage façade maison 100m2": [
+   1,
+   1
+  ],
+  "traitement des façades": [
+   2,
+   2
+  ],
+  "traitement façade": [
+   2,
+   2
+  ],
+  "traitement hydrofuge façade": [
+   5,
+   4
+  ],
+  "__principaux": [
+   "nettoyage façade",
+   "nettoyage de façade",
+   "démoussage façade",
+   "nettoyage crépi",
+   "prix nettoyage façade",
+   "traitement hydrofuge façade",
+   "nettoyage façade bayonne"
+  ]
+ },
+ "peinture-interieure": {
+  "artisan peintre": [
+   8,
+   4
+  ],
+  "artisan peintre anglet": [
+   1,
+   0
+  ],
+  "artisan peintre bayonne": [
+   2,
+   0
+  ],
+  "artisan peintre boucau": [
+   1,
+   0
+  ],
+  "cout peintre au m2": [
+   1,
+   1
+  ],
+  "devis peintre": [
+   4,
+   2
+  ],
+  "devis peintre bayonne": [
+   1,
+   0
+  ],
+  "devis peintre boucau": [
+   1,
+   0
+  ],
+  "devis peinture": [
+   6,
+   4
+  ],
+  "devis peinture intérieure": [
+   2,
+   2
+  ],
+  "entreprise de peinture": [
+   3,
+   3
+  ],
+  "entreprise peintre en batiment": [
+   1,
+   1
+  ],
+  "entreprise peintre en bâtiment": [
+   1,
+   1
+  ],
+  "entreprise peinture": [
+   6,
+   2
+  ],
+  "entreprise peinture anglet": [
+   1,
+   0
+  ],
+  "entreprise peinture bayonne": [
+   3,
+   2
+  ],
+  "entreprise peinture biarritz": [
+   1,
+   0
+  ],
+  "entreprise peinture boucau": [
+   1,
+   0
+  ],
+  "peintre anglet": [
+   3,
+   0
+  ],
+  "peintre appartement bayonne": [
+   1,
+   0
+  ],
+  "peintre autour de moi": [
+   1,
+   1
+  ],
+  "peintre batiment": [
+   1,
+   1
+  ],
+  "peintre bayonne": [
+   5,
+   0
+  ],
+  "peintre biarritz": [
+   2,
+   0
+  ],
+  "peintre boucau": [
+   4,
+   0
+  ],
+  "peintre btp": [
+   1,
+   1
+  ],
+  "peintre capbreton": [
+   2,
+   0
+  ],
+  "peintre d intérieur": [
+   3,
+   3
+  ],
+  "peintre d intérieur autour de moi": [
+   2,
+   2
+  ],
+  "peintre dans le batiment": [
+   1,
+   1
+  ],
+  "peintre decorateur": [
+   2,
+   2
+  ],
+  "peintre devis": [
+   1,
+   1
+  ],
+  "peintre du batiment": [
+   1,
+   1
+  ],
+  "peintre décorateur": [
+   2,
+   2
+  ],
+  "peintre en batiment": [
+   8,
+   3
+  ],
+  "peintre en batiment bayonne": [
+   1,
+   0
+  ],
+  "peintre en bâtiment": [
+   8,
+   3
+  ],
+  "peintre en bâtiment anglet": [
+   1,
+   0
+  ],
+  "peintre en bâtiment bayonne": [
+   1,
+   0
+  ],
+  "peintre en bâtiment biarritz": [
+   1,
+   0
+  ],
+  "peintre en bâtiment boucau": [
+   1,
+   0
+  ],
+  "peintre en bâtiment à proximité": [
+   1,
+   1
+  ],
+  "peintre intérieur": [
+   6,
+   4
+  ],
+  "peintre intérieur bayonne": [
+   1,
+   0
+  ],
+  "peintre intérieur boucau": [
+   1,
+   0
+  ],
+  "peintre intérieur maison": [
+   2,
+   2
+  ],
+  "peintre maison bayonne": [
+   1,
+   0
+  ],
+  "peintre plafond prix": [
+   2,
+   2
+  ],
+  "peintre tarif m2": [
+   1,
+   1
+  ],
+  "peintre à proximité": [
+   1,
+   1
+  ],
+  "peinture en batiment": [
+   1,
+   1
+  ],
+  "peinture intérieure anglet": [
+   1,
+   0
+  ],
+  "peinture intérieure bayonne": [
+   1,
+   0
+  ],
+  "peinture intérieure biarritz": [
+   1,
+   0
+  ],
+  "peinture intérieure boucau": [
+   1,
+   0
+  ],
+  "prix au m2 pour un peintre": [
+   1,
+   1
+  ],
+  "prix du peintre au m2": [
+   1,
+   1
+  ],
+  "prix peintre m2": [
+   4,
+   4
+  ],
+  "prix peinture au m2": [
+   1,
+   1
+  ],
+  "prix travaux de peinture au m2": [
+   1,
+   1
+  ],
+  "renovation peinture": [
+   5,
+   4
+  ],
+  "rénovation peinture": [
+   5,
+   4
+  ],
+  "rénovation peinture bayonne": [
+   1,
+   1
+  ],
+  "tarif peintre au m2": [
+   2,
+   2
+  ],
+  "tarif peintre plafond": [
+   2,
+   2
+  ],
+  "tarif peinture m2": [
+   2,
+   2
+  ],
+  "travaux de peinture": [
+   2,
+   2
+  ],
+  "travaux peinture devis": [
+   1,
+   1
+  ],
+  "trouver un peintre": [
+   2,
+   2
+  ],
+  "__principaux": [
+   "peintre bayonne",
+   "peintre anglet",
+   "peintre biarritz",
+   "peintre boucau",
+   "peintre en bâtiment",
+   "artisan peintre",
+   "peintre intérieur",
+   "prix peintre m2",
+   "entreprise peinture bayonne"
+  ]
+ },
+ "ravalement": {
+  "artisan façade côte basque": [
+   1,
+   1
+  ],
+  "artisan ravalement façade": [
+   1,
+   1
+  ],
+  "devis peinture façade extérieure": [
+   1,
+   1
+  ],
+  "devis ravalement façade": [
+   2,
+   2
+  ],
+  "entreprise de ravalement": [
+   3,
+   3
+  ],
+  "entreprise facade": [
+   2,
+   2
+  ],
+  "entreprise façade": [
+   2,
+   2
+  ],
+  "entreprise peinture façade": [
+   2,
+   2
+  ],
+  "entreprise ravalement façade": [
+   4,
+   3
+  ],
+  "facade ravalement": [
+   1,
+   1
+  ],
+  "facadier": [
+   4,
+   4
+  ],
+  "facadier autour de moi": [
+   2,
+   2
+  ],
+  "façade fissurée": [
+   2,
+   2
+  ],
+  "façadier": [
+   4,
+   4
+  ],
+  "façadier autour de moi": [
+   2,
+   2
+  ],
+  "peintre facade": [
+   4,
+   4
+  ],
+  "peintre façade": [
+   4,
+   4
+  ],
+  "peinture facade entreprise": [
+   2,
+   2
+  ],
+  "prix ravalement de facade au m2": [
+   1,
+   1
+  ],
+  "prix ravalement de façade": [
+   3,
+   3
+  ],
+  "prix ravalement facade": [
+   4,
+   4
+  ],
+  "prix ravalement façade": [
+   4,
+   4
+  ],
+  "prix ravalement façade m2": [
+   1,
+   1
+  ],
+  "ravalement de facade": [
+   8,
+   5
+  ],
+  "ravalement de façade": [
+   8,
+   5
+  ],
+  "ravalement de façade prix": [
+   1,
+   1
+  ],
+  "ravalement des facades": [
+   1,
+   1
+  ],
+  "ravalement facade": [
+   26,
+   12
+  ],
+  "ravalement façade": [
+   26,
+   12
+  ],
+  "ravalement façade anglet": [
+   2,
+   0
+  ],
+  "ravalement façade bayonne": [
+   6,
+   1
+  ],
+  "ravalement façade biarritz": [
+   2,
+   0
+  ],
+  "ravalement façade boucau": [
+   2,
+   0
+  ],
+  "ravalement façade maison": [
+   1,
+   1
+  ],
+  "ravalement façade saint-jean-de-luz": [
+   2,
+   0
+  ],
+  "renovation facade": [
+   4,
+   4
+  ],
+  "réfection facade": [
+   2,
+   2
+  ],
+  "réfection façade": [
+   2,
+   2
+  ],
+  "rénovation façade": [
+   4,
+   4
+  ],
+  "rénovation façade maison": [
+   2,
+   2
+  ],
+  "réparation fissure façade": [
+   2,
+   2
+  ],
+  "tarif ravalement façade": [
+   1,
+   1
+  ],
+  "travaux de facade": [
+   2,
+   2
+  ],
+  "travaux de façade": [
+   2,
+   2
+  ],
+  "__principaux": [
+   "ravalement façade",
+   "ravalement de façade",
+   "prix ravalement façade",
+   "rénovation façade",
+   "façadier",
+   "entreprise ravalement façade",
+   "ravalement façade bayonne"
+  ]
+ },
+ "refection-toiture": {
+  "artisan couvreur": [
+   3,
+   2
+  ],
+  "charpentier anglet": [
+   2,
+   2
+  ],
+  "charpentier autour de moi": [
+   2,
+   2
+  ],
+  "charpentier bayonne": [
+   2,
+   2
+  ],
+  "couvreur autour de moi": [
+   2,
+   2
+  ],
+  "couvreur réparation toiture": [
+   2,
+   2
+  ],
+  "couvreur toiture": [
+   4,
+   4
+  ],
+  "couvreur à proximité": [
+   2,
+   2
+  ],
+  "devis refection toiture": [
+   2,
+   2
+  ],
+  "devis renovation toiture": [
+   2,
+   2
+  ],
+  "devis réfection toiture": [
+   2,
+   2
+  ],
+  "devis rénovation toiture": [
+   2,
+   2
+  ],
+  "entreprise de couverture": [
+   1,
+   0
+  ],
+  "entreprise rénovation toiture": [
+   6,
+   2
+  ],
+  "entreprise rénovation toiture anglet": [
+   1,
+   0
+  ],
+  "entreprise rénovation toiture bayonne": [
+   1,
+   0
+  ],
+  "entreprise rénovation toiture biarritz": [
+   1,
+   0
+  ],
+  "entreprise rénovation toiture boucau": [
+   1,
+   0
+  ],
+  "entreprise réparation toiture": [
+   2,
+   2
+  ],
+  "entreprises toitures": [
+   2,
+   2
+  ],
+  "prix pour refaire une toiture": [
+   1,
+   1
+  ],
+  "prix refaire toiture": [
+   4,
+   4
+  ],
+  "prix refection toiture": [
+   2,
+   2
+  ],
+  "refaire le toit": [
+   2,
+   2
+  ],
+  "refaire sa toiture": [
+   3,
+   3
+  ],
+  "refaire toiture": [
+   6,
+   6
+  ],
+  "refaire toiture prix": [
+   1,
+   1
+  ],
+  "refaire une toiture": [
+   4,
+   4
+  ],
+  "renovation toiture": [
+   15,
+   7
+  ],
+  "renovation toiture ancienne": [
+   2,
+   2
+  ],
+  "renover une toiture": [
+   2,
+   2
+  ],
+  "réfection de toiture": [
+   1,
+   0
+  ],
+  "réfection du toit": [
+   1,
+   1
+  ],
+  "réfection toiture": [
+   20,
+   5
+  ],
+  "réfection toiture anglet": [
+   2,
+   0
+  ],
+  "réfection toiture bayonne": [
+   5,
+   0
+  ],
+  "réfection toiture biarritz": [
+   2,
+   0
+  ],
+  "réfection toiture boucau": [
+   1,
+   0
+  ],
+  "réfection toiture prix m2": [
+   1,
+   1
+  ],
+  "rénovation complète toiture": [
+   3,
+   3
+  ],
+  "rénovation de toiture": [
+   1,
+   1
+  ],
+  "rénovation toiture": [
+   15,
+   7
+  ],
+  "rénovation toiture anglet": [
+   2,
+   0
+  ],
+  "rénovation toiture bayonne": [
+   2,
+   0
+  ],
+  "rénovation toiture biarritz": [
+   2,
+   0
+  ],
+  "rénovation toiture boucau": [
+   2,
+   0
+  ],
+  "rénovation toiture prix m2": [
+   1,
+   1
+  ],
+  "toiture entreprise": [
+   1,
+   1
+  ],
+  "__principaux": [
+   "réfection toiture",
+   "rénovation toiture",
+   "refaire toiture",
+   "prix refaire toiture",
+   "couvreur toiture",
+   "entreprise rénovation toiture",
+   "réfection toiture bayonne"
+  ]
+ }
+}

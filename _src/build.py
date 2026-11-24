@@ -1273,6 +1273,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   {'' if p.get('fond') else f'<div class="hero-bg"><img src="{p["img"]}" alt="{p["alt"]}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p["pos"]}"></div>'}
   <div class="hero-in">
     <div class="hero-copy">
+      <!-- 24/11/2026 (Emrick) : l'entreprise en tête de page, pour rassurer tout de suite (logo + nom, sans barre collante). -->
+      <a class="brand hero-brand fade" href="#top" aria-label="{s['name']}, artisan à Boucau depuis 2009">{mark()}<span><b>{s['name']}</b><small>Artisan à Boucau depuis 2009</small></span></a>
       {h1}
       <p class="google-badge fade" style="--d:1">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
@@ -1331,7 +1333,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <div class="wrap foot">
     <div><a class="brand" href="#top">{mark()}<span><b>{s['name']}</b><small>Toiture &amp; façade · Boucau</small></span></a><p>Artisan basé à Boucau, spécialisé en entretien de toiture et en peinture, intervenant sur Bayonne, la Côte Basque et les Sud-Landes. Intervention rapide, devis gratuit, garantie décennale.</p></div>
-    <div><h4>Contact</h4><ul><li><a class="tel-foot" href="{tel}">+33 6 34 12 23 31</a></li><li><a href="mailto:{s['email']}">{s['email']}</a></li><li>Boucau (64), Pays basque</li></ul></div>
+    <div><h4>Contact</h4><ul><li><a class="tel-foot" href="{tel}">{s['phone']}</a></li><li><a href="mailto:{s['email']}">{s['email']}</a></li><li>Boucau (64), Pays basque</li></ul></div>
     <div><h4>Prestations</h4><ul><li>Démoussage de toiture</li><li>Traitement hydrofuge</li><li>Entretien de toiture</li><li>Ravalement &amp; peinture de façade</li></ul></div>
   </div>
   <div class="wrap foot-bottom"><span>© 2026 {s['name']} — Tous droits réservés</span><a href="https://toniorenov.fr">toniorenov.fr</a></div>

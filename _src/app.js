@@ -495,7 +495,10 @@
     function layout() {
       var scrollable = c.scrollWidth > c.clientWidth + 4;
       dots.hidden = !scrollable;
-      if (!scrollable) { stops = []; dots.innerHTML = ''; return; }
+      /* 24/11/2026 : pas de flèches quand toutes les cartes tiennent à l'écran */
+      wrap.classList.toggle('car-fixe', !scrollable);
+      prev.hidden = next.hidden = !scrollable;
+      if (!scrollable) { stops = []; dots.innerHTML = ''; prev.disabled = next.disabled = true; return; }
       var max = c.scrollWidth - c.clientWidth;
       stops = [];
       for (var i = 0; i < items.length; i++) { var p = Math.min(pos(i), max); if (!stops.length || p - stops[stops.length - 1] > 4) stops.push(p); }
@@ -525,6 +528,7 @@
     c.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(mark); }, { passive: true });
     ['pointerdown', 'touchstart', 'wheel', 'mouseenter', 'focusin'].forEach(function (ev) { c.addEventListener(ev, pause, { passive: true }); });
     window.addEventListener('resize', function () { clearTimeout(c._t); c._t = setTimeout(layout, 150); });
+    window.addEventListener('load', layout);
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.5 }).observe(c);
     }
