@@ -145,7 +145,7 @@
     var steps = [].slice.call(form.querySelectorAll('.fstep'));
     var bars = [].slice.call(shell.querySelectorAll('.progress i'));
     var next = form.querySelector('.btn-next');
-    var back = form.querySelector('.fback');
+    var back = form.querySelector('.fback'); /* absent depuis le 24/11 : formulaire en un seul écran */
     var actions = form.querySelector('.factions');
     var lbl = next.querySelector('.lbl');
     var TOTAL = steps.length - 1; /* étapes avec réponse (coordonnées incluses) ; l'étape TOTAL + 1 = demande envoyée */
@@ -162,7 +162,7 @@
     function validate() {
       if (cur === TOTAL) {
         next.disabled = !(val('nom').length > 1 && val('tel').replace(/\D/g, '').length >= 9);
-        lbl.textContent = 'Envoyer ma demande';
+        lbl.textContent = 'Envoyer';
       } else if (cur < TOTAL) {
         next.disabled = !reponses[fieldOf(cur)];
         lbl.textContent = 'Continuer';
@@ -172,7 +172,7 @@
       cur = n;
       steps.forEach(function (st) { st.classList.toggle('active', Number(st.getAttribute('data-step')) === n); });
       bars.forEach(function (b, i) { b.classList.toggle('on', i < Math.min(n, TOTAL)); });
-      back.disabled = n === 1;
+      if (back) back.disabled = n === 1;
       actions.style.display = n === TOTAL + 1 ? 'none' : 'flex';
       validate();
       var h = form.querySelector('.fstep.active [data-focus]');
@@ -238,7 +238,7 @@
       if (next.disabled) return;
       if (cur === TOTAL) submit(); else if (cur < TOTAL) show(cur + 1);
     });
-    back.addEventListener('click', function () { if (cur > 1) show(cur - 1); });
+    if (back) back.addEventListener('click', function () { if (cur > 1) show(cur - 1); });
     form.addEventListener('submit', function (e) { e.preventDefault(); if (!next.disabled) next.click(); });
     show(1);
   }
@@ -406,6 +406,14 @@
       if (opt && !FORM_START_SENT) {
         FORM_START_SENT = true;
         send('form_start', { pos: pos, premier_choix: opt.getAttribute('data-value') });
+      }
+    });
+    /* 24/11 : formulaire en un seul écran, le démarrage = premier champ touché (prénom ou téléphone). */
+    form.addEventListener('focusin', function (ev) {
+      var c = ev.target && ev.target.getAttribute && ev.target.getAttribute('data-champ');
+      if (c && !FORM_START_SENT) {
+        FORM_START_SENT = true;
+        send('form_start', { pos: pos, premier_champ: c });
       }
     });
 
@@ -577,7 +585,13 @@
       requestAnimationFrame(tour);
     }
     requestAnimationFrame(tour);
-    rot.addEventListener('pointerdown', function (ev) { x0 = ev.clientX; base = drag; try { rot.setPointerCapture(ev.pointerId); } catch (_) {} });
+    var cible = null, xClic = 0;
+    rot.addEventListener('pointerdown', function (ev) { cible = ev.target && ev.target.closest ? ev.target.closest('.ring3d-v') : null; xClic = ev.clientX; x0 = ev.clientX; base = drag; try { rot.setPointerCapture(ev.pointerId); } catch (_) {} });
+    /* 24/11 : un clic (sans glisser) sur une photo de l'anneau l'ouvre en grand */
+    rot.addEventListener('pointerup', function (ev) {
+      if (cible && Math.abs(ev.clientX - xClic) < 6 && window.ouvrirPhoto) { var im = cible.querySelector('img'); if (im) window.ouvrirPhoto(im); }
+      cible = null;
+    });
     rot.addEventListener('pointermove', function (ev) { if (x0 != null) drag = base + (ev.clientX - x0) * 0.2 / (ring.parentNode._e || e); });
     ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (n) { rot.addEventListener(n, function () { x0 = null; }); });
   });
@@ -730,5 +744,28 @@
 (function () {
   document.querySelectorAll('.faq-plus').forEach(function (b) {
     b.addEventListener('click', function () { var l = b.previousElementSibling; if (l) l.classList.add('tout'); b.remove(); });
+  });
+})();
+
+/* Fenêtre d'agrandissement des photos (24/11, Emrick) : clic sur une photo de l'anneau ou de la galerie
+   -> la photo s'ouvre au centre ; croix bien visible, clic à côté ou Échap pour fermer. */
+(function () {
+  var box = document.createElement('div');
+  box.className = 'lb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Photo agrandie'); box.hidden = true;
+  box.innerHTML = '<button type="button" class="lb-x" aria-label="Fermer la photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><figure class="lb-fig"><img class="lb-img" alt=""><figcaption class="lb-cap"></figcaption></figure>';
+  document.body.appendChild(box);
+  var img = box.querySelector('.lb-img'), cap = box.querySelector('.lb-cap'), x = box.querySelector('.lb-x'), avant = null;
+  function fermer() { box.hidden = true; document.documentElement.classList.remove('lb-ouvert'); img.removeAttribute('src'); if (avant && avant.focus) try { avant.focus({ preventScroll: true }); } catch (e) {} }
+  window.ouvrirPhoto = function (src) {
+    avant = document.activeElement;
+    img.src = src.getAttribute('data-full') || src.currentSrc || src.src;
+    img.alt = src.alt || ''; cap.textContent = src.alt || '';
+    box.hidden = false; document.documentElement.classList.add('lb-ouvert'); x.focus({ preventScroll: true });
+  };
+  box.addEventListener('click', function (ev) { if (ev.target !== img) fermer(); });
+  document.addEventListener('keydown', function (ev) { if (!box.hidden && ev.key === 'Escape') fermer(); });
+  [].forEach.call(document.querySelectorAll('.gal-grid img'), function (im) {
+    im.style.cursor = 'zoom-in';
+    im.addEventListener('click', function () { window.ouvrirPhoto(im); });
   });
 })();

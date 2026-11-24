@@ -1088,6 +1088,13 @@ def typo_fr(html):
         out.append(part if part.startswith('<') else fix(part))
     return ''.join(out)
 
+def grand(src):
+    """data-full = version 1000 px de la photo (img/galerie-real-…) pour la fenêtre d'agrandissement, si elle existe."""
+    nom = src.rsplit('/', 1)[-1]
+    if '/ring/' in src and os.path.exists(os.path.join(ROOT, 'img', 'galerie-real-' + nom)):
+        return f' data-full="/img/galerie-real-{nom}"'
+    return ''
+
 def gal_li(g):
     """Une carte de la galerie. ('PAIRE', [(src, alt, étiquette) × 2], légende) = avant / après côte à côte."""
     if g[0] == 'PAIRE':
@@ -1121,7 +1128,7 @@ def render(p):
         ph = [(('' if r[0].startswith('/') else '/') + r[0], r[1], r[2] if len(r) > 2 else '') for r in p['ring']]
         cols = ''.join(
             f'<div class="ring3d-col" style="--a:{c * 30}deg">'
-            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c + 6 * k) % len(ph)][0]}" alt="{ph[(c + 6 * k) % len(ph)][1]}" decoding="async" draggable="false">' + (f'<span class="ba-tag">{ph[(c + 6 * k) % len(ph)][2]}</span>' if ph[(c + 6 * k) % len(ph)][2] else '') + '</div>' for k in (0, 1))
+            + ''.join(f'<div class="ring3d-v"><img src="{ph[(c + 6 * k) % len(ph)][0]}" alt="{ph[(c + 6 * k) % len(ph)][1]}"{grand(ph[(c + 6 * k) % len(ph)][0])} decoding="async" draggable="false">' + (f'<span class="ba-tag">{ph[(c + 6 * k) % len(ph)][2]}</span>' if ph[(c + 6 * k) % len(ph)][2] else '') + '</div>' for k in (0, 1))
             + '</div>' for c in range(6))
         ring_in = f'<div class="ring3d"><div class="ring3d-scene"><div class="ring3d-rot">{cols}</div></div></div>'
         band_html = '' if p.get('ring_hero') else f'<section class="ring-sec" aria-label="Chantiers réalisés par Tonio">{ring_in}</section>'
@@ -1157,13 +1164,18 @@ def render(p):
     call_btn = lambda label, extra='': f'''<a class="btn btn-call {extra}" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><svg class="ic ring" viewBox="0 0 24 24" aria-hidden="true">{ICONS["phone"]}</svg><span>{label}</span></a>'''
     next_btn = f'''<button type="button" class="btn btn-next" disabled><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span><span class="lbl">Continuer</span>{ic("arrow","arr")}</button>'''
 
+    DOMAINE_PAGE = {'entretien': 'Nettoyage de toiture', 'couvreur': 'Fuite / réparation de toiture', 'refection-toiture': 'Réfection de toiture',
+                    'ravalement': 'Ravalement de façade', 'nettoyage-facade': 'Nettoyage de façade', 'peinture-interieure': 'Peinture intérieure',
+                    'devis': 'Devis (toiture, façade ou peinture)'}
+
     def devis_bloc(pos, titre, ident, hero=False):
         """Un formulaire complet. `pos` rend les identifiants uniques : il y en a deux par page.
         `hero=True` renvoie la carte seule, à poser dans la colonne droite du hero."""
-        etapes = f.get('etapes') or [('probleme', f['q1'], f['o1']), ('toiture', f['q2'], f['o2']), ('surface', f['q3'], f['o3']),
-                                     ('delai', Q_DELAI, O_DELAI), ('statut', Q_STATUT, O_STATUT)]
-        n_et = len(etapes) + 1
-        court = bool(f.get('etapes'))
+        # 24/11/2026 (Emrick) : plus d'étapes ni de questions. Un seul écran : prénom + téléphone + Envoyer,
+        # pour être rappelé par Tonio et profiter de l'offre. Le métier part au CRM via data-domaine.
+        etapes = []
+        n_et = 1
+        court = True
         compte = lambda k: '' if court else f'<span class="fcount">Étape {k} sur {n_et}</span>'
         champs = (
             (f'<div class="field"><label for="f-nom-{pos}">Prénom</label>'
@@ -1182,17 +1194,17 @@ def render(p):
         # 21/11/2026 (Emrick) : à l'étape prénom + téléphone, rappel en gros de l'offre et de qui rappelle (Tonio lui-même).
         rappel = ''
         if f.get('rappel'):
-            q_coord = 'Votre prénom et votre numéro'
+            q_coord = 'Vos coordonnées pour être rappelé'
             rappel = (f'<div class="f-rappel"><p class="f-rappel-t">Être rappelé par Tonio pour profiter {f["rappel"]}</p>'
                       f'<p class="f-rappel-s">C’est Tonio, l’artisan, qui vous appelle lui-même sous 24&nbsp;h.</p></div>')
         fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}<p class="f-rgpd">Vos coordonnées servent uniquement à vous rappeler pour ce devis. <a href="/confidentialite/">Confidentialité</a></p></div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
         corps = f'''<div class="devis-shell">
-      {carte_t}<div class="progress" aria-hidden="true">{'<i></i>' * n_et}</div>
-      <form class="devis-form" data-pos="{pos}"{(' data-domaine="' + f["domaine"] + '"') if f.get("domaine") else ""} novalidate>
+      {carte_t}
+      <form class="devis-form form-simple" data-pos="{pos}" data-domaine="{DOMAINE_PAGE.get(p['out'].split('/')[0], f.get('domaine') or '')}" novalidate>
         {fsteps}<div class="done"><div class="done-ic">{ic("check")}</div><h3 tabindex="-1" data-focus>Demande envoyée</h3><p>Merci ! Un artisan {s['name']} vous rappelle sous 24h pour affiner le devis.</p><a class="btn btn-call" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone")}<span>Ou appelez le {s['phone']}</span></a></div></div>
-        <div class="factions"><button type="button" class="fback" disabled>{ic("back")}Précédent</button>{next_btn}</div>
+        <div class="factions">{next_btn}</div>
       </form>
     </div>'''
         if hero and p.get('form_titre_carte'):
@@ -1296,22 +1308,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 {band_html}
 
-<!-- Ordre validé par Emrick (18/11) : hero → avis → photos → zone → formulaire → sections score de qualité (FAQ, mots-clés) tout en bas.
+<section class="sec sec-light gal-big" id="photos">
+  <div class="wrap">
+    <div class="sec-head center">{h2(p.get("gal_t", "Nos derniers chantiers sur la Côte Basque"))}</div>
+    <ul class="gal-grid gal-grand reveal" style="--d:1"{' data-carousel="all"' if p.get('marquee') else ''}>
+{''.join(gal_li(g) for g in gallery_photos(p['path']))}    </ul>
+  </div>
+</section>
+
+<!-- Ordre validé par Emrick (24/11) : hero (formulaire prénom + téléphone) → photos en grand (carrousel auto) → avis qui défilent
+     → zone → formulaire → sections score de qualité (FAQ, mots-clés) tout en bas.
      Méthode et bloc CTA à texte retirés du flux (pavés de texte). -->
-<section class="sec sec-light" id="avis">
+<section class="sec sec-light" id="avis" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head center">{rev_h2}<p class="rev-sum reveal">{stars()}<span><b>5/5</b> · {p.get('rev_sum', 'avis vérifiés de clients de la Côte Basque et des Landes')}</span></p></div>
     <div class="rev-grid"{' data-carousel="all"' if p.get('marquee') else ''}>{''.join(revs)}</div>
   </div>
 </section>
 
-<section class="sec sec-light" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head center">{h2(p.get("gal_t", "Nos derniers chantiers sur la Côte Basque"))}</div>
-    <ul class="gal-grid reveal" style="--d:1"{' data-carousel="all"' if p.get('marquee') else ''}>
-{''.join(gal_li(g) for g in gallery_photos(p['path']))}    </ul>
-  </div>
-</section>
 
 <section class="sec sec-light zone-sec" id="zone" style="padding-top:0">
   <div class="wrap">
