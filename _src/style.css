@@ -925,3 +925,8 @@ html.lb-ouvert,html.lb-ouvert body{overflow:hidden}
 .form-simple .btn-next:disabled,.form-bleu .form-simple .btn-next:disabled{background:var(--tuile);color:#fff;box-shadow:0 14px 26px -12px rgba(201,64,43,.8);cursor:not-allowed}
 .form-simple .btn-next:disabled .sh-spark{display:block}
 .form-simple .btn-next:disabled .sh-back{background:var(--tuile);box-shadow:inset 0 -8px 12px rgba(255,255,255,.14)}
+
+/* 25/11/2026 (Emrick, test) : ligne d'avis Google juste au-dessus du formulaire du hero */
+.hero .hero-form .form-avis{display:flex;justify-content:center;margin:0 0 12px}
+.hero .hero-copy .hero-cta{margin-top:clamp(14px,2.4vh,22px)}
+@media(max-width:1059px){.hero .hero-form .form-avis{margin-top:-8px}}

@@ -1207,7 +1207,13 @@ def render(p):
       </form>
     </div>'''
         if hero and p.get('form_titre_carte'):
+            # 25/11/2026 (Emrick, test) : la ligne d'avis Google quitte l'espace entre l'offre et le bouton d'appel,
+            # elle passe juste au-dessus du formulaire (mobile : entre l'anneau de photos et le formulaire).
+            avis_l = (f'<p class="google-badge form-avis fade" style="--d:3">'
+                      '<span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>'
+                      f'{stars()}<span><b>5/5</b> · <b>{p.get("avis", "23")} avis</b></span></p>')
             return f'''<div class="hero-form" id="{ident}">
+      {avis_l}
       {corps}
     </div>'''
         if p.get('form_titre_carte'):
@@ -1292,10 +1298,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hero-in">
     <div class="hero-copy">
       {h1}
-      <p class="google-badge fade" style="--d:1">
-        <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
-        {stars()}<span><b>5/5</b> · <b>{p.get('avis', '23')} avis</b></span>
-      </p>
       <div class="hero-cta fade" style="--d:2">
         <a class="btn btn-primary btn-stack" href="{tel}"><span class="sh-spark" aria-hidden="true"><span class="sh-slide"><span class="sh-spin"></span></span></span><span class="sh-back" aria-hidden="true"></span>{ic("phone","btn-ph")}<span class="btn-txt"><b>{p['ghost']}</b><small>{s['phone']}</small></span></a>
       </div>
