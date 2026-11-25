@@ -946,3 +946,8 @@ html.lb-ouvert,html.lb-ouvert body{overflow:hidden}
 @keyframes champAppel{0%,100%{border-color:var(--ciel-2);box-shadow:0 0 0 0 rgba(201,64,43,0)}50%{border-color:rgba(201,64,43,.5);box-shadow:0 0 0 3px rgba(201,64,43,.09)}}
 .angles-droits .field input:placeholder-shown:not(:focus):not(.vu){animation:champAppel 2.4s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.angles-droits .field input{animation:none !important}}
+
+/* 25/11/2026 (Emrick, TEST ravalement) : photos de l'anneau un peu plus grandes, sans rien déplacer
+   (la scène grossit, la hauteur de la bande ne change pas). */
+.angles-droits .ring-hero .ring3d-scene{transform:translateX(-50%) scale(1.22);transform-origin:50% 50%}
+@media(min-width:1060px){.angles-droits .ring-hero .ring3d-scene{transform:translateX(-50%) scale(1.12)}}
