@@ -1196,7 +1196,7 @@ def render(p):
         if f.get('rappel'):
             q_coord = 'Vos coordonnées pour être rappelé'
             # 25/11/2026 (Emrick) : encadré « Être rappelé par Tonio pour profiter… » retiré : les champs et Envoyer remontent.
-        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}<p class="f-rgpd">Vos coordonnées servent uniquement à vous rappeler pour ce devis. <a href="/confidentialite/">Confidentialité</a></p></div>\n        '
+        fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}</div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
         corps = f'''<div class="devis-shell">
