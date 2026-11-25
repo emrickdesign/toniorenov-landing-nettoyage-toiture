@@ -769,3 +769,8 @@
     im.addEventListener('click', function () { window.ouvrirPhoto(im); });
   });
 })();
+
+/* 25/11/2026 : le contour qui « respire » sur les champs s'arrête dès qu'on a cliqué une fois dedans. */
+document.addEventListener('focusin', function (e) {
+  if (e.target && e.target.matches && e.target.matches('.field input')) e.target.classList.add('vu');
+});

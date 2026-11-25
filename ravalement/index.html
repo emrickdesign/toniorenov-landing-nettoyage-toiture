@@ -977,6 +977,12 @@ html.lb-ouvert,html.lb-ouvert body{overflow:hidden}
 .angles-droits :is(.rev-av,.done-ic,.step-n,.opt .tick,.ba-knob){border-radius:50% !important}
 .angles-droits .devis-shell{border-radius:var(--r) !important} /* 25/11 : le fond du formulaire garde ses angles arrondis */
 
+/* 25/11/2026 (Emrick, TEST ravalement) : tant qu'on n'a pas cliqué dans un champ, son contour rouge
+   apparaît et disparaît en douceur, très léger, pour montrer qu'il se remplit. Arrêt au premier clic (classe .vu, app.js). */
+@keyframes champAppel{0%,100%{border-color:var(--ciel-2);box-shadow:0 0 0 0 rgba(201,64,43,0)}50%{border-color:rgba(201,64,43,.5);box-shadow:0 0 0 3px rgba(201,64,43,.09)}}
+.angles-droits .field input:placeholder-shown:not(:focus):not(.vu){animation:champAppel 2.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.angles-droits .field input{animation:none !important}}
+
 </style>
 </head>
 <body class="angles-droits">
@@ -1895,6 +1901,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     im.addEventListener('click', function () { window.ouvrirPhoto(im); });
   });
 })();
+
+/* 25/11/2026 : le contour qui « respire » sur les champs s'arrête dès qu'on a cliqué une fois dedans. */
+document.addEventListener('focusin', function (e) {
+  if (e.target && e.target.matches && e.target.matches('.field input')) e.target.classList.add('vu');
+});
 
 </script>
 </body>
