@@ -379,7 +379,6 @@ PAGES = [
  ),
  dict(
   out='ravalement/index.html', path='/ravalement/',
-  angles_droits=True,  # 25/11/2026 (Emrick, TEST sur cette page seule) : angles droits partout sauf les boutons d'appel
   # Refonte du 18/11/2026 sur le modèle /couvreur/ et /entretien/ (analyse de marché du 16/11/2026) :
   # brèche choisie = le prix du devis est le prix payé (façade : écarts de 1 à 10 sur le marché, factures contestées).
   # Reçoit le groupe d'annonces « ravalement de facade ».
@@ -1281,7 +1280,7 @@ gtag('config', 'AW-18220615555');
 {CSS}
 </style>
 </head>
-<body{' class="angles-droits"' if p.get('angles_droits') else ''}>
+<body class="angles-droits"><!-- 25/11/2026 (Emrick) : modèle « ravalement » validé, angles droits + photos plus grandes sur toutes les pages -->
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={s['gtm']}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
