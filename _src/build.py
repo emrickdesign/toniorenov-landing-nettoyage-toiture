@@ -231,7 +231,7 @@ PAGES = [
   img='/roof.jpg', pos='60% 38%', crop='28% 74%', alt="Toiture en tuiles canal et gouttière, entretenue par Tonio Rénov'",
   h1="Mousse sur votre toiture ?<br><mark>Tonio Rénov' la nettoie.</mark>",
   sub="<strong>Nettoyage et démoussage de toiture</strong>, traitement hydrofuge. Artisan couvreur sur la <strong>Côte Basque et les Sud-Landes</strong> — on traite avant que l'eau s'infiltre. Garantie décennale.",
-  ghost="Appeler Tonio pour qu'il vienne", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
+  ghost="Appeler Tonio", last_trust=("clock", "Réponse sous 24h", "on vous rappelle"),
   signs=dict(t="Votre toiture vous envoie déjà des signaux",
     p="La mousse retient l'humidité contre les tuiles. Non traitée, elle finit par soulever les tuiles et infiltrer la charpente — un <strong>entretien à temps</strong> évite une réfection complète.",
     items=[("sprout", "Mousse verte visible", "Des plaques de mousse ou de lichen apparaissent sur les tuiles, surtout côté nord ou sous les arbres."),
@@ -262,7 +262,7 @@ PAGES = [
   img='/roof.jpg', pos='55% 40%', crop='72% 62%', alt="Toiture en tuiles canal avec gouttière zinc, nettoyage et entretien par Tonio Rénov' sur la Côte Basque",
   h1="<span class='h1-l'>Nettoyage de toiture</span><span class='h1-sub'>Démoussage + hydrofuge toiture</span><span class='h1-offre'><mark class='h1-prix'>9&nbsp;€/m²</mark> <s class='h1-barre' aria-label='au lieu de 17 €/m²'>17&nbsp;€/m²</s></span>",
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("shield-check", "Produit DALEP 2100"), ("image", "Photos avant/après"), ("drop", "Tuiles préservées"), ("check", "Prix fixe au m²")],
   fond='marine',  # TEST 18/11 : fond uni à la place de la photo
@@ -389,7 +389,7 @@ PAGES = [
   h1="<span class='h1-l'>Ravalement de façade</span><span class='h1-sub'>Enduit, crépi, peinture, fissures</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   h1_label="Ravalement de façade, enduit, crépi, peinture et fissures : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("check", "Prix du devis tenu"), ("shield-check", "Reprise gratuite")],
   offre_mois=True,
@@ -487,7 +487,7 @@ PAGES = [
   fond='marine',  # 18/11 : la façade derrière le titre faisait brouillon
   h1_label="Nettoyage de façade : traces noires, mousses et salissures, −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("layers", "Adapté au support"), ("check", "Prix du devis tenu")],
   offre_mois=True,
@@ -585,7 +585,7 @@ PAGES = [
   h1="<span class='h1-l'>Artisan couvreur Bayonne</span><span class='h1-sub'>Fuite et réparation de toiture</span><span class='h1-offre'><mark class='h1-prix'>Reprise gratuite 2&nbsp;ans</mark></span>",
   h1_label="Artisan couvreur à Bayonne, fuite et réparation de toiture : si la fuite revient sous 2 ans, Tonio revient gratuitement", ring_hero=True, form_titre_carte=True,
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("image", "Photos avant/après"), ("clock", "Rappel sous 24 h"), ("check", "Prix du devis tenu")],
   offre_note="Pendant 2&nbsp;ans après l’intervention de Tonio",
@@ -672,7 +672,7 @@ PAGES = [
   # 23/11 (Emrick) : « Artisan couvreur » en 1re ligne, pour les gens venus de « couvreur… » ou « toiture neuve ».
   h1_label="Artisan couvreur, réfection de toiture ou toiture neuve, de la charpente à la couverture : −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("tools", "Charpente et couverture"), ("check", "Prix du devis tenu"), ("image", "Photos du chantier"), ("search", "Réparer si ça suffit")],
   offre_mois=True,
@@ -768,7 +768,7 @@ PAGES = [
   img='/roof.jpg', pos='52% 45%', crop='48% 68%', alt="Faîtage et gouttières zinc sur toiture tuiles, zinguerie Tonio Rénov'",
   h1="Gouttières, faîtage, solins ?<br><mark>Tonio Rénov' les refait.</mark>",
   sub="<strong>Zinguerie à Bayonne, Anglet, Boucau</strong> : pose de gouttières zinc ou alu, reprise de faîtage au mortier, solins de cheminée étanches. Artisan zingueur local, on fixe au lieu de rafistoler. Garantie décennale.",
-  ghost="Appeler Tonio pour qu'il vienne", last_trust=("clock", "Avant la tempête", "devis sous 24h"),
+  ghost="Appeler Tonio", last_trust=("clock", "Avant la tempête", "devis sous 24h"),
   signs=dict(t="La zinguerie, c'est ce qui tient la toiture pendant l'hiver",
     p="Ce qui lâche d'abord en tempête, ce n'est presque jamais la tuile — c'est la <strong>gouttière</strong>, le <strong>faîtage</strong>, le <strong>solin de cheminée</strong>. Trois points de zinguerie qui, bien repris, évitent 90 % des infiltrations.",
     items=[("waves", "Gouttière qui déborde ou fuit", "Débris, pente qui s'est faussée, soudure fatiguée : la gouttière lâche d'abord. Zinguerie à reprendre, pas à rafistoler."),
@@ -803,7 +803,7 @@ PAGES = [
   h1="<span class='h1-l'>Artisan peintre Bayonne</span><span class='h1-sub'>Rénovation peinture intérieure</span><span class='h1-offre'><mark class='h1-prix'>−30&nbsp;%&nbsp;ce&nbsp;mois-ci</mark></span>",
   h1_label="Artisan peintre à Bayonne : rénovation de peinture intérieure, −30 % sur le devis ce mois-ci", ring_hero=True, form_titre_carte=True,
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("roller", "Tonio peint lui-même"), ("shield", "Meubles protégés"), ("check", "Propre chaque soir")],
   offre_mois=True,
@@ -871,7 +871,7 @@ PAGES = [
   h1="<span class='h1-l'>Tonio s'occupe de tout</span><span class='h1-sub'>Toiture, façade, peinture</span><span class='h1-offre'><mark class='h1-prix'>Offres&nbsp;du&nbsp;moment</mark></span>",
   h1_label="Tonio s'occupe de tout : toiture, façade, peinture, et vous profitez des offres du moment", ring_hero=True, form_titre_carte=True,
   sub="",
-  ghost="Appeler Tonio pour qu'il vienne",
+  ghost="Appeler Tonio",
   avis='7', rev_sum='7 avis Google', rarete=False, marquee=True,
   proof=[("check", "Devis gratuit"), ("phone", "Rappel sous 24 h"), ("shield-check", "Prix du devis tenu")],
   band=[("check", "Devis gratuit", "sur place")],
@@ -1195,8 +1195,7 @@ def render(p):
         rappel = ''
         if f.get('rappel'):
             q_coord = 'Vos coordonnées pour être rappelé'
-            rappel = (f'<div class="f-rappel"><p class="f-rappel-t">Être rappelé par Tonio pour profiter {f["rappel"]}</p>'
-                      f'<p class="f-rappel-s">C’est Tonio, l’artisan, qui vous appelle lui-même sous 24&nbsp;h.</p></div>')
+            # 25/11/2026 (Emrick) : encadré « Être rappelé par Tonio pour profiter… » retiré : les champs et Envoyer remontent.
         fsteps += f'<div class="fstep" data-step="{n_et}">{compte(n_et)}{rappel}<p class="fq" tabindex="-1" data-focus>{q_coord}</p>{champs}<p class="f-rgpd">Vos coordonnées servent uniquement à vous rappeler pour ce devis. <a href="/confidentialite/">Confidentialité</a></p></div>\n        '
         fsteps += f'<div class="fstep" data-step="{n_et + 1}" aria-live="polite">'
         carte_t = (f'<h2 class="fc-t">{plain(titre)}</h2>' + ('' if hero else f'<p class="fc-sub">{f["sub"]}</p>')) if p.get('form_titre_carte') else ''
@@ -1284,13 +1283,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- Barre du haut retirée le 22/11/2026 (Emrick) : le H1 et le formulaire remontent. -->
 
+<!-- 25/11/2026 (Emrick) : l'entreprise dans une petite barre blanche en haut (non collante), pour séparer du hero. -->
+<header class="topbar"><div class="topbar-in"><a class="brand topbar-brand" href="#top" aria-label="{s['name']}, artisan à Boucau depuis 2009">{mark(False)}<span><b>{s['name']}</b><small>Artisan à Boucau depuis 2009</small></span></a></div></header>
+
 <main id="top"{' class="form-bleu"' if p.get('form_bleu') else ''}>
 <section class="hero{(' fond-uni fond-' + p['fond']) if p.get('fond') else ''}">
   {'' if p.get('fond') else f'<div class="hero-bg"><img src="{p["img"]}" alt="{p["alt"]}" width="1024" height="1024" fetchpriority="high" decoding="async" style="--pos:{p["pos"]}"></div>'}
   <div class="hero-in">
     <div class="hero-copy">
-      <!-- 24/11/2026 (Emrick) : l'entreprise en tête de page, pour rassurer tout de suite (logo + nom, sans barre collante). -->
-      <a class="brand hero-brand fade" href="#top" aria-label="{s['name']}, artisan à Boucau depuis 2009">{mark()}<span><b>{s['name']}</b><small>Artisan à Boucau depuis 2009</small></span></a>
       {h1}
       <p class="google-badge fade" style="--d:1">
         <span class="g-logo" aria-hidden="true"><b style="color:#4285F4">G</b><b style="color:#DB4437">o</b><b style="color:#F4B400">o</b><b style="color:#4285F4">g</b><b style="color:#0F9D58">l</b><b style="color:#DB4437">e</b></span>
