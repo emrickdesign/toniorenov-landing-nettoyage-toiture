@@ -941,6 +941,15 @@ html.lb-ouvert,html.lb-ouvert body{overflow:hidden}
 .hero .hero-copy .hero-cta{margin-top:clamp(14px,2.4vh,22px)}
 @media(max-width:1059px){.hero .hero-form .form-avis{margin-top:-8px}}
 
+/* 25/11/2026 (Emrick, TEST page ravalement, option angles_droits) : page plus carrée / premium.
+   Angles droits (2px) partout ; les boutons d'appel restent en pilule pour se démarquer ;
+   les vrais ronds (avatars, points, pastilles) restent ronds. */
+.angles-droits *,.angles-droits *::before,.angles-droits *::after{border-radius:2px !important}
+.angles-droits :is(.btn-primary,.btn-call,.fab,.co-go){border-radius:999px !important}
+.angles-droits :is(.btn-primary,.btn-call,.fab) :is(.sh-spark,.sh-back,.fab-pulse){border-radius:inherit !important}
+.angles-droits :is(.sh-slide,.sh-spin){border-radius:0 !important}
+.angles-droits :is(.rev-av,.done-ic,.step-n,.opt .tick,.ba-knob){border-radius:50% !important}
+
 </style>
 </head>
 <body>
