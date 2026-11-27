@@ -13,9 +13,10 @@ SITE = dict(
     # et tracés dans l'espace client Potentieel. Changer ici = changer les 4 pages.
     name="Tonio Rénov'", phone="05 25 68 01 58", tel="+33525680158",
     email="contact@toniorenov.fr", gtm="GTM-5VBQJ4RZ",
-    # Canonical : toniorenov.fr est le domaine principal utilisé par les Google Ads V3.
-    # Le sous-domaine nettoyage-toiture.toniorenov.fr sert la même build mais pointe toniorenov.fr via canonical.
-    base="https://toniorenov.fr",
+    # Canonical : depuis le 27/11/2026 les annonces pointent sur potentieel.fr/tonio-renov/…
+    # (avant : toniorenov.fr + chemin, qui renvoyait la page d'accueil du site de Tonio).
+    # L'ancien sous-domaine nettoyage-toiture.toniorenov.fr reste en ligne et pointe ici via canonical.
+    base="https://potentieel.fr/tonio-renov",
     # Identité légale (attestation RNE du 16/06/2026 + avis Sirene du 10/06/2026).
     legal_nom="Tonio VIS", legal_forme="entrepreneur individuel (EI)",
     siren="511 400 814", siret="511 400 814 00030",
@@ -1455,6 +1456,30 @@ Téléphone : {tel} · E-mail : {mail}</p>
         open(target, 'w', encoding='utf-8').write(typo_fr(page_legale(titre, corps)))
         print('écrit', dossier + '/index.html')
 
+# Copie des pages de campagne sous potentieel.fr/tonio-renov/ (dépôt emrickdesign/potentieel),
+# chemins absolus préfixés. index.html, urgence/ et zinguerie/ (hors campagne) ne sont pas publiés là-bas.
+POTENTIEEL = os.path.join(os.path.expanduser('~'), 'Documents', 'Potentieel site ', 'tonio-renov')
+PREFIXE = '/tonio-renov'
+PAGES_POTENTIEEL = ['couvreur', 'refection-toiture', 'entretien', 'ravalement', 'nettoyage-facade',
+                    'peinture-interieure', 'devis', 'mentions-legales', 'confidentialite']
+
+def prefixer(page):
+    page = re.sub(r'(\s(?:href|src|data-full|action|poster)=")/(?!/)', r'\1' + PREFIXE + '/', page)
+    return page.replace('href="' + PREFIXE + '/"', 'href="' + PREFIXE + '/devis/"')   # pas de page d'accueil sous /tonio-renov/
+
+def publier_potentieel():
+    import shutil
+    if not os.path.isdir(os.path.dirname(POTENTIEEL)):
+        print('dépôt potentieel absent, copie sautée'); return
+    for d in PAGES_POTENTIEEL:
+        src = os.path.join(ROOT, d, 'index.html'); dst = os.path.join(POTENTIEEL, d, 'index.html')
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        open(dst, 'w', encoding='utf-8').write(prefixer(open(src, encoding='utf-8').read()))
+    for f in ('favicon.svg', 'roof.jpg', 'facade.jpg'):
+        shutil.copy2(os.path.join(ROOT, f), os.path.join(POTENTIEEL, f))
+    shutil.copytree(os.path.join(ROOT, 'img'), os.path.join(POTENTIEEL, 'img'), dirs_exist_ok=True)
+    print('copié sous', POTENTIEEL, ':', ', '.join(PAGES_POTENTIEEL))
+
 if __name__ == '__main__':
     for p in PAGES:
         d = seo_json(p)
@@ -1470,3 +1495,4 @@ if __name__ == '__main__':
            '<polygon fill="#8c1c2c" points="704,532 901,695 869,695 704,562 539,695 507,695"/></g></g></svg>')
     open(os.path.join(ROOT, 'favicon.svg'), 'w', encoding='utf-8').write(fav)
     legales()
+    publier_potentieel()

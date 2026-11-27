@@ -117,14 +117,16 @@
     /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, délai, statut, page et formulaire d'origine. */
     if (!LEAD.client) return Promise.reject(new Error('Fiche CRM du client non branchée'));
     var details = [reponses.toiture, reponses.surface, reponses.delai, reponses.statut].filter(Boolean).join(' · ') || null;
-    var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
+    /* Pages servies aussi sous potentieel.fr/tonio-renov/ (27/11) : on retire le préfixe pour garder les mêmes valeurs au CRM. */
+    var chemin = location.pathname.replace(/^\/tonio-renov(?=\/)/, '') || '/';
+    var page = chemin === '/' ? '' : chemin.replace(/\/$/, '');
     var corps = {
       client_id: LEAD.client,
       prenom: reponses.nom || null,
       telephone: reponses.tel || null,
       ville: reponses.ville || null,
       /* Sans question « besoin » (ex. nettoyage toiture), le métier vient de data-domaine du formulaire (19/11). */
-      domaine: reponses.probleme || (form && form.getAttribute('data-domaine')) || (/peinture/.test(location.pathname) ? 'Peinture intérieure' : null),
+      domaine: reponses.probleme || (form && form.getAttribute('data-domaine')) || (/peinture/.test(chemin) ? 'Peinture intérieure' : null),
       details: details,
       source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
@@ -268,7 +270,7 @@
     if (!SID) { SID = uid(); sessionStorage.setItem('tonio_sid', SID); }
   } catch (e) { SID = uid(); }
 
-  var PAGE = location.pathname;
+  var PAGE = location.pathname.replace(/^\/tonio-renov(?=\/)/, '') || '/';
   var REF = document.referrer || '';
   var UA = navigator.userAgent || '';
   var START = Date.now();

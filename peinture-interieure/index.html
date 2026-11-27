@@ -26,8 +26,8 @@ gtag('config', 'AW-18220615555');
 <meta property="og:type" content="website">
 <meta property="og:title" content="Peintre Bayonne, Anglet, Biarritz, Boucau · Tonio Rénov'">
 <meta property="og:description" content="Peintre en bâtiment à Bayonne, Anglet, Biarritz et Boucau : peinture intérieure, devis peinture gratuit sur place, prix ferme et -30 % sur le devis ce mois-ci.">
-<meta property="og:image" content="https://toniorenov.fr/img/galerie-real-peinture-sejour.jpg">
-<link rel="canonical" href="https://toniorenov.fr/peinture-interieure/">
+<meta property="og:image" content="https://potentieel.fr/tonio-renov/img/galerie-real-peinture-sejour.jpg">
+<link rel="canonical" href="https://potentieel.fr/tonio-renov/peinture-interieure/">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preload" as="image" href="/img/galerie-real-peinture-sejour.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1252,14 +1252,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     /* Ce que Tonio doit savoir avant de rappeler : type de toiture, surface, délai, statut, page et formulaire d'origine. */
     if (!LEAD.client) return Promise.reject(new Error('Fiche CRM du client non branchée'));
     var details = [reponses.toiture, reponses.surface, reponses.delai, reponses.statut].filter(Boolean).join(' · ') || null;
-    var page = location.pathname === '/' ? '' : location.pathname.replace(/\/$/, '');
+    /* Pages servies aussi sous potentieel.fr/tonio-renov/ (27/11) : on retire le préfixe pour garder les mêmes valeurs au CRM. */
+    var chemin = location.pathname.replace(/^\/tonio-renov(?=\/)/, '') || '/';
+    var page = chemin === '/' ? '' : chemin.replace(/\/$/, '');
     var corps = {
       client_id: LEAD.client,
       prenom: reponses.nom || null,
       telephone: reponses.tel || null,
       ville: reponses.ville || null,
       /* Sans question « besoin » (ex. nettoyage toiture), le métier vient de data-domaine du formulaire (19/11). */
-      domaine: reponses.probleme || (form && form.getAttribute('data-domaine')) || (/peinture/.test(location.pathname) ? 'Peinture intérieure' : null),
+      domaine: reponses.probleme || (form && form.getAttribute('data-domaine')) || (/peinture/.test(chemin) ? 'Peinture intérieure' : null),
       details: details,
       source: 'landing-ads' + page + ' (formulaire ' + pos + ')',
       campagne: param('utm_campaign'),
@@ -1403,7 +1405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!SID) { SID = uid(); sessionStorage.setItem('tonio_sid', SID); }
   } catch (e) { SID = uid(); }
 
-  var PAGE = location.pathname;
+  var PAGE = location.pathname.replace(/^\/tonio-renov(?=\/)/, '') || '/';
   var REF = document.referrer || '';
   var UA = navigator.userAgent || '';
   var START = Date.now();
