@@ -988,6 +988,11 @@ html.lb-ouvert,html.lb-ouvert body{overflow:hidden}
 .angles-droits .ring-hero .ring3d-scene{transform:translateX(-50%) scale(1.22);transform-origin:50% 50%}
 @media(min-width:1060px){.angles-droits .ring-hero .ring3d-scene{transform:translateX(-50%) scale(1.12)}}
 
+/* 27/11/2026 : FAQ et dépliants du bas de page rendus seulement à l'approche (allège le premier affichage sur mobile).
+   Pas sur les cartes qui défilent ni sur la carte des villes : leur JS mesure leur largeur au chargement.
+   Toutes les ancres des liens annexes (#devis, #avis, #zone, #devis-bas) sont au-dessus. */
+.faq-sec,.kw:not(.kw-cartes):not(.kw-carte){content-visibility:auto;contain-intrinsic-size:auto 800px}
+
 </style>
 </head>
 <body class="angles-droits"><!-- 25/11/2026 (Emrick) : modèle « ravalement » validé, angles droits + photos plus grandes sur toutes les pages -->
